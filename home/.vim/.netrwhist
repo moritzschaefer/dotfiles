@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/mollitz/Projects/tickettiger/spec/controllers'
+let g:netrw_dirhist_2='/home/mollitz/Projects/sampleapp/spec/support'
+let g:netrw_dirhist_3='/home/mollitz/Projects/sampleapp/spec/models'
+let g:netrw_dirhist_4='/home/mollitz/Projects/sampleapp/spec/requests'
