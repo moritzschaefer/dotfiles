@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/mollitz/Projects/tickettiger/spec/controllers'
 let g:netrw_dirhist_2='/home/mollitz/Projects/sampleapp/spec/support'
 let g:netrw_dirhist_3='/home/mollitz/Projects/sampleapp/spec/models'
 let g:netrw_dirhist_4='/home/mollitz/Projects/sampleapp/spec/requests'
 let g:netrw_dirhist_5='/home/mollitz/Projects/sampleapp/app/models'
+let g:netrw_dirhist_6='/home/moritz/Projects/tmp/Myapp/app/views/tags'
