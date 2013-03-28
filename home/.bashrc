@@ -116,7 +116,7 @@ fi
 complete -o default -o nospace -F _git g
 export INPUTRC=~/.inputrc
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/heroku/bin:$PATH"
 function color_my_prompt {
     local __user_and_host="\[\033[01;32m\]\u@\h"
     local __cur_location="\[\033[01;34m\]\w"
@@ -128,3 +128,5 @@ function color_my_prompt {
     export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__prompt_tail$__last_color "
 }
 color_my_prompt
+# Define my editor:
+export EDITOR='vim'
