@@ -113,10 +113,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Ruby completion
+. ~/.completion-ruby/completion-ruby-all
+
 complete -o default -o nospace -F _git g
 export INPUTRC=~/.inputrc
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="~/bin:$PATH"
 function color_my_prompt {
     local __user_and_host="\[\033[01;32m\]\u@\h"
     local __cur_location="\[\033[01;34m\]\w"

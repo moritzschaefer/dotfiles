@@ -35,8 +35,15 @@ filetype plugin on
 autocmd BufNewFile,BufRead *html.erb set filetype=html.eruby 
 "autocmd BufNewFile,BufRead *html.erb setlocal shiftwidth=2 tabstop=2
 
+"mips techgi2
+autocmd BufNewFile,BufRead *.s set filetype=mips
+
 "Opal
 autocmd BufNewFile,BufRead *.sign,*.impl  set ft=opal
+
+"Brandpunkt
+autocmd BufNewFile,BufRead *.tpl set filetype=html
+
 
 "Change buffers wihtout save
 set hidden
