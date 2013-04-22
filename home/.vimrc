@@ -47,3 +47,7 @@ autocmd BufNewFile,BufRead *.tpl set filetype=html
 
 "Change buffers wihtout save
 set hidden
+ 
+" Necessary from latex-suite:
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
