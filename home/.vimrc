@@ -47,3 +47,16 @@ autocmd BufNewFile,BufRead *.tpl set filetype=html
 
 "Change buffers wihtout save
 set hidden
+
+"
+let g:tex_flavor='latex'
+
+"Latex compiling
+inoremap <LEADER>ll <ESC>:w<CR>:!latex %<CR>i
+inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.dvi > /dev/null 2> /dev/null &<CR>i
+inoremap <LEADER>lpc <ESC>:w<CR>:!pdflatex %<CR>i
+inoremap <LEADER>lpv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
+nmap <LEADER>ll <ESC>:w<CR>:!latex %<CR>
+nmap <LEADER>lv <ESC>:w<CR>:!evince %:r.dvi > /dev/null 2> /dev/null &<CR>
+nmap <LEADER>lpc <ESC>:w<CR>:!pdflatex %<CR>
+nmap <LEADER>lpv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
