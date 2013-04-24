@@ -48,15 +48,20 @@ autocmd BufNewFile,BufRead *.tpl set filetype=html
 "Change buffers wihtout save
 set hidden
 
-"
+"search replace
+nnoremap <Leader>s :,$s/\<<C-r><C-w>\>/\|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left>
+
+"Latex 
 let g:tex_flavor='latex'
 
+autocmd BufNewFile  *.tex	0r ~/.vim/templates/template.tex
+
 "Latex compiling
-inoremap <LEADER>ll <ESC>:w<CR>:!latex %<CR>i
-inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.dvi > /dev/null 2> /dev/null &<CR>i
-inoremap <LEADER>lpc <ESC>:w<CR>:!pdflatex %<CR>i
-inoremap <LEADER>lpv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
-nmap <LEADER>ll <ESC>:w<CR>:!latex %<CR>
-nmap <LEADER>lv <ESC>:w<CR>:!evince %:r.dvi > /dev/null 2> /dev/null &<CR>
-nmap <LEADER>lpc <ESC>:w<CR>:!pdflatex %<CR>
-nmap <LEADER>lpv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
+"inoremap <LEADER>ll <ESC>:w<CR>:!latex %<CR>i
+"inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.dvi > /dev/null 2> /dev/null &<CR>i
+inoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>i
+inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
+"nmap <LEADER>ll <ESC>:w<CR>:!latex %<CR>
+"nmap <LEADER>lv <ESC>:w<CR>:!evince %:r.dvi > /dev/null 2> /dev/null &<CR>
+nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>
+nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
