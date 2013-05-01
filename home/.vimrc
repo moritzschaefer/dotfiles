@@ -66,3 +66,7 @@ inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
 "nmap <LEADER>lv <ESC>:w<CR>:!evince %:r.dvi > /dev/null 2> /dev/null &<CR>
 nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>
 nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
+
+" pathogen
+call pathogen#incubate()
+call pathogen#helptags()
