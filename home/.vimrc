@@ -49,7 +49,8 @@ autocmd BufNewFile,BufRead *.tpl set filetype=html
 set hidden
 
 "search replace
-nnoremap <Leader>s :,$s/\<<C-r><C-w>\>/\|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap <Leader>sc :,$s/\<<C-r><C-w>\>//gc\|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap <Leader>sg :,$s/\<<C-r><C-w>\>//g\|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 "Latex 
 let g:tex_flavor='latex'
