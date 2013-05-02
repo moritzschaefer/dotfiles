@@ -114,7 +114,7 @@ if ! shopt -oq posix; then
 fi
 
 # Ruby completion
-. ~/.completion-ruby/completion-ruby-all
+. $HOME/.completion-ruby/completion-ruby-all
 
 complete -o default -o nospace -F _git g
 export INPUTRC=~/.inputrc
