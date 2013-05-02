@@ -36,6 +36,11 @@ hg_command = 'hg'
 #	  ["git://github.com/vim-scripts/applescript.vim", lambda { }],
 
 bundles = [ 
+  ["git://github.com/kana/vim-textobj-entire.git"],
+  ["git://github.com/kana/vim-textobj-indent.git"],
+  ["git://github.com/kana/vim-textobj-line.git"],
+  #["git://github.com/rbonvall/vim-textobj-latex.git"],
+  ["git://github.com/nelstrom/vim-textobj-rubyblock.git"],
   ["git://github.com/bkad/CamelCaseMotion.git"],
   ["git://github.com/chrisbra/Recover.vim.git"],
   ["git://github.com/kana/vim-textobj-user.git"],
