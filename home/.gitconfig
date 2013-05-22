@@ -1,0 +1,16 @@
+[user]
+	name = Moritz Schäfer
+	email = mollitz@gmail.com
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[diff]
+	mnemonicprefix = true
+[merge]
+	stat = true
+[push]
+	default = simple
