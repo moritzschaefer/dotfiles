@@ -133,3 +133,4 @@ function color_my_prompt {
 color_my_prompt
 # Define my editor:
 export EDITOR='vim'
+#export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
