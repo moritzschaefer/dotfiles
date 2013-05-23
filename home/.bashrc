@@ -114,7 +114,7 @@ if ! shopt -oq posix; then
 fi
 
 # Ruby completion
-. ~/.completion-ruby/completion-ruby-all
+. $HOME/.completion-ruby/completion-ruby-all
 
 complete -o default -o nospace -F _git g
 export INPUTRC=~/.inputrc
@@ -133,3 +133,4 @@ function color_my_prompt {
 color_my_prompt
 # Define my editor:
 export EDITOR='vim'
+#export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
