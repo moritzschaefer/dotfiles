@@ -1,0 +1,16 @@
+# ~/.tmuxinator/default.yml
+# you can make as many tabs as you wish...
+
+project_name: Default work
+project_root: ~/
+socket_name: # Not needed.  Remove to use default socket
+rvm: 
+pre: 
+tabs:
+  - base:
+      layout: main-vertical
+      panes:
+        - vim todo
+        - htop
+  - irc: ircii
+  - mp3: xmms2

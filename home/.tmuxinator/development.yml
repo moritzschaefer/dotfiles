@@ -1,0 +1,20 @@
+project_name: development
+project_root: ~/
+pre: mysql.server start
+tabs:
+  - edit:
+      layout: 553c,178x51,0,0{116x51,0,0,61x51,117,0}
+      panes:
+        - vim
+        - irssi
+  - shell:
+      layout: e062,178x51,0,0{89x51,0,0,88x51,90,0[88x25,90,0,88x25,90,26]}
+      panes:
+        - #empty
+        - #empty
+        - #empty
+  - remote:
+      layout: even-horizontal
+      panes:
+        - ssh me@myserver
+        - #empty
