@@ -7,10 +7,13 @@ socket_name: # Not needed.  Remove to use default socket
 rvm: 
 pre: 
 tabs:
-  - base:
+  - base: date && ls
+  - todo: vim todo
+  - htop:
       layout: main-vertical
       panes:
-        - vim todo
         - htop
+        - 
+
   - irc: ircii
   - mp3: xmms2
