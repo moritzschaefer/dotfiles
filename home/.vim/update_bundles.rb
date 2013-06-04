@@ -74,6 +74,17 @@ bundles = [
 	#  "git://github.com/vim-ruby/vim-ruby.git",
 	#["git://repo.or.cz/vcscommand.git"],
 	#"git://github.com/borgand/ir_black.git",
+  ["git://github.com/kien/ctrlp.vim.git"],
+  ["git://github.com/tpope/vim-endwise.git"],
+  ["git://github.com/tpope/vim-haml.git"],
+  ["git://github.com/vim-ruby/vim-ruby.git"],
+  ["git://github.com/Valloric/YouCompleteMe.git"],
+  ["git://github.com/tpope/vim-sensible.git"],
+  ["git://github.com/scrooloose/syntastic.git"],
+  ["git://github.com/cakebaker/scss-syntax.vim.git"],
+  ["git://github.com/jiangmiao/auto-pairs.git"],
+  ["git://github.com/mattn/zencoding-vim.git"],
+  ["git://github.com/terryma/vim-multiple-cursors.git"],
 	]
 
 	[	

@@ -7,7 +7,7 @@ socket_name: #foo # Not needed. Remove to use default socket
 rvm: #1.9.2@rails_project
 pre: #sudo /etc/rc.d/mysqld start
 tabs:
-  - console: 
+  - console:
   - editor:
       layout: main-vertical
       panes:
@@ -16,7 +16,5 @@ tabs:
   - shell: git pull
   - database: rails db
   - server: rails s
-  - logs: tail -f logs/development.log
+  - logs: tail -f log/development.log
   - console: rails c
-  - capistrano:
-  - server: #ssh me@myhost

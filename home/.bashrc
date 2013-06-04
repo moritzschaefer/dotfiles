@@ -116,6 +116,7 @@ fi
 # Ruby completion
 . $HOME/.completion-ruby/completion-ruby-all
 
+
 complete -o default -o nospace -F _git g
 export INPUTRC=~/.inputrc
 ### Added by the Heroku Toolbelt

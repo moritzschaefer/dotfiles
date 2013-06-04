@@ -90,80 +90,14 @@ inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
 nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>
 nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
 
-" --- Vundler ----------------------------------------------------------------
-" This section should setup VIM with very little interaction, vundle and
-" the specified Bundles are installed autmatically
+" pathogen
+call pathogen#incubate()
+call pathogen#helptags()
 
-" --- Function to install bundles automagically
-function! LoadBundles()
-  Bundle 'tpope/vim-endwise'
-  if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
-  endif
-endfunction
-" --- Install Vundle and bundles if possible
-filetype off                            " required!
-if executable("git")
-  if !isdirectory(expand("~/.vim/bundle/vundle"))
-    echomsg "***************************"
-    echomsg "Installing Vundle"
-    echomsg "***************************"
-    !mkdir -p ~/.vim/bundle && git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-    let s:bootstrap=1
-  endif
-
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-  call LoadBundles()
-
-  if exists("s:bootstrap") && s:bootstrap
-    unlet s:bootstrap
-    BundleInstall
-    quit
-  endif
-endif
-
-filetype plugin indent on               " required!
-" --- Helpers ----------------------------------------------------------------
-" --- Always jump to last known position if valid
-if has ("autocmd")
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g `\"" |
-    \ endif
-endif
-
-" --- Strip trailing whitespace
-function! StripTrailingWhite()
-  let l:winview = winsaveview()
-  silent! %s/\s\+$//
-  call winrestview(l:winview)
-endfunction
-if has("autocmd")
-  autocmd BufWritePre *  call StripTrailingWhite()
-endif
-
-" --- Syntax specific settings -----------------------------------------------
-" --- Ruby
-if has("autocmd")
-  autocmd FileType ruby,eruby setlocal cinwords=do
-  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading=1
-  autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global=1
-endif
-
-" --- C,C++,ObjC
-if has("autocmd")
-  autocmd FileType java,c,cpp,objc setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType java,c,cpp,objc let b:loaded_delimitMate = 1
-endif
-
-" --- Markdown
-if has("autocmd")
-  autocmd BufNewFile,BufRead *.mdwn,*.mkd,*.md,*.markdown setlocal filetype=markdown
-  autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
-endif
-
-" --- Finish up --------------------------------------------------------------
-set secure
-" EOF
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ }
