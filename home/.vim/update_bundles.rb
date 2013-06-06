@@ -78,7 +78,7 @@ bundles = [
   ["git://github.com/tpope/vim-endwise.git"],
   ["git://github.com/tpope/vim-haml.git"],
   ["git://github.com/vim-ruby/vim-ruby.git"],
-  ["git://github.com/Valloric/YouCompleteMe.git"],
+#  ["git://github.com/Valloric/YouCompleteMe.git"], enable later.
   ["git://github.com/tpope/vim-sensible.git"],
   ["git://github.com/scrooloose/syntastic.git"],
   ["git://github.com/cakebaker/scss-syntax.vim.git"],
