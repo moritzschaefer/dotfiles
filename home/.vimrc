@@ -21,7 +21,7 @@ set wildmenu
 set mouse=a
 
 set smartcase
-inoremap jj <Esc>
+inoremap nn <Esc>
 
 nnoremap JJJJ <Nop>
 

@@ -1,0 +1,16 @@
+# ~/.tmuxinator/project_name.yml
+# you can make as many tabs as you wish...
+
+project_name: Brandpunkt Project
+project_root: ~/Projects/
+socket_name: #foo # Not needed. Remove to use default socket
+pre: #sudo /etc/rc.d/mysqld start
+tabs:
+  - editor:
+      layout: 2b05,177x48,0,0{104x48,0,0,72x48,105,0}
+      panes:
+        - vim
+        - tail -f /var/log/apache2/error.log
+  - console:
+  - database: mysqllogin
+  - ftp: ncftp xihit
