@@ -96,7 +96,6 @@ nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
 
 " --- Function to install bundles automagically
 function! LoadBundles()
-  Bundle 'tpope/vim-endwise'
   if filereadable(expand("~/.vimrc.bundles"))
     source ~/.vimrc.bundles
   endif

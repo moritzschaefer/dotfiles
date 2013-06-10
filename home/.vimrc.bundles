@@ -32,19 +32,10 @@
       \ }
 
   " --- Fast autocompletion
-  Bundle 'Valloric/YouCompleteMe'
-  if !filereadable(expand('~/.vim/bundle/YouCompleteMe/python/ycm_core.so'))
-    call system('cd ~/.vim/bundle/YouCompleteMe && ./install.sh')
-  endif
-  
-    " --- Ends e.g. ruby blocks automatically
-  Bundle 'tpope/vim-endwise'
-
-  " --- Smart pairing of brackets with CR and SPACE awareness
-  Bundle 'jiangmiao/auto-pairs'
-
-  " --- Live multiple cursor editing
-  Bundle 'terryma/vim-multiple-cursors'
+  " Bundle 'Valloric/YouCompleteMe'
+  " if !filereadable(expand('~/.vim/bundle/YouCompleteMe/python/ycm_core.so'))
+  "   call system('cd ~/.vim/bundle/YouCompleteMe && ./install.sh')
+  " endif
 
   " --- Syntax checking
   if exists('*getmatches')
@@ -59,8 +50,39 @@
   Bundle 'tpope/vim-bundler'
   Bundle 'tpope/vim-rails'
   Bundle 'tpope/vim-haml'
-  Bundle 'tpope/vim-sensible'
+  "Bundle 'tpope/vim-sensible'
   Bundle 'cakebaker/scss-syntax.vim'
   Bundle 'mattn/zencoding-vim'
   Bundle 'tpope/vim-fugitive'
-
+  Bundle 'kana/vim-textobj-entire'
+  Bundle 'kana/vim-textobj-indent'
+  Bundle 'kana/vim-textobj-user'
+  Bundle 'kana/vim-textobj-line'
+  "Bundle 'rbonvall/vim-textobj-latex'
+  Bundle 'nelstrom/vim-textobj-rubyblock'
+  Bundle 'bkad/CamelCaseMotion'
+  Bundle 'chrisbra/Recover.vim'
+  	Bundle 'msanders/snipmate.vim'
+	"Bundle 'astashov/vim-ruby-debugger'
+	Bundle 'scrooloose/nerdtree'
+	"Bundle 'vim-scripts/mru.vim'
+	"Bundle 'tomtom/tlib_vim'
+  "Bundle 'Shougo/neocomplcache'
+	Bundle 'vim-scripts/taglist.vim'
+	Bundle 'tsaleh/vim-matchit'
+	Bundle 'vim-scripts/closetag.vim'
+	"  "timcharper/textile.vim",
+	"  "tpope/vim-cucumber",
+	"  "tpope/vim-markdown",
+  Bundle 'tpope/vim-repeat'
+	Bundle 'tpope/vim-surround'
+	"  "tpope/vim-vividchalk",
+	"Bundle 'pix/vim-align'
+	"  "tsaleh/vim-shoulda",
+	"Bundle 'tsaleh/vim-supertab'
+	"  "tsaleh/vim-tcomment",
+	"  "vim-ruby/vim-ruby",
+	"Bundle 'git://repo.or.cz/vcscommand'
+  Bundle 'tpope/vim-endwise'
+  Bundle 'jiangmiao/auto-pairs'
+  Bundle 'terryma/vim-multiple-cursors'
