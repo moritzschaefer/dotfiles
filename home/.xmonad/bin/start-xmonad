@@ -1,0 +1,36 @@
+#!/bin/sh
+# Script to configure X, start common apps, and start xmonad.
+# Author: Vic Fryzel
+# http://github.com/vicfryzel/xmonad-config
+
+# Configure X
+xsetroot -cursor_name left_ptr &
+xrdb -merge ~/.Xdefaults &
+xscreensaver -no-splash &
+
+# Start the system tray
+~/.xmonad/bin/tray &
+
+# Start two terminals
+rxvt &
+#rxvt &
+
+
+# To set your backgrounds, run nitrogren /path/to/images
+nitrogen --restore &
+
+# Start a browser
+#google-chrome &
+# Identify the home of our gtkrc file, important for setting styles of
+# gtk-based applications
+#export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+ # Start compositing to support transparency. You can omit this
+# if you prefer not to use any transparency, but it is likely to cause
+# ugly black fringing with some programs such as synapse that expect
+# transparency support.
+xcompmgr -n &
+
+# configure more than one screen here too
+pulseaudio --start &
+gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session xmonad
