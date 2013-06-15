@@ -1,2 +1,4 @@
 home/.vim/bundle
 *.un~
+*.o
+*.hi
