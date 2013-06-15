@@ -134,5 +134,5 @@ function color_my_prompt {
 color_my_prompt
 # Define my editor:
 export EDITOR='vim'
-#export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
+export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator

@@ -85,4 +85,6 @@
 	"Bundle 'git://repo.or.cz/vcscommand'
   Bundle 'tpope/vim-endwise'
   Bundle 'jiangmiao/auto-pairs'
+  let g:AutoPairsFlyMode = 1
+  let g:AutoPairsShortcutBackInsert = '<M-b>'
   Bundle 'terryma/vim-multiple-cursors'
