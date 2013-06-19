@@ -31,11 +31,11 @@
       \ }
       \ }
 
-  " --- Fast autocompletion
-  " Bundle 'Valloric/YouCompleteMe'
-  " if !filereadable(expand('~/.vim/bundle/YouCompleteMe/python/ycm_core.so'))
-  "   call system('cd ~/.vim/bundle/YouCompleteMe && ./install.sh')
-  " endif
+   "--- Fast autocompletion
+   Bundle 'Valloric/YouCompleteMe'
+   if !filereadable(expand('~/.vim/bundle/YouCompleteMe/python/ycm_core.so'))
+     call system('cd ~/.vim/bundle/YouCompleteMe && ./install.sh')
+   endif
 
   " --- Syntax checking
   if exists('*getmatches')
@@ -81,7 +81,6 @@
 	"  "tsaleh/vim-shoulda",
 	"Bundle 'tsaleh/vim-supertab'
 	"  "tsaleh/vim-tcomment",
-	"  "vim-ruby/vim-ruby",
 	"Bundle 'git://repo.or.cz/vcscommand'
   Bundle 'tpope/vim-endwise'
   Bundle 'jiangmiao/auto-pairs'

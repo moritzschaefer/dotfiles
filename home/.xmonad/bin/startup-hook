@@ -8,7 +8,7 @@
 # Author: David Brewer
 # Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
 
-#setxkbmap us
+setxkbmap de neo -option
 #xmodmap $HOME/.Xmodmap
 #
 # TRAY ICON SOFTWARE

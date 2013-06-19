@@ -136,3 +136,4 @@ color_my_prompt
 export EDITOR='vim'
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
