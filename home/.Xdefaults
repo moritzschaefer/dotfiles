@@ -26,6 +26,7 @@ URxvt*matcher.button: 1
 # don't forget to change this to your favorite browser
 URxvt*urlLauncher: google-chrome
 
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 URxvt.iso14755: False
