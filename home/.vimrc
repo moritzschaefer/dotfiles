@@ -5,6 +5,7 @@ endif
 set nocompatible
 scriptencoding utf-8
 
+set bs=2
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -50,7 +51,7 @@ endif
 
 inoremap nn <Esc>
 
-nnoremap JJJJ <Nop>
+" nnoremap JJJJ <Nop>
 
 syntax on
 filetype on

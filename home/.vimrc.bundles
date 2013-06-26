@@ -46,7 +46,7 @@
   endif
   Bundle 'tomtom/tcomment_vim'
   Bundle 'vim-ruby/vim-ruby'
-  Bundle 'vim-scripts/ruby-matchit'
+  "Bundle 'vim-scripts/ruby-matchit'
   Bundle 'tpope/vim-bundler'
   Bundle 'tpope/vim-rails'
   Bundle 'tpope/vim-haml'
@@ -54,6 +54,7 @@
   Bundle 'cakebaker/scss-syntax.vim'
   Bundle 'mattn/zencoding-vim'
   Bundle 'tpope/vim-fugitive'
+  Bundle 'vim-scripts/argtextobj.vim'
   Bundle 'kana/vim-textobj-entire'
   Bundle 'kana/vim-textobj-indent'
   Bundle 'kana/vim-textobj-user'
