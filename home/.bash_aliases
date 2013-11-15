@@ -8,4 +8,5 @@ alias jcurl='curl -v -H "Accept: application/json" -H "Content-type: application
 alias susp='dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend'
 alias hib='dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Hibernate'
 alias neo='setxkbmap de neo -option'
+alias de='setxkbmap de'
 alias us='setxkbmap us'
