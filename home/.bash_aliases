@@ -10,3 +10,4 @@ alias hib='dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/f
 alias neo='setxkbmap de neo -option'
 alias de='setxkbmap de'
 alias us='setxkbmap us'
+alias tubvpn='sudo openconnect vpn.tu-berlin.de --script  /etc/vpnc/vpnc-script'

@@ -1,7 +1,7 @@
 project_name: development
 project_root: ~/
 pre: mysql.server start
-tabs:
+windows:
   - edit:
       layout: 553c,178x51,0,0{116x51,0,0,61x51,117,0}
       panes:

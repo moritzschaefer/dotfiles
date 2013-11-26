@@ -49,7 +49,7 @@ if exists("+undofile")
   set undofile
 endif
 
-inoremap ee <Esc>
+inoremap nr <Esc>
 
 " nnoremap JJJJ <Nop>
 

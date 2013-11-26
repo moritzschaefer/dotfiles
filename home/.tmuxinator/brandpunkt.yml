@@ -1,15 +1,16 @@
 # ~/.tmuxinator/project_name.yml
-# you can make as many tabs as you wish...
+# you can make as many windows as you wish...
 
 project_name: Brandpunkt Project
 project_root: ~/Projects/Brandpunkt
 #socket_name: #foo # Not needed. Remove to use default socket
 pre: bpftp
-tabs:
+windows:
   - editor:
-      panes:
-        - vim
-        - tail -f /var/log/apache2/error.log
+    layout: main-vertical
+    panes:
+      - vim
+      - php -S localhost:3000
   - console:
   - database: bpmysql
   - ftp: cd ~/brandpunktftp && ls

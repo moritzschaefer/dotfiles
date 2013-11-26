@@ -12,7 +12,7 @@ xscreensaver -no-splash &
 ~/.xmonad/bin/tray &
 
 # Start two terminals
-rxvt &
+urxvt -e mux main &
 #rxvt &
 
 

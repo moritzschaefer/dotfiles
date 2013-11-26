@@ -1,12 +1,12 @@
 # ~/.tmuxinator/popcornmonster.yml
-# you can make as many tabs as you wish...
+# you can make as many windows as you wish...
 
 project_name: Popcornmonster
 project_root: ~/Projects/rails-popcornmonster
 socket_name: #foo # Not needed. Remove to use default socket
 rvm: #1.9.2@rails_project
 pre: #sudo /etc/rc.d/mysqld start
-tabs:
+windows:
   - console:
   - editor:
       layout: main-vertical
