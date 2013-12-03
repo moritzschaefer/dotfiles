@@ -19,8 +19,8 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 
-import ScratchPadKeys
-import XMonad.Util.EZConfig (additionalKeysP)
+--import ScratchPadKeys
+-- import XMonad.Util.EZConfig (additionalKeysP)
 ------------------------------------------------------------------------
 -- Terminal
 -- The preferred terminal program, which is used in a binding below and by
@@ -60,7 +60,7 @@ myManageHook = composeAll
     , className =? "MPlayer"        --> doFloat
     , className =? "VirtualBox"     --> doShift "4:vm"
     , className =? "Xchat"          --> doShift "5:media"
-    , isFullscreen --> (doF W.focusDown <+> doFullFloat)]  <+> manageScratchPads scratchPadList
+    , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 
 ------------------------------------------------------------------------
@@ -270,9 +270,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
       | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
       , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-  ++
-  -- scratchpad keys
-  scratchPadKeys scratchPadList
 
 ------------------------------------------------------------------------
 -- Mouse bindings
