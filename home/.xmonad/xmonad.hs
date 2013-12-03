@@ -15,6 +15,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.Scratchpad
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -60,7 +61,9 @@ myManageHook = composeAll
     , className =? "MPlayer"        --> doFloat
     , className =? "VirtualBox"     --> doShift "4:vm"
     , className =? "Xchat"          --> doShift "5:media"
-    , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
+    , isFullscreen --> (doF W.focusDown <+> doFullFloat)
+    , scratchpadManageHookDefault
+    ]
 
 
 ------------------------------------------------------------------------
@@ -255,6 +258,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Restart xmonad.
   , ((modMask, xK_q),
      restart "xmonad" True)
+
+  -- spawn scratchpad
+  , ((modMask, xK_s),
+     scratchpadSpawnAction conf)
   ]
   ++
 
