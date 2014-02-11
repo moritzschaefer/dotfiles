@@ -8,3 +8,4 @@ windows:
   - base: date && ls
   - hours: vim stunden
   - todo: vim todo
+  - server: ssh etl@rocket

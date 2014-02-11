@@ -136,4 +136,8 @@ color_my_prompt
 export EDITOR='vim'
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+# Enable powerline
+# . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 
+# added by Anaconda 1.8.0 installer
+#export PATH="/home/mollitz/Apps/anaconda/bin:$PATH"

@@ -5,6 +5,10 @@ endif
 set nocompatible
 scriptencoding utf-8
 
+set encoding=utf-8
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
+
 set bs=2
 set tabstop=2
 set shiftwidth=2
@@ -23,6 +27,9 @@ set incsearch
 set hlsearch
 set showcmd
 set autoindent
+" --- set background different on insert mode
+":au InsertEnter * hi Normal term=NONE ctermbg=lightcyan       guibg=yellow
+":au InsertLeave * hi Normal term=NONE    ctermbg=black    guibg=white
 
 " --- Auto complete options
 set wildmode=list:longest,full  " TODO document the awesomeness of this

@@ -30,6 +30,9 @@ google-chrome &
 # transparency support.
 xcompmgr -n &
 
+# Start dropbox
+dropbox start
+
 # configure more than one screen here too
 pulseaudio --start &
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
