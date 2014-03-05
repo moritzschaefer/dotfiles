@@ -1,0 +1,3 @@
+[submodule "xmonadconfig"]
+	path = home/.xmonad
+	url = https://github.com/davidbrewer/xmonad-ubuntu-conf
