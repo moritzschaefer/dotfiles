@@ -115,7 +115,6 @@ fi
 
 # Ruby completion
 . $HOME/.completion-ruby/completion-ruby-all
-. $HOME/.completion-git/completion-git
 
 
 complete -o default -o nospace -F _git g
