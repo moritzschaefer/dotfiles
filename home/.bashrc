@@ -115,6 +115,7 @@ fi
 
 # Ruby completion
 . $HOME/.completion-ruby/completion-ruby-all
+. $HOME/.completion-git/completion-git
 
 
 complete -o default -o nospace -F _git g
@@ -139,5 +140,15 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 # Enable powerline
 # . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 
-# added by Anaconda 1.8.0 installer
-#export PATH="/home/mollitz/Apps/anaconda/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# added by Anaconda 1.9.0 installer
+#export PATH="/Users/moritzs/anaconda/bin:$PATH"
+export PYTHONPATH=/Library/Python/2.7/site-packages:$PYTHONPATH
+
+# sbin adding
+export PATH="$PATH:/usr/local/sbin"

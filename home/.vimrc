@@ -69,6 +69,7 @@ filetype plugin on
 "autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd BufNewFile,BufRead *html.erb set filetype=html.eruby
 "autocmd BufNewFile,BufRead *html.erb setlocal shiftwidth=2 tabstop=2
+"  html close tags automatically
 
 "mips techgi2
 autocmd BufNewFile,BufRead *.s set filetype=mips
@@ -86,6 +87,9 @@ set hidden
 "search replace
 nnoremap <Leader>sc :,$s/\<<C-r><C-w>\>//gc\|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 nnoremap <Leader>sg :,$s/\<<C-r><C-w>\>//g\|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+let g:EasyMotion_do_mapping=1
+let g:EasyMotion_keys='uiaenrtdosxvlcwkhgfqqßyüöäpzbm,.jUIAENRDXVLCOWSKHGFQÜÖÄPMJ\/{}():-*?…[]<>=&'
+let g:EasyMotion_leader_key = '<Leader>'
 
 "Latex
 let g:tex_flavor='latex'
@@ -170,6 +174,11 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.mdwn,*.mkd,*.md,*.markdown setlocal filetype=markdown
   autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
 endif
+" --- Snipmate
+:imap <C-J> <Plug>snipMateNextOrTrigger
+:smap <C-J> <Plug>snipMateNextOrTrigger
+" ---  Closetag
+:let g:closetag_html_style=1
 
 " --- Finish up --------------------------------------------------------------
 set secure

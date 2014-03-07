@@ -2,14 +2,19 @@
 	rebase = true
 [user]
 	name = Moritz Schäfer
-	email = mollitz@gmail.com
+	email = mail@moritzs.de
 [color]
 	ui = auto
 [alias]
 	co = checkout
 	br = branch
 	ci = commit
+  ciam = commit -am
 	st = status
+  fl = flow
+  flfe = flow feature
+  flst = flow feature start
+  flfi = flow feature finish
 [diff]
 	mnemonicprefix = true
 [merge]

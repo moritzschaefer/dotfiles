@@ -38,12 +38,14 @@
    endif
 
   " --- Syntax checking
-  if exists('*getmatches')
-    Bundle 'scrooloose/syntastic'
+  "if exists('*getmatches')
+    "Bundle 'scrooloose/syntastic'
     " Lets use fancy symbols
-    let g:syntastic_error_symbol='✗'
-    let g:syntastic_warning_symbol='⚠'
-  endif
+    "let g:syntastic_error_symbol='✗'
+    "let g:syntastic_warning_symbol='⚠'
+    "let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"novalidate"]
+    "let g:syntastic_javascript_checkers = ['jshint']
+  "endif
   Bundle 'tomtom/tcomment_vim'
   Bundle 'vim-ruby/vim-ruby'
   "Bundle 'vim-scripts/ruby-matchit'
@@ -63,12 +65,16 @@
   Bundle 'nelstrom/vim-textobj-rubyblock'
   Bundle 'bkad/CamelCaseMotion'
   Bundle 'chrisbra/Recover.vim'
-  	Bundle 'msanders/snipmate.vim'
+  Bundle "MarcWeber/vim-addon-mw-utils"
+  Bundle 'garbas/vim-snipmate'
+  Bundle "honza/vim-snippets"
 	"Bundle 'astashov/vim-ruby-debugger'
 	Bundle 'scrooloose/nerdtree'
 	"Bundle 'vim-scripts/mru.vim'
-	"Bundle 'tomtom/tlib_vim'
+	Bundle 'tomtom/tlib_vim'
+  Bundle 'tomtom/tskeleton_vim'
   "Bundle 'Shougo/neocomplcache'
+  Bundle 'vim-scripts/loremipsum'
 	Bundle 'vim-scripts/taglist.vim'
 	Bundle 'tsaleh/vim-matchit'
 	Bundle 'vim-scripts/closetag.vim'
@@ -88,3 +94,9 @@
   " let g:AutoPairsFlyMode = 1
   let g:AutoPairsShortcutBackInsert = '<M-b>'
   Bundle 'terryma/vim-multiple-cursors'
+  Bundle "pangloss/vim-javascript"
+  Bundle "marijnh/tern_for_vim"
+  Bundle "mattn/emmet-vim"
+  Bundle "othree/html5.vim"
+  Bundle "Lokaltog/vim-easymotion.git"
+  "Bundle "davidhalter/jedi-vim" "already included in YCM"
