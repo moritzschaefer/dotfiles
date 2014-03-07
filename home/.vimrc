@@ -170,7 +170,9 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.mdwn,*.mkd,*.md,*.markdown setlocal filetype=markdown
   autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
 endif
-
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 " --- Finish up --------------------------------------------------------------
 set secure
 " EOF

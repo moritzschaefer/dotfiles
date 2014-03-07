@@ -8,13 +8,14 @@ URxvt*scrollBar_right:true
 URxvt*scrollBar_floating:false
 URxvt*scrollstyle:plain
 URxvt*secondaryScroll:true
+URxvt*secondaryScroll:true
 
 # how many lines you want it to save per session
 URxvt*saveLines:32767
 URxvt*troughColor:#000000
 URxvt*scrollColor:#222222
 #URxvt*font: xft:Dejavu Sans Mono:pixelsize=11
-URxvt.font: xft:Ubuntu Mono derivative Powerline:pixelsize=13:antialias=true:hinting=true
+URxvt.font: xft:Inconsolata for Powerline:pixelsize=19:antialias=true:hinting=true
 
 # with this set to true, when an app sends a bell to the terminal, awesome hilights the appropriate tag(s)
 URxvt*urgentOnBell: true
@@ -31,3 +32,5 @@ URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 URxvt.iso14755: False
+URxvt*geometry: 100x100
+
