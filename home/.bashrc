@@ -147,7 +147,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # added by Anaconda 1.9.0 installer
 #export PATH="/Users/moritzs/anaconda/bin:$PATH"
-export PYTHONPATH=/Library/Python/2.7/site-packages:$PYTHONPATH
+export PYTHONPATH=~/tmp/rocket_om/:/Library/Python/2.7/site-packages:$PYTHONPATH
 
 # sbin adding
 export PATH="$PATH:/usr/local/sbin"
+

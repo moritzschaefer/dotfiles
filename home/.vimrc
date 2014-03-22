@@ -16,6 +16,9 @@ set expandtab
 set smarttab
 
 set cursorline
+autocmd InsertEnter,InsertLeave * set cul!
+"autocmd InsertEnter * highlight Cursor guifg=white guibg=blue ctermfg=white ctermbg=blue
+"autocmd InsertLeave * highlight Cursor guifg=white guibg=darkblue ctermfg=white ctermbg=darkblue
 set fo=croq
 set mousehide
 set background=dark
@@ -44,7 +47,7 @@ set autoread
 
 " Create a tmp folder in the home directory for swap, backup and undo files
 if isdirectory($HOME . '/tmp') == 0
-  :silent !mkdir -p ~/tmp > /dev/null 2>&1
+  silent !mkdir -p ~/tmp > /dev/null 2>&1
 endif
 
 set backupdir=~/tmp
@@ -178,11 +181,12 @@ let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 " --- Snipmate
-:imap <C-J> <Plug>snipMateNextOrTrigger
-:smap <C-J> <Plug>snipMateNextOrTrigger
+imap <C-J> <Plug>snipMateNextOrTrigger
+smap <C-J> <Plug>snipMateNextOrTrigger
 " ---  Closetag
-:let g:closetag_html_style=1
+let g:closetag_html_style=1
 
 " --- Finish up --------------------------------------------------------------
 set secure
 " EOF
+
