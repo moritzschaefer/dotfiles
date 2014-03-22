@@ -98,6 +98,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 let g:tex_flavor='latex'
 
 autocmd BufNewFile  *.tex	0r ~/.vim/templates/template.tex
+autocmd BufNewFile *spider.py TSkeletonSetup spider_template.py
 
 "Latex compiling
 inoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>i
