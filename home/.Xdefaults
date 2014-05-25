@@ -23,7 +23,7 @@ URxvt*urgentOnBell: true
 # these three lines enable clicking on links to open them
 ## if you want to enable tab support, append ,tabbed to the next line
 ## then use shift+down arrow to create tabs and shift+{left,right} arrows to switch between them
-URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine,clipboard
+URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-readline,clipboard
 URxvt*matcher.button: 1
 # don't forget to change this to your favorite browser
 URxvt*urlLauncher: google-chrome

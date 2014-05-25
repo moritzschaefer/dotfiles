@@ -101,10 +101,17 @@ autocmd BufNewFile  *.tex	0r ~/.vim/templates/template.tex
 autocmd BufNewFile *spider.py TSkeletonSetup spider_template.py
 
 "Latex compiling
+"
+" compile on save
+autocmd BufWritePost *.tex :call VimuxRunCommand("pdflatex " . bufname("%"))
 inoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>i
 inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
 nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>
 nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
+" inoremap <LEADER>ll :call VimuxRunCommand("pdflatex " . bufname("%"))<CR>
+" inoremap <LEADER>lv :call VimuxRunCommand("evince " . bufname("%"))<CR>
+" nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>
+" nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
 
 " --- Vundler ----------------------------------------------------------------
 " This section should setup VIM with very little interaction, vundle and
@@ -181,13 +188,41 @@ endif
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
-" --- Snipmate
-imap <C-J> <Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
-" ---  Closetag
-let g:closetag_html_style=1
+let g:UltiSnipsExpandTrigger="<c-e>"
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+let g:ycm_autoclose_preview_window_after_completion=1
+" --- setup vimux
+" Run the current file with rspec
+"map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
 
+" Prompt for a command to run
+map <Leader>r :VimuxPromptCommand<CR>
+map <Leader>vr :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+
+" Interrupt any command running in the runner pane
+map <Leader>vx :VimuxInterruptRunner<CR>
+
+" Zoom the runner pane (use <bind-key> z to restore runner pane)
+map <Leader>vz :call VimuxZoomRunner()<CR>
+"
+" ignore warnings when compiling
+compiler gcc
+set errorformat^=%-G%f:%l:\ %tarning:\ only\ initialized\ varia
+            \bles\ can\ be\ placed\ into\ program\ memory\ area
+
+" --- go and nicer colors
+set rtp+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
 " --- Finish up --------------------------------------------------------------
 set secure
 " EOF
-

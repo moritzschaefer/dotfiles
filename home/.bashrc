@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -147,8 +147,14 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # added by Anaconda 1.9.0 installer
 #export PATH="/Users/moritzs/anaconda/bin:$PATH"
-export PYTHONPATH=~/tmp/rocket_om/:/Library/Python/2.7/site-packages:$PYTHONPATH
+#export PYTHONPATH=~/campaign_gen/:$PYTHONPATH
 
 # sbin adding
 export PATH="$PATH:/usr/local/sbin"
+
+# define GO PATH
+#
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/Apps/activator-1.1.3
 
