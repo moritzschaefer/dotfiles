@@ -149,6 +149,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #export PATH="/Users/moritzs/anaconda/bin:$PATH"
 #export PYTHONPATH=~/campaign_gen/:$PYTHONPATH
 
+md () { mkdir -p "$@" && cd "$@"; }
 # sbin adding
 export PATH="$PATH:/usr/local/sbin"
 

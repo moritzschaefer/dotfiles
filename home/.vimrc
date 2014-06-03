@@ -219,6 +219,8 @@ compiler gcc
 set errorformat^=%-G%f:%l:\ %tarning:\ only\ initialized\ varia
             \bles\ can\ be\ placed\ into\ program\ memory\ area
 
+
+let g:EclimCompletionMethod = 'omnifunc'
 " --- go and nicer colors
 set rtp+=$GOROOT/misc/vim
 filetype plugin indent on
