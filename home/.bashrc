@@ -137,7 +137,9 @@ export EDITOR='vim'
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 # Enable powerline
-# . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
+# if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
+#     source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+# fi
 
 export PATH="/usr/local/bin:$PATH"
 
@@ -158,4 +160,3 @@ export PATH="$PATH:/usr/local/sbin"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/Apps/activator-1.1.3
-

@@ -2,7 +2,7 @@
 " --- let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-" --- VIM Powerline options
+"-- VIM Powerline options
 if has("python")
   Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
   set noshowmode
@@ -33,19 +33,19 @@ endif
 
    "--- Fast autocompletion
    Bundle 'Valloric/YouCompleteMe'
-   if !filereadable(expand('~/.vim/bundle/YouCompleteMe/python/ycm_core.so'))
+   if !filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so'))
      call system('cd ~/.vim/bundle/YouCompleteMe && ./install.sh')
    endif
 
   " --- Syntax checking
-  "if exists('*getmatches')
-    "Bundle 'scrooloose/syntastic'
+  if exists('*getmatches')
+    Bundle 'scrooloose/syntastic'
     " Lets use fancy symbols
-    "let g:syntastic_error_symbol='✗'
-    "let g:syntastic_warning_symbol='⚠'
-    "let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"novalidate"]
-    "let g:syntastic_javascript_checkers = ['jshint']
-  "endif
+    let g:syntastic_error_symbol='✗'
+    let g:syntastic_warning_symbol='⚠'
+    let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"novalidate"]
+    let g:syntastic_javascript_checkers = ['jshint']
+  endif
   Bundle 'tomtom/tcomment_vim'
   Bundle 'vim-ruby/vim-ruby'
   Bundle 'tpope/vim-bundler'
@@ -102,3 +102,5 @@ endif
   Bundle "benmills/vimux"
   Bundle "julienr/vimux-pyutils"
   "Bundle "davidhalter/jedi-vim" "already included in YCM"
+  Bundle 'kchmck/vim-coffee-script'
+  Bundle 'fatih/vim-go'

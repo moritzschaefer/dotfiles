@@ -4,10 +4,12 @@ if has("autocmd")
 endif
 set nocompatible
 scriptencoding utf-8
+"set t_Co=256
 
 set encoding=utf-8
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
+"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 
 set bs=2
 set tabstop=2
