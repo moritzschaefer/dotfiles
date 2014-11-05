@@ -3,16 +3,16 @@
 Bundle 'gmarik/vundle'
 
 "-- VIM Powerline options
-if has("python")
-  Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-  set noshowmode
-else
-  Bundle 'Lokaltog/vim-powerline'
-  let g:Powerline_symbols = 'unicode'
-  set noshowmode
-endif
-  let g:Powerline_symbols = 'fancy'
-  let g:Powerline_colorscheme = 'vk'
+" if has("python")
+"   Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"   set noshowmode
+" else
+"   Bundle 'Lokaltog/vim-powerline'
+"   let g:Powerline_symbols = 'unicode'
+"   set noshowmode
+"endif
+  " let g:Powerline_symbols = 'fancy'
+  " let g:Powerline_colorscheme = 'vk'
 
   " --- CtrlP plugin for fuzzy file finding
   Bundle 'kien/ctrlp.vim'
@@ -104,3 +104,11 @@ endif
   "Bundle "davidhalter/jedi-vim" "already included in YCM"
   Bundle 'kchmck/vim-coffee-script'
   Bundle 'fatih/vim-go'
+  " Airline
+  Plugin 'bling/vim-airline'
+  let g:airline_theme='powerlineish'
+Bundle 'bling/vim-bufferline'
+Bundle "ekalinin/Dockerfile.vim"
+Bundle "tclem/vim-arduino"
+Bundle 'hsanson/vim-android'
+Bundle 'vim-scripts/NesC-Syntax-Highlighting'

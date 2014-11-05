@@ -4,12 +4,10 @@ if has("autocmd")
 endif
 set nocompatible
 scriptencoding utf-8
-"set t_Co=256
+set t_Co=256
 
 set encoding=utf-8
 set laststatus=2
-let g:Powerline_symbols = 'fancy'
-"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 
 set bs=2
 set tabstop=2
@@ -23,7 +21,6 @@ autocmd InsertEnter,InsertLeave * set cul!
 "autocmd InsertLeave * highlight Cursor guifg=white guibg=darkblue ctermfg=white ctermbg=darkblue
 set fo=croq
 set mousehide
-set background=dark
 set number
 
 set ignorecase    " Ignore case when searching
@@ -82,9 +79,8 @@ autocmd BufNewFile,BufRead *.s set filetype=mips
 "Opal
 autocmd BufNewFile,BufRead *.sign,*.impl  set ft=opal
 
-"Brandpunkt
-autocmd BufNewFile,BufRead *.tpl set filetype=html
-
+"nesc
+autocmd BufNewFile,BufRead *.nc  set ft=nc
 
 "Change buffers wihtout save
 set hidden
@@ -105,14 +101,14 @@ autocmd BufNewFile *spider.py TSkeletonSetup spider_template.py
 "Latex compiling
 "
 " compile on save
-autocmd BufWritePost *.tex :call VimuxRunCommand("pdflatex " . bufname("%"))
-inoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>i
+autocmd BufWritePost *.tex :call VimuxRunCommand("pdflatex -halt-on-error " . bufname("%"))
+inoremap <LEADER>ll <ESC>:w<CR>:!pdflatex -halt-on-error %<CR>i
 inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
-nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>
+nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex -halt-on-error %<CR>
 nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
-" inoremap <LEADER>ll :call VimuxRunCommand("pdflatex " . bufname("%"))<CR>
+" inoremap <LEADER>ll :call VimuxRunCommand("pdflatex -halt-on-error " . bufname("%"))<CR>
 " inoremap <LEADER>lv :call VimuxRunCommand("evince " . bufname("%"))<CR>
-" nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex %<CR>
+" nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex -halt-on-error %<CR>
 " nnoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>
 
 " --- Vundler ----------------------------------------------------------------
@@ -181,13 +177,14 @@ if has("autocmd")
   autocmd FileType java,c,cpp,objc setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType java,c,cpp,objc let b:loaded_delimitMate = 1
 endif
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 " --- Markdown
 if has("autocmd")
   autocmd BufNewFile,BufRead *.mdwn,*.mkd,*.md,*.markdown setlocal filetype=markdown
   autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
 endif
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 let g:UltiSnipsExpandTrigger="<c-e>"
@@ -221,6 +218,11 @@ compiler gcc
 set errorformat^=%-G%f:%l:\ %tarning:\ only\ initialized\ varia
             \bles\ can\ be\ placed\ into\ program\ memory\ area
 
+" arduino
+au BufRead,BufNewFile *.pde set filetype=arduino
+au BufRead,BufNewFile *.ino set filetype=arduino
+let g:vim_arduino_serial_port = "/dev/ttyACM0"
+let g:vim_arduino_library_path = "/usr/share/arduino"
 
 let g:EclimCompletionMethod = 'omnifunc'
 " --- go and nicer colors

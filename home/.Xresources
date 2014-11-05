@@ -69,3 +69,12 @@
 *color13:                 S_violet
 *color14:                 S_base1
 *color15:                 S_base3
+
+! HighRes
+! Fonts {{{
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.hintstyle: hintfull
+Xft.dpi:       220
+! }}}
