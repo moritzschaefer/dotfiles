@@ -7,6 +7,7 @@ case $- in
     *i*) ;;
       *) return;;
 esac
+#export TERM="xterm-256color"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -22,6 +23,7 @@ HISTFILESIZE=20000
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -136,10 +138,6 @@ color_my_prompt
 export EDITOR='vim'
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-# Enable powerline
-# if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
-#     source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-# fi
 
 export PATH="/usr/local/bin:$PATH"
 
@@ -155,8 +153,16 @@ md () { mkdir -p "$@" && cd "$@"; }
 # sbin adding
 export PATH="$PATH:/usr/local/sbin"
 
+# rocket stuff
+export DB_PORT=tcp://localhost:5432
+
 # define GO PATH
 #
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+# define Activator/Java Play
 export PATH=$PATH:$HOME/Apps/activator-1.1.3
+# define Android
+export ANDROID_HOME=/home/moritz/Apps/android-studio/sdk
+export CLASSPATH=$CLASSPATH:.
+

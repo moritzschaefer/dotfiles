@@ -24,4 +24,11 @@ alias disablenmnotifications='gsettings set org.gnome.nm-applet disable-disconne
 alias enablenmnotifications='gsettings set org.gnome.nm-applet disable-disconnected-notifications "true"; gsettings set org.gnome.nm-applet disable-connected-notifications "true"'
 alias scan='nmap -sP 192.168.178.255/24'
 alias invert='xcalib -invert -alter'
-alias ap='aptitude'
+alias ap='sudo aptitude'
+alias timelapse='mencoder -nosound -ovc lavc -lavcopts vcodec=mpeg4:mbd=2:trell:autoaspect:vqscale=3 -vf scale=1920:1080 -mf type=jpeg:fps=25 mf://@gopro.txt -o gopro.mp4'
+alias addaudio='mencoder gopro.mp4 -o gopro_music.mp4 -ovc copy -oac copy -audiofile '
+alias rocketdbssh='ssh -fqN om_user@db1.rocket-om.com -L 5432:127.0.0.1:5432'
+alias lock='gnome-screensaver-command -l'
+alias coffeer='coffee -cwo'
+alias fontsize='printf '"'"'\33]50;%s%d\007'"'"' "xft:Inconsolata for Powerline:pixelsize="'
+alias vodafone-stick="sudo usb_modeswitch -v 0x19d2 -p 0x2000 -V 0x19d2 -P 0x0031 -m 0x01 -M 55534243123456782000000080000c85010101180101010101000000000000"
