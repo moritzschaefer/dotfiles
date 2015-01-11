@@ -178,13 +178,17 @@ if has("autocmd")
   autocmd FileType java,c,cpp,objc let b:loaded_delimitMate = 1
 endif
 let g:ycm_collect_identifiers_from_tags_files = 1
+" --- add tags
+set tags+=~/.vim/tags/cpp
+set tags+=~/.vim/tags/curl
+"set tags+=~/.vim/tags/neon
 
 " --- Markdown
 if has("autocmd")
   autocmd BufNewFile,BufRead *.mdwn,*.mkd,*.md,*.markdown setlocal filetype=markdown
   autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
 endif
-"let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 let g:UltiSnipsExpandTrigger="<c-e>"
@@ -218,6 +222,8 @@ compiler gcc
 set errorformat^=%-G%f:%l:\ %tarning:\ only\ initialized\ varia
             \bles\ can\ be\ placed\ into\ program\ memory\ area
 
+" make save tmote
+command Mt execute "w|make tmote "
 " arduino
 au BufRead,BufNewFile *.pde set filetype=arduino
 au BufRead,BufNewFile *.ino set filetype=arduino
@@ -232,3 +238,4 @@ syntax on
 " --- Finish up --------------------------------------------------------------
 set secure
 " EOF
+"

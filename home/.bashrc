@@ -164,5 +164,5 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/Apps/activator-1.1.3
 # define Android
 export ANDROID_HOME=/home/moritz/Apps/android-studio/sdk
-export CLASSPATH=$CLASSPATH:.
-
+export CLASSPATH=$CLASSPATH:.:/opt/tinyos-main-2_1_2/tools/tinyos/java
+export TERMINAL=urxvt
