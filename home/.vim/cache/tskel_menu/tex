@@ -1,0 +1,149 @@
+
+menu 90.19 TSke&l.Snippets.\\ unnumbered\ equation:\ \[\ \.\.\.\ \] :call tskeleton#ExpandBitUnderCursor("n", '\ unnumbered equation: \[ ... \]')<cr>
+imenu 90.19 TSke&l.Snippets.\\ unnumbered\ equation:\ \[\ \.\.\.\ \] <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", '\ unnumbered equation: \[ ... \]')<cr>
+menu 90.19 TSke&l.Snippets.]i\ \item\ (recursive) :call tskeleton#ExpandBitUnderCursor("n", ']i \item (recursive)')<cr>
+imenu 90.19 TSke&l.Snippets.]i\ \item\ (recursive) <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", ']i \item (recursive)')<cr>
+menu 90.19 TSke&l.Snippets.alert\ alertblock\ environment :call tskeleton#ExpandBitUnderCursor("n", 'alert alertblock environment')<cr>
+imenu 90.19 TSke&l.Snippets.alert\ alertblock\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'alert alertblock environment')<cr>
+menu 90.19 TSke&l.Snippets.ali\ align(ed)\ environment :call tskeleton#ExpandBitUnderCursor("n", 'ali align(ed) environment')<cr>
+imenu 90.19 TSke&l.Snippets.ali\ align(ed)\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ali align(ed) environment')<cr>
+menu 90.19 TSke&l.Snippets.begin\ \begin{}\ \.\.\.\ \end{}\ block :call tskeleton#ExpandBitUnderCursor("n", 'begin \begin{} ... \end{} block')<cr>
+imenu 90.19 TSke&l.Snippets.begin\ \begin{}\ \.\.\.\ \end{}\ block <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'begin \begin{} ... \end{} block')<cr>
+menu 90.19 TSke&l.Snippets.bf\ bold\ face\ text :call tskeleton#ExpandBitUnderCursor("n", 'bf bold face text')<cr>
+imenu 90.19 TSke&l.Snippets.bf\ bold\ face\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'bf bold face text')<cr>
+menu 90.19 TSke&l.Snippets.block\ block\ environment :call tskeleton#ExpandBitUnderCursor("n", 'block block environment')<cr>
+imenu 90.19 TSke&l.Snippets.block\ block\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'block block environment')<cr>
+menu 90.19 TSke&l.Snippets.cas\ cases\ environment :call tskeleton#ExpandBitUnderCursor("n", 'cas cases environment')<cr>
+imenu 90.19 TSke&l.Snippets.cas\ cases\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'cas cases environment')<cr>
+menu 90.19 TSke&l.Snippets.center\ center\ environment :call tskeleton#ExpandBitUnderCursor("n", 'center center environment')<cr>
+imenu 90.19 TSke&l.Snippets.center\ center\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'center center environment')<cr>
+menu 90.19 TSke&l.Snippets.cha\ \chapter :call tskeleton#ExpandBitUnderCursor("n", 'cha \chapter')<cr>
+imenu 90.19 TSke&l.Snippets.cha\ \chapter <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'cha \chapter')<cr>
+menu 90.19 TSke&l.Snippets.cite\ \cite[]{} :call tskeleton#ExpandBitUnderCursor("n", 'cite \cite[]{}')<cr>
+imenu 90.19 TSke&l.Snippets.cite\ \cite[]{} <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'cite \cite[]{}')<cr>
+menu 90.19 TSke&l.Snippets.citea\ \citeauthor :call tskeleton#ExpandBitUnderCursor("n", 'citea \citeauthor')<cr>
+imenu 90.19 TSke&l.Snippets.citea\ \citeauthor <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'citea \citeauthor')<cr>
+menu 90.19 TSke&l.Snippets.citen\ \citen :call tskeleton#ExpandBitUnderCursor("n", 'citen \citen')<cr>
+imenu 90.19 TSke&l.Snippets.citen\ \citen <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'citen \citen')<cr>
+menu 90.19 TSke&l.Snippets.citep\ \citep :call tskeleton#ExpandBitUnderCursor("n", 'citep \citep')<cr>
+imenu 90.19 TSke&l.Snippets.citep\ \citep <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'citep \citep')<cr>
+menu 90.19 TSke&l.Snippets.citet\ \citet :call tskeleton#ExpandBitUnderCursor("n", 'citet \citet')<cr>
+imenu 90.19 TSke&l.Snippets.citet\ \citet <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'citet \citet')<cr>
+menu 90.19 TSke&l.Snippets.citey\ \citeyear :call tskeleton#ExpandBitUnderCursor("n", 'citey \citeyear')<cr>
+imenu 90.19 TSke&l.Snippets.citey\ \citeyear <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'citey \citeyear')<cr>
+menu 90.19 TSke&l.Snippets.col2\ two-column\ environment :call tskeleton#ExpandBitUnderCursor("n", 'col2 two-column environment')<cr>
+imenu 90.19 TSke&l.Snippets.col2\ two-column\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'col2 two-column environment')<cr>
+menu 90.19 TSke&l.Snippets.desc\ description\ environment :call tskeleton#ExpandBitUnderCursor("n", 'desc description environment')<cr>
+imenu 90.19 TSke&l.Snippets.desc\ description\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'desc description environment')<cr>
+menu 90.19 TSke&l.Snippets.dmo\ \DeclareMathOperator :call tskeleton#ExpandBitUnderCursor("n", 'dmo \DeclareMathOperator')<cr>
+imenu 90.19 TSke&l.Snippets.dmo\ \DeclareMathOperator <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'dmo \DeclareMathOperator')<cr>
+menu 90.19 TSke&l.Snippets.emp\ emphasize\ text :call tskeleton#ExpandBitUnderCursor("n", 'emp emphasize text')<cr>
+imenu 90.19 TSke&l.Snippets.emp\ emphasize\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'emp emphasize text')<cr>
+menu 90.19 TSke&l.Snippets.enum\ enumerate\ environment :call tskeleton#ExpandBitUnderCursor("n", 'enum enumerate environment')<cr>
+imenu 90.19 TSke&l.Snippets.enum\ enumerate\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'enum enumerate environment')<cr>
+menu 90.19 TSke&l.Snippets.eq\ equation\ environment :call tskeleton#ExpandBitUnderCursor("n", 'eq equation environment')<cr>
+imenu 90.19 TSke&l.Snippets.eq\ equation\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'eq equation environment')<cr>
+menu 90.19 TSke&l.Snippets.eq*\ unnumbered\ equation\ environment :call tskeleton#ExpandBitUnderCursor("n", 'eq* unnumbered equation environment')<cr>
+imenu 90.19 TSke&l.Snippets.eq*\ unnumbered\ equation\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'eq* unnumbered equation environment')<cr>
+menu 90.19 TSke&l.Snippets.eqnarray\ eqnarray\ environment :call tskeleton#ExpandBitUnderCursor("n", 'eqnarray eqnarray environment')<cr>
+imenu 90.19 TSke&l.Snippets.eqnarray\ eqnarray\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'eqnarray eqnarray environment')<cr>
+menu 90.19 TSke&l.Snippets.example\ exampleblock\ environment :call tskeleton#ExpandBitUnderCursor("n", 'example exampleblock environment')<cr>
+imenu 90.19 TSke&l.Snippets.example\ exampleblock\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'example exampleblock environment')<cr>
+menu 90.19 TSke&l.Snippets.fcite\ \footcite[]{} :call tskeleton#ExpandBitUnderCursor("n", 'fcite \footcite[]{}')<cr>
+imenu 90.19 TSke&l.Snippets.fcite\ \footcite[]{} <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'fcite \footcite[]{}')<cr>
+menu 90.19 TSke&l.Snippets.fig\ figure\ environment\ (includegraphics) :call tskeleton#ExpandBitUnderCursor("n", 'fig figure environment (includegraphics)')<cr>
+imenu 90.19 TSke&l.Snippets.fig\ figure\ environment\ (includegraphics) <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'fig figure environment (includegraphics)')<cr>
+menu 90.19 TSke&l.Snippets.figure\ reference\ to\ a\ figure :call tskeleton#ExpandBitUnderCursor("n", 'figure reference to a figure')<cr>
+imenu 90.19 TSke&l.Snippets.figure\ reference\ to\ a\ figure <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'figure reference to a figure')<cr>
+menu 90.19 TSke&l.Snippets.frac\ \frac{}{} :call tskeleton#ExpandBitUnderCursor("n", 'frac \frac{}{}')<cr>
+imenu 90.19 TSke&l.Snippets.frac\ \frac{}{} <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'frac \frac{}{}')<cr>
+menu 90.19 TSke&l.Snippets.frame\ frame\ environment :call tskeleton#ExpandBitUnderCursor("n", 'frame frame environment')<cr>
+imenu 90.19 TSke&l.Snippets.frame\ frame\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'frame frame environment')<cr>
+menu 90.19 TSke&l.Snippets.ft\ \footnote :call tskeleton#ExpandBitUnderCursor("n", 'ft \footnote')<cr>
+imenu 90.19 TSke&l.Snippets.ft\ \footnote <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ft \footnote')<cr>
+menu 90.19 TSke&l.Snippets.gat\ gather(ed)\ environment :call tskeleton#ExpandBitUnderCursor("n", 'gat gather(ed) environment')<cr>
+imenu 90.19 TSke&l.Snippets.gat\ gather(ed)\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'gat gather(ed) environment')<cr>
+menu 90.19 TSke&l.Snippets.href :call tskeleton#ExpandBitUnderCursor("n", 'href')<cr>
+imenu 90.19 TSke&l.Snippets.href <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'href')<cr>
+menu 90.19 TSke&l.Snippets.hrefc :call tskeleton#ExpandBitUnderCursor("n", 'hrefc')<cr>
+imenu 90.19 TSke&l.Snippets.hrefc <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'hrefc')<cr>
+menu 90.19 TSke&l.Snippets.index\ \index :call tskeleton#ExpandBitUnderCursor("n", 'index \index')<cr>
+imenu 90.19 TSke&l.Snippets.index\ \index <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'index \index')<cr>
+menu 90.19 TSke&l.Snippets.it\ italic\ text :call tskeleton#ExpandBitUnderCursor("n", 'it italic text')<cr>
+imenu 90.19 TSke&l.Snippets.it\ italic\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'it italic text')<cr>
+menu 90.19 TSke&l.Snippets.itd\ description\ \item :call tskeleton#ExpandBitUnderCursor("n", 'itd description \item')<cr>
+imenu 90.19 TSke&l.Snippets.itd\ description\ \item <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'itd description \item')<cr>
+menu 90.19 TSke&l.Snippets.item\ \item :call tskeleton#ExpandBitUnderCursor("n", 'item \item')<cr>
+imenu 90.19 TSke&l.Snippets.item\ \item <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'item \item')<cr>
+menu 90.19 TSke&l.Snippets.itemize\ itemize\ environment :call tskeleton#ExpandBitUnderCursor("n", 'itemize itemize environment')<cr>
+imenu 90.19 TSke&l.Snippets.itemize\ itemize\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'itemize itemize environment')<cr>
+menu 90.19 TSke&l.Snippets.lab\ \label :call tskeleton#ExpandBitUnderCursor("n", 'lab \label')<cr>
+imenu 90.19 TSke&l.Snippets.lab\ \label <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'lab \label')<cr>
+menu 90.19 TSke&l.Snippets.lim\ \lim_{} :call tskeleton#ExpandBitUnderCursor("n", 'lim \lim_{}')<cr>
+imenu 90.19 TSke&l.Snippets.lim\ \lim_{} <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'lim \lim_{}')<cr>
+menu 90.19 TSke&l.Snippets.listing\ reference\ to\ a\ listing :call tskeleton#ExpandBitUnderCursor("n", 'listing reference to a listing')<cr>
+imenu 90.19 TSke&l.Snippets.listing\ reference\ to\ a\ listing <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'listing reference to a listing')<cr>
+menu 90.19 TSke&l.Snippets.lsi :call tskeleton#ExpandBitUnderCursor("n", 'lsi')<cr>
+imenu 90.19 TSke&l.Snippets.lsi <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'lsi')<cr>
+menu 90.19 TSke&l.Snippets.lst :call tskeleton#ExpandBitUnderCursor("n", 'lst')<cr>
+imenu 90.19 TSke&l.Snippets.lst <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'lst')<cr>
+menu 90.19 TSke&l.Snippets.mat\ smart\ matrix\ environment :call tskeleton#ExpandBitUnderCursor("n", 'mat smart matrix environment')<cr>
+imenu 90.19 TSke&l.Snippets.mat\ smart\ matrix\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'mat smart matrix environment')<cr>
+menu 90.19 TSke&l.Snippets.nc\ \newcommand :call tskeleton#ExpandBitUnderCursor("n", 'nc \newcommand')<cr>
+imenu 90.19 TSke&l.Snippets.nc\ \newcommand <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'nc \newcommand')<cr>
+menu 90.19 TSke&l.Snippets.ni\ \noindent :call tskeleton#ExpandBitUnderCursor("n", 'ni \noindent')<cr>
+imenu 90.19 TSke&l.Snippets.ni\ \noindent <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ni \noindent')<cr>
+menu 90.19 TSke&l.Snippets.nuc\ \newunicodechar :call tskeleton#ExpandBitUnderCursor("n", 'nuc \newunicodechar')<cr>
+imenu 90.19 TSke&l.Snippets.nuc\ \newunicodechar <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'nuc \newunicodechar')<cr>
+menu 90.19 TSke&l.Snippets.page\ reference\ to\ a\ page :call tskeleton#ExpandBitUnderCursor("n", 'page reference to a page')<cr>
+imenu 90.19 TSke&l.Snippets.page\ reference\ to\ a\ page <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'page reference to a page')<cr>
+menu 90.19 TSke&l.Snippets.par\ \paragraph :call tskeleton#ExpandBitUnderCursor("n", 'par \paragraph')<cr>
+imenu 90.19 TSke&l.Snippets.par\ \paragraph <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'par \paragraph')<cr>
+menu 90.19 TSke&l.Snippets.part\ document\ \part :call tskeleton#ExpandBitUnderCursor("n", 'part document \part')<cr>
+imenu 90.19 TSke&l.Snippets.part\ document\ \part <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'part document \part')<cr>
+menu 90.19 TSke&l.Snippets.rm\ roman\ font\ text :call tskeleton#ExpandBitUnderCursor("n", 'rm roman font text')<cr>
+imenu 90.19 TSke&l.Snippets.rm\ roman\ font\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'rm roman font text')<cr>
+menu 90.19 TSke&l.Snippets.sc\ small\ caps\ text :call tskeleton#ExpandBitUnderCursor("n", 'sc small caps text')<cr>
+imenu 90.19 TSke&l.Snippets.sc\ small\ caps\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'sc small caps text')<cr>
+menu 90.19 TSke&l.Snippets.sec\ \section :call tskeleton#ExpandBitUnderCursor("n", 'sec \section')<cr>
+imenu 90.19 TSke&l.Snippets.sec\ \section <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'sec \section')<cr>
+menu 90.19 TSke&l.Snippets.sec*\ \section* :call tskeleton#ExpandBitUnderCursor("n", 'sec* \section*')<cr>
+imenu 90.19 TSke&l.Snippets.sec*\ \section* <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'sec* \section*')<cr>
+menu 90.19 TSke&l.Snippets.section\ reference\ to\ a\ section :call tskeleton#ExpandBitUnderCursor("n", 'section reference to a section')<cr>
+imenu 90.19 TSke&l.Snippets.section\ reference\ to\ a\ section <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'section reference to a section')<cr>
+menu 90.19 TSke&l.Snippets.sf\ sans\ serife\ text :call tskeleton#ExpandBitUnderCursor("n", 'sf sans serife text')<cr>
+imenu 90.19 TSke&l.Snippets.sf\ sans\ serife\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'sf sans serife text')<cr>
+menu 90.19 TSke&l.Snippets.spl\ split\ environment :call tskeleton#ExpandBitUnderCursor("n", 'spl split environment')<cr>
+imenu 90.19 TSke&l.Snippets.spl\ split\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'spl split environment')<cr>
+menu 90.19 TSke&l.Snippets.stackrel\ \stackrel{}{} :call tskeleton#ExpandBitUnderCursor("n", 'stackrel \stackrel{}{}')<cr>
+imenu 90.19 TSke&l.Snippets.stackrel\ \stackrel{}{} <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'stackrel \stackrel{}{}')<cr>
+menu 90.19 TSke&l.Snippets.sub\ \subsection :call tskeleton#ExpandBitUnderCursor("n", 'sub \subsection')<cr>
+imenu 90.19 TSke&l.Snippets.sub\ \subsection <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'sub \subsection')<cr>
+menu 90.19 TSke&l.Snippets.sub*\ \subsection* :call tskeleton#ExpandBitUnderCursor("n", 'sub* \subsection*')<cr>
+imenu 90.19 TSke&l.Snippets.sub*\ \subsection* <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'sub* \subsection*')<cr>
+menu 90.19 TSke&l.Snippets.subp\ \subparagraph :call tskeleton#ExpandBitUnderCursor("n", 'subp \subparagraph')<cr>
+imenu 90.19 TSke&l.Snippets.subp\ \subparagraph <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'subp \subparagraph')<cr>
+menu 90.19 TSke&l.Snippets.subs\ \subsubsection :call tskeleton#ExpandBitUnderCursor("n", 'subs \subsubsection')<cr>
+imenu 90.19 TSke&l.Snippets.subs\ \subsubsection <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'subs \subsubsection')<cr>
+menu 90.19 TSke&l.Snippets.subs*\ \subsubsection* :call tskeleton#ExpandBitUnderCursor("n", 'subs* \subsubsection*')<cr>
+imenu 90.19 TSke&l.Snippets.subs*\ \subsubsection* <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'subs* \subsubsection*')<cr>
+menu 90.19 TSke&l.Snippets.sum\ \sum^{}_{} :call tskeleton#ExpandBitUnderCursor("n", 'sum \sum^{}_{}')<cr>
+imenu 90.19 TSke&l.Snippets.sum\ \sum^{}_{} <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'sum \sum^{}_{}')<cr>
+menu 90.19 TSke&l.Snippets.tab\ tabular\ (or\ arbitrary)\ environment :call tskeleton#ExpandBitUnderCursor("n", 'tab tabular (or arbitrary) environment')<cr>
+imenu 90.19 TSke&l.Snippets.tab\ tabular\ (or\ arbitrary)\ environment <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'tab tabular (or arbitrary) environment')<cr>
+menu 90.19 TSke&l.Snippets.table\ reference\ to\ a\ table :call tskeleton#ExpandBitUnderCursor("n", 'table reference to a table')<cr>
+imenu 90.19 TSke&l.Snippets.table\ reference\ to\ a\ table <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'table reference to a table')<cr>
+menu 90.19 TSke&l.Snippets.thm\ thm\ (or\ arbitrary)\ environment\ with\ optional\ argument :call tskeleton#ExpandBitUnderCursor("n", 'thm thm (or arbitrary) environment with optional argument')<cr>
+imenu 90.19 TSke&l.Snippets.thm\ thm\ (or\ arbitrary)\ environment\ with\ optional\ argument <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'thm thm (or arbitrary) environment with optional argument')<cr>
+menu 90.19 TSke&l.Snippets.tikz\ figure\ environment\ (tikzpicture) :call tskeleton#ExpandBitUnderCursor("n", 'tikz figure environment (tikzpicture)')<cr>
+imenu 90.19 TSke&l.Snippets.tikz\ figure\ environment\ (tikzpicture) <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'tikz figure environment (tikzpicture)')<cr>
+menu 90.19 TSke&l.Snippets.tt\ typewriter\ (monospace)\ text :call tskeleton#ExpandBitUnderCursor("n", 'tt typewriter (monospace) text')<cr>
+imenu 90.19 TSke&l.Snippets.tt\ typewriter\ (monospace)\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'tt typewriter (monospace) text')<cr>
+menu 90.19 TSke&l.Snippets.under\ underline\ text :call tskeleton#ExpandBitUnderCursor("n", 'under underline text')<cr>
+imenu 90.19 TSke&l.Snippets.under\ underline\ text <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'under underline text')<cr>
+menu 90.19 TSke&l.Snippets.up\ \usepackage :call tskeleton#ExpandBitUnderCursor("n", 'up \usepackage')<cr>
+imenu 90.19 TSke&l.Snippets.up\ \usepackage <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'up \usepackage')<cr>
+menu 90.19 TSke&l.Snippets.url :call tskeleton#ExpandBitUnderCursor("n", 'url')<cr>
+imenu 90.19 TSke&l.Snippets.url <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'url')<cr>
+menu 90.19 TSke&l.Snippets.urlc :call tskeleton#ExpandBitUnderCursor("n", 'urlc')<cr>
+imenu 90.19 TSke&l.Snippets.urlc <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'urlc')<cr>

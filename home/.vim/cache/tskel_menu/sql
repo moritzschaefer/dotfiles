@@ -1,0 +1,25 @@
+
+menu 90.19 TSke&l.Snippets.addcol :call tskeleton#ExpandBitUnderCursor("n", 'addcol')<cr>
+imenu 90.19 TSke&l.Snippets.addcol <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'addcol')<cr>
+menu 90.19 TSke&l.Snippets.ccol :call tskeleton#ExpandBitUnderCursor("n", 'ccol')<cr>
+imenu 90.19 TSke&l.Snippets.ccol <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ccol')<cr>
+menu 90.19 TSke&l.Snippets.col :call tskeleton#ExpandBitUnderCursor("n", 'col')<cr>
+imenu 90.19 TSke&l.Snippets.col <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'col')<cr>
+menu 90.19 TSke&l.Snippets.colcom :call tskeleton#ExpandBitUnderCursor("n", 'colcom')<cr>
+imenu 90.19 TSke&l.Snippets.colcom <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'colcom')<cr>
+menu 90.19 TSke&l.Snippets.dcol :call tskeleton#ExpandBitUnderCursor("n", 'dcol')<cr>
+imenu 90.19 TSke&l.Snippets.dcol <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'dcol')<cr>
+menu 90.19 TSke&l.Snippets.ind :call tskeleton#ExpandBitUnderCursor("n", 'ind')<cr>
+imenu 90.19 TSke&l.Snippets.ind <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ind')<cr>
+menu 90.19 TSke&l.Snippets.ncol :call tskeleton#ExpandBitUnderCursor("n", 'ncol')<cr>
+imenu 90.19 TSke&l.Snippets.ncol <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ncol')<cr>
+menu 90.19 TSke&l.Snippets.s* :call tskeleton#ExpandBitUnderCursor("n", 's*')<cr>
+imenu 90.19 TSke&l.Snippets.s* <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 's*')<cr>
+menu 90.19 TSke&l.Snippets.seq :call tskeleton#ExpandBitUnderCursor("n", 'seq')<cr>
+imenu 90.19 TSke&l.Snippets.seq <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'seq')<cr>
+menu 90.19 TSke&l.Snippets.tbl :call tskeleton#ExpandBitUnderCursor("n", 'tbl')<cr>
+imenu 90.19 TSke&l.Snippets.tbl <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'tbl')<cr>
+menu 90.19 TSke&l.Snippets.tblcom :call tskeleton#ExpandBitUnderCursor("n", 'tblcom')<cr>
+imenu 90.19 TSke&l.Snippets.tblcom <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'tblcom')<cr>
+menu 90.19 TSke&l.Snippets.uind :call tskeleton#ExpandBitUnderCursor("n", 'uind')<cr>
+imenu 90.19 TSke&l.Snippets.uind <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'uind')<cr>

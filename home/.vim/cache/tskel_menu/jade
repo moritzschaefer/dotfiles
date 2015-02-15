@@ -1,0 +1,13 @@
+
+menu 90.19 TSke&l.Snippets.hide :call tskeleton#ExpandBitUnderCursor("n", 'hide')<cr>
+imenu 90.19 TSke&l.Snippets.hide <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'hide')<cr>
+menu 90.19 TSke&l.Snippets.if :call tskeleton#ExpandBitUnderCursor("n", 'if')<cr>
+imenu 90.19 TSke&l.Snippets.if <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'if')<cr>
+menu 90.19 TSke&l.Snippets.rep :call tskeleton#ExpandBitUnderCursor("n", 'rep')<cr>
+imenu 90.19 TSke&l.Snippets.rep <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'rep')<cr>
+menu 90.19 TSke&l.Snippets.repf :call tskeleton#ExpandBitUnderCursor("n", 'repf')<cr>
+imenu 90.19 TSke&l.Snippets.repf <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'repf')<cr>
+menu 90.19 TSke&l.Snippets.repi :call tskeleton#ExpandBitUnderCursor("n", 'repi')<cr>
+imenu 90.19 TSke&l.Snippets.repi <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'repi')<cr>
+menu 90.19 TSke&l.Snippets.show :call tskeleton#ExpandBitUnderCursor("n", 'show')<cr>
+imenu 90.19 TSke&l.Snippets.show <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'show')<cr>

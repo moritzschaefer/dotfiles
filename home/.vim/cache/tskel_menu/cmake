@@ -1,0 +1,23 @@
+
+menu 90.19 TSke&l.Snippets.bin :call tskeleton#ExpandBitUnderCursor("n", 'bin')<cr>
+imenu 90.19 TSke&l.Snippets.bin <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'bin')<cr>
+menu 90.19 TSke&l.Snippets.cmake :call tskeleton#ExpandBitUnderCursor("n", 'cmake')<cr>
+imenu 90.19 TSke&l.Snippets.cmake <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'cmake')<cr>
+menu 90.19 TSke&l.Snippets.dep :call tskeleton#ExpandBitUnderCursor("n", 'dep')<cr>
+imenu 90.19 TSke&l.Snippets.dep <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'dep')<cr>
+menu 90.19 TSke&l.Snippets.find :call tskeleton#ExpandBitUnderCursor("n", 'find')<cr>
+imenu 90.19 TSke&l.Snippets.find <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'find')<cr>
+menu 90.19 TSke&l.Snippets.glob :call tskeleton#ExpandBitUnderCursor("n", 'glob')<cr>
+imenu 90.19 TSke&l.Snippets.glob <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'glob')<cr>
+menu 90.19 TSke&l.Snippets.include :call tskeleton#ExpandBitUnderCursor("n", 'include')<cr>
+imenu 90.19 TSke&l.Snippets.include <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'include')<cr>
+menu 90.19 TSke&l.Snippets.lib :call tskeleton#ExpandBitUnderCursor("n", 'lib')<cr>
+imenu 90.19 TSke&l.Snippets.lib <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'lib')<cr>
+menu 90.19 TSke&l.Snippets.link :call tskeleton#ExpandBitUnderCursor("n", 'link')<cr>
+imenu 90.19 TSke&l.Snippets.link <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'link')<cr>
+menu 90.19 TSke&l.Snippets.props :call tskeleton#ExpandBitUnderCursor("n", 'props')<cr>
+imenu 90.19 TSke&l.Snippets.props <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'props')<cr>
+menu 90.19 TSke&l.Snippets.set :call tskeleton#ExpandBitUnderCursor("n", 'set')<cr>
+imenu 90.19 TSke&l.Snippets.set <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'set')<cr>
+menu 90.19 TSke&l.Snippets.subdir :call tskeleton#ExpandBitUnderCursor("n", 'subdir')<cr>
+imenu 90.19 TSke&l.Snippets.subdir <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'subdir')<cr>

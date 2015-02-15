@@ -1,0 +1,3 @@
+
+menu 90.19 TSke&l.Snippets.header\ DEP-3\ style\ header :call tskeleton#ExpandBitUnderCursor("n", 'header DEP-3 style header')<cr>
+imenu 90.19 TSke&l.Snippets.header\ DEP-3\ style\ header <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'header DEP-3 style header')<cr>
