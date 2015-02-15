@@ -181,7 +181,7 @@ assign [class="^VirtualBox"] 4
 workspace 5 output HDMI1
 
 #gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 
 #exec eval "$(ssh-agent)"
 #exec SSH_ASKPASS="/usr/bin/ssh-askpass" cat /dev/null | ssh-add ~/.ssh/id_rsa{,_rocket}
@@ -194,6 +194,8 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 bindsym $mod+Control+l exec "slock"
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master 2%+"
-bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master 2%-"
+bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master 6%+"
+bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master 6%-"
 bindsym XF86AudioMute exec "amixer -D pulse sset Master toggle"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10"

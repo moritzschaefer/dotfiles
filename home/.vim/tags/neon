@@ -1,0 +1,689 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+NE_207_H	/usr/include/neon/ne_207.h	23;"	d	language:C++
+NE_207_STATE_PROP	/usr/include/neon/ne_207.h	32;"	d	language:C++
+NE_207_STATE_TOP	/usr/include/neon/ne_207.h	34;"	d	language:C++
+NE_ABUFSIZ	/usr/include/neon/ne_auth.h	31;"	d	language:C++
+NE_ACL3744_H	/usr/include/neon/ne_acl3744.h	25;"	d	language:C++
+NE_ACL_ALL	/usr/include/neon/ne_acl3744.h	41;"	d	language:C++
+NE_ACL_BIND	/usr/include/neon/ne_acl3744.h	39;"	d	language:C++
+NE_ACL_H	/usr/include/neon/ne_acl.h	27;"	d	language:C++
+NE_ACL_READ	/usr/include/neon/ne_acl3744.h	31;"	d	language:C++
+NE_ACL_READ_ACL	/usr/include/neon/ne_acl3744.h	36;"	d	language:C++
+NE_ACL_READ_CUPRIVSET	/usr/include/neon/ne_acl3744.h	37;"	d	language:C++
+NE_ACL_UNBIND	/usr/include/neon/ne_acl3744.h	40;"	d	language:C++
+NE_ACL_UNLOCK	/usr/include/neon/ne_acl3744.h	35;"	d	language:C++
+NE_ACL_WRITE	/usr/include/neon/ne_acl3744.h	32;"	d	language:C++
+NE_ACL_WRITE_ACL	/usr/include/neon/ne_acl3744.h	38;"	d	language:C++
+NE_ACL_WRITE_CONTENT	/usr/include/neon/ne_acl3744.h	34;"	d	language:C++
+NE_ACL_WRITE_PROPERTIES	/usr/include/neon/ne_acl3744.h	33;"	d	language:C++
+NE_ADDR_CANON	/usr/include/neon/ne_socket.h	65;"	d	language:C++
+NE_ALLOC_H	/usr/include/neon/ne_alloc.h	23;"	d	language:C++
+NE_ASC2HEX	/usr/include/neon/ne_string.h	180;"	d	language:C++
+NE_AUTH	/usr/include/neon/ne_request.h	34;"	d	language:C++
+NE_AUTH_ALL	/usr/include/neon/ne_auth.h	109;"	d	language:C++
+NE_AUTH_BASIC	/usr/include/neon/ne_auth.h	67;"	d	language:C++
+NE_AUTH_DEFAULT	/usr/include/neon/ne_auth.h	106;"	d	language:C++
+NE_AUTH_DIGEST	/usr/include/neon/ne_auth.h	74;"	d	language:C++
+NE_AUTH_GSSAPI	/usr/include/neon/ne_auth.h	87;"	d	language:C++
+NE_AUTH_GSSAPI_ONLY	/usr/include/neon/ne_auth.h	102;"	d	language:C++
+NE_AUTH_H	/usr/include/neon/ne_auth.h	23;"	d	language:C++
+NE_AUTH_NEGOTIATE	/usr/include/neon/ne_auth.h	81;"	d	language:C++
+NE_AUTH_NTLM	/usr/include/neon/ne_auth.h	92;"	d	language:C++
+NE_AUTH_SSPI	/usr/include/neon/ne_auth.h	97;"	d	language:C++
+NE_BASIC_H	/usr/include/neon/ne_basic.h	23;"	d	language:C++
+NE_BEGIN_DECLS	/usr/include/neon/ne_defs.h	22;"	d	language:C++
+NE_BEGIN_DECLS	/usr/include/neon/ne_defs.h	25;"	d	language:C++
+NE_BEGIN_DECLS	/usr/include/neon/ne_defs.h	28;"	d	language:C++
+NE_BUFSIZ	/usr/include/neon/ne_defs.h	81;"	d	language:C++
+NE_CAP_ACTIVITY	/usr/include/neon/ne_basic.h	118;"	d	language:C++
+NE_CAP_BASELINE	/usr/include/neon/ne_basic.h	117;"	d	language:C++
+NE_CAP_CO_IN_PLACE	/usr/include/neon/ne_basic.h	110;"	d	language:C++
+NE_CAP_DAV_ACL	/usr/include/neon/ne_basic.h	108;"	d	language:C++
+NE_CAP_DAV_CLASS1	/usr/include/neon/ne_basic.h	104;"	d	language:C++
+NE_CAP_DAV_CLASS2	/usr/include/neon/ne_basic.h	105;"	d	language:C++
+NE_CAP_DAV_CLASS3	/usr/include/neon/ne_basic.h	106;"	d	language:C++
+NE_CAP_EXT_MKCOL	/usr/include/neon/ne_basic.h	120;"	d	language:C++
+NE_CAP_LABEL	/usr/include/neon/ne_basic.h	114;"	d	language:C++
+NE_CAP_MERGE	/usr/include/neon/ne_basic.h	116;"	d	language:C++
+NE_CAP_MODDAV_EXEC	/usr/include/neon/ne_basic.h	107;"	d	language:C++
+NE_CAP_UPDATE	/usr/include/neon/ne_basic.h	113;"	d	language:C++
+NE_CAP_VC_COLLECTION	/usr/include/neon/ne_basic.h	119;"	d	language:C++
+NE_CAP_VER_CONTROL	/usr/include/neon/ne_basic.h	109;"	d	language:C++
+NE_CAP_VER_HISTORY	/usr/include/neon/ne_basic.h	111;"	d	language:C++
+NE_CAP_WORKSPACE	/usr/include/neon/ne_basic.h	112;"	d	language:C++
+NE_CAP_WORK_RESOURCE	/usr/include/neon/ne_basic.h	115;"	d	language:C++
+NE_COMPRESS_H	/usr/include/neon/ne_compress.h	23;"	d	language:C++
+NE_CONNECT	/usr/include/neon/ne_request.h	36;"	d	language:C++
+NE_DATES_H	/usr/include/neon/ne_dates.h	23;"	d	language:C++
+NE_DBG_FLUSH	/usr/include/neon/ne_utils.h	81;"	d	language:C++
+NE_DBG_HTTP	/usr/include/neon/ne_utils.h	73;"	d	language:C++
+NE_DBG_HTTPAUTH	/usr/include/neon/ne_utils.h	75;"	d	language:C++
+NE_DBG_HTTPBODY	/usr/include/neon/ne_utils.h	79;"	d	language:C++
+NE_DBG_HTTPPLAIN	/usr/include/neon/ne_utils.h	76;"	d	language:C++
+NE_DBG_LOCKS	/usr/include/neon/ne_utils.h	77;"	d	language:C++
+NE_DBG_SOCKET	/usr/include/neon/ne_utils.h	72;"	d	language:C++
+NE_DBG_SSL	/usr/include/neon/ne_utils.h	80;"	d	language:C++
+NE_DBG_XML	/usr/include/neon/ne_utils.h	74;"	d	language:C++
+NE_DBG_XMLPARSE	/usr/include/neon/ne_utils.h	78;"	d	language:C++
+NE_DEBUG	/usr/include/neon/ne_utils.h	66;"	d	language:C++
+NE_DEBUG	/usr/include/neon/ne_utils.h	68;"	d	language:C++
+NE_DEFS_H	/usr/include/neon/ne_defs.h	33;"	d	language:C++
+NE_DEPTH_INFINITE	/usr/include/neon/ne_basic.h	41;"	d	language:C++
+NE_DEPTH_ONE	/usr/include/neon/ne_basic.h	40;"	d	language:C++
+NE_DEPTH_ZERO	/usr/include/neon/ne_basic.h	39;"	d	language:C++
+NE_END_DECLS	/usr/include/neon/ne_defs.h	23;"	d	language:C++
+NE_END_DECLS	/usr/include/neon/ne_defs.h	26;"	d	language:C++
+NE_END_DECLS	/usr/include/neon/ne_defs.h	29;"	d	language:C++
+NE_ERROR	/usr/include/neon/ne_request.h	32;"	d	language:C++
+NE_FAILED	/usr/include/neon/ne_request.h	38;"	d	language:C++
+NE_FEATURE_I18N	/usr/include/neon/ne_utils.h	56;"	d	language:C++
+NE_FEATURE_IPV6	/usr/include/neon/ne_utils.h	52;"	d	language:C++
+NE_FEATURE_LFS	/usr/include/neon/ne_utils.h	53;"	d	language:C++
+NE_FEATURE_SOCKS	/usr/include/neon/ne_utils.h	54;"	d	language:C++
+NE_FEATURE_SSL	/usr/include/neon/ne_utils.h	50;"	d	language:C++
+NE_FEATURE_SSPI	/usr/include/neon/ne_utils.h	57;"	d	language:C++
+NE_FEATURE_TS_SSL	/usr/include/neon/ne_utils.h	55;"	d	language:C++
+NE_FEATURE_ZLIB	/usr/include/neon/ne_utils.h	51;"	d	language:C++
+NE_HEX2ASC	/usr/include/neon/ne_string.h	185;"	d	language:C++
+NE_I18N_H	/usr/include/neon/ne_i18n.h	23;"	d	language:C++
+NE_LOCKS_H	/usr/include/neon/ne_locks.h	23;"	d	language:C++
+NE_LOOKUP	/usr/include/neon/ne_request.h	33;"	d	language:C++
+NE_MD5_H	/usr/include/neon/ne_md5.h	23;"	d	language:C++
+NE_OK	/usr/include/neon/ne_request.h	31;"	d	language:C++
+NE_PK11_FAILED	/usr/include/neon/ne_pkcs11.h	34;"	d	language:C++
+NE_PK11_NOTIMPL	/usr/include/neon/ne_pkcs11.h	33;"	d	language:C++
+NE_PK11_OK	/usr/include/neon/ne_pkcs11.h	32;"	d	language:C++
+NE_PKCS11_H	/usr/include/neon/ne_pkcs11.h	23;"	d	language:C++
+NE_PRIVATE	/usr/include/neon/ne_defs.h	58;"	d	language:C++
+NE_PRIVATE	/usr/include/neon/ne_defs.h	77;"	d	language:C++
+NE_PROPS_H	/usr/include/neon/ne_props.h	23;"	d	language:C++
+NE_PROPS_STATE_TOP	/usr/include/neon/ne_props.h	190;"	d	language:C++
+NE_PROXYAUTH	/usr/include/neon/ne_request.h	35;"	d	language:C++
+NE_REDIRECT	/usr/include/neon/ne_request.h	40;"	d	language:C++
+NE_REDIRECT_H	/usr/include/neon/ne_redirect.h	23;"	d	language:C++
+NE_REQFLAG_EXPECT100	/usr/include/neon/ne_request.h	/^    NE_REQFLAG_EXPECT100 = 0, \/* enable this flag to enable use of the$/;"	e	language:C++	enum:ne_request_flag_e
+NE_REQFLAG_IDEMPOTENT	/usr/include/neon/ne_request.h	/^    NE_REQFLAG_IDEMPOTENT, \/* disable this flag if the request uses a$/;"	e	language:C++	enum:ne_request_flag_e
+NE_REQFLAG_LAST	/usr/include/neon/ne_request.h	/^    NE_REQFLAG_LAST \/* enum sentinel value *\/$/;"	e	language:C++	enum:ne_request_flag_e
+NE_REQUEST_H	/usr/include/neon/ne_request.h	23;"	d	language:C++
+NE_RETRY	/usr/include/neon/ne_request.h	39;"	d	language:C++
+NE_SESSFLAG_CONNAUTH	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_CONNAUTH, \/* enable this flag if an awful, broken,$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSFLAG_EXPECT100	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_EXPECT100, \/* enable this flag to enable the flag$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSFLAG_ICYPROTO	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_ICYPROTO, \/* enable this flag to enable support for$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSFLAG_LAST	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_LAST \/* enum sentinel value *\/$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSFLAG_PERSIST	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_PERSIST = 0, \/* disable this flag to prevent use of$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSFLAG_RFC4918	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_RFC4918, \/* enable this flag to enable support for$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSFLAG_SSLv2	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_SSLv2, \/* disable this flag to disable support for$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSFLAG_TLS_SNI	/usr/include/neon/ne_session.h	/^    NE_SESSFLAG_TLS_SNI, \/* disable this flag to disable use of the$/;"	e	language:C++	enum:ne_session_flag_e
+NE_SESSION_H	/usr/include/neon/ne_session.h	23;"	d	language:C++
+NE_SOCKET_H	/usr/include/neon/ne_socket.h	23;"	d	language:C++
+NE_SOCK_CLOSED	/usr/include/neon/ne_socket.h	40;"	d	language:C++
+NE_SOCK_ERROR	/usr/include/neon/ne_socket.h	36;"	d	language:C++
+NE_SOCK_RESET	/usr/include/neon/ne_socket.h	42;"	d	language:C++
+NE_SOCK_SOCKSV4	/usr/include/neon/ne_socket.h	/^    NE_SOCK_SOCKSV4 = 0,$/;"	e	language:C++	enum:ne_sock_sversion
+NE_SOCK_SOCKSV4A	/usr/include/neon/ne_socket.h	/^    NE_SOCK_SOCKSV4A,$/;"	e	language:C++	enum:ne_sock_sversion
+NE_SOCK_SOCKSV5	/usr/include/neon/ne_socket.h	/^    NE_SOCK_SOCKSV5$/;"	e	language:C++	enum:ne_sock_sversion
+NE_SOCK_TIMEOUT	/usr/include/neon/ne_socket.h	38;"	d	language:C++
+NE_SOCK_TRUNC	/usr/include/neon/ne_socket.h	44;"	d	language:C++
+NE_SSL_BADCHAIN	/usr/include/neon/ne_session.h	239;"	d	language:C++
+NE_SSL_CTX_CLIENT	/usr/include/neon/ne_ssl.h	169;"	d	language:C++
+NE_SSL_CTX_SERVER	/usr/include/neon/ne_ssl.h	170;"	d	language:C++
+NE_SSL_CTX_SERVERv2	/usr/include/neon/ne_ssl.h	171;"	d	language:C++
+NE_SSL_CTX_SSLv2	/usr/include/neon/ne_ssl.h	189;"	d	language:C++
+NE_SSL_DIGESTLEN	/usr/include/neon/ne_ssl.h	87;"	d	language:C++
+NE_SSL_EXPIRED	/usr/include/neon/ne_session.h	223;"	d	language:C++
+NE_SSL_FAILMASK	/usr/include/neon/ne_session.h	252;"	d	language:C++
+NE_SSL_H	/usr/include/neon/ne_ssl.h	26;"	d	language:C++
+NE_SSL_IDMISMATCH	/usr/include/neon/ne_session.h	228;"	d	language:C++
+NE_SSL_NOTYETVALID	/usr/include/neon/ne_session.h	220;"	d	language:C++
+NE_SSL_P11PINLEN	/usr/include/neon/ne_pkcs11.h	66;"	d	language:C++
+NE_SSL_P11PIN_COUNT_LOW	/usr/include/neon/ne_pkcs11.h	60;"	d	language:C++
+NE_SSL_P11PIN_FINAL_TRY	/usr/include/neon/ne_pkcs11.h	62;"	d	language:C++
+NE_SSL_REVOKED	/usr/include/neon/ne_session.h	245;"	d	language:C++
+NE_SSL_UNTRUSTED	/usr/include/neon/ne_session.h	233;"	d	language:C++
+NE_SSL_VDATELEN	/usr/include/neon/ne_ssl.h	102;"	d	language:C++
+NE_STRING_H	/usr/include/neon/ne_string.h	23;"	d	language:C++
+NE_TIMEOUT	/usr/include/neon/ne_request.h	37;"	d	language:C++
+NE_TIMEOUT_INFINITE	/usr/include/neon/ne_locks.h	55;"	d	language:C++
+NE_TIMEOUT_INVALID	/usr/include/neon/ne_locks.h	56;"	d	language:C++
+NE_URI_H	/usr/include/neon/ne_uri.h	23;"	d	language:C++
+NE_UTILS_H	/usr/include/neon/ne_utils.h	23;"	d	language:C++
+NE_XMLREQ_H	/usr/include/neon/ne_xmlreq.h	23;"	d	language:C++
+NE_XML_ABORT	/usr/include/neon/ne_xml.h	51;"	d	language:C++
+NE_XML_DECLINE	/usr/include/neon/ne_xml.h	50;"	d	language:C++
+NE_XML_H	/usr/include/neon/ne_xml.h	23;"	d	language:C++
+NE_XML_MAPLEN	/usr/include/neon/ne_xml.h	154;"	d	language:C++
+NE_XML_MEDIA_TYPE	/usr/include/neon/ne_xml.h	161;"	d	language:C++
+NE_XML_STATEROOT	/usr/include/neon/ne_xml.h	67;"	d	language:C++
+__anon11::data	/usr/include/neon/ne_string.h	/^    char *data; \/* contents: NUL-terminated string *\/$/;"	m	language:C++	struct:__anon11	access:public
+__anon11::length	/usr/include/neon/ne_string.h	/^    size_t length; \/* number of bytes allocated *\/$/;"	m	language:C++	struct:__anon11	access:public
+__anon11::used	/usr/include/neon/ne_string.h	/^    size_t used; \/* strlen(data) + 1 *\/$/;"	m	language:C++	struct:__anon11	access:public
+__anon13::name	/usr/include/neon/ne_props.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:__anon13	access:public
+__anon13::nspace	/usr/include/neon/ne_props.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:__anon13	access:public
+__anon14::name	/usr/include/neon/ne_props.h	/^    const ne_propname *name;$/;"	m	language:C++	struct:__anon14	access:public
+__anon14::type	/usr/include/neon/ne_props.h	/^    enum ne_proppatch_optype type;$/;"	m	language:C++	struct:__anon14	typeref:enum:__anon14::ne_proppatch_optype	access:public
+__anon14::value	/usr/include/neon/ne_props.h	/^    const char *value;$/;"	m	language:C++	struct:__anon14	access:public
+__anon15::apply	/usr/include/neon/ne_acl.h	/^    } apply;$/;"	m	language:C++	struct:__anon15	typeref:enum:__anon15::__anon16	access:public
+__anon15::ne_acl_all	/usr/include/neon/ne_acl.h	/^	ne_acl_all$/;"	e	language:C++	enum:__anon15::__anon16
+__anon15::ne_acl_deny	/usr/include/neon/ne_acl.h	/^	ne_acl_deny$/;"	e	language:C++	enum:__anon15::__anon17
+__anon15::ne_acl_grant	/usr/include/neon/ne_acl.h	/^	ne_acl_grant,$/;"	e	language:C++	enum:__anon15::__anon17
+__anon15::ne_acl_href	/usr/include/neon/ne_acl.h	/^	ne_acl_href,$/;"	e	language:C++	enum:__anon15::__anon16
+__anon15::ne_acl_property	/usr/include/neon/ne_acl.h	/^	ne_acl_property,$/;"	e	language:C++	enum:__anon15::__anon16
+__anon15::principal	/usr/include/neon/ne_acl.h	/^    char *principal;$/;"	m	language:C++	struct:__anon15	access:public
+__anon15::read	/usr/include/neon/ne_acl.h	/^    int read;$/;"	m	language:C++	struct:__anon15	access:public
+__anon15::read_acl	/usr/include/neon/ne_acl.h	/^    int read_acl;$/;"	m	language:C++	struct:__anon15	access:public
+__anon15::read_cuprivset	/usr/include/neon/ne_acl.h	/^    int read_cuprivset;$/;"	m	language:C++	struct:__anon15	access:public
+__anon15::type	/usr/include/neon/ne_acl.h	/^    } type;$/;"	m	language:C++	struct:__anon15	typeref:enum:__anon15::__anon17	access:public
+__anon15::write	/usr/include/neon/ne_acl.h	/^    int write;$/;"	m	language:C++	struct:__anon15	access:public
+__anon15::write_acl	/usr/include/neon/ne_acl.h	/^    int write_acl;$/;"	m	language:C++	struct:__anon15	access:public
+__anon18::privileges	/usr/include/neon/ne_acl3744.h	/^    unsigned int privileges;$/;"	m	language:C++	struct:__anon18	access:public
+__anon18::target	/usr/include/neon/ne_acl3744.h	/^    enum ne_acl_target target;$/;"	m	language:C++	struct:__anon18	typeref:enum:__anon18::ne_acl_target	access:public
+__anon18::tname	/usr/include/neon/ne_acl3744.h	/^    char *tname;$/;"	m	language:C++	struct:__anon18	access:public
+__anon18::type	/usr/include/neon/ne_acl3744.h	/^    enum ne_acl_optype type;$/;"	m	language:C++	struct:__anon18	typeref:enum:__anon18::ne_acl_optype	access:public
+__anon1::code	/usr/include/neon/ne_utils.h	/^    int code; \/* Status-Code value *\/$/;"	m	language:C++	struct:__anon1	access:public
+__anon1::klass	/usr/include/neon/ne_utils.h	/^    int klass; \/* Class of Status-Code (1-5) *\/$/;"	m	language:C++	struct:__anon1	access:public
+__anon1::major_version	/usr/include/neon/ne_utils.h	/^    int major_version;$/;"	m	language:C++	struct:__anon1	access:public
+__anon1::minor_version	/usr/include/neon/ne_utils.h	/^    int minor_version;$/;"	m	language:C++	struct:__anon1	access:public
+__anon1::reason_phrase	/usr/include/neon/ne_utils.h	/^    char *reason_phrase;$/;"	m	language:C++	struct:__anon1	access:public
+__anon2::charset	/usr/include/neon/ne_basic.h	/^    const char *charset;$/;"	m	language:C++	struct:__anon2	access:public
+__anon2::subtype	/usr/include/neon/ne_basic.h	/^    const char *type, *subtype;$/;"	m	language:C++	struct:__anon2	access:public
+__anon2::type	/usr/include/neon/ne_basic.h	/^    const char *type, *subtype;$/;"	m	language:C++	struct:__anon2	access:public
+__anon2::value	/usr/include/neon/ne_basic.h	/^    char *value;$/;"	m	language:C++	struct:__anon2	access:public
+__anon3::dav_class1	/usr/include/neon/ne_basic.h	/^    unsigned int dav_class1; \/* True if Class 1 WebDAV server *\/$/;"	m	language:C++	struct:__anon3	access:public
+__anon3::dav_class2	/usr/include/neon/ne_basic.h	/^    unsigned int dav_class2; \/* True if Class 2 WebDAV server *\/$/;"	m	language:C++	struct:__anon3	access:public
+__anon3::dav_executable	/usr/include/neon/ne_basic.h	/^    unsigned int dav_executable; \/* True if supports the 'executable'$/;"	m	language:C++	struct:__anon3	access:public
+__anon4::end	/usr/include/neon/ne_basic.h	/^    ne_off_t start, end, total;$/;"	m	language:C++	struct:__anon4	access:public
+__anon4::start	/usr/include/neon/ne_basic.h	/^    ne_off_t start, end, total;$/;"	m	language:C++	struct:__anon4	access:public
+__anon4::total	/usr/include/neon/ne_basic.h	/^    ne_off_t start, end, total;$/;"	m	language:C++	struct:__anon4	access:public
+__anon5::fragment	/usr/include/neon/ne_uri.h	/^    char *path, *query, *fragment;$/;"	m	language:C++	struct:__anon5	access:public
+__anon5::host	/usr/include/neon/ne_uri.h	/^    char *host, *userinfo;$/;"	m	language:C++	struct:__anon5	access:public
+__anon5::path	/usr/include/neon/ne_uri.h	/^    char *path, *query, *fragment;$/;"	m	language:C++	struct:__anon5	access:public
+__anon5::port	/usr/include/neon/ne_uri.h	/^    unsigned int port;$/;"	m	language:C++	struct:__anon5	access:public
+__anon5::query	/usr/include/neon/ne_uri.h	/^    char *path, *query, *fragment;$/;"	m	language:C++	struct:__anon5	access:public
+__anon5::scheme	/usr/include/neon/ne_uri.h	/^    char *scheme;$/;"	m	language:C++	struct:__anon5	access:public
+__anon5::userinfo	/usr/include/neon/ne_uri.h	/^    char *host, *userinfo;$/;"	m	language:C++	struct:__anon5	access:public
+address	/usr/include/neon/ne_session.h	/^        const ne_inet_addr *address;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon8	access:public
+apply	/usr/include/neon/ne_acl.h	/^    } apply;$/;"	m	language:C++	struct:__anon15	typeref:enum:__anon15::__anon16	access:public
+base	/usr/include/neon/ne_socket.h	/^    void *base;$/;"	m	language:C++	struct:ne_iovec	access:public
+cd	/usr/include/neon/ne_session.h	/^    } cd;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon9	access:public
+charset	/usr/include/neon/ne_basic.h	/^    const char *charset;$/;"	m	language:C++	struct:__anon2	access:public
+ci	/usr/include/neon/ne_session.h	/^    } ci;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon8	access:public
+code	/usr/include/neon/ne_utils.h	/^    int code; \/* Status-Code value *\/$/;"	m	language:C++	struct:__anon1	access:public
+data	/usr/include/neon/ne_string.h	/^    char *data; \/* contents: NUL-terminated string *\/$/;"	m	language:C++	struct:__anon11	access:public
+dav_class1	/usr/include/neon/ne_basic.h	/^    unsigned int dav_class1; \/* True if Class 1 WebDAV server *\/$/;"	m	language:C++	struct:__anon3	access:public
+dav_class2	/usr/include/neon/ne_basic.h	/^    unsigned int dav_class2; \/* True if Class 2 WebDAV server *\/$/;"	m	language:C++	struct:__anon3	access:public
+dav_executable	/usr/include/neon/ne_basic.h	/^    unsigned int dav_executable; \/* True if supports the 'executable'$/;"	m	language:C++	struct:__anon3	access:public
+depth	/usr/include/neon/ne_locks.h	/^    int depth; \/* the depth of the lock (NE_DEPTH_*). *\/$/;"	m	language:C++	struct:ne_lock	access:public
+end	/usr/include/neon/ne_basic.h	/^    ne_off_t start, end, total;$/;"	m	language:C++	struct:__anon4	access:public
+fragment	/usr/include/neon/ne_uri.h	/^    char *path, *query, *fragment;$/;"	m	language:C++	struct:__anon5	access:public
+host	/usr/include/neon/ne_uri.h	/^    char *host, *userinfo;$/;"	m	language:C++	struct:__anon5	access:public
+hostname	/usr/include/neon/ne_session.h	/^        const char *hostname;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon7	access:public
+hostname	/usr/include/neon/ne_session.h	/^        const char *hostname;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon8	access:public
+hostname	/usr/include/neon/ne_session.h	/^        const char *hostname;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon9	access:public
+id	/usr/include/neon/ne_xml.h	/^    int id;$/;"	m	language:C++	struct:ne_xml_idmap	access:public
+klass	/usr/include/neon/ne_utils.h	/^    int klass; \/* Class of Status-Code (1-5) *\/$/;"	m	language:C++	struct:__anon1	access:public
+len	/usr/include/neon/ne_socket.h	/^    size_t len;$/;"	m	language:C++	struct:ne_iovec	access:public
+length	/usr/include/neon/ne_string.h	/^    size_t length; \/* number of bytes allocated *\/$/;"	m	language:C++	struct:__anon11	access:public
+lu	/usr/include/neon/ne_session.h	/^    } lu;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon7	access:public
+major_version	/usr/include/neon/ne_utils.h	/^    int major_version;$/;"	m	language:C++	struct:__anon1	access:public
+minor_version	/usr/include/neon/ne_utils.h	/^    int minor_version;$/;"	m	language:C++	struct:__anon1	access:public
+name	/usr/include/neon/ne_props.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:__anon13	access:public
+name	/usr/include/neon/ne_props.h	/^    const ne_propname *name;$/;"	m	language:C++	struct:__anon14	access:public
+name	/usr/include/neon/ne_xml.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:ne_xml_idmap	access:public
+ne_207_create	/usr/include/neon/ne_207.h	/^ne_207_parser *ne_207_create(ne_xml_parser *parser, const ne_uri *base, $/;"	p	language:C++	signature:(ne_xml_parser *parser, const ne_uri *base, void *userdata)
+ne_207_destroy	/usr/include/neon/ne_207.h	/^void ne_207_destroy(ne_207_parser *p);$/;"	p	language:C++	signature:(ne_207_parser *p)
+ne_207_end_propstat	/usr/include/neon/ne_207.h	/^typedef void ne_207_end_propstat(void *userdata, void *propstat,$/;"	t	language:C++
+ne_207_end_response	/usr/include/neon/ne_207.h	/^typedef void ne_207_end_response(void *userdata, void *response,$/;"	t	language:C++
+ne_207_get_current_propstat	/usr/include/neon/ne_207.h	/^void *ne_207_get_current_propstat(ne_207_parser *p);$/;"	p	language:C++	signature:(ne_207_parser *p)
+ne_207_get_current_response	/usr/include/neon/ne_207.h	/^void *ne_207_get_current_response(ne_207_parser *p);$/;"	p	language:C++	signature:(ne_207_parser *p)
+ne_207_parser	/usr/include/neon/ne_207.h	/^typedef struct ne_207_parser_s ne_207_parser;$/;"	t	language:C++	typeref:struct:ne_207_parser_s
+ne_207_set_propstat_handlers	/usr/include/neon/ne_207.h	/^void ne_207_set_propstat_handlers(ne_207_parser *p, $/;"	p	language:C++	signature:(ne_207_parser *p, ne_207_start_propstat *start, ne_207_end_propstat *end)
+ne_207_set_response_handlers	/usr/include/neon/ne_207.h	/^void ne_207_set_response_handlers(ne_207_parser *p,$/;"	p	language:C++	signature:(ne_207_parser *p, ne_207_start_response *start, ne_207_end_response *end)
+ne_207_start_propstat	/usr/include/neon/ne_207.h	/^typedef void *ne_207_start_propstat(void *userdata, void *response);$/;"	t	language:C++
+ne_207_start_response	/usr/include/neon/ne_207.h	/^typedef void *ne_207_start_response(void *userdata, const ne_uri *uri);$/;"	t	language:C++
+ne_accept_207	/usr/include/neon/ne_207.h	/^int ne_accept_207(void *userdata, ne_request *req, const ne_status *status);$/;"	p	language:C++	signature:(void *userdata, ne_request *req, const ne_status *status)
+ne_accept_2xx	/usr/include/neon/ne_request.h	/^int ne_accept_2xx(void *userdata, ne_request *req, const ne_status *st);$/;"	p	language:C++	signature:(void *userdata, ne_request *req, const ne_status *st)
+ne_accept_always	/usr/include/neon/ne_request.h	/^int ne_accept_always(void *userdata, ne_request *req, const ne_status *st);$/;"	p	language:C++	signature:(void *userdata, ne_request *req, const ne_status *st)
+ne_accept_response	/usr/include/neon/ne_request.h	/^typedef int (*ne_accept_response)(void *userdata, ne_request *req, $/;"	t	language:C++
+ne_acl3744_set	/usr/include/neon/ne_acl3744.h	/^int ne_acl3744_set(ne_session *sess, const char *path,$/;"	p	language:C++	signature:(ne_session *sess, const char *path, const ne_acl_entry entries[], int numentries)
+ne_acl_all	/usr/include/neon/ne_acl.h	/^	ne_acl_all$/;"	e	language:C++	enum:__anon15::__anon16
+ne_acl_all	/usr/include/neon/ne_acl3744.h	/^    ne_acl_all,$/;"	e	language:C++	enum:ne_acl_target
+ne_acl_authenticated	/usr/include/neon/ne_acl3744.h	/^    ne_acl_authenticated,$/;"	e	language:C++	enum:ne_acl_target
+ne_acl_deny	/usr/include/neon/ne_acl.h	/^	ne_acl_deny$/;"	e	language:C++	enum:__anon15::__anon17
+ne_acl_deny	/usr/include/neon/ne_acl3744.h	/^    ne_acl_deny$/;"	e	language:C++	enum:ne_acl_optype
+ne_acl_entry	/usr/include/neon/ne_acl.h	/^} ne_acl_entry;$/;"	t	language:C++	typeref:struct:__anon15
+ne_acl_entry	/usr/include/neon/ne_acl3744.h	/^} ne_acl_entry;$/;"	t	language:C++	typeref:struct:__anon18
+ne_acl_grant	/usr/include/neon/ne_acl.h	/^	ne_acl_grant,$/;"	e	language:C++	enum:__anon15::__anon17
+ne_acl_grant	/usr/include/neon/ne_acl3744.h	/^    ne_acl_grant,$/;"	e	language:C++	enum:ne_acl_optype
+ne_acl_href	/usr/include/neon/ne_acl.h	/^	ne_acl_href,$/;"	e	language:C++	enum:__anon15::__anon16
+ne_acl_href	/usr/include/neon/ne_acl3744.h	/^    ne_acl_href,$/;"	e	language:C++	enum:ne_acl_target
+ne_acl_optype	/usr/include/neon/ne_acl3744.h	/^enum ne_acl_optype {$/;"	g	language:C++
+ne_acl_property	/usr/include/neon/ne_acl.h	/^	ne_acl_property,$/;"	e	language:C++	enum:__anon15::__anon16
+ne_acl_property	/usr/include/neon/ne_acl3744.h	/^    ne_acl_property,$/;"	e	language:C++	enum:ne_acl_target
+ne_acl_self	/usr/include/neon/ne_acl3744.h	/^    ne_acl_self$/;"	e	language:C++	enum:ne_acl_target
+ne_acl_set	/usr/include/neon/ne_acl.h	/^int ne_acl_set(ne_session *sess, const char *uri,$/;"	p	language:C++	signature:(ne_session *sess, const char *uri, const ne_acl_entry entries[], int numentries)
+ne_acl_target	/usr/include/neon/ne_acl3744.h	/^enum ne_acl_target {$/;"	g	language:C++
+ne_acl_unauthenticated	/usr/include/neon/ne_acl3744.h	/^    ne_acl_unauthenticated,$/;"	e	language:C++	enum:ne_acl_target
+ne_add_depth_header	/usr/include/neon/ne_basic.h	/^void ne_add_depth_header(ne_request *req, int depth);$/;"	p	language:C++	signature:(ne_request *req, int depth)
+ne_add_proxy_auth	/usr/include/neon/ne_auth.h	/^void ne_add_proxy_auth(ne_session *sess, unsigned protocol, $/;"	p	language:C++	signature:(ne_session *sess, unsigned protocol, ne_auth_creds creds, void *userdata)
+ne_add_request_header	/usr/include/neon/ne_request.h	/^void ne_add_request_header(ne_request *req, const char *name, $/;"	p	language:C++	signature:(ne_request *req, const char *name, const char *value)
+ne_add_response_body_reader	/usr/include/neon/ne_request.h	/^void ne_add_response_body_reader(ne_request *req, ne_accept_response accpt,$/;"	p	language:C++	signature:(ne_request *req, ne_accept_response accpt, ne_block_reader reader, void *userdata)
+ne_add_server_auth	/usr/include/neon/ne_auth.h	/^void ne_add_server_auth(ne_session *sess, unsigned protocol, $/;"	p	language:C++	signature:(ne_session *sess, unsigned protocol, ne_auth_creds creds, void *userdata)
+ne_addr_canonical	/usr/include/neon/ne_socket.h	/^const char *ne_addr_canonical(const ne_sock_addr *addr);$/;"	p	language:C++	signature:(const ne_sock_addr *addr)
+ne_addr_destroy	/usr/include/neon/ne_socket.h	/^void ne_addr_destroy(ne_sock_addr *addr);$/;"	p	language:C++	signature:(ne_sock_addr *addr)
+ne_addr_error	/usr/include/neon/ne_socket.h	/^char *ne_addr_error(const ne_sock_addr *addr, char *buffer, size_t bufsiz);$/;"	p	language:C++	signature:(const ne_sock_addr *addr, char *buffer, size_t bufsiz)
+ne_addr_first	/usr/include/neon/ne_socket.h	/^const ne_inet_addr *ne_addr_first(ne_sock_addr *addr);$/;"	p	language:C++	signature:(ne_sock_addr *addr)
+ne_addr_next	/usr/include/neon/ne_socket.h	/^const ne_inet_addr *ne_addr_next(ne_sock_addr *addr);$/;"	p	language:C++	signature:(ne_sock_addr *addr)
+ne_addr_resolve	/usr/include/neon/ne_socket.h	/^ne_sock_addr *ne_addr_resolve(const char *hostname, int flags);$/;"	p	language:C++	signature:(const char *hostname, int flags)
+ne_addr_result	/usr/include/neon/ne_socket.h	/^int ne_addr_result(const ne_sock_addr *addr);$/;"	p	language:C++	signature:(const ne_sock_addr *addr)
+ne_ascii_to_md5	/usr/include/neon/ne_md5.h	/^void ne_ascii_to_md5(const char *buffer, unsigned char md5_buf[16]);$/;"	p	language:C++	signature:(const char *buffer, unsigned char md5_buf[16])
+ne_asctime_parse	/usr/include/neon/ne_dates.h	/^time_t ne_asctime_parse(const char *date);$/;"	p	language:C++	signature:(const char *date)
+ne_attribute	/usr/include/neon/ne_defs.h	69;"	d	language:C++
+ne_attribute	/usr/include/neon/ne_defs.h	71;"	d	language:C++
+ne_attribute_malloc	/usr/include/neon/ne_defs.h	60;"	d	language:C++
+ne_attribute_malloc	/usr/include/neon/ne_defs.h	62;"	d	language:C++
+ne_attribute_malloc	/usr/include/neon/ne_defs.h	72;"	d	language:C++
+ne_attribute_sentinel	/usr/include/neon/ne_defs.h	65;"	d	language:C++
+ne_attribute_sentinel	/usr/include/neon/ne_defs.h	67;"	d	language:C++
+ne_attribute_sentinel	/usr/include/neon/ne_defs.h	73;"	d	language:C++
+ne_auth_creds	/usr/include/neon/ne_auth.h	/^typedef int (*ne_auth_creds)(void *userdata, const char *realm, int attempt,$/;"	t	language:C++
+ne_base64	/usr/include/neon/ne_string.h	/^char *ne_base64(const unsigned char *text, size_t len);$/;"	p	language:C++	signature:(const unsigned char *text, size_t len)
+ne_begin_request	/usr/include/neon/ne_request.h	/^int ne_begin_request(ne_request *req);$/;"	p	language:C++	signature:(ne_request *req)
+ne_block_reader	/usr/include/neon/ne_request.h	/^typedef int (*ne_block_reader)(void *userdata, const char *buf, size_t len);$/;"	t	language:C++
+ne_buffer	/usr/include/neon/ne_string.h	/^} ne_buffer;$/;"	t	language:C++	typeref:struct:__anon11
+ne_buffer_altered	/usr/include/neon/ne_string.h	/^void ne_buffer_altered(ne_buffer *buf);$/;"	p	language:C++	signature:(ne_buffer *buf)
+ne_buffer_append	/usr/include/neon/ne_string.h	/^void ne_buffer_append(ne_buffer *buf, const char *data, size_t len);$/;"	p	language:C++	signature:(ne_buffer *buf, const char *data, size_t len)
+ne_buffer_clear	/usr/include/neon/ne_string.h	/^void ne_buffer_clear(ne_buffer *buf);$/;"	p	language:C++	signature:(ne_buffer *buf)
+ne_buffer_create	/usr/include/neon/ne_string.h	/^ne_buffer *ne_buffer_create(void);$/;"	p	language:C++	signature:(void)
+ne_buffer_czappend	/usr/include/neon/ne_string.h	109;"	d	language:C++
+ne_buffer_destroy	/usr/include/neon/ne_string.h	/^void ne_buffer_destroy(ne_buffer *buf);$/;"	p	language:C++	signature:(ne_buffer *buf)
+ne_buffer_finish	/usr/include/neon/ne_string.h	/^char *ne_buffer_finish(ne_buffer *buf);$/;"	p	language:C++	signature:(ne_buffer *buf)
+ne_buffer_grow	/usr/include/neon/ne_string.h	/^void ne_buffer_grow(ne_buffer *buf, size_t size);$/;"	p	language:C++	signature:(ne_buffer *buf, size_t size)
+ne_buffer_ncreate	/usr/include/neon/ne_string.h	/^ne_buffer *ne_buffer_ncreate(size_t size);$/;"	p	language:C++	signature:(size_t size)
+ne_buffer_qappend	/usr/include/neon/ne_string.h	/^void ne_buffer_qappend(ne_buffer *buf, const unsigned char *data, size_t len);$/;"	p	language:C++	signature:(ne_buffer *buf, const unsigned char *data, size_t len)
+ne_buffer_size	/usr/include/neon/ne_string.h	78;"	d	language:C++
+ne_buffer_zappend	/usr/include/neon/ne_string.h	/^void ne_buffer_zappend(ne_buffer *buf, const char *str);$/;"	p	language:C++	signature:(ne_buffer *buf, const char *str)
+ne_close_conn_fn	/usr/include/neon/ne_request.h	/^typedef void (*ne_close_conn_fn)(void *userdata);$/;"	t	language:C++
+ne_close_connection	/usr/include/neon/ne_session.h	/^void ne_close_connection(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_content_range	/usr/include/neon/ne_basic.h	/^} ne_content_range;$/;"	t	language:C++	typeref:struct:__anon4
+ne_content_type	/usr/include/neon/ne_basic.h	/^} ne_content_type;$/;"	t	language:C++	typeref:struct:__anon2
+ne_copy	/usr/include/neon/ne_basic.h	/^int ne_copy(ne_session *sess, int overwrite, int depth,$/;"	p	language:C++	signature:(ne_session *sess, int overwrite, int depth, const char *src, const char *dest)
+ne_create_request_fn	/usr/include/neon/ne_request.h	/^typedef void (*ne_create_request_fn)(ne_request *req, void *userdata,$/;"	t	language:C++
+ne_debug_init	/usr/include/neon/ne_utils.h	/^void ne_debug_init(FILE *stream, int mask);$/;"	p	language:C++	signature:(FILE *stream, int mask)
+ne_decompress	/usr/include/neon/ne_compress.h	/^typedef struct ne_decompress_s ne_decompress;$/;"	t	language:C++	typeref:struct:ne_decompress_s
+ne_decompress_destroy	/usr/include/neon/ne_compress.h	/^void ne_decompress_destroy(ne_decompress *ctx);$/;"	p	language:C++	signature:(ne_decompress *ctx)
+ne_decompress_reader	/usr/include/neon/ne_compress.h	/^ne_decompress *ne_decompress_reader(ne_request *req, ne_accept_response accpt,$/;"	p	language:C++	signature:(ne_request *req, ne_accept_response accpt, ne_block_reader rdr, void *userdata)
+ne_delete	/usr/include/neon/ne_basic.h	/^int ne_delete(ne_session *sess, const char *path);$/;"	p	language:C++	signature:(ne_session *sess, const char *path)
+ne_destroy_req_fn	/usr/include/neon/ne_request.h	/^typedef void (*ne_destroy_req_fn)(ne_request *req, void *userdata);$/;"	t	language:C++
+ne_destroy_sess_fn	/usr/include/neon/ne_request.h	/^typedef void (*ne_destroy_sess_fn)(void *userdata);$/;"	t	language:C++
+ne_discard_response	/usr/include/neon/ne_request.h	/^int ne_discard_response(ne_request *req);$/;"	p	language:C++	signature:(ne_request *req)
+ne_end_request	/usr/include/neon/ne_request.h	/^int ne_end_request(ne_request *req);$/;"	p	language:C++	signature:(ne_request *req)
+ne_fill_proxy_uri	/usr/include/neon/ne_session.h	/^void ne_fill_proxy_uri(ne_session *sess, ne_uri *uri);$/;"	p	language:C++	signature:(ne_session *sess, ne_uri *uri)
+ne_fill_server_uri	/usr/include/neon/ne_session.h	/^void ne_fill_server_uri(ne_session *sess, ne_uri *uri);$/;"	p	language:C++	signature:(ne_session *sess, ne_uri *uri)
+ne_forget_auth	/usr/include/neon/ne_auth.h	/^void ne_forget_auth(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_free	/usr/include/neon/ne_alloc.h	/^void ne_free(void *ptr);$/;"	p	language:C++	signature:(void *ptr)
+ne_free	/usr/include/neon/ne_alloc.h	54;"	d	language:C++
+ne_free_hooks	/usr/include/neon/ne_request.h	/^typedef void (*ne_free_hooks)(void *cookie);$/;"	t	language:C++
+ne_get	/usr/include/neon/ne_basic.h	/^int ne_get(ne_session *sess, const char *path, int fd);$/;"	p	language:C++	signature:(ne_session *sess, const char *path, int fd)
+ne_get_content_type	/usr/include/neon/ne_basic.h	/^int ne_get_content_type(ne_request *req, ne_content_type *ctype);$/;"	p	language:C++	signature:(ne_request *req, ne_content_type *ctype)
+ne_get_error	/usr/include/neon/ne_session.h	/^const char *ne_get_error(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_get_range	/usr/include/neon/ne_basic.h	/^int ne_get_range(ne_session *sess, const char *path, $/;"	p	language:C++	signature:(ne_session *sess, const char *path, ne_content_range *range, int fd)
+ne_get_request_flag	/usr/include/neon/ne_request.h	/^int ne_get_request_flag(ne_request *req, ne_request_flag flag);$/;"	p	language:C++	signature:(ne_request *req, ne_request_flag flag)
+ne_get_request_private	/usr/include/neon/ne_request.h	/^void *ne_get_request_private(ne_request *req, const char *id);$/;"	p	language:C++	signature:(ne_request *req, const char *id)
+ne_get_response_header	/usr/include/neon/ne_request.h	/^const char *ne_get_response_header(ne_request *req, const char *name);$/;"	p	language:C++	signature:(ne_request *req, const char *name)
+ne_get_scheme	/usr/include/neon/ne_session.h	/^const char *ne_get_scheme(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_get_server_hostport	/usr/include/neon/ne_session.h	/^const char *ne_get_server_hostport(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_get_session_flag	/usr/include/neon/ne_session.h	/^int ne_get_session_flag(ne_session *sess, ne_session_flag flag);$/;"	p	language:C++	signature:(ne_session *sess, ne_session_flag flag)
+ne_get_session_private	/usr/include/neon/ne_session.h	/^void *ne_get_session_private(ne_session *sess, const char *id);$/;"	p	language:C++	signature:(ne_session *sess, const char *id)
+ne_getmodtime	/usr/include/neon/ne_basic.h	/^int ne_getmodtime(ne_session *sess, const char *path, time_t *modtime);$/;"	p	language:C++	signature:(ne_session *sess, const char *path, time_t *modtime)
+ne_has_support	/usr/include/neon/ne_utils.h	/^int ne_has_support(int feature);$/;"	p	language:C++	signature:(int feature)
+ne_hook_close_conn	/usr/include/neon/ne_request.h	/^void ne_hook_close_conn(ne_session *sess, ne_close_conn_fn fn, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_close_conn_fn fn, void *userdata)
+ne_hook_create_request	/usr/include/neon/ne_request.h	/^void ne_hook_create_request(ne_session *sess, $/;"	p	language:C++	signature:(ne_session *sess, ne_create_request_fn fn, void *userdata)
+ne_hook_destroy_request	/usr/include/neon/ne_request.h	/^void ne_hook_destroy_request(ne_session *sess,$/;"	p	language:C++	signature:(ne_session *sess, ne_destroy_req_fn fn, void *userdata)
+ne_hook_destroy_session	/usr/include/neon/ne_request.h	/^void ne_hook_destroy_session(ne_session *sess,$/;"	p	language:C++	signature:(ne_session *sess, ne_destroy_sess_fn fn, void *userdata)
+ne_hook_post_headers	/usr/include/neon/ne_request.h	/^void ne_hook_post_headers(ne_session *sess, $/;"	p	language:C++	signature:(ne_session *sess, ne_post_headers_fn fn, void *userdata)
+ne_hook_post_send	/usr/include/neon/ne_request.h	/^void ne_hook_post_send(ne_session *sess, ne_post_send_fn fn, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_post_send_fn fn, void *userdata)
+ne_hook_pre_send	/usr/include/neon/ne_request.h	/^void ne_hook_pre_send(ne_session *sess, ne_pre_send_fn fn, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_pre_send_fn fn, void *userdata)
+ne_httpdate_parse	/usr/include/neon/ne_dates.h	/^time_t ne_httpdate_parse(const char *date);$/;"	p	language:C++	signature:(const char *date)
+ne_i18n_init	/usr/include/neon/ne_i18n.h	/^void ne_i18n_init(const char *encoding);$/;"	p	language:C++	signature:(const char *encoding)
+ne_iaddr_cmp	/usr/include/neon/ne_socket.h	/^int ne_iaddr_cmp(const ne_inet_addr *i1, const ne_inet_addr *i2);$/;"	p	language:C++	signature:(const ne_inet_addr *i1, const ne_inet_addr *i2)
+ne_iaddr_free	/usr/include/neon/ne_socket.h	/^void ne_iaddr_free(ne_inet_addr *addr);$/;"	p	language:C++	signature:(ne_inet_addr *addr)
+ne_iaddr_ipv4	/usr/include/neon/ne_socket.h	/^    ne_iaddr_ipv4 = 0,$/;"	e	language:C++	enum:__anon12
+ne_iaddr_ipv6	/usr/include/neon/ne_socket.h	/^    ne_iaddr_ipv6$/;"	e	language:C++	enum:__anon12
+ne_iaddr_make	/usr/include/neon/ne_socket.h	/^ne_inet_addr *ne_iaddr_make(ne_iaddr_type type, const unsigned char *raw);$/;"	p	language:C++	signature:(ne_iaddr_type type, const unsigned char *raw)
+ne_iaddr_parse	/usr/include/neon/ne_socket.h	/^ne_inet_addr *ne_iaddr_parse(const char *addr, ne_iaddr_type type);$/;"	p	language:C++	signature:(const char *addr, ne_iaddr_type type)
+ne_iaddr_print	/usr/include/neon/ne_socket.h	/^char *ne_iaddr_print(const ne_inet_addr *ia, char *buffer, size_t bufsiz);$/;"	p	language:C++	signature:(const ne_inet_addr *ia, char *buffer, size_t bufsiz)
+ne_iaddr_raw	/usr/include/neon/ne_socket.h	/^unsigned char *ne_iaddr_raw(const ne_inet_addr *ia, unsigned char *buffer);$/;"	p	language:C++	signature:(const ne_inet_addr *ia, unsigned char *buffer)
+ne_iaddr_reverse	/usr/include/neon/ne_socket.h	/^int ne_iaddr_reverse(const ne_inet_addr *ia, char *buf, size_t bufsiz);$/;"	p	language:C++	signature:(const ne_inet_addr *ia, char *buf, size_t bufsiz)
+ne_iaddr_type	/usr/include/neon/ne_socket.h	/^} ne_iaddr_type;$/;"	t	language:C++	typeref:enum:__anon12
+ne_iaddr_typeof	/usr/include/neon/ne_socket.h	/^ne_iaddr_type ne_iaddr_typeof(const ne_inet_addr *ia);$/;"	p	language:C++	signature:(const ne_inet_addr *ia)
+ne_inet_addr	/usr/include/neon/ne_socket.h	/^typedef struct ne_inet_addr_s ne_inet_addr;$/;"	t	language:C++	typeref:struct:ne_inet_addr_s
+ne_iovec	/usr/include/neon/ne_socket.h	/^struct ne_iovec {$/;"	s	language:C++
+ne_iovec::base	/usr/include/neon/ne_socket.h	/^    void *base;$/;"	m	language:C++	struct:ne_iovec	access:public
+ne_iovec::len	/usr/include/neon/ne_socket.h	/^    size_t len;$/;"	m	language:C++	struct:ne_iovec	access:public
+ne_iso8601_parse	/usr/include/neon/ne_dates.h	/^time_t ne_iso8601_parse(const char *date);$/;"	p	language:C++	signature:(const char *date)
+ne_lock	/usr/include/neon/ne_locks.h	/^int ne_lock(ne_session *sess, struct ne_lock *lock);$/;"	p	language:C++	signature:(ne_session *sess, struct ne_lock *lock)
+ne_lock	/usr/include/neon/ne_locks.h	/^struct ne_lock {$/;"	s	language:C++
+ne_lock::depth	/usr/include/neon/ne_locks.h	/^    int depth; \/* the depth of the lock (NE_DEPTH_*). *\/$/;"	m	language:C++	struct:ne_lock	access:public
+ne_lock::owner	/usr/include/neon/ne_locks.h	/^    char *owner; \/* string describing the owner of the lock. *\/$/;"	m	language:C++	struct:ne_lock	access:public
+ne_lock::scope	/usr/include/neon/ne_locks.h	/^    enum ne_lock_scope scope;$/;"	m	language:C++	struct:ne_lock	typeref:enum:ne_lock::ne_lock_scope	access:public
+ne_lock::timeout	/usr/include/neon/ne_locks.h	/^    long timeout; \/* timeout in seconds. (or NE_TIMEOUT_*) *\/$/;"	m	language:C++	struct:ne_lock	access:public
+ne_lock::token	/usr/include/neon/ne_locks.h	/^    char *token; \/* the lock token: uniquely identifies this lock. *\/$/;"	m	language:C++	struct:ne_lock	access:public
+ne_lock::type	/usr/include/neon/ne_locks.h	/^    enum ne_lock_type type;$/;"	m	language:C++	struct:ne_lock	typeref:enum:ne_lock::ne_lock_type	access:public
+ne_lock::uri	/usr/include/neon/ne_locks.h	/^    ne_uri uri;$/;"	m	language:C++	struct:ne_lock	access:public
+ne_lock_copy	/usr/include/neon/ne_locks.h	/^struct ne_lock *ne_lock_copy(const struct ne_lock *lock);$/;"	p	language:C++	signature:(const struct ne_lock *lock)
+ne_lock_create	/usr/include/neon/ne_locks.h	/^struct ne_lock *ne_lock_create(void);$/;"	p	language:C++	signature:(void)
+ne_lock_destroy	/usr/include/neon/ne_locks.h	/^void ne_lock_destroy(struct ne_lock *lock);$/;"	p	language:C++	signature:(struct ne_lock *lock)
+ne_lock_discover	/usr/include/neon/ne_locks.h	/^int ne_lock_discover(ne_session *sess, const char *path,$/;"	p	language:C++	signature:(ne_session *sess, const char *path, ne_lock_result result, void *userdata)
+ne_lock_free	/usr/include/neon/ne_locks.h	/^void ne_lock_free(struct ne_lock *lock);$/;"	p	language:C++	signature:(struct ne_lock *lock)
+ne_lock_refresh	/usr/include/neon/ne_locks.h	/^int ne_lock_refresh(ne_session *sess, struct ne_lock *lock);$/;"	p	language:C++	signature:(ne_session *sess, struct ne_lock *lock)
+ne_lock_result	/usr/include/neon/ne_locks.h	/^typedef void (*ne_lock_result)(void *userdata, const struct ne_lock *lock, $/;"	t	language:C++
+ne_lock_scope	/usr/include/neon/ne_locks.h	/^enum ne_lock_scope {$/;"	g	language:C++
+ne_lock_store	/usr/include/neon/ne_locks.h	/^typedef struct ne_lock_store_s ne_lock_store;$/;"	t	language:C++	typeref:struct:ne_lock_store_s
+ne_lock_type	/usr/include/neon/ne_locks.h	/^enum ne_lock_type {$/;"	g	language:C++
+ne_lock_using_parent	/usr/include/neon/ne_locks.h	/^void ne_lock_using_parent(ne_request *req, const char *path);$/;"	p	language:C++	signature:(ne_request *req, const char *path)
+ne_lock_using_resource	/usr/include/neon/ne_locks.h	/^void ne_lock_using_resource(ne_request *req, const char *path, int depth);$/;"	p	language:C++	signature:(ne_request *req, const char *path, int depth)
+ne_lockscope_exclusive	/usr/include/neon/ne_locks.h	/^    ne_lockscope_exclusive,$/;"	e	language:C++	enum:ne_lock_scope
+ne_lockscope_shared	/usr/include/neon/ne_locks.h	/^    ne_lockscope_shared$/;"	e	language:C++	enum:ne_lock_scope
+ne_lockstore_add	/usr/include/neon/ne_locks.h	/^void ne_lockstore_add(ne_lock_store *store, struct ne_lock *lock);$/;"	p	language:C++	signature:(ne_lock_store *store, struct ne_lock *lock)
+ne_lockstore_create	/usr/include/neon/ne_locks.h	/^ne_lock_store *ne_lockstore_create(void);$/;"	p	language:C++	signature:(void)
+ne_lockstore_destroy	/usr/include/neon/ne_locks.h	/^void ne_lockstore_destroy(ne_lock_store *store);$/;"	p	language:C++	signature:(ne_lock_store *store)
+ne_lockstore_findbyuri	/usr/include/neon/ne_locks.h	/^struct ne_lock *ne_lockstore_findbyuri(ne_lock_store *store, $/;"	p	language:C++	signature:(ne_lock_store *store, const ne_uri *uri)
+ne_lockstore_first	/usr/include/neon/ne_locks.h	/^struct ne_lock *ne_lockstore_first(ne_lock_store *store);$/;"	p	language:C++	signature:(ne_lock_store *store)
+ne_lockstore_next	/usr/include/neon/ne_locks.h	/^struct ne_lock *ne_lockstore_next(ne_lock_store *store);$/;"	p	language:C++	signature:(ne_lock_store *store)
+ne_lockstore_register	/usr/include/neon/ne_locks.h	/^void ne_lockstore_register(ne_lock_store *store, ne_session *sess);$/;"	p	language:C++	signature:(ne_lock_store *store, ne_session *sess)
+ne_lockstore_remove	/usr/include/neon/ne_locks.h	/^void ne_lockstore_remove(ne_lock_store *store, struct ne_lock *lock);$/;"	p	language:C++	signature:(ne_lock_store *store, struct ne_lock *lock)
+ne_locktype_write	/usr/include/neon/ne_locks.h	/^    ne_locktype_write$/;"	e	language:C++	enum:ne_lock_type
+ne_md5_create_ctx	/usr/include/neon/ne_md5.h	/^extern struct ne_md5_ctx *ne_md5_create_ctx(void);$/;"	p	language:C++	signature:(void)
+ne_md5_destroy_ctx	/usr/include/neon/ne_md5.h	/^extern void ne_md5_destroy_ctx(struct ne_md5_ctx *ctx);$/;"	p	language:C++	signature:(struct ne_md5_ctx *ctx)
+ne_md5_dup_ctx	/usr/include/neon/ne_md5.h	/^extern struct ne_md5_ctx *ne_md5_dup_ctx(struct ne_md5_ctx *ctx);$/;"	p	language:C++	signature:(struct ne_md5_ctx *ctx)
+ne_md5_finish_ascii	/usr/include/neon/ne_md5.h	/^char *ne_md5_finish_ascii(struct ne_md5_ctx *ctx, char buffer[33]);$/;"	p	language:C++	signature:(struct ne_md5_ctx *ctx, char buffer[33])
+ne_md5_finish_ctx	/usr/include/neon/ne_md5.h	/^extern void *ne_md5_finish_ctx(struct ne_md5_ctx *ctx, void *resbuf);$/;"	p	language:C++	signature:(struct ne_md5_ctx *ctx, void *resbuf)
+ne_md5_process_block	/usr/include/neon/ne_md5.h	/^extern void ne_md5_process_block(const void *buffer, size_t len,$/;"	p	language:C++	signature:(const void *buffer, size_t len, struct ne_md5_ctx *ctx)
+ne_md5_process_bytes	/usr/include/neon/ne_md5.h	/^extern void ne_md5_process_bytes(const void *buffer, size_t len,$/;"	p	language:C++	signature:(const void *buffer, size_t len, struct ne_md5_ctx *ctx)
+ne_md5_read_ctx	/usr/include/neon/ne_md5.h	/^extern void *ne_md5_read_ctx(const struct ne_md5_ctx *ctx, void *resbuf);$/;"	p	language:C++	signature:(const struct ne_md5_ctx *ctx, void *resbuf)
+ne_md5_reset_ctx	/usr/include/neon/ne_md5.h	/^extern void ne_md5_reset_ctx(struct ne_md5_ctx *ctx);$/;"	p	language:C++	signature:(struct ne_md5_ctx *ctx)
+ne_md5_stream	/usr/include/neon/ne_md5.h	/^extern int ne_md5_stream(FILE *stream, void *resblock);$/;"	p	language:C++	signature:(FILE *stream, void *resblock)
+ne_md5_to_ascii	/usr/include/neon/ne_md5.h	/^void ne_md5_to_ascii(const unsigned char md5_buf[16], char *buffer);$/;"	p	language:C++	signature:(const unsigned char md5_buf[16], char *buffer)
+ne_mkcol	/usr/include/neon/ne_basic.h	/^int ne_mkcol(ne_session *sess, const char *path);$/;"	p	language:C++	signature:(ne_session *sess, const char *path)
+ne_move	/usr/include/neon/ne_basic.h	/^int ne_move(ne_session *sess, int overwrite,$/;"	p	language:C++	signature:(ne_session *sess, int overwrite, const char *src, const char *dest)
+ne_notify_status	/usr/include/neon/ne_session.h	/^typedef void (*ne_notify_status)(void *userdata, ne_session_status status,$/;"	t	language:C++
+ne_off_t	/usr/include/neon/ne_defs.h	/^typedef off64_t ne_off_t;$/;"	t	language:C++
+ne_off_t	/usr/include/neon/ne_defs.h	/^typedef off_t ne_off_t;$/;"	t	language:C++
+ne_oom_callback	/usr/include/neon/ne_alloc.h	/^void ne_oom_callback(ne_oom_callback_fn callback);$/;"	p	language:C++	signature:(ne_oom_callback_fn callback)
+ne_oom_callback_fn	/usr/include/neon/ne_alloc.h	/^typedef void (*ne_oom_callback_fn)(void);$/;"	t	language:C++
+ne_options	/usr/include/neon/ne_basic.h	/^int ne_options(ne_session *sess, const char *path,$/;"	p	language:C++	signature:(ne_session *sess, const char *path, ne_server_capabilities *caps)
+ne_options2	/usr/include/neon/ne_basic.h	/^int ne_options2(ne_session *sess, const char *path, unsigned int *caps);$/;"	p	language:C++	signature:(ne_session *sess, const char *path, unsigned int *caps)
+ne_parse_statusline	/usr/include/neon/ne_utils.h	/^int ne_parse_statusline(const char *status_line, ne_status *s);$/;"	p	language:C++	signature:(const char *status_line, ne_status *s)
+ne_path_childof	/usr/include/neon/ne_uri.h	/^int ne_path_childof(const char *parent, const char *child);$/;"	p	language:C++	signature:(const char *parent, const char *child)
+ne_path_compare	/usr/include/neon/ne_uri.h	/^int ne_path_compare(const char *p1, const char *p2);$/;"	p	language:C++	signature:(const char *p1, const char *p2)
+ne_path_escape	/usr/include/neon/ne_uri.h	/^char *ne_path_escape(const char *path);$/;"	p	language:C++	signature:(const char *path)
+ne_path_has_trailing_slash	/usr/include/neon/ne_uri.h	/^int ne_path_has_trailing_slash(const char *path);$/;"	p	language:C++	signature:(const char *path)
+ne_path_parent	/usr/include/neon/ne_uri.h	/^char *ne_path_parent(const char *path);$/;"	p	language:C++	signature:(const char *path)
+ne_path_unescape	/usr/include/neon/ne_uri.h	/^char *ne_path_unescape(const char *epath);$/;"	p	language:C++	signature:(const char *epath)
+ne_post	/usr/include/neon/ne_basic.h	/^int ne_post(ne_session *sess, const char *path, int fd, const char *buffer);$/;"	p	language:C++	signature:(ne_session *sess, const char *path, int fd, const char *buffer)
+ne_post_headers_fn	/usr/include/neon/ne_request.h	/^typedef void (*ne_post_headers_fn)(ne_request *req, void *userdata,$/;"	t	language:C++
+ne_post_send_fn	/usr/include/neon/ne_request.h	/^typedef int (*ne_post_send_fn)(ne_request *req, void *userdata,$/;"	t	language:C++
+ne_pre_send_fn	/usr/include/neon/ne_request.h	/^typedef void (*ne_pre_send_fn)(ne_request *req, void *userdata, $/;"	t	language:C++
+ne_progress	/usr/include/neon/ne_session.h	/^typedef void (*ne_progress)(void *userdata, ne_off_t progress, ne_off_t total);$/;"	t	language:C++
+ne_prop_result_set	/usr/include/neon/ne_props.h	/^typedef struct ne_prop_result_set_s ne_prop_result_set;$/;"	t	language:C++	typeref:struct:ne_prop_result_set_s
+ne_propfind_allprop	/usr/include/neon/ne_props.h	/^int ne_propfind_allprop(ne_propfind_handler *handler, $/;"	p	language:C++	signature:(ne_propfind_handler *handler, ne_props_result result, void *userdata)
+ne_propfind_create	/usr/include/neon/ne_props.h	/^ne_propfind_create(ne_session *sess, const char *path, int depth);$/;"	p	language:C++	signature:(ne_session *sess, const char *path, int depth)
+ne_propfind_current_private	/usr/include/neon/ne_props.h	/^void *ne_propfind_current_private(ne_propfind_handler *handler);$/;"	p	language:C++	signature:(ne_propfind_handler *handler)
+ne_propfind_destroy	/usr/include/neon/ne_props.h	/^void ne_propfind_destroy(ne_propfind_handler *handler);$/;"	p	language:C++	signature:(ne_propfind_handler *handler)
+ne_propfind_get_parser	/usr/include/neon/ne_props.h	/^ne_xml_parser *ne_propfind_get_parser(ne_propfind_handler *handler);$/;"	p	language:C++	signature:(ne_propfind_handler *handler)
+ne_propfind_get_request	/usr/include/neon/ne_props.h	/^ne_request *ne_propfind_get_request(ne_propfind_handler *handler);$/;"	p	language:C++	signature:(ne_propfind_handler *handler)
+ne_propfind_handler	/usr/include/neon/ne_props.h	/^typedef struct ne_propfind_handler_s ne_propfind_handler;$/;"	t	language:C++	typeref:struct:ne_propfind_handler_s
+ne_propfind_named	/usr/include/neon/ne_props.h	/^int ne_propfind_named(ne_propfind_handler *handler, $/;"	p	language:C++	signature:(ne_propfind_handler *handler, const ne_propname *names, ne_props_result result, void *userdata)
+ne_propfind_set_private	/usr/include/neon/ne_props.h	/^void ne_propfind_set_private(ne_propfind_handler *handler,$/;"	p	language:C++	signature:(ne_propfind_handler *handler, ne_props_create_complex creator, ne_props_destroy_complex destructor, void *userdata)
+ne_propname	/usr/include/neon/ne_props.h	/^} ne_propname;$/;"	t	language:C++	typeref:struct:__anon13
+ne_propnames	/usr/include/neon/ne_props.h	/^int ne_propnames(ne_session *sess, const char *path, int depth,$/;"	p	language:C++	signature:(ne_session *sess, const char *path, int depth, ne_props_result results, void *userdata)
+ne_proppatch	/usr/include/neon/ne_props.h	/^int ne_proppatch(ne_session *sess, const char *path,$/;"	p	language:C++	signature:(ne_session *sess, const char *path, const ne_proppatch_operation *ops)
+ne_proppatch_operation	/usr/include/neon/ne_props.h	/^} ne_proppatch_operation;$/;"	t	language:C++	typeref:struct:__anon14
+ne_proppatch_optype	/usr/include/neon/ne_props.h	/^enum ne_proppatch_optype {$/;"	g	language:C++
+ne_propremove	/usr/include/neon/ne_props.h	/^    ne_propremove$/;"	e	language:C++	enum:ne_proppatch_optype
+ne_props_create_complex	/usr/include/neon/ne_props.h	/^typedef void *(*ne_props_create_complex)(void *userdata, const ne_uri *uri);$/;"	t	language:C++
+ne_props_destroy_complex	/usr/include/neon/ne_props.h	/^typedef void (*ne_props_destroy_complex)(void *userdata, void *complex);$/;"	t	language:C++
+ne_props_result	/usr/include/neon/ne_props.h	/^typedef void (*ne_props_result)(void *userdata, const ne_uri *uri,$/;"	t	language:C++
+ne_propset	/usr/include/neon/ne_props.h	/^    ne_propset,$/;"	e	language:C++	enum:ne_proppatch_optype
+ne_propset_iterate	/usr/include/neon/ne_props.h	/^int ne_propset_iterate(const ne_prop_result_set *set,$/;"	p	language:C++	signature:(const ne_prop_result_set *set, ne_propset_iterator iterator, void *userdata)
+ne_propset_iterator	/usr/include/neon/ne_props.h	/^typedef int (*ne_propset_iterator)(void *userdata,$/;"	t	language:C++
+ne_propset_lang	/usr/include/neon/ne_props.h	/^const char *ne_propset_lang(const ne_prop_result_set *set,$/;"	p	language:C++	signature:(const ne_prop_result_set *set, const ne_propname *pname)
+ne_propset_private	/usr/include/neon/ne_props.h	/^void *ne_propset_private(const ne_prop_result_set *set);$/;"	p	language:C++	signature:(const ne_prop_result_set *set)
+ne_propset_status	/usr/include/neon/ne_props.h	/^const ne_status *ne_propset_status(const ne_prop_result_set *set,$/;"	p	language:C++	signature:(const ne_prop_result_set *set, const ne_propname *propname)
+ne_propset_value	/usr/include/neon/ne_props.h	/^const char *ne_propset_value(const ne_prop_result_set *set,$/;"	p	language:C++	signature:(const ne_prop_result_set *set, const ne_propname *propname)
+ne_provide_body	/usr/include/neon/ne_request.h	/^typedef ssize_t (*ne_provide_body)(void *userdata, $/;"	t	language:C++
+ne_put	/usr/include/neon/ne_basic.h	/^int ne_put(ne_session *sess, const char *path, int fd);$/;"	p	language:C++	signature:(ne_session *sess, const char *path, int fd)
+ne_qtoken	/usr/include/neon/ne_string.h	/^char *ne_qtoken(char **str, char sep, const char *quotes);$/;"	p	language:C++	signature:(char **str, char sep, const char *quotes)
+ne_read_response_block	/usr/include/neon/ne_request.h	/^ssize_t ne_read_response_block(ne_request *req, char *buffer, size_t buflen);$/;"	p	language:C++	signature:(ne_request *req, char *buffer, size_t buflen)
+ne_read_response_to_fd	/usr/include/neon/ne_request.h	/^int ne_read_response_to_fd(ne_request *req, int fd);$/;"	p	language:C++	signature:(ne_request *req, int fd)
+ne_realloc	/usr/include/neon/ne_alloc.h	/^void *ne_realloc(void *ptr, size_t s);$/;"	p	language:C++	signature:(void *ptr, size_t s)
+ne_redirect_location	/usr/include/neon/ne_redirect.h	/^const ne_uri *ne_redirect_location(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_redirect_register	/usr/include/neon/ne_redirect.h	/^void ne_redirect_register(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_request	/usr/include/neon/ne_request.h	/^typedef struct ne_request_s ne_request;$/;"	t	language:C++	typeref:struct:ne_request_s
+ne_request_create	/usr/include/neon/ne_request.h	/^ne_request *ne_request_create(ne_session *sess,$/;"	p	language:C++	signature:(ne_session *sess, const char *method, const char *path)
+ne_request_destroy	/usr/include/neon/ne_request.h	/^void ne_request_destroy(ne_request *req);$/;"	p	language:C++	signature:(ne_request *req)
+ne_request_dispatch	/usr/include/neon/ne_request.h	/^int ne_request_dispatch(ne_request *req);$/;"	p	language:C++	signature:(ne_request *req)
+ne_request_flag	/usr/include/neon/ne_request.h	/^} ne_request_flag;$/;"	t	language:C++	typeref:enum:ne_request_flag_e
+ne_request_flag_e	/usr/include/neon/ne_request.h	/^typedef enum ne_request_flag_e {$/;"	g	language:C++
+ne_response_header_iterate	/usr/include/neon/ne_request.h	/^void *ne_response_header_iterate(ne_request *req, void *cursor,$/;"	p	language:C++	signature:(ne_request *req, void *cursor, const char **name, const char **value)
+ne_rfc1036_parse	/usr/include/neon/ne_dates.h	/^time_t ne_rfc1036_parse(const char *date);$/;"	p	language:C++	signature:(const char *date)
+ne_rfc1123_date	/usr/include/neon/ne_dates.h	/^char *ne_rfc1123_date(time_t anytime);$/;"	p	language:C++	signature:(time_t anytime)
+ne_rfc1123_parse	/usr/include/neon/ne_dates.h	/^time_t ne_rfc1123_parse(const char *date);$/;"	p	language:C++	signature:(const char *date)
+ne_server_capabilities	/usr/include/neon/ne_basic.h	/^} ne_server_capabilities;$/;"	t	language:C++	typeref:struct:__anon3
+ne_session	/usr/include/neon/ne_session.h	/^typedef struct ne_session_s ne_session;$/;"	t	language:C++	typeref:struct:ne_session_s
+ne_session_create	/usr/include/neon/ne_session.h	/^ne_session *ne_session_create(const char *scheme,$/;"	p	language:C++	signature:(const char *scheme, const char *hostname, unsigned int port)
+ne_session_destroy	/usr/include/neon/ne_session.h	/^void ne_session_destroy(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_session_flag	/usr/include/neon/ne_session.h	/^} ne_session_flag;$/;"	t	language:C++	typeref:enum:ne_session_flag_e
+ne_session_flag_e	/usr/include/neon/ne_session.h	/^typedef enum ne_session_flag_e {$/;"	g	language:C++
+ne_session_proxy	/usr/include/neon/ne_session.h	/^void ne_session_proxy(ne_session *sess,$/;"	p	language:C++	signature:(ne_session *sess, const char *hostname, unsigned int port)
+ne_session_socks_proxy	/usr/include/neon/ne_session.h	/^void ne_session_socks_proxy(ne_session *sess, enum ne_sock_sversion vers,$/;"	p	language:C++	signature:(ne_session *sess, enum ne_sock_sversion vers, const char *hostname, unsigned int port, const char *username, const char *password)
+ne_session_status	/usr/include/neon/ne_session.h	/^} ne_session_status;$/;"	t	language:C++	typeref:enum:__anon6
+ne_session_status_info	/usr/include/neon/ne_session.h	/^} ne_session_status_info;$/;"	t	language:C++	typeref:union:ne_session_status_info_u
+ne_session_status_info_u	/usr/include/neon/ne_session.h	/^typedef union ne_session_status_info_u {$/;"	u	language:C++
+ne_session_status_info_u::__anon10::progress	/usr/include/neon/ne_session.h	/^        ne_off_t progress, total;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon10	access:public
+ne_session_status_info_u::__anon10::total	/usr/include/neon/ne_session.h	/^        ne_off_t progress, total;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon10	access:public
+ne_session_status_info_u::__anon7::hostname	/usr/include/neon/ne_session.h	/^        const char *hostname;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon7	access:public
+ne_session_status_info_u::__anon8::address	/usr/include/neon/ne_session.h	/^        const ne_inet_addr *address;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon8	access:public
+ne_session_status_info_u::__anon8::hostname	/usr/include/neon/ne_session.h	/^        const char *hostname;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon8	access:public
+ne_session_status_info_u::__anon9::hostname	/usr/include/neon/ne_session.h	/^        const char *hostname;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon9	access:public
+ne_session_status_info_u::cd	/usr/include/neon/ne_session.h	/^    } cd;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon9	access:public
+ne_session_status_info_u::ci	/usr/include/neon/ne_session.h	/^    } ci;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon8	access:public
+ne_session_status_info_u::lu	/usr/include/neon/ne_session.h	/^    } lu;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon7	access:public
+ne_session_status_info_u::sr	/usr/include/neon/ne_session.h	/^    } sr;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon10	access:public
+ne_session_system_proxy	/usr/include/neon/ne_session.h	/^void ne_session_system_proxy(ne_session *sess, unsigned int flags);$/;"	p	language:C++	signature:(ne_session *sess, unsigned int flags)
+ne_set_addrlist	/usr/include/neon/ne_session.h	/^void ne_set_addrlist(ne_session *sess, const ne_inet_addr **addrs, size_t n);$/;"	p	language:C++	signature:(ne_session *sess, const ne_inet_addr **addrs, size_t n)
+ne_set_addrlist2	/usr/include/neon/ne_session.h	/^void ne_set_addrlist2(ne_session *sess, unsigned int port, $/;"	p	language:C++	signature:(ne_session *sess, unsigned int port, const ne_inet_addr **addrs, size_t n)
+ne_set_connect_timeout	/usr/include/neon/ne_session.h	/^void ne_set_connect_timeout(ne_session *sess, int timeout);$/;"	p	language:C++	signature:(ne_session *sess, int timeout)
+ne_set_localaddr	/usr/include/neon/ne_session.h	/^void ne_set_localaddr(ne_session *sess, const ne_inet_addr *addr);$/;"	p	language:C++	signature:(ne_session *sess, const ne_inet_addr *addr)
+ne_set_notifier	/usr/include/neon/ne_session.h	/^void ne_set_notifier(ne_session *sess, ne_notify_status status, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_notify_status status, void *userdata)
+ne_set_progress	/usr/include/neon/ne_session.h	/^void ne_set_progress(ne_session *sess, ne_progress progress, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_progress progress, void *userdata)
+ne_set_proxy_auth	/usr/include/neon/ne_auth.h	/^void ne_set_proxy_auth(ne_session *sess, ne_auth_creds creds, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_auth_creds creds, void *userdata)
+ne_set_read_timeout	/usr/include/neon/ne_session.h	/^void ne_set_read_timeout(ne_session *sess, int timeout);$/;"	p	language:C++	signature:(ne_session *sess, int timeout)
+ne_set_request_body_buffer	/usr/include/neon/ne_request.h	/^void ne_set_request_body_buffer(ne_request *req, const char *buffer,$/;"	p	language:C++	signature:(ne_request *req, const char *buffer, size_t size)
+ne_set_request_body_fd	/usr/include/neon/ne_request.h	/^void ne_set_request_body_fd(ne_request *req, int fd,$/;"	p	language:C++	signature:(ne_request *req, int fd, ne_off_t offset, ne_off_t length)
+ne_set_request_body_provider	/usr/include/neon/ne_request.h	/^void ne_set_request_body_provider(ne_request *req, ne_off_t length,$/;"	p	language:C++	signature:(ne_request *req, ne_off_t length, ne_provide_body provider, void *userdata)
+ne_set_request_flag	/usr/include/neon/ne_request.h	/^void ne_set_request_flag(ne_request *req, ne_request_flag flag, int value);$/;"	p	language:C++	signature:(ne_request *req, ne_request_flag flag, int value)
+ne_set_request_private	/usr/include/neon/ne_request.h	/^void ne_set_request_private(ne_request *req, const char *id, void *priv);$/;"	p	language:C++	signature:(ne_request *req, const char *id, void *priv)
+ne_set_server_auth	/usr/include/neon/ne_auth.h	/^void ne_set_server_auth(ne_session *sess, ne_auth_creds creds, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_auth_creds creds, void *userdata)
+ne_set_session_flag	/usr/include/neon/ne_session.h	/^void ne_set_session_flag(ne_session *sess, ne_session_flag flag, int value);$/;"	p	language:C++	signature:(ne_session *sess, ne_session_flag flag, int value)
+ne_set_session_private	/usr/include/neon/ne_session.h	/^void ne_set_session_private(ne_session *sess, const char *id, void *priv);$/;"	p	language:C++	signature:(ne_session *sess, const char *id, void *priv)
+ne_set_useragent	/usr/include/neon/ne_session.h	/^void ne_set_useragent(ne_session *sess, const char *product);$/;"	p	language:C++	signature:(ne_session *sess, const char *product)
+ne_shave	/usr/include/neon/ne_string.h	/^char *ne_shave(char *str, const char *whitespace);$/;"	p	language:C++	signature:(char *str, const char *whitespace)
+ne_simple_propfind	/usr/include/neon/ne_props.h	/^int ne_simple_propfind(ne_session *sess, const char *path, int depth,$/;"	p	language:C++	signature:(ne_session *sess, const char *path, int depth, const ne_propname *props, ne_props_result results, void *userdata)
+ne_simple_request	/usr/include/neon/ne_207.h	/^int ne_simple_request(ne_session *sess, ne_request *req);$/;"	p	language:C++	signature:(ne_session *sess, ne_request *req)
+ne_sock_accept	/usr/include/neon/ne_socket.h	/^int ne_sock_accept(ne_socket *sock, int fd);$/;"	p	language:C++	signature:(ne_socket *sock, int fd)
+ne_sock_accept_ssl	/usr/include/neon/ne_socket.h	/^int ne_sock_accept_ssl(ne_socket *sock, ne_ssl_context *ctx);$/;"	p	language:C++	signature:(ne_socket *sock, ne_ssl_context *ctx)
+ne_sock_addr	/usr/include/neon/ne_socket.h	/^typedef struct ne_sock_addr_s ne_sock_addr;$/;"	t	language:C++	typeref:struct:ne_sock_addr_s
+ne_sock_block	/usr/include/neon/ne_socket.h	/^int ne_sock_block(ne_socket *sock, int n);$/;"	p	language:C++	signature:(ne_socket *sock, int n)
+ne_sock_cipher	/usr/include/neon/ne_socket.h	/^char *ne_sock_cipher(ne_socket *sock);$/;"	p	language:C++	signature:(ne_socket *sock)
+ne_sock_close	/usr/include/neon/ne_socket.h	/^int ne_sock_close(ne_socket *sock);$/;"	p	language:C++	signature:(ne_socket *sock)
+ne_sock_connect	/usr/include/neon/ne_socket.h	/^int ne_sock_connect(ne_socket *sock, const ne_inet_addr *addr, $/;"	p	language:C++	signature:(ne_socket *sock, const ne_inet_addr *addr, unsigned int port)
+ne_sock_connect_ssl	/usr/include/neon/ne_socket.h	/^int ne_sock_connect_ssl(ne_socket *sock, ne_ssl_context *ctx,$/;"	p	language:C++	signature:(ne_socket *sock, ne_ssl_context *ctx, void *userdata)
+ne_sock_connect_timeout	/usr/include/neon/ne_socket.h	/^void ne_sock_connect_timeout(ne_socket *sock, int timeout);$/;"	p	language:C++	signature:(ne_socket *sock, int timeout)
+ne_sock_create	/usr/include/neon/ne_socket.h	/^ne_socket *ne_sock_create(void);$/;"	p	language:C++	signature:(void)
+ne_sock_error	/usr/include/neon/ne_socket.h	/^const char *ne_sock_error(const ne_socket *sock);$/;"	p	language:C++	signature:(const ne_socket *sock)
+ne_sock_exit	/usr/include/neon/ne_socket.h	/^void ne_sock_exit(void);$/;"	p	language:C++	signature:(void)
+ne_sock_fd	/usr/include/neon/ne_socket.h	/^int ne_sock_fd(const ne_socket *sock);$/;"	p	language:C++	signature:(const ne_socket *sock)
+ne_sock_fullread	/usr/include/neon/ne_socket.h	/^ssize_t ne_sock_fullread(ne_socket *sock, char *buffer, size_t len);$/;"	p	language:C++	signature:(ne_socket *sock, char *buffer, size_t len)
+ne_sock_fullwrite	/usr/include/neon/ne_socket.h	/^int ne_sock_fullwrite(ne_socket *sock, const char *data, size_t count); $/;"	p	language:C++	signature:(ne_socket *sock, const char *data, size_t count)
+ne_sock_fullwritev	/usr/include/neon/ne_socket.h	/^int ne_sock_fullwritev(ne_socket *sock, const struct ne_iovec *vector,$/;"	p	language:C++	signature:(ne_socket *sock, const struct ne_iovec *vector, int count)
+ne_sock_init	/usr/include/neon/ne_socket.h	/^int ne_sock_init(void);$/;"	p	language:C++	signature:(void)
+ne_sock_peek	/usr/include/neon/ne_socket.h	/^ssize_t ne_sock_peek(ne_socket *sock, char *buffer, size_t count);$/;"	p	language:C++	signature:(ne_socket *sock, char *buffer, size_t count)
+ne_sock_peer	/usr/include/neon/ne_socket.h	/^ne_inet_addr *ne_sock_peer(ne_socket *sock, unsigned int *port);$/;"	p	language:C++	signature:(ne_socket *sock, unsigned int *port)
+ne_sock_prebind	/usr/include/neon/ne_socket.h	/^void ne_sock_prebind(ne_socket *sock, const ne_inet_addr *addr,$/;"	p	language:C++	signature:(ne_socket *sock, const ne_inet_addr *addr, unsigned int port)
+ne_sock_proxy	/usr/include/neon/ne_socket.h	/^int ne_sock_proxy(ne_socket *sock, enum ne_sock_sversion vers,$/;"	p	language:C++	signature:(ne_socket *sock, enum ne_sock_sversion vers, const ne_inet_addr *addr, const char *hostname, unsigned int port, const char *username, const char *password)
+ne_sock_read	/usr/include/neon/ne_socket.h	/^ssize_t ne_sock_read(ne_socket *sock, char *buffer, size_t count);$/;"	p	language:C++	signature:(ne_socket *sock, char *buffer, size_t count)
+ne_sock_read_timeout	/usr/include/neon/ne_socket.h	/^void ne_sock_read_timeout(ne_socket *sock, int timeout);$/;"	p	language:C++	signature:(ne_socket *sock, int timeout)
+ne_sock_readline	/usr/include/neon/ne_socket.h	/^ssize_t ne_sock_readline(ne_socket *sock, char *buffer, size_t len);$/;"	p	language:C++	signature:(ne_socket *sock, char *buffer, size_t len)
+ne_sock_sessid	/usr/include/neon/ne_socket.h	/^int ne_sock_sessid(ne_socket *sock, unsigned char *buf, size_t *buflen);$/;"	p	language:C++	signature:(ne_socket *sock, unsigned char *buf, size_t *buflen)
+ne_sock_sversion	/usr/include/neon/ne_socket.h	/^enum ne_sock_sversion {$/;"	g	language:C++
+ne_socket	/usr/include/neon/ne_socket.h	/^typedef struct ne_socket_s ne_socket;$/;"	t	language:C++	typeref:struct:ne_socket_s
+ne_ssl_cert_cmp	/usr/include/neon/ne_ssl.h	/^int ne_ssl_cert_cmp(const ne_ssl_certificate *c1,$/;"	p	language:C++	signature:(const ne_ssl_certificate *c1, const ne_ssl_certificate *c2)
+ne_ssl_cert_digest	/usr/include/neon/ne_ssl.h	/^int ne_ssl_cert_digest(const ne_ssl_certificate *cert, char *digest);$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert, char *digest)
+ne_ssl_cert_export	/usr/include/neon/ne_ssl.h	/^char *ne_ssl_cert_export(const ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert)
+ne_ssl_cert_free	/usr/include/neon/ne_ssl.h	/^void ne_ssl_cert_free(ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(ne_ssl_certificate *cert)
+ne_ssl_cert_identity	/usr/include/neon/ne_ssl.h	/^const char *ne_ssl_cert_identity(const ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert)
+ne_ssl_cert_import	/usr/include/neon/ne_ssl.h	/^ne_ssl_certificate *ne_ssl_cert_import(const char *data);$/;"	p	language:C++	signature:(const char *data)
+ne_ssl_cert_issuer	/usr/include/neon/ne_ssl.h	/^const ne_ssl_dname *ne_ssl_cert_issuer(const ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert)
+ne_ssl_cert_read	/usr/include/neon/ne_ssl.h	/^ne_ssl_certificate *ne_ssl_cert_read(const char *filename);$/;"	p	language:C++	signature:(const char *filename)
+ne_ssl_cert_signedby	/usr/include/neon/ne_ssl.h	/^const ne_ssl_certificate *ne_ssl_cert_signedby(const ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert)
+ne_ssl_cert_subject	/usr/include/neon/ne_ssl.h	/^const ne_ssl_dname *ne_ssl_cert_subject(const ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert)
+ne_ssl_cert_validity	/usr/include/neon/ne_ssl.h	/^void ne_ssl_cert_validity(const ne_ssl_certificate *cert,$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert, char *from, char *until)
+ne_ssl_cert_validity_time	/usr/include/neon/ne_ssl.h	/^void ne_ssl_cert_validity_time(const ne_ssl_certificate *cert,$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert, time_t *from, time_t *until)
+ne_ssl_cert_write	/usr/include/neon/ne_ssl.h	/^int ne_ssl_cert_write(const ne_ssl_certificate *cert, const char *filename);$/;"	p	language:C++	signature:(const ne_ssl_certificate *cert, const char *filename)
+ne_ssl_certificate	/usr/include/neon/ne_ssl.h	/^typedef struct ne_ssl_certificate_s ne_ssl_certificate;$/;"	t	language:C++	typeref:struct:ne_ssl_certificate_s
+ne_ssl_clicert_decrypt	/usr/include/neon/ne_ssl.h	/^int ne_ssl_clicert_decrypt(ne_ssl_client_cert *ccert, const char *password);$/;"	p	language:C++	signature:(ne_ssl_client_cert *ccert, const char *password)
+ne_ssl_clicert_encrypted	/usr/include/neon/ne_ssl.h	/^int ne_ssl_clicert_encrypted(const ne_ssl_client_cert *ccert);$/;"	p	language:C++	signature:(const ne_ssl_client_cert *ccert)
+ne_ssl_clicert_free	/usr/include/neon/ne_ssl.h	/^void ne_ssl_clicert_free(ne_ssl_client_cert *ccert);$/;"	p	language:C++	signature:(ne_ssl_client_cert *ccert)
+ne_ssl_clicert_import	/usr/include/neon/ne_ssl.h	/^ne_ssl_client_cert *ne_ssl_clicert_import(const unsigned char *buffer, $/;"	p	language:C++	signature:(const unsigned char *buffer, size_t buflen)
+ne_ssl_clicert_name	/usr/include/neon/ne_ssl.h	/^const char *ne_ssl_clicert_name(const ne_ssl_client_cert *ccert);$/;"	p	language:C++	signature:(const ne_ssl_client_cert *ccert)
+ne_ssl_clicert_owner	/usr/include/neon/ne_ssl.h	/^const ne_ssl_certificate *ne_ssl_clicert_owner(const ne_ssl_client_cert *ccert);$/;"	p	language:C++	signature:(const ne_ssl_client_cert *ccert)
+ne_ssl_clicert_read	/usr/include/neon/ne_ssl.h	/^ne_ssl_client_cert *ne_ssl_clicert_read(const char *filename);$/;"	p	language:C++	signature:(const char *filename)
+ne_ssl_client_cert	/usr/include/neon/ne_ssl.h	/^typedef struct ne_ssl_client_cert_s ne_ssl_client_cert;$/;"	t	language:C++	typeref:struct:ne_ssl_client_cert_s
+ne_ssl_context	/usr/include/neon/ne_ssl.h	/^typedef struct ne_ssl_context_s ne_ssl_context;$/;"	t	language:C++	typeref:struct:ne_ssl_context_s
+ne_ssl_context_create	/usr/include/neon/ne_ssl.h	/^ne_ssl_context *ne_ssl_context_create(int mode);$/;"	p	language:C++	signature:(int mode)
+ne_ssl_context_destroy	/usr/include/neon/ne_ssl.h	/^void ne_ssl_context_destroy(ne_ssl_context *ctx);$/;"	p	language:C++	signature:(ne_ssl_context *ctx)
+ne_ssl_context_get_flag	/usr/include/neon/ne_ssl.h	/^int ne_ssl_context_get_flag(ne_ssl_context *ctx, int flag);$/;"	p	language:C++	signature:(ne_ssl_context *ctx, int flag)
+ne_ssl_context_keypair	/usr/include/neon/ne_ssl.h	/^int ne_ssl_context_keypair(ne_ssl_context *ctx,$/;"	p	language:C++	signature:(ne_ssl_context *ctx, const char *cert, const char *key)
+ne_ssl_context_set_flag	/usr/include/neon/ne_ssl.h	/^void ne_ssl_context_set_flag(ne_ssl_context *ctx, int flag, int value);$/;"	p	language:C++	signature:(ne_ssl_context *ctx, int flag, int value)
+ne_ssl_context_set_verify	/usr/include/neon/ne_ssl.h	/^int ne_ssl_context_set_verify(ne_ssl_context *ctx, int required,$/;"	p	language:C++	signature:(ne_ssl_context *ctx, int required, const char *ca_names, const char *verify_cas)
+ne_ssl_context_trustcert	/usr/include/neon/ne_ssl.h	/^void ne_ssl_context_trustcert(ne_ssl_context *ctx, const ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(ne_ssl_context *ctx, const ne_ssl_certificate *cert)
+ne_ssl_dname	/usr/include/neon/ne_ssl.h	/^typedef struct ne_ssl_dname_s ne_ssl_dname;$/;"	t	language:C++	typeref:struct:ne_ssl_dname_s
+ne_ssl_dname_cmp	/usr/include/neon/ne_ssl.h	/^int ne_ssl_dname_cmp(const ne_ssl_dname *dn1, const ne_ssl_dname *dn2);$/;"	p	language:C++	signature:(const ne_ssl_dname *dn1, const ne_ssl_dname *dn2)
+ne_ssl_pkcs11_nss_provider_init	/usr/include/neon/ne_pkcs11.h	/^int ne_ssl_pkcs11_nss_provider_init(ne_ssl_pkcs11_provider **provider,$/;"	p	language:C++	signature:(ne_ssl_pkcs11_provider **provider, const char *name, const char *directory, const char *cert_prefix, const char *key_prefix, const char *secmod_db)
+ne_ssl_pkcs11_pin_fn	/usr/include/neon/ne_pkcs11.h	/^typedef int (*ne_ssl_pkcs11_pin_fn)(void *userdata, int attempt,$/;"	t	language:C++
+ne_ssl_pkcs11_provider	/usr/include/neon/ne_pkcs11.h	/^typedef struct ne_ssl_pkcs11_provider_s ne_ssl_pkcs11_provider;$/;"	t	language:C++	typeref:struct:ne_ssl_pkcs11_provider_s
+ne_ssl_pkcs11_provider_destroy	/usr/include/neon/ne_pkcs11.h	/^void ne_ssl_pkcs11_provider_destroy(ne_ssl_pkcs11_provider *provider);$/;"	p	language:C++	signature:(ne_ssl_pkcs11_provider *provider)
+ne_ssl_pkcs11_provider_init	/usr/include/neon/ne_pkcs11.h	/^int ne_ssl_pkcs11_provider_init(ne_ssl_pkcs11_provider **provider,$/;"	p	language:C++	signature:(ne_ssl_pkcs11_provider **provider, const char *name)
+ne_ssl_pkcs11_provider_pin	/usr/include/neon/ne_pkcs11.h	/^void ne_ssl_pkcs11_provider_pin(ne_ssl_pkcs11_provider *provider,$/;"	p	language:C++	signature:(ne_ssl_pkcs11_provider *provider, ne_ssl_pkcs11_pin_fn fn, void *userdata)
+ne_ssl_provide_clicert	/usr/include/neon/ne_session.h	/^void ne_ssl_provide_clicert(ne_session *sess, $/;"	p	language:C++	signature:(ne_session *sess, ne_ssl_provide_fn fn, void *userdata)
+ne_ssl_provide_fn	/usr/include/neon/ne_session.h	/^typedef void (*ne_ssl_provide_fn)(void *userdata, ne_session *sess,$/;"	t	language:C++
+ne_ssl_readable_dname	/usr/include/neon/ne_ssl.h	/^char *ne_ssl_readable_dname(const ne_ssl_dname *dn);$/;"	p	language:C++	signature:(const ne_ssl_dname *dn)
+ne_ssl_set_clicert	/usr/include/neon/ne_session.h	/^void ne_ssl_set_clicert(ne_session *sess, const ne_ssl_client_cert *clicert);$/;"	p	language:C++	signature:(ne_session *sess, const ne_ssl_client_cert *clicert)
+ne_ssl_set_pkcs11_provider	/usr/include/neon/ne_pkcs11.h	/^void ne_ssl_set_pkcs11_provider(ne_session *sess,$/;"	p	language:C++	signature:(ne_session *sess, ne_ssl_pkcs11_provider *provider)
+ne_ssl_set_verify	/usr/include/neon/ne_session.h	/^void ne_ssl_set_verify(ne_session *sess, ne_ssl_verify_fn fn, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_ssl_verify_fn fn, void *userdata)
+ne_ssl_trust_cert	/usr/include/neon/ne_session.h	/^void ne_ssl_trust_cert(ne_session *sess, const ne_ssl_certificate *cert);$/;"	p	language:C++	signature:(ne_session *sess, const ne_ssl_certificate *cert)
+ne_ssl_trust_default_ca	/usr/include/neon/ne_session.h	/^void ne_ssl_trust_default_ca(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_ssl_verify_fn	/usr/include/neon/ne_session.h	/^typedef int (*ne_ssl_verify_fn)(void *userdata, int failures,$/;"	t	language:C++
+ne_status	/usr/include/neon/ne_utils.h	/^} ne_status;$/;"	t	language:C++	typeref:struct:__anon1
+ne_status_connected	/usr/include/neon/ne_session.h	/^    ne_status_connected, \/* connected to host *\/$/;"	e	language:C++	enum:__anon6
+ne_status_connecting	/usr/include/neon/ne_session.h	/^    ne_status_connecting, \/* connecting to host *\/$/;"	e	language:C++	enum:__anon6
+ne_status_disconnected	/usr/include/neon/ne_session.h	/^    ne_status_disconnected \/* disconnected from host *\/$/;"	e	language:C++	enum:__anon6
+ne_status_lookup	/usr/include/neon/ne_session.h	/^    ne_status_lookup = 0, \/* looking up hostname *\/$/;"	e	language:C++	enum:__anon6
+ne_status_recving	/usr/include/neon/ne_session.h	/^    ne_status_recving, \/* receiving a response body *\/$/;"	e	language:C++	enum:__anon6
+ne_status_sending	/usr/include/neon/ne_session.h	/^    ne_status_sending, \/* sending a request body *\/$/;"	e	language:C++	enum:__anon6
+ne_strcasecmp	/usr/include/neon/ne_string.h	/^int ne_strcasecmp(const char *s1, const char *s2);$/;"	p	language:C++	signature:(const char *s1, const char *s2)
+ne_strclean	/usr/include/neon/ne_string.h	/^char *ne_strclean(char *str);$/;"	p	language:C++	signature:(char *str)
+ne_strerror	/usr/include/neon/ne_string.h	/^char *ne_strerror(int errnum, char *buffer, size_t buflen);$/;"	p	language:C++	signature:(int errnum, char *buffer, size_t buflen)
+ne_strncasecmp	/usr/include/neon/ne_string.h	/^int ne_strncasecmp(const char *s1, const char *s2, size_t n);$/;"	p	language:C++	signature:(const char *s1, const char *s2, size_t n)
+ne_strnqdup	/usr/include/neon/ne_string.h	/^char *ne_strnqdup(const unsigned char *data, size_t len);$/;"	p	language:C++	signature:(const unsigned char *data, size_t len)
+ne_strnzcpy	/usr/include/neon/ne_string.h	139;"	d	language:C++
+ne_token	/usr/include/neon/ne_string.h	/^char *ne_token(char **str, char sep);$/;"	p	language:C++	signature:(char **str, char sep)
+ne_tolower	/usr/include/neon/ne_string.h	174;"	d	language:C++
+ne_tolower_array	/usr/include/neon/ne_string.h	/^const unsigned char *ne_tolower_array(void);$/;"	p	language:C++	signature:(void)
+ne_unbase64	/usr/include/neon/ne_string.h	/^size_t ne_unbase64(const char *data, unsigned char **out);$/;"	p	language:C++	signature:(const char *data, unsigned char **out)
+ne_unhook_close_conn	/usr/include/neon/ne_request.h	/^void ne_unhook_close_conn(ne_session *sess, $/;"	p	language:C++	signature:(ne_session *sess, ne_close_conn_fn fn, void *userdata)
+ne_unhook_create_request	/usr/include/neon/ne_request.h	/^void ne_unhook_create_request(ne_session *sess, $/;"	p	language:C++	signature:(ne_session *sess, ne_create_request_fn fn, void *userdata)
+ne_unhook_destroy_request	/usr/include/neon/ne_request.h	/^void ne_unhook_destroy_request(ne_session *sess,$/;"	p	language:C++	signature:(ne_session *sess, ne_destroy_req_fn fn, void *userdata)
+ne_unhook_destroy_session	/usr/include/neon/ne_request.h	/^void ne_unhook_destroy_session(ne_session *sess,$/;"	p	language:C++	signature:(ne_session *sess, ne_destroy_sess_fn fn, void *userdata)
+ne_unhook_post_headers	/usr/include/neon/ne_request.h	/^void ne_unhook_post_headers(ne_session *sess, ne_post_headers_fn fn, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_post_headers_fn fn, void *userdata)
+ne_unhook_post_send	/usr/include/neon/ne_request.h	/^void ne_unhook_post_send(ne_session *sess, ne_post_send_fn fn, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_post_send_fn fn, void *userdata)
+ne_unhook_pre_send	/usr/include/neon/ne_request.h	/^void ne_unhook_pre_send(ne_session *sess, ne_pre_send_fn fn, void *userdata);$/;"	p	language:C++	signature:(ne_session *sess, ne_pre_send_fn fn, void *userdata)
+ne_unlock	/usr/include/neon/ne_locks.h	/^int ne_unlock(ne_session *sess, const struct ne_lock *lock);$/;"	p	language:C++	signature:(ne_session *sess, const struct ne_lock *lock)
+ne_uri	/usr/include/neon/ne_uri.h	/^} ne_uri;$/;"	t	language:C++	typeref:struct:__anon5
+ne_uri_cmp	/usr/include/neon/ne_uri.h	/^int ne_uri_cmp(const ne_uri *u1, const ne_uri *u2);$/;"	p	language:C++	signature:(const ne_uri *u1, const ne_uri *u2)
+ne_uri_copy	/usr/include/neon/ne_uri.h	/^ne_uri *ne_uri_copy(ne_uri *dest, const ne_uri *src);$/;"	p	language:C++	signature:(ne_uri *dest, const ne_uri *src)
+ne_uri_defaultport	/usr/include/neon/ne_uri.h	/^unsigned int ne_uri_defaultport(const char *scheme);$/;"	p	language:C++	signature:(const char *scheme)
+ne_uri_free	/usr/include/neon/ne_uri.h	/^void ne_uri_free(ne_uri *parsed);$/;"	p	language:C++	signature:(ne_uri *parsed)
+ne_uri_parse	/usr/include/neon/ne_uri.h	/^int ne_uri_parse(const char *uri, ne_uri *parsed);$/;"	p	language:C++	signature:(const char *uri, ne_uri *parsed)
+ne_uri_resolve	/usr/include/neon/ne_uri.h	/^ne_uri *ne_uri_resolve(const ne_uri *base, const ne_uri *relative,$/;"	p	language:C++	signature:(const ne_uri *base, const ne_uri *relative, ne_uri *result)
+ne_uri_unparse	/usr/include/neon/ne_uri.h	/^char *ne_uri_unparse(const ne_uri *uri);$/;"	p	language:C++	signature:(const ne_uri *uri)
+ne_version_match	/usr/include/neon/ne_utils.h	/^int ne_version_match(int major, int minor);$/;"	p	language:C++	signature:(int major, int minor)
+ne_version_pre_http11	/usr/include/neon/ne_session.h	/^int ne_version_pre_http11(ne_session *sess);$/;"	p	language:C++	signature:(ne_session *sess)
+ne_version_string	/usr/include/neon/ne_utils.h	/^const char *ne_version_string(void);$/;"	p	language:C++	signature:(void)
+ne_xml_cdata_cb	/usr/include/neon/ne_xml.h	/^typedef int ne_xml_cdata_cb(void *userdata, int state,$/;"	t	language:C++
+ne_xml_create	/usr/include/neon/ne_xml.h	/^ne_xml_parser *ne_xml_create(void);$/;"	p	language:C++	signature:(void)
+ne_xml_currentline	/usr/include/neon/ne_xml.h	/^int ne_xml_currentline(ne_xml_parser *p);$/;"	p	language:C++	signature:(ne_xml_parser *p)
+ne_xml_destroy	/usr/include/neon/ne_xml.h	/^void ne_xml_destroy(ne_xml_parser *p);$/;"	p	language:C++	signature:(ne_xml_parser *p)
+ne_xml_dispatch_request	/usr/include/neon/ne_xmlreq.h	/^int ne_xml_dispatch_request(ne_request *req, ne_xml_parser *parser);$/;"	p	language:C++	signature:(ne_request *req, ne_xml_parser *parser)
+ne_xml_doc_encoding	/usr/include/neon/ne_xml.h	/^const char *ne_xml_doc_encoding(const ne_xml_parser *p);$/;"	p	language:C++	signature:(const ne_xml_parser *p)
+ne_xml_endelm_cb	/usr/include/neon/ne_xml.h	/^typedef int ne_xml_endelm_cb(void *userdata, int state, $/;"	t	language:C++
+ne_xml_failed	/usr/include/neon/ne_xml.h	/^int ne_xml_failed(ne_xml_parser *p);$/;"	p	language:C++	signature:(ne_xml_parser *p)
+ne_xml_get_attr	/usr/include/neon/ne_xml.h	/^const char *ne_xml_get_attr(ne_xml_parser *parser,$/;"	p	language:C++	signature:(ne_xml_parser *parser, const char **attrs, const char *nspace, const char *name)
+ne_xml_get_error	/usr/include/neon/ne_xml.h	/^const char *ne_xml_get_error(ne_xml_parser *p);$/;"	p	language:C++	signature:(ne_xml_parser *p)
+ne_xml_idmap	/usr/include/neon/ne_xml.h	/^struct ne_xml_idmap {$/;"	s	language:C++
+ne_xml_idmap::id	/usr/include/neon/ne_xml.h	/^    int id;$/;"	m	language:C++	struct:ne_xml_idmap	access:public
+ne_xml_idmap::name	/usr/include/neon/ne_xml.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:ne_xml_idmap	access:public
+ne_xml_idmap::nspace	/usr/include/neon/ne_xml.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:ne_xml_idmap	access:public
+ne_xml_mapid	/usr/include/neon/ne_xml.h	/^int ne_xml_mapid(const struct ne_xml_idmap map[], size_t maplen,$/;"	p	language:C++	signature:(const struct ne_xml_idmap map[], size_t maplen, const char *nspace, const char *name)
+ne_xml_parse	/usr/include/neon/ne_xml.h	/^int ne_xml_parse(ne_xml_parser *p, const char *block, size_t len);$/;"	p	language:C++	signature:(ne_xml_parser *p, const char *block, size_t len)
+ne_xml_parse_response	/usr/include/neon/ne_xmlreq.h	/^int ne_xml_parse_response(ne_request *req, ne_xml_parser *parser);$/;"	p	language:C++	signature:(ne_request *req, ne_xml_parser *parser)
+ne_xml_parse_v	/usr/include/neon/ne_xml.h	/^int ne_xml_parse_v(void *userdata, const char *block, size_t len);$/;"	p	language:C++	signature:(void *userdata, const char *block, size_t len)
+ne_xml_parser	/usr/include/neon/ne_xml.h	/^typedef struct ne_xml_parser_s ne_xml_parser;$/;"	t	language:C++	typeref:struct:ne_xml_parser_s
+ne_xml_push_handler	/usr/include/neon/ne_xml.h	/^void ne_xml_push_handler(ne_xml_parser *p,$/;"	p	language:C++	signature:(ne_xml_parser *p, ne_xml_startelm_cb *startelm, ne_xml_cdata_cb *cdata, ne_xml_endelm_cb *endelm, void *userdata)
+ne_xml_resolve_nspace	/usr/include/neon/ne_xml.h	/^const char *ne_xml_resolve_nspace(ne_xml_parser *parser, $/;"	p	language:C++	signature:(ne_xml_parser *parser, const char *prefix, size_t length)
+ne_xml_set_error	/usr/include/neon/ne_xml.h	/^void ne_xml_set_error(ne_xml_parser *p, const char *msg);$/;"	p	language:C++	signature:(ne_xml_parser *p, const char *msg)
+ne_xml_startelm_cb	/usr/include/neon/ne_xml.h	/^typedef int ne_xml_startelm_cb(void *userdata, int parent,$/;"	t	language:C++
+nspace	/usr/include/neon/ne_props.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:__anon13	access:public
+nspace	/usr/include/neon/ne_xml.h	/^    const char *nspace, *name;$/;"	m	language:C++	struct:ne_xml_idmap	access:public
+off64_t	/usr/include/neon/ne_defs.h	/^typedef __int64 off64_t;$/;"	t	language:C++
+owner	/usr/include/neon/ne_locks.h	/^    char *owner; \/* string describing the owner of the lock. *\/$/;"	m	language:C++	struct:ne_lock	access:public
+path	/usr/include/neon/ne_uri.h	/^    char *path, *query, *fragment;$/;"	m	language:C++	struct:__anon5	access:public
+port	/usr/include/neon/ne_uri.h	/^    unsigned int port;$/;"	m	language:C++	struct:__anon5	access:public
+principal	/usr/include/neon/ne_acl.h	/^    char *principal;$/;"	m	language:C++	struct:__anon15	access:public
+privileges	/usr/include/neon/ne_acl3744.h	/^    unsigned int privileges;$/;"	m	language:C++	struct:__anon18	access:public
+progress	/usr/include/neon/ne_session.h	/^        ne_off_t progress, total;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon10	access:public
+query	/usr/include/neon/ne_uri.h	/^    char *path, *query, *fragment;$/;"	m	language:C++	struct:__anon5	access:public
+read	/usr/include/neon/ne_acl.h	/^    int read;$/;"	m	language:C++	struct:__anon15	access:public
+read_acl	/usr/include/neon/ne_acl.h	/^    int read_acl;$/;"	m	language:C++	struct:__anon15	access:public
+read_cuprivset	/usr/include/neon/ne_acl.h	/^    int read_cuprivset;$/;"	m	language:C++	struct:__anon15	access:public
+reason_phrase	/usr/include/neon/ne_utils.h	/^    char *reason_phrase;$/;"	m	language:C++	struct:__anon1	access:public
+scheme	/usr/include/neon/ne_uri.h	/^    char *scheme;$/;"	m	language:C++	struct:__anon5	access:public
+scope	/usr/include/neon/ne_locks.h	/^    enum ne_lock_scope scope;$/;"	m	language:C++	struct:ne_lock	typeref:enum:ne_lock::ne_lock_scope	access:public
+sr	/usr/include/neon/ne_session.h	/^    } sr;$/;"	m	language:C++	union:ne_session_status_info_u	typeref:struct:ne_session_status_info_u::__anon10	access:public
+ssize_t	/usr/include/neon/ne_defs.h	48;"	d	language:C++
+start	/usr/include/neon/ne_basic.h	/^    ne_off_t start, end, total;$/;"	m	language:C++	struct:__anon4	access:public
+subtype	/usr/include/neon/ne_basic.h	/^    const char *type, *subtype;$/;"	m	language:C++	struct:__anon2	access:public
+target	/usr/include/neon/ne_acl3744.h	/^    enum ne_acl_target target;$/;"	m	language:C++	struct:__anon18	typeref:enum:__anon18::ne_acl_target	access:public
+timeout	/usr/include/neon/ne_locks.h	/^    long timeout; \/* timeout in seconds. (or NE_TIMEOUT_*) *\/$/;"	m	language:C++	struct:ne_lock	access:public
+tname	/usr/include/neon/ne_acl3744.h	/^    char *tname;$/;"	m	language:C++	struct:__anon18	access:public
+token	/usr/include/neon/ne_locks.h	/^    char *token; \/* the lock token: uniquely identifies this lock. *\/$/;"	m	language:C++	struct:ne_lock	access:public
+total	/usr/include/neon/ne_basic.h	/^    ne_off_t start, end, total;$/;"	m	language:C++	struct:__anon4	access:public
+total	/usr/include/neon/ne_session.h	/^        ne_off_t progress, total;$/;"	m	language:C++	struct:ne_session_status_info_u::__anon10	access:public
+type	/usr/include/neon/ne_acl.h	/^    } type;$/;"	m	language:C++	struct:__anon15	typeref:enum:__anon15::__anon17	access:public
+type	/usr/include/neon/ne_acl3744.h	/^    enum ne_acl_optype type;$/;"	m	language:C++	struct:__anon18	typeref:enum:__anon18::ne_acl_optype	access:public
+type	/usr/include/neon/ne_basic.h	/^    const char *type, *subtype;$/;"	m	language:C++	struct:__anon2	access:public
+type	/usr/include/neon/ne_locks.h	/^    enum ne_lock_type type;$/;"	m	language:C++	struct:ne_lock	typeref:enum:ne_lock::ne_lock_type	access:public
+type	/usr/include/neon/ne_props.h	/^    enum ne_proppatch_optype type;$/;"	m	language:C++	struct:__anon14	typeref:enum:__anon14::ne_proppatch_optype	access:public
+uri	/usr/include/neon/ne_locks.h	/^    ne_uri uri;$/;"	m	language:C++	struct:ne_lock	access:public
+used	/usr/include/neon/ne_string.h	/^    size_t used; \/* strlen(data) + 1 *\/$/;"	m	language:C++	struct:__anon11	access:public
+userinfo	/usr/include/neon/ne_uri.h	/^    char *host, *userinfo;$/;"	m	language:C++	struct:__anon5	access:public
+value	/usr/include/neon/ne_basic.h	/^    char *value;$/;"	m	language:C++	struct:__anon2	access:public
+value	/usr/include/neon/ne_props.h	/^    const char *value;$/;"	m	language:C++	struct:__anon14	access:public
+write	/usr/include/neon/ne_acl.h	/^    int write;$/;"	m	language:C++	struct:__anon15	access:public
+write_acl	/usr/include/neon/ne_acl.h	/^    int write_acl;$/;"	m	language:C++	struct:__anon15	access:public

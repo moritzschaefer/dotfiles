@@ -25,7 +25,7 @@ set number
 
 set ignorecase    " Ignore case when searching
 set smartcase     " Except when uppercase is used
-set incsearch
+"set incsearch
 set hlsearch
 set showcmd
 set autoindent
@@ -186,14 +186,14 @@ set tags+=~/.vim/tags/curl
 " --- Markdown
 if has("autocmd")
   autocmd BufNewFile,BufRead *.mdwn,*.mkd,*.md,*.markdown setlocal filetype=markdown
-  autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2
 endif
 " let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 let g:UltiSnipsExpandTrigger="<c-e>"
 nnoremap <leader>g :YcmCompleter GoTo<CR>
-let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_completion=0
 " --- setup vimux
 " Run the current file with rspec
 "map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
@@ -222,6 +222,24 @@ compiler gcc
 set errorformat^=%-G%f:%l:\ %tarning:\ only\ initialized\ varia
             \bles\ can\ be\ placed\ into\ program\ memory\ area
 
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map f <Plug>(easymotion-f)
+map F <Plug>(easymotion-F)
+map t <Plug>(easymotion-t)
+map T <Plug>(easymotion-T)
+
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 " make save tmote
 command Mt execute "w|make tmote "
 " arduino
