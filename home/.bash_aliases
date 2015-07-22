@@ -35,8 +35,6 @@ alias vodafone-stick="sudo usb_modeswitch -v 0x19d2 -p 0x2000 -V 0x19d2 -P 0x003
 # use like 'create_ctags <tagsfile> <code_dir>'
 alias ctags_create='ctags -R --sort=yes --c++-kinds=+p --fields=+ilaS --extra=+q --language-force=C++ -f '
 alias tmoteserial0='java net.tinyos.tools.PrintfClient -comm serial@/dev/ttyUSB0:115200'
-alias tmoteserial1='java net.tinyos.tools.PrintfClient -comm serial@/dev/ttyUSB1:115200'
-alias tmoteserial2='java net.tinyos.tools.PrintfClient -comm serial@/dev/ttyUSB2:115200'
-alias tmoteserial3='java net.tinyos.tools.PrintfClient -comm serial@/dev/ttyUSB3:115200'
-alias tmoteserial4='java net.tinyos.tools.PrintfClient -comm serial@/dev/ttyUSB4:115200'
 alias vimdownload='vim ~/Downloads/$(ls -t ~/Downloads | head -n1)'
+alias password="strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo"
+alias flashsd110='softdevice-merge _build/*.hex && sudo cp out.hex /mnt/nrf51822'

@@ -1,8 +1,8 @@
 
-menu 90.19 TSke&l.Snippets.#! :call tskeleton#ExpandBitUnderCursor("n", '#!')<cr>
-imenu 90.19 TSke&l.Snippets.#! <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", '#!')<cr>
 menu 90.19 TSke&l.Snippets.# :call tskeleton#ExpandBitUnderCursor("n", '#')<cr>
 imenu 90.19 TSke&l.Snippets.# <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", '#')<cr>
+menu 90.19 TSke&l.Snippets.#! :call tskeleton#ExpandBitUnderCursor("n", '#!')<cr>
+imenu 90.19 TSke&l.Snippets.#! <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", '#!')<cr>
 menu 90.19 TSke&l.Snippets.-> :call tskeleton#ExpandBitUnderCursor("n", '->')<cr>
 imenu 90.19 TSke&l.Snippets.-> <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", '->')<cr>
 menu 90.19 TSke&l.Snippets.->a :call tskeleton#ExpandBitUnderCursor("n", '->a')<cr>
@@ -275,10 +275,10 @@ menu 90.19 TSke&l.Snippets.ivc :call tskeleton#ExpandBitUnderCursor("n", 'ivc')<
 imenu 90.19 TSke&l.Snippets.ivc <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ivc')<cr>
 menu 90.19 TSke&l.Snippets.lam :call tskeleton#ExpandBitUnderCursor("n", 'lam')<cr>
 imenu 90.19 TSke&l.Snippets.lam <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'lam')<cr>
-menu 90.19 TSke&l.Snippets.let! :call tskeleton#ExpandBitUnderCursor("n", 'let!')<cr>
-imenu 90.19 TSke&l.Snippets.let! <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'let!')<cr>
 menu 90.19 TSke&l.Snippets.let :call tskeleton#ExpandBitUnderCursor("n", 'let')<cr>
 imenu 90.19 TSke&l.Snippets.let <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'let')<cr>
+menu 90.19 TSke&l.Snippets.let! :call tskeleton#ExpandBitUnderCursor("n", 'let!')<cr>
+imenu 90.19 TSke&l.Snippets.let! <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'let!')<cr>
 menu 90.19 TSke&l.Snippets.loo :call tskeleton#ExpandBitUnderCursor("n", 'loo')<cr>
 imenu 90.19 TSke&l.Snippets.loo <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'loo')<cr>
 menu 90.19 TSke&l.Snippets.map :call tskeleton#ExpandBitUnderCursor("n", 'map')<cr>

@@ -164,5 +164,13 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/Apps/activator-1.1.3
 # define Android
 export ANDROID_HOME=/home/moritz/Apps/android-studio/sdk
+# define nordic SDK
+export NRF_SDK_PATH=/home/moritz/Projects/nRF51822/sdk/nrf51822/
 export CLASSPATH=$CLASSPATH:.:/opt/tinyos-main-2_1_2/tools/tinyos/java
+
+# define SPARK Home
+export SPARK_HOME=/home/moritz/Apps/spark-1.3.1-bin-hadoop2.6/
 export TERMINAL=urxvt
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"

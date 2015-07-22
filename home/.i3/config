@@ -167,9 +167,10 @@ for_window [class="^melt$"] focus old
 # start programs
 exec google-chrome
 exec --no-startup-id urxvt
-exec nm-applet
+exec --no-startup-id nm-applet
 exec syndaemon -t -k -i 1 -d
 #exec dropbox start
+exec seafile-applet
 exec clipit
 
 focus_follows_mouse no
