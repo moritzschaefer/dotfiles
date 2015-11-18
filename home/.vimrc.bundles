@@ -36,6 +36,7 @@ Bundle 'gmarik/vundle'
    if !filereadable(expand('~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so'))
      call system('cd ~/.vim/bundle/YouCompleteMe && ./install.sh')
    endif
+  " Bundle "davidhalter/jedi-vim"
 
   " --- Syntax checking
   if exists('*getmatches')
@@ -103,7 +104,6 @@ Bundle 'gmarik/vundle'
 
   Bundle "benmills/vimux"
   Bundle "julienr/vimux-pyutils"
-  "Bundle "davidhalter/jedi-vim" "already included in YCM"
   Bundle 'kchmck/vim-coffee-script'
   Bundle 'fatih/vim-go'
   " Airline
@@ -118,3 +118,4 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'groenewege/vim-less'
 Bundle 'ivanov/vim-ipython'
 Plugin 'derekwyatt/vim-scala'
+Bundle 'klen/python-mode'

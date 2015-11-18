@@ -136,28 +136,30 @@ function color_my_prompt {
 color_my_prompt
 # Define my editor:
 export EDITOR='vim'
+# Xmonad
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 export PATH="/usr/local/bin:$PATH"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-# added by Anaconda 1.9.0 installer
-#export PATH="/Users/moritzs/anaconda/bin:$PATH"
-#export PYTHONPATH=~/campaign_gen/:$PYTHONPATH
+eval $(keychain --eval -Q --quiet id_rsa )
+
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 md () { mkdir -p "$@" && cd "$@"; }
 # sbin adding
 export PATH="$PATH:/usr/local/sbin"
 
-# rocket stuff
-export DB_PORT=tcp://localhost:5432
 
 # define GO PATH
-#
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 # define Activator/Java Play
@@ -169,8 +171,16 @@ export NRF_SDK_PATH=/home/moritz/Projects/nRF51822/sdk/nrf51822/
 export CLASSPATH=$CLASSPATH:.:/opt/tinyos-main-2_1_2/tools/tinyos/java
 
 # define SPARK Home
-export SPARK_HOME=/home/moritz/Apps/spark-1.3.1-bin-hadoop2.6/
+#export SPARK_HOME=/home/moritz/Apps/spark-1.3.1-bin-hadoop2.6/
+
+# define HIVE/HADOOP
+
+export HIVE_HOME=/home/moritz/Apps/apache-hive-1.2.1-bin/
+export HADOOP_HOME=/home/moritz/Apps/hadoop-2.7.1/
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
+export PATH=$HIVE_HOME/bin:$PATH
+
+export PYTHONPATH=/usr/lib/python3.5/site-packages/
+
 export TERMINAL=urxvt
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export VISUAL=vim

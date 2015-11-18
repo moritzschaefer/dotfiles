@@ -10,7 +10,7 @@ alias hib='dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/f
 alias neo='setxkbmap de neo -option'
 alias de='setxkbmap de'
 alias us='setxkbmap us'
-alias tubvpn='sudo openconnect vpn.tu-berlin.de --script  /etc/vpnc/vpnc-script'
+alias yubvpn='sudo openconnect vpn.tu-berlin.de --script  /etc/vpnc/vpnc-script'
 alias banot='ssh alu7053@banot.etsii.ull.es'
 alias clip='xsel -b'
 alias j='jobs'
@@ -38,3 +38,7 @@ alias tmoteserial0='java net.tinyos.tools.PrintfClient -comm serial@/dev/ttyUSB0
 alias vimdownload='vim ~/Downloads/$(ls -t ~/Downloads | head -n1)'
 alias password="strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo"
 alias flashsd110='softdevice-merge _build/*.hex && sudo cp out.hex /mnt/nrf51822'
+alias screenshot='import -window root /tmp/screenshot.jpg'
+alias sc='systemctl'
+alias vpndown='nmcli connection down TU\ VPN '
+alias vpnup='nmcli connection up TU\ VPN '

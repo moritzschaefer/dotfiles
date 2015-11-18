@@ -10,3 +10,5 @@
 "\e\e[D": backward-word
 set completion-ignore-case On
 set editing-mode vi
+"\e[A": history-search-backward
+"\e[B": history-search-forward

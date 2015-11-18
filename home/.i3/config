@@ -15,7 +15,7 @@ set $mod Mod4
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 16
+font pango:DejaVu Sans Mono 10
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -146,11 +146,10 @@ mode "resize" {
 
 bindsym $mod+z mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
-        status_command i3status --config /home/moritz/.i3/i3status.conf
-        position top
+    status_command    python ~/.i3/i3pystatusconf.py
+    position          top
+    workspace_buttons yes
 }
 
 # hide borders
@@ -162,22 +161,26 @@ for_window [class="^URxvt$" ] border none
 for_window [class="^melt$"] focus old
 
 # go vto vim
-#bindsym $mod+a [class="URxvt" title="VIM"] focus
+bindsym $mod+a [class="URxvt" title="vim"] focus
 
 # start programs
-exec google-chrome
+exec chrome
 exec --no-startup-id urxvt
 exec --no-startup-id nm-applet
 exec syndaemon -t -k -i 1 -d
 #exec dropbox start
-exec seafile-applet
+exec --no-startup-id seafile-applet
 exec clipit
+exec --no-startup-id lxqt-policykit-agent
 
 focus_follows_mouse no
 
 # assign workspaces to programs
-assign [class="^Google-chrome$"] 2
+assign [class="^Google-chrome-stable$"] 2
 assign [class="^VirtualBox"] 4
+assign [class="seafile-applet"] 4
+assign [class="skype"] 3
+assign [class="^sun-awt-X11*$"] 3
 
 workspace 5 output HDMI1
 
@@ -195,8 +198,10 @@ workspace 5 output HDMI1
 bindsym $mod+Control+l exec "slock"
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master 6%+"
-bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master 6%-"
-bindsym XF86AudioMute exec "amixer -D pulse sset Master toggle"
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 10"
+bindsym XF86AudioRaiseVolume exec "ponymix --device 1 increase 10"
+bindsym XF86AudioLowerVolume exec "ponymix --device 1 decrease 10"
+bindsym XF86AudioMute exec "ponymix --device 1 toggle"
+bindsym XF86MonBrightnessUp exec "light -A 15"
+bindsym XF86MonBrightnessDown exec "light -U 15"
+bindsym XF86KbdBrightnessUp exec "kbdlight up 20"
+bindsym XF86KbdBrightnessDown exec "kbdlight down 20"

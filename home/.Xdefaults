@@ -34,3 +34,4 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt*geometry: 100x100
 
+#Xft.dpi:  220

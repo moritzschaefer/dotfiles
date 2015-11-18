@@ -177,11 +177,6 @@ if has("autocmd")
   autocmd FileType java,c,cpp,objc setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType java,c,cpp,objc let b:loaded_delimitMate = 1
 endif
-let g:ycm_collect_identifiers_from_tags_files = 1
-" --- add tags
-set tags+=~/.vim/tags/cpp
-set tags+=~/.vim/tags/curl
-"set tags+=~/.vim/tags/neon
 
 " --- Markdown
 if has("autocmd")
@@ -191,9 +186,61 @@ endif
 " let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
+
+" --- autocomplete
+
+" --- add tags
+set tags+=~/.vim/tags/cpp
+set tags+=~/.vim/tags/curl
+"set tags+=~/.vim/tags/neon
+
 let g:UltiSnipsExpandTrigger="<c-e>"
+
+
+" autocmd BufWritePost *.py :PymodeLintAuto " TODO buggy
+:command Pla :PymodeLintAuto
 nnoremap <leader>g :YcmCompleter GoTo<CR>
-let g:ycm_autoclose_preview_window_after_completion=0
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+let g:ycm_autoclose_preview_window_after_completion=1
+"
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+let g:pymode_rope = 1
+
+" Documentation
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+
+"Linting
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+" Auto check on save
+let g:pymode_lint_write = 1
+
+" Support virtualenv
+let g:pymode_virtualenv = 1
+
+" Enable breakpoints plugin
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>b'
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Don't autofold code
+let g:pymode_folding = 0
+
+" No autocomplete
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 0
+
+" Don't run!
+let g:pymode_run = 0
+
+
 " --- setup vimux
 " Run the current file with rspec
 "map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
