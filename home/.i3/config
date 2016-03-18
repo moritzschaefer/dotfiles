@@ -89,6 +89,9 @@ bindsym $mod+u focus parent
 # focus the child container
 bindsym $mod+d focus child
 
+workspace_auto_back_and_forth yes
+bindsym $mod+g workspace back_and_forth
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -147,7 +150,7 @@ mode "resize" {
 bindsym $mod+z mode "resize"
 
 bar {
-    status_command    python ~/.i3/i3pystatusconf.py
+    status_command $HOME/.i3/conky-script
     position          top
     workspace_buttons yes
 }
@@ -205,3 +208,5 @@ bindsym XF86MonBrightnessUp exec "light -A 15"
 bindsym XF86MonBrightnessDown exec "light -U 15"
 bindsym XF86KbdBrightnessUp exec "kbdlight up 20"
 bindsym XF86KbdBrightnessDown exec "kbdlight down 20"
+
+bindcode 124 exec nmcli connection up TU\ VPN

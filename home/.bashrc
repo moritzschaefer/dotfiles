@@ -115,6 +115,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ruby gem path
+PATH=$PATH:/home/moritz/.gem/ruby/2.3.0/bin
 # Ruby completion
 . $HOME/.completion-ruby/completion-ruby-all
 

@@ -184,7 +184,7 @@ if has("autocmd")
   autocmd FileType markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2
 endif
 " let g:solarized_termcolors=256
-set background=dark
+set background=light
 colorscheme solarized
 
 " --- autocomplete
@@ -294,12 +294,19 @@ au BufRead,BufNewFile *.pde set filetype=arduino
 au BufRead,BufNewFile *.ino set filetype=arduino
 let g:vim_arduino_serial_port = "/dev/ttyACM0"
 let g:vim_arduino_library_path = "/usr/share/arduino"
+" javascript/jsx
 
-let g:EclimCompletionMethod = 'omnifunc'
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+
+"let g:EclimCompletionMethod = 'omnifunc'
 " --- go and nicer colors
 set rtp+=$GOROOT/misc/vim
 filetype plugin indent on
 syntax on
+
+
+
 " --- Finish up --------------------------------------------------------------
 set secure
 " EOF

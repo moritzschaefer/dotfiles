@@ -10,9 +10,9 @@ alias hib='dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/f
 alias neo='setxkbmap de neo -option'
 alias de='setxkbmap de'
 alias us='setxkbmap us'
-alias yubvpn='sudo openconnect vpn.tu-berlin.de --script  /etc/vpnc/vpnc-script'
+alias tubvpn='sudo openconnect vpn.tu-berlin.de --script  /etc/vpnc/vpnc-script'
 alias banot='ssh alu7053@banot.etsii.ull.es'
-alias clip='xsel -b'
+alias clip='xclip -selection clipboard'
 alias j='jobs'
 alias h='history'
 alias nonose='nosetests --nocapture --nologcapture'
@@ -42,3 +42,22 @@ alias screenshot='import -window root /tmp/screenshot.jpg'
 alias sc='systemctl'
 alias vpndown='nmcli connection down TU\ VPN '
 alias vpnup='nmcli connection up TU\ VPN '
+alias seafup='seafile-upload https://services.moritzs.de Uploads mail@moritzs.de'
+alias matlab='LD_LIBRARY_PATH=/home/moritz/Downloads/usr/lib/ /home/moritz/Apps/Matlab/bin/matlab'
+alias matlabcli='LD_LIBRARY_PATH=/home/moritz/Downloads/usr/lib/ /home/moritz/Apps/Matlab/bin/matlab -nodisplay -nosplash'
+
+function cutvideo {
+  if [[ "$#" < 3 ]]; then
+    echo "Usage: cutvideo <video> <starttime> <enddtime> [outfile] # Hint: times as seconds or HH:MM:SS"
+  else
+    if [[ "$#" = 3 ]]; then
+      filename=$(basename "$1")
+      extension="${filename##*.}"
+      filename="${filename%.*}"
+      outfile="${filename}_modified.${extension}"
+    else
+      outfile="$4"
+    fi
+    ffmpeg -i $1 -acodec copy -vcodec copy -ss $2 -t $3 "$outfile"
+  fi
+}

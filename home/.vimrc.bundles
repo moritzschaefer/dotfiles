@@ -15,7 +15,7 @@ Bundle 'gmarik/vundle'
   " let g:Powerline_colorscheme = 'vk'
 
   " --- CtrlP plugin for fuzzy file finding
-  Bundle 'kien/ctrlp.vim'
+  Bundle 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_map = '<c-p>'
   let g:ctrlp_cmd = 'CtrlP'
   let g:ctrlp_custom_ignore = {
@@ -39,14 +39,15 @@ Bundle 'gmarik/vundle'
   " Bundle "davidhalter/jedi-vim"
 
   " --- Syntax checking
-  if exists('*getmatches')
-    Bundle 'scrooloose/syntastic'
-    " Lets use fancy symbols
-    let g:syntastic_error_symbol='✗'
-    let g:syntastic_warning_symbol='⚠'
-    let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"novalidate"]
-    let g:syntastic_javascript_checkers = ['jshint']
-  endif
+  Bundle 'scrooloose/syntastic'
+  " Lets use fancy symbols
+  let g:syntastic_error_symbol='✗'
+  let g:syntastic_warning_symbol='⚠'
+  let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"novalidate"]
+  let g:syntastic_javascript_checkers = ['eslint']
+
+
+
   Bundle 'tomtom/tcomment_vim'
   Bundle 'vim-ruby/vim-ruby'
   Bundle 'tpope/vim-bundler'
@@ -63,6 +64,7 @@ Bundle 'gmarik/vundle'
   "Bundle 'rbonvall/vim-textobj-latex'
   Bundle 'nelstrom/vim-textobj-rubyblock'
   Bundle 'bkad/CamelCaseMotion'
+  call camelcasemotion#CreateMotionMappings(',')
   Bundle 'chrisbra/Recover.vim'
   Bundle "MarcWeber/vim-addon-mw-utils"
 	Bundle 'tomtom/tlib_vim'
@@ -76,7 +78,7 @@ Bundle 'gmarik/vundle'
   "Bundle 'Shougo/neocomplcache'
   Bundle 'vim-scripts/loremipsum'
 	Bundle 'vim-scripts/taglist.vim'
-	Bundle 'tmhedberg/vim-matchit'
+	Bundle 'tmhedberg/matchit'
 	"Bundle 'vim-scripts/closetag.vim'
 	"  "timcharper/textile.vim",
 	"  "tpope/vim-cucumber",
@@ -96,6 +98,7 @@ Bundle 'gmarik/vundle'
   Bundle 'terryma/vim-multiple-cursors'
   Bundle 'altercation/vim-colors-solarized'
   Bundle "pangloss/vim-javascript"
+  Bundle "mxw/vim-jsx"
   Bundle "marijnh/tern_for_vim"
   Bundle "mattn/emmet-vim"
   Bundle "othree/html5.vim"
@@ -107,7 +110,7 @@ Bundle 'gmarik/vundle'
   Bundle 'kchmck/vim-coffee-script'
   Bundle 'fatih/vim-go'
   " Airline
-  Plugin 'bling/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
   let g:airline_theme='powerlineish'
 Bundle 'bling/vim-bufferline'
 Bundle "ekalinin/Dockerfile.vim"
