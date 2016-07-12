@@ -97,6 +97,7 @@ Bundle 'gmarik/vundle'
   let g:AutoPairsShortcutBackInsert = '<M-b>'
   Bundle 'terryma/vim-multiple-cursors'
   Bundle 'altercation/vim-colors-solarized'
+  Bundle 'notpratheek/vim-luna'
   Bundle "pangloss/vim-javascript"
   Bundle "mxw/vim-jsx"
   Bundle "marijnh/tern_for_vim"
@@ -119,6 +120,8 @@ Bundle 'hsanson/vim-android'
 Bundle 'vim-scripts/NesC-Syntax-Highlighting'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'groenewege/vim-less'
-Bundle 'ivanov/vim-ipython'
+"Bundle 'ivanov/vim-ipython'
 Plugin 'derekwyatt/vim-scala'
 Bundle 'klen/python-mode'
+Plugin 'airblade/vim-gitgutter'
+"Plugin 'mhinz/vim-startify'

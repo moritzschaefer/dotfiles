@@ -182,7 +182,5 @@ export HADOOP_HOME=/home/moritz/Apps/hadoop-2.7.1/
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
 export PATH=$HIVE_HOME/bin:$PATH
 
-export PYTHONPATH=/usr/lib/python3.5/site-packages/
-
 export TERMINAL=urxvt
 export VISUAL=vim

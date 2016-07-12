@@ -1,34 +1,91 @@
-\documentclass[a4paper]{scrartcl}
-% Source: http://www.howtotex.com/templates/two-column-journal-article-template/
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
 
-% SETTINGS BEGIN
+\documentclass[a4paper,11pt]{article}
 
-% \usepackage{assignment} \usepackage[hmarginratio=1:1,top=25mm,left=25mm]{geometry}
-\usepackage{arydshln}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
 
+\usepackage[tx]{sfmath}
+\renewcommand\familydefault{\sfdefault}
+\usepackage{tgheros}
 
-\usepackage{wasysym}
-
-\usepackage{ stmaryrd }
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{multicol}
 \usepackage{tikz}
-\usetikzlibrary{fit,shapes,arrows}
 
-\newcommand{\impldef}[1]{\stackrel{\mathrm{#1}}\Rightarrow}
-\newcommand{\biimpldef}[1]{\stackrel{\mathrm{#1}}\Leftrightarrow}
-\newcommand{\ldot}{\;.\;}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Ps}{\mathcal{P}}
-
-\renewcommand{\labelitemi}{$-$}
+\usepackage{geometry}
+\geometry{total={210mm,297mm},
+left=25mm,right=25mm,%
+bindingoffset=0mm, top=20mm,bottom=20mm}
 
 
+\linespread{1.3}
 
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
 
-% \assignment{Hausaufgabe 2}{Theoretische Grundlagen der Informatik 2 SS 2013\\TU Berlin}
-% \members{Max Gotthardt(), Marco Morik(), Moritz Schäfer (350651)}{Tutor: }
+% custom theorems if needed
+\newtheoremstyle{mytheor}
+    {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+    {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+
+\theoremstyle{mytheor}
+\newtheorem{defi}{Definition}
+
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+\@author \hfill \@date
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{Assignment \textnumero{} 5}
+\cfoot{}
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+% all section titles centered and bolded
+\usepackage{sectsty}
+\allsectionsfont{\centering\bfseries\large}
+%
+% add section label
+\renewcommand\thesection{Exercise~\arabic{section}:}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
 
 \begin{document}
-\maketitle
-\end{document}
 
+\title{Homework}
+
+\author{Moritz Schaefer, 713030990015, Shanghai Jiao Tong University}
+
+\date{2016/00/00}
+
+\maketitle
+
+\section{First}
+
+Text
+
+
+\end{document}

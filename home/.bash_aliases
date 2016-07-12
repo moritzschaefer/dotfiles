@@ -43,9 +43,11 @@ alias sc='systemctl'
 alias vpndown='nmcli connection down TU\ VPN '
 alias vpnup='nmcli connection up TU\ VPN '
 alias seafup='seafile-upload https://services.moritzs.de Uploads mail@moritzs.de'
-alias matlab='LD_LIBRARY_PATH=/home/moritz/Downloads/usr/lib/ /home/moritz/Apps/Matlab/bin/matlab'
+alias matlab='synclient HorizTwoFingerScroll=0 && LD_LIBRARY_PATH=/home/moritz/Downloads/usr/lib/ /home/moritz/Apps/Matlab/bin/matlab || synclient HorizTwoFingerScroll=1'
 alias matlabcli='LD_LIBRARY_PATH=/home/moritz/Downloads/usr/lib/ /home/moritz/Apps/Matlab/bin/matlab -nodisplay -nosplash'
-
+# alias vim='nvim'
+# alias v='nvim'
+#
 function cutvideo {
   if [[ "$#" < 3 ]]; then
     echo "Usage: cutvideo <video> <starttime> <enddtime> [outfile] # Hint: times as seconds or HH:MM:SS"

@@ -15,12 +15,22 @@
   flfe = flow feature
   flst = flow feature start
   flfi = flow feature finish
+	d = difftool
 [diff]
 	mnemonicprefix = true
+	tool = vimdiff
 [merge]
 	stat = true
+	tool = diffconflicts
 [push]
 	default = simple
 [core]
 	autocrlf = input
 	excludesfile = /home/moritz/.gitignore_global
+[difftool]
+	prompt = false
+[mergetool "diffconflicts"]
+	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+[mergetool]
+	keepBackup = false

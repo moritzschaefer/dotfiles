@@ -49,7 +49,7 @@ TEXT
 { "full_text" : "${fs_free /}" , "color" : "\#4C7899" },
 { "full_text" : "\
 ${if_match "$gw_iface"=="(null)"} Network Unavailable " , "color" : "\#CCDA56" }, ${endif}\
-${if_match "$gw_iface"=="multiple"}tun0 on ${addr tun0} DL: ${downspeed tun0} UL: ${upspeed tun0}" , "color" : "\#CCDA56" }, ${endif}\
+${if_match "$gw_iface"=="multiple"}vpn0 on ${addr vpn0} DL: ${downspeed vpn0} UL: ${upspeed vpn0}" , "color" : "\#CCDA56" }, ${endif}\
 ${if_match "$gw_iface"=="wlp2s0"}wlp2s0 on ${addr wlp2s0} DL: ${downspeed wlp2s0} UL: ${upspeed wlp2s0}" , "color" : "\#ccda56" }, ${endif}\
 ${if_match "$gw_iface"=="vpn0"} vpn0 on ${addr vpn0} DL: ${downspeed vpn0} UL: ${upspeed vpn0}" , "color" : "\#4C7899" }, ${endif}\
 ${if_match "$gw_iface"=="enp0s20u5"}enp0s20u5 on ${addr enp0s20u5} DL: ${downspeed enp0s20u5} UL: ${upspeed enp0s20u5}" , "color" : "\#4C7899" }, ${endif}\

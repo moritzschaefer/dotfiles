@@ -157,6 +157,7 @@ bar {
 
 # hide borders
 for_window [class="^Google-chrome$"] border none
+for_window [class="^chromium$"] border none
 for_window [class="^x-terminal-emulator$" ] border none
 for_window [class="^URxvt$" ] border none
 
@@ -167,7 +168,7 @@ for_window [class="^melt$"] focus old
 bindsym $mod+a [class="URxvt" title="vim"] focus
 
 # start programs
-exec chrome
+exec chromium
 exec --no-startup-id urxvt
 exec --no-startup-id nm-applet
 exec syndaemon -t -k -i 1 -d
@@ -180,6 +181,7 @@ focus_follows_mouse no
 
 # assign workspaces to programs
 assign [class="^Google-chrome-stable$"] 2
+assign [class="^chromium$"] 2
 assign [class="^VirtualBox"] 4
 assign [class="seafile-applet"] 4
 assign [class="skype"] 3

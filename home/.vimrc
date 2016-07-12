@@ -60,7 +60,6 @@ endif
 
 inoremap nr <Esc>
 
-" nnoremap JJJJ <Nop>
 
 syntax on
 filetype on
@@ -101,7 +100,7 @@ autocmd BufNewFile *spider.py TSkeletonSetup spider_template.py
 "Latex compiling
 "
 " compile on save
-autocmd BufWritePost *.tex :call VimuxRunCommand("pdflatex -halt-on-error " . bufname("%"))
+autocmd BufWritePost *.tex :call VimuxRunCommand("make")
 inoremap <LEADER>ll <ESC>:w<CR>:!pdflatex -halt-on-error %<CR>i
 inoremap <LEADER>lv <ESC>:w<CR>:!evince %:r.pdf > /dev/null 2> /dev/null &<CR>i
 nnoremap <LEADER>ll <ESC>:w<CR>:!pdflatex -halt-on-error %<CR>
@@ -184,8 +183,9 @@ if has("autocmd")
   autocmd FileType markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2
 endif
 " let g:solarized_termcolors=256
-set background=light
+set background=dark
 colorscheme solarized
+call togglebg#map("<F5>")
 
 " --- autocomplete
 
@@ -297,6 +297,9 @@ let g:vim_arduino_library_path = "/usr/share/arduino"
 " javascript/jsx
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" open NERDTree on \nt
+noremap <LEADER>nt <ESC>:NERDTree<CR>
 
 
 "let g:EclimCompletionMethod = 'omnifunc'
