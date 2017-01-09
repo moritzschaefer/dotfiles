@@ -160,6 +160,9 @@ md () { mkdir -p "$@" && cd "$@"; }
 # sbin adding
 export PATH="$PATH:/usr/local/sbin"
 
+#
+export PYTHONPATH=${PYTHONPATH}:/home/moritz/Apps/pynaoqi-python2.7
+export NAOQI_SDK=/home/moritz/Apps/naoqi-sdk-2.1.2.17-linux64/bin
 
 # define GO PATH
 export GOPATH=$HOME/go
@@ -179,8 +182,13 @@ export CLASSPATH=$CLASSPATH:.:/opt/tinyos-main-2_1_2/tools/tinyos/java
 
 export HIVE_HOME=/home/moritz/Apps/apache-hive-1.2.1-bin/
 export HADOOP_HOME=/home/moritz/Apps/hadoop-2.7.1/
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
+export JAVA_HOME=/usr/lib/jvm/default
 export PATH=$HIVE_HOME/bin:$PATH
 
 export TERMINAL=urxvt
 export VISUAL=vim
+
+# ROSETTA
+export ROSETTA_HOME=/home/moritz/Apps/rosetta_bin_linux_2016.32.58837_bundle
+export ROSETTA_DB=$ROSETTA_HOME/main/database
+export PATH=$PATH:$ROSETTA_HOME/main/source/bin

@@ -171,9 +171,11 @@ bindsym $mod+a [class="URxvt" title="vim"] focus
 exec chromium
 exec --no-startup-id urxvt
 exec --no-startup-id nm-applet
+exec franz-bin
 exec syndaemon -t -k -i 1 -d
+exec pasystray
 #exec dropbox start
-exec --no-startup-id seafile-applet
+# exec --no-startup-id seafile-applet # TODO enable again
 exec clipit
 exec --no-startup-id lxqt-policykit-agent
 
@@ -186,8 +188,13 @@ assign [class="^VirtualBox"] 4
 assign [class="seafile-applet"] 4
 assign [class="skype"] 3
 assign [class="^sun-awt-X11*$"] 3
+assign [class="^Franz$"] 3
 
-workspace 5 output HDMI1
+workspace 5 output HDMI3
+# Move the current workspace to the next output
+# (effectively toggles when you only have two outputs)
+bindsym $mod+o move workspace to output right
+
 
 #gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 #exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
@@ -203,9 +210,9 @@ workspace 5 output HDMI1
 bindsym $mod+Control+l exec "slock"
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec "ponymix --device 1 increase 10"
-bindsym XF86AudioLowerVolume exec "ponymix --device 1 decrease 10"
-bindsym XF86AudioMute exec "ponymix --device 1 toggle"
+bindsym XF86AudioRaiseVolume exec "ponymix increase 10"
+bindsym XF86AudioLowerVolume exec "ponymix decrease 10"
+bindsym XF86AudioMute exec "ponymix toggle"
 bindsym XF86MonBrightnessUp exec "light -A 15"
 bindsym XF86MonBrightnessDown exec "light -U 15"
 bindsym XF86KbdBrightnessUp exec "kbdlight up 20"

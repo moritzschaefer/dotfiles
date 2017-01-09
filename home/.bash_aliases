@@ -42,7 +42,7 @@ alias screenshot='import -window root /tmp/screenshot.jpg'
 alias sc='systemctl'
 alias vpndown='nmcli connection down TU\ VPN '
 alias vpnup='nmcli connection up TU\ VPN '
-alias seafup='seafile-upload https://services.moritzs.de Uploads mail@moritzs.de'
+alias seafup='seafile-upload https://incubator.moritzs.de Uploads mollitz@gmail.com'
 alias matlab='synclient HorizTwoFingerScroll=0 && LD_LIBRARY_PATH=/home/moritz/Downloads/usr/lib/ /home/moritz/Apps/Matlab/bin/matlab || synclient HorizTwoFingerScroll=1'
 alias matlabcli='LD_LIBRARY_PATH=/home/moritz/Downloads/usr/lib/ /home/moritz/Apps/Matlab/bin/matlab -nodisplay -nosplash'
 # alias vim='nvim'
@@ -63,3 +63,4 @@ function cutvideo {
     ffmpeg -i $1 -acodec copy -vcodec copy -ss $2 -t $3 "$outfile"
   fi
 }
+alias leftof='xrandr --output HDMI3 --mode 1920x1080 --left-of eDP1'
