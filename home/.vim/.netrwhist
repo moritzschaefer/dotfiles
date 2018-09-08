@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/mollitz/Projects/rails-popcornmonster/lib/tasks'
-let g:netrw_dirhist_2='/home/mollitz/Projects/codejam/source'
-let g:netrw_dirhist_3='/home/mollitz/Projects/rails-popcornmonster/lib/input-parser'
-let g:netrw_dirhist_4='/home/mollitz/.tmuxinator'
-let g:netrw_dirhist_5='/home/moritz/Dropbox/Projects/media-machine/owncloud-streaming'

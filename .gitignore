@@ -2,3 +2,4 @@ home/.vim/bundle
 *.un~
 *.o
 *.hi
+id_rsa

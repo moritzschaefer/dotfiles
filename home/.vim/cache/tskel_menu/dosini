@@ -1,3 +1,0 @@
-
-menu 90.19 TSke&l.Snippets.ec :call tskeleton#ExpandBitUnderCursor("n", 'ec')<cr>
-imenu 90.19 TSke&l.Snippets.ec <c-\><c-o>:call tskeleton#ExpandBitUnderCursor("i", 'ec')<cr>

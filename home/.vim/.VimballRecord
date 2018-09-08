@@ -1,1 +1,0 @@
-Recover-0.17.vmb: call delete('/home/mollitz/.vim/plugin/recover.vim')|call delete('/home/mollitz/.vim/autoload/recover.vim')|call delete('/home/mollitz/.vim/doc/recoverPlugin.txt')
