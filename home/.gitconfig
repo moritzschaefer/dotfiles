@@ -1,0 +1,13 @@
+# Das ist Git's benutzerspezifische Konfiguraionsdatei.
+[user]
+# Bitte passen Sie die folgenden Zeilen an und kommentieren Sie diese aus:
+	name = Moritz
+	email = mail@moritzs.de
+[core]
+	excludesfile = /home/moritz/.gitignore_global
+[merge]
+	tool = vimdiff
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false

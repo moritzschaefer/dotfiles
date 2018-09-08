@@ -1,0 +1,66 @@
+URxvt*loginShell:true
+URxvt*transparent:true
+URxvt*shading:5
+URxvt*background:Black
+URxvt*foreground:White
+URxvt*scrollBar:true
+URxvt*scrollBar_right:true
+URxvt*scrollBar_floating:false
+URxvt*scrollstyle:plain
+URxvt*secondaryScroll:true
+URxvt*secondaryScroll:true
+
+# how many lines you want it to save per session
+URxvt*saveLines:32767
+URxvt*troughColor:#000000
+URxvt*scrollColor:#222222
+# URxvt*font: xft:Dejavu Sans Mono:pixelsize=11
+URxvt.font: xft:Inconsolata for Powerline:pixelsize=33:antialias=true:hinting=true
+
+# with this set to true, when an app sends a bell to the terminal, awesome hilights the appropriate tag(s)
+URxvt*urgentOnBell: true
+
+# these three lines enable clicking on links to open them
+## if you want to enable tab support, append ,tabbed to the next line
+## then use shift+down arrow to create tabs and shift+{left,right} arrows to switch between them
+URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-readline,clipboard
+URxvt*matcher.button: 1
+# don't forget to change this to your favorite browser
+URxvt*urlLauncher: chromium-browser
+
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+URxvt.iso14755: False
+URxvt*geometry: 100x100
+
+#Xft.dpi:  220
+
+# fix numpad for neo-layout
+URxvt.keysym.KP_Add:    +
+URxvt.keysym.KP_Subtract: -
+URxvt.keysym.KP_Multiply: *
+URxvt.keysym.KP_Divide  : /
+URxvt.keysym.KP_Decimal : .
+URxvt.keysym.KP_Separator : ,
+URxvt.keysym.KP_1:      1
+URxvt.keysym.KP_2:      2
+URxvt.keysym.KP_3:      3
+URxvt.keysym.KP_4:      4
+URxvt.keysym.KP_5:      5
+URxvt.keysym.KP_6:      6
+URxvt.keysym.KP_7:      7
+URxvt.keysym.KP_8:      8
+URxvt.keysym.KP_9:      9
+URxvt.keysym.KP_0:      0
+
+URxvt.keysym.M-KP_1:	\0331
+URxvt.keysym.M-KP_2:	\0332
+URxvt.keysym.M-KP_3:	\0333
+URxvt.keysym.M-KP_4:	\0334
+URxvt.keysym.M-KP_5:	\0335
+URxvt.keysym.M-KP_6:	\0336
+URxvt.keysym.M-KP_7:	\0337
+URxvt.keysym.M-KP_8:	\0338
+URxvt.keysym.M-KP_9:	\0339
+URxvt.keysym.M-KP_0:	\0330
