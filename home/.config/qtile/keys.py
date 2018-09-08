@@ -15,6 +15,32 @@ music_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
              '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
 
 
+def window_to_prev_screen():
+    def __inner(qtile):
+        i = qtile.screens.index(qtile.currentScreen)
+        if i != 0:
+            group = qtile.screens[i - 1].group.name
+            qtile.currentWindow.togroup(group)
+    return __inner
+
+
+def window_to_next_screen():
+    def __inner(qtile):
+        i = qtile.screens.index(qtile.currentScreen)
+        if i != len(qtile.screens):
+            group = qtile.screens[i + 1].group.name
+            qtile.currentWindow.togroup(group)
+    return __inner
+
+
+def switch_screens():
+    def __inner(qtile):
+        i = qtile.screens.index(qtile.currentScreen)
+        group = qtile.screens[i - 1].group
+        qtile.currentScreen.setGroup(group)
+    return __inner
+
+
 def next_prev(action):
     def f(qtile):
         qtile.cmd_spawn(music_cmd + action)
@@ -60,6 +86,11 @@ keys = [
 
     # Swap panes of split stack
     Key([mod, 'shift'], 'space', lazy.layout.rotate()),
+
+    # switch screens
+    Key([mod], "o", lazy.function(switch_screens())),
+    Key([mod, "shift"], "o", lazy.function(window_to_prev_screen())),
+
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -118,6 +149,7 @@ for group, key in zip(groups, group_keys):
         # mod1 + shift + letter of group = switch to & move focused window to group
         Key([mod, 'shift'], key, lazy.window.togroup(group.name)),
     ])
+
 # Drag floating layouts.
 mouse = [
     Drag([mod], 'Button1', lazy.window.set_position_floating(),

@@ -7,6 +7,7 @@ from libqtile import layout, bar, widget, hook
 
 from keys import keys
 from groups import groups
+from screens import screens
 
 try:
     from typing import List  # noqa: F401
@@ -28,30 +29,6 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.Sep(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.Sep(),
-                widget.WindowName(),
-                widget.Net(interface='wlp2s0'),
-                widget.Sep(),
-                widget.Battery(),
-                widget.Sep(),
-                widget.BitcoinTicker(currency='EUR'),
-                widget.Sep(),
-                widget.Systray(icon_size=46),
-                widget.Sep(),
-                widget.Clock(format='%Y-%m-%d %a %H:%M'),
-            ],
-            45,
-        ),
-    ),
-]
 
 
 dgroups_key_binder = None
@@ -59,7 +36,7 @@ dgroups_app_rules = []  # type: List
 main = None
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True
 floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'confirm'},
     {'wmclass': 'dialog'},
@@ -103,3 +80,9 @@ def dialogs(window):
     if(window.window.get_wm_type() == 'dialog' or window.window.get_wm_transient_for()):
         window.floating = True
     print(window.window.get_wm_class())
+
+
+@hook.subscribe.screen_change
+def restart_on_randr(qtile, ev):
+    qtile.cmd_restart()
+
