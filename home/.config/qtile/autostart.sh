@@ -2,4 +2,4 @@
 
 clipit &
 nm-applet &
-/home/moritz/bin/redshift-workaround &
+bin/redshift-workaround &
