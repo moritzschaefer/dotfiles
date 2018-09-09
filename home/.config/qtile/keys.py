@@ -98,9 +98,7 @@ keys = [
     Key([mod], 'Return', lazy.spawn('urxvt')),
 
     # app hotkeys
-    Key([mod], 'e', lazy.spawn("xdotool search --name 'Mozilla Firefox' "
-                               "windowactivate --sync key --clearmodifiers "
-                               "--window 0 ctrl+t")),
+    Key([mod], 'e', lazy.spawn("xdotool search --name 'Mozilla Firefox' windowactivate key ctrl+t")),
     Key([], 'XF86LaunchB', lazy.function(screenshot())),
 
     # media hotkeys
@@ -111,23 +109,10 @@ keys = [
     Key([], 'XF86AudioNext', lazy.function(next_prev('Next'))),
     Key([], 'XF86AudioPrev', lazy.function(next_prev('Previous'))),
 
+    # brightness hotkeys
+    Key([], 'XF86MonBrightnessDown', lazy.spawn('xbackligth -dec 10')),
+    Key([], 'XF86MonBrightnessUp', lazy.spawn('xbackligth -inc 10')),
 
-
-    # uniarg:key_numarg({}, "XF86MonBrightnessUp",
-    # function ()
-    #   awful.util.spawn("xbacklight -inc 10")
-    # end,
-    # function (n)
-    #   awful.util.spawn("xbacklight -inc " .. n)
-    # end),
-    #
-    # uniarg:key_numarg({}, "XF86MonBrightnessDown",
-    # function ()
-    #   awful.util.spawn("xbacklight -dec 10")
-    # end,
-    # function (n)
-    #   awful.util.spawn("xbacklight -dec " .. n)
-    # end),
 
 
     # Toggle between different layouts as defined below
