@@ -14,7 +14,6 @@ main_bar = bar.Bar(
                           stop_pause_text='▶', scroll_chars=None,
                           display_metadata=['xesam:title', 'xesam:artist'],
                           objname="org.mpris.MediaPlayer2.spotify"),
-            widget.Sep(linewidth=2, size_percent=100, padding=12),
             widget.Prompt(),
             widget.Volume(theme_path=icon_theme_path),
             widget.WindowName(),

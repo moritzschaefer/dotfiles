@@ -15,23 +15,22 @@ music_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
              '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
 
 
-def window_to_prev_screen():
+def restart():
     def __inner(qtile):
-        i = qtile.screens.index(qtile.currentScreen)
-        if i != 0:
-            group = qtile.screens[i - 1].group.name
-            qtile.currentWindow.togroup(group)
+        subprocess.call(['setxkbmap', 'de'])  # workaround/fix
+        qtile.cmd_restart()
     return __inner
 
 
-def window_to_next_screen():
-    def __inner(qtile):
-        i = qtile.screens.index(qtile.currentScreen)
-        if i != len(qtile.screens):
-            group = qtile.screens[i + 1].group.name
-            qtile.currentWindow.togroup(group)
-    return __inner
-
+def move_window_to_screen(screen):
+    def cmd(qtile):
+        w = qtile.currentWindow
+        # XXX: strange behaviour - w.focus() doesn't work
+        # if toScreen is called after togroup...
+        qtile.toScreen(screen)
+        if w is not None:
+            w.togroup(qtile.screens[screen].group.name)
+    return cmd
 
 def switch_screens():
     def __inner(qtile):
@@ -52,7 +51,7 @@ def screenshot(save=True, copy=True):
     def f(qtile):
         path = Path.home() / 'Screenshots'
         path /= f'screenshot_{str(int(time() * 100))}.png'
-        shot = subprocess.run(['maim -s'], stdout=subprocess.PIPE)
+        shot = subprocess.run(['maim', '-s'], stdout=subprocess.PIPE)
 
         if save:
             with open(path, 'wb') as sc:
@@ -89,7 +88,6 @@ keys = [
 
     # switch screens
     Key([mod], "o", lazy.function(switch_screens())),
-    Key([mod, "shift"], "o", lazy.function(window_to_prev_screen())),
 
 
     # Toggle between split and unsplit sides of stack.
@@ -103,6 +101,7 @@ keys = [
     Key([mod], 'e', lazy.spawn("xdotool search --name 'Mozilla Firefox' "
                                "windowactivate --sync key --clearmodifiers "
                                "--window 0 ctrl+t")),
+    Key([], 'XF86LaunchB', lazy.function(screenshot())),
 
     # media hotkeys
     Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer sset Master 5%+')),
@@ -112,7 +111,6 @@ keys = [
     Key([], 'XF86AudioNext', lazy.function(next_prev('Next'))),
     Key([], 'XF86AudioPrev', lazy.function(next_prev('Previous'))),
 
-    Key([], 'XF86LaunchB', lazy.function(screenshot())),
 
 
     # uniarg:key_numarg({}, "XF86MonBrightnessUp",
@@ -135,12 +133,17 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], 'Tab', lazy.next_layout()),
 
-    Key([mod, 'control'], 'r', lazy.restart()),
+    Key([mod, 'control'], 'r', lazy.function(restart())),
     Key([mod, 'control'], 'q', lazy.shutdown()),
     Key([mod], 'c', lazy.spawncmd()),
-    Key([mod, 'shift'], 'c', lazy.window.kill())
-]
+    Key([mod, 'shift'], 'c', lazy.window.kill()),
 
+    Key([mod], "i", lazy.to_screen(0)),
+    Key([mod, "shift"], "i", lazy.function(move_window_to_screen(0))),
+    Key([mod], "a", lazy.to_screen(1)),
+    Key([mod, "shift"], "a", lazy.function(move_window_to_screen(1))),
+    Key([mod], "u", lazy.group['keeppad'].dropdown_toggle('Google Keep')),
+]
 
 for group, key in zip(groups, group_keys):
     keys.extend([

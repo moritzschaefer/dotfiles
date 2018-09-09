@@ -75,6 +75,11 @@ def startup_once():  # autostart
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 
+@hook.subscribe.startup
+def startup():
+    subprocess.call(['setxkbmap', 'de', 'neo'])  # workaround/fix
+
+
 @hook.subscribe.client_new
 def dialogs(window):
     if(window.window.get_wm_type() == 'dialog' or window.window.get_wm_transient_for()):
@@ -84,5 +89,6 @@ def dialogs(window):
 
 @hook.subscribe.screen_change
 def restart_on_randr(qtile, ev):
+    subprocess.call(['setxkbmap', 'de'])  # workaround/fix
     qtile.cmd_restart()
 
