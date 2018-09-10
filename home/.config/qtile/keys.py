@@ -8,8 +8,8 @@ from libqtile.command import lazy
 
 from groups import groups, group_keys
 
-mod = 'mod4'
-alt = 'mod1'
+mod = 'mod1'  # use alt for supermod key
+alt = 'mod4'  # use supermodkey for alt...
 
 music_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
              '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
@@ -81,10 +81,10 @@ keys = [
 
 
     # Switch window focus to other pane(s) of stack
-    Key([mod], 'space', lazy.layout.next()),
+    Key([mod], 'Tab', lazy.layout.next()),
 
     # Swap panes of split stack
-    Key([mod, 'shift'], 'space', lazy.layout.rotate()),
+    Key([mod, 'shift'], 'Tab', lazy.layout.rotate()),
 
     # switch screens
     Key([mod], "o", lazy.function(switch_screens())),
@@ -116,7 +116,7 @@ keys = [
 
 
     # Toggle between different layouts as defined below
-    Key([mod], 'Tab', lazy.next_layout()),
+    Key([mod], 'space', lazy.next_layout()),
 
     Key([mod, 'control'], 'r', lazy.function(restart())),
     Key([mod, 'control'], 'q', lazy.shutdown()),
