@@ -100,6 +100,7 @@ keys = [
     # app hotkeys
     Key([mod], 'e', lazy.spawn("xdotool search --name 'Mozilla Firefox' windowactivate key ctrl+t")),
     Key([], 'XF86LaunchB', lazy.function(screenshot())),
+    Key([], 'Print', lazy.function(screenshot())),
 
     # media hotkeys
     Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer sset Master 5%+')),
@@ -110,8 +111,8 @@ keys = [
     Key([], 'XF86AudioPrev', lazy.function(next_prev('Previous'))),
 
     # brightness hotkeys
-    Key([], 'XF86MonBrightnessDown', lazy.spawn('xbackligth -dec 10')),
-    Key([], 'XF86MonBrightnessUp', lazy.spawn('xbackligth -inc 10')),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn('xbacklight -dec 10')),
+    Key([], 'XF86MonBrightnessUp', lazy.spawn('xbacklight -inc 10')),
 
 
 

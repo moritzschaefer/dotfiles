@@ -13,7 +13,7 @@ set smartcase
 
 set number
 
-inoremap aa <Esc>
+inoremap ae <Esc>
 inoremap a<Space> a
 inoremap <Esc> <Nop>
 
