@@ -10,6 +10,6 @@ groups.append(Group('music', spawn='spotify', layout='max', matches=[Match(wm_cl
 
 
 for i in range(len(group_keys)-len(groups)):
-    groups.append(Group('misc'))
+    groups.append(Group(f'misc{i+1}'))
 
 groups.append(ScratchPad('keeppad', [DropDown('Google Keep', 'chromium --app-id=hcfcmgpnmpinpidjdgejehjchlbglpde', opacity=0.85)]))
