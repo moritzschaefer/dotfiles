@@ -63,7 +63,7 @@ alias dcu='docker-compose up'
 alias ev='vim ~/.config/nvim/config/'
 alias et='vim ~/.tmux.conf'
 alias ez='vim ~/.zshrc'
-alias eq='vim ~/.config/qtile/config.py'
+alias eq='vim ~/.config/qtile/'
 alias uvim='vim -u NONE'
 
 alias mux='tmuxinator'

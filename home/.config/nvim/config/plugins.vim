@@ -190,25 +190,33 @@ call camelcasemotion#CreateMotionMappings(',')
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 
 " ambienter-vim
-let g:ambienter_config = {
-            \     "sensor": {
-            \         "path": " /sys/devices/platform/applesmc.768/light",
-            \         "value": {"min": 13 }
-            \     },
-            \     "disable": 0,
-            \     "debug": 0,
-            \     "theme": {
-            \         "light": {
-            \             "background": "light",
-            \             "colorsheme": "hybrid"
-            \         },
-            \         "dark": {
-            \             "background": "dark",
-            \             "colorsheme": "hybrid"
-            \         }
-            \     },
-            \     "callbacks": [function("airline#load_theme")]
-            \ }
+let sensor_path = "/sys/devices/platform/applesmc.768/light"
+
+if filereadable(sensor_path)
+  let g:ambienter_config = {
+              \     "sensor": {
+              \         "path": sensor_path,
+              \         "value": {"min": 13 }
+              \     },
+              \     "disable": 0,
+              \     "debug": 0,
+              \     "theme": {
+              \         "light": {
+              \             "background": "light",
+              \             "colorsheme": "hybrid"
+              \         },
+              \         "dark": {
+              \             "background": "dark",
+              \             "colorsheme": "hybrid"
+              \         }
+              \     },
+              \     "callbacks": [function("airline#load_theme")]
+              \ }
+else
+  let g:ambienter_config = []
+endif
+
+
 au WinEnter,BufEnter * call Ambienter.Sensor() " Adapt colorsheme to ambient light
 
 " disable colorizer at startup

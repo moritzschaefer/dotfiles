@@ -64,7 +64,7 @@ plugins=(git adb archlinux autopep8 docker docker-compose gnu-utils pip vi-mode 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-bindkey ae vi-cmd-mode
+# bindkey ae vi-cmd-mode
 export EDITOR=vim
 export VISUAL=vim
 export RM_STAR_WAIT=1
