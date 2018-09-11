@@ -15,7 +15,7 @@ URxvt*saveLines:32767
 URxvt*troughColor:#000000
 URxvt*scrollColor:#222222
 # URxvt*font: xft:Dejavu Sans Mono:pixelsize=11
-URxvt.font: xft:Inconsolata for Powerline:pixelsize=33:antialias=true:hinting=true
+URxvt.font: xft:Inconsolata for Powerline:size=14.5:antialias=true:hinting=true
 
 # with this set to true, when an app sends a bell to the terminal, awesome hilights the appropriate tag(s)
 URxvt*urgentOnBell: true
