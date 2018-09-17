@@ -34,8 +34,6 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt*geometry: 100x100
 
-#Xft.dpi:  220
-
 # fix numpad for neo-layout
 URxvt.keysym.KP_Add:    +
 URxvt.keysym.KP_Subtract: -

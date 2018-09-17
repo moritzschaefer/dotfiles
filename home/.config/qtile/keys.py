@@ -32,6 +32,7 @@ def move_window_to_screen(screen):
             w.togroup(qtile.screens[screen].group.name)
     return cmd
 
+
 def switch_screens():
     def __inner(qtile):
         i = qtile.screens.index(qtile.currentScreen)
