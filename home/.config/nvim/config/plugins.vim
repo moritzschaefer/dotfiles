@@ -66,6 +66,7 @@ nmap     <Leader>gs :Gstatus<CR>gg<c-n>
 nnoremap <Leader>d :Gdiff<CR>
 nnoremap <silent> <Leader>dg :diffget<CR>
 nnoremap <silent> <Leader>dp :diffput<CR>
+autocmd QuickFixCmdPost *grep* cwindow
 
 " gitgutter
 if exists('&signcolumn')  " Vim 7.4.2201
