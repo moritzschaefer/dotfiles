@@ -1,3 +1,7 @@
+# homesick
+
+This is a homesick castle. See https://github.com/technicalpickles/homesick for how to load and use it.
+
 # neovim setup
 
 For neovim you need to install vim-plug first (sorry, not included here). Have a look here:

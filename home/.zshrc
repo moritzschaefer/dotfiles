@@ -7,7 +7,7 @@ ZSH=/usr/share/oh-my-zsh/
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="jonathan"
+ZSH_THEME="jonathan_modified"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -101,6 +101,8 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
 
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
 if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
@@ -112,5 +114,13 @@ if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
                         TERM=screen
         esac
 fi
+
+function cs () {
+    cd $1
+    ls
+}
+
+_Z_CMD=c
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
