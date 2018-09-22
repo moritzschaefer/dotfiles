@@ -8,8 +8,8 @@ from libqtile.command import lazy
 
 from groups import groups, group_keys
 
-mod = 'mod1'  # use alt for supermod key
-alt = 'mod4'  # use supermodkey for alt...
+alt = 'mod1'
+mod = 'mod4'
 
 music_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
              '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
