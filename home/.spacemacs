@@ -31,26 +31,23 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     python
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     spotify
-     auto-completion
-     better-defaults
+     ;; auto-completion
+     ;; better-defaults
      emacs-lisp
-     git
-     github
-     markdown
-     org
+     ;; git
+     ;; markdown
+     (org :variables org-projectile-file "TODOs.org")
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
+     ;; spell-checking
+     ;; syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -136,10 +133,10 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               ;; :size 13
+                               ;;:size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.35)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -303,6 +300,113 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (require 'find-lisp)
+  (setq moritzs/org-agenda-directory "~/wiki/gtd/")
+  (setq org-agenda-files
+        (find-lisp-find-files moritzs/org-agenda-directory "\.org$"))
+  (setq org-capture-templates
+        `(("i" "inbox" entry (file "~/wiki/gtd/inbox.org")
+           "* TODO %?")
+          ("p" "paper" entry (file "~/wiki/gtd/papers.org")
+           "* TODO %(moritzs/trim-citation-title \"%:title\")\n%a" :immediate-finish t)
+          ("e" "email" entry (file+headline "~/wiki/gtd/emails.org" "Emails")
+           "* TODO [#A] Reply: %a :@home:@office:" :immediate-finish t)
+          ("w" "Weekly Review" entry (file+olp+datetree "~/wiki/gtd/reviews.org")
+           (file "~/wiki/gtd/templates/weekly_review.org"))
+          ("s" "Snippet" entry (file "~/wiki/deft/capture.org")
+           "* Snippet %<%Y-%m-%d %H:%M>\n%?")))
+  (require 'org-agenda)
+  (setq moritzs/org-agenda-inbox-view
+        `("i" "Inbox" todo ""
+          ((org-agenda-files '("~/wiki/gtd/inbox.org")))))
+  (setq moritzs/org-agenda-someday-view
+        `("s" "Someday" todo ""
+          ((org-agenda-files '("~/wiki/gtd/someday.org")))))
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-log-state-notes-insert-after-drawers nil)
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+          (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-log-state-notes-insert-after-drawers nil)
+  (setq org-tag-alist (quote (("@errand" . ?e)
+                              ("@office" . ?o)
+                              ("@home" . ?h)
+                              ("@school" . ?s)
+                              (:newline)
+                              ("WAITING" . ?w)
+                              ("HOLD" . ?H)
+                              ("CANCELLED" . ?c))))
+
+  (setq org-fast-tag-selection-single-key nil)
+  (setq org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil)
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-refile-targets '(("next.org" :level . 0)
+                             ("someday.org" :level . 0)
+                             ("projects.org" :maxlevel . 1)))
+(defvar moritzs/org-agenda-bulk-process-key ?f
+  "Default key for bulk processing inbox items.")
+
+(defun moritzs/org-process-inbox ()
+  "Called in org-agenda-mode, processes all inbox items."
+  (interactive)
+  (org-agenda-bulk-mark-regexp "inbox:")
+  (moritzs/bulk-process-entries))
+
+(defun moritzs/org-agenda-process-inbox-item ()
+  "Process a single item in the org-agenda."
+  (org-with-wide-buffer
+   (org-agenda-set-tags)
+   (org-agenda-priority)
+   (org-agenda-set-effort)
+   (org-agenda-refile nil nil t)))
+
+(defun moritzs/bulk-process-entries ()
+  (if (not (null org-agenda-bulk-marked-entries))
+      (let ((entries (reverse org-agenda-bulk-marked-entries))
+            (processed 0)
+            (skipped 0))
+        (dolist (e entries)
+          (let ((pos (text-property-any (point-min) (point-max) 'org-hd-marker e)))
+            (if (not pos)
+                (progn (message "Skipping removed entry at %s" e)
+                       (cl-incf skipped))
+              (goto-char pos)
+              (let (org-loop-over-headlines-in-active-region) (funcall 'moritzs/org-agenda-process-inbox-item))
+              ;; `post-command-hook' is not run yet.  We make sure any
+              ;; pending log note is processed.
+              (when (or (memq 'org-add-log-note (default-value 'post-command-hook))
+                        (memq 'org-add-log-note post-command-hook))
+                (org-add-log-note))
+              (cl-incf processed))))
+        (org-agenda-redo)
+        (unless org-agenda-persistent-marks (org-agenda-bulk-unmark-all))
+        (message "Acted on %d entries%s%s"
+                 processed
+                 (if (= skipped 0)
+                     ""
+                   (format ", skipped %d (disappeared before their turn)"
+                           skipped))
+                 (if (not org-agenda-persistent-marks) "" " (kept marked)")))
+    ))
+
+
+
+(defun moritzs/org-inbox-capture ()
+  (interactive)
+  "Capture a task in agenda mode."
+  (org-capture nil "i"))
+
+(setq org-agenda-bulk-custom-functions `((,moritzs/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
+
+(define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
+(define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
+(define-key org-agenda-mode-map "R" 'org-agenda-refile)
+(define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
   )
 
 (defun dotspacemacs/user-config ()
@@ -312,23 +416,95 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; For python
-  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  ;; For ruby
-  (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  ;; For Javascript
-  (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (defun evil-paste-after-from-0 ()
-    (interactive)
-    (let ((evil-this-register ?0))
-      (call-interactively 'evil-paste-after)))
-
-  (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
-  (setq-default dotspacemacs-configuration-layers
-  '((org :variables org-projectile-file "TODOs.org")))
   (with-eval-after-load 'org-agenda
     (require 'org-projectile)
-    (push (org-projectile:todo-files) org-agenda-files))
+    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+    )
+  (defvar moritzs/new-project-template
+    "
+    *Project Purpose/Principles*:
+
+    *Project Outcome*:
+    "
+    "Project template, inserted when a new project is created")
+
+  (defvar moritzs/is-new-project nil
+    "Boolean indicating whether it's during the creation of a new project")
+
+  (defun moritzs/refile-new-child-advice (orig-fun parent-target child)
+    (let ((res (funcall orig-fun parent-target child)))
+      (save-excursion
+        (find-file (nth 1 parent-target))
+        (goto-char (org-find-exact-headline-in-buffer child))
+        (org-add-note)
+        )
+      res))
+
+  (advice-add 'org-refile-new-child :around #'moritzs/refile-new-child-advice)
+  (defun moritzs/set-todo-state-next ()
+    "Visit each parent task and change NEXT states to TODO"
+    (org-todo "NEXT"))
+
+  (add-hook 'org-clock-in-hook 'moritzs/set-todo-state-next 'append)
+(setq org-agenda-block-separator nil)
+(setq org-agenda-start-with-log-mode t)
+(setq moritzs/org-agenda-todo-view
+      `(" " "Agenda"
+        ((agenda ""
+                 ((org-agenda-span 'day)
+                  (org-deadline-warning-days 365)))
+         (todo "TODO"
+               ((org-agenda-overriding-header "To Refile")
+                (org-agenda-files '("~/wiki/gtd/inbox.org"))))
+         (todo "TODO"
+               ((org-agenda-overriding-header "Emails")
+                (org-agenda-files '("~/wiki/gtd/emails.org"))))
+         (todo "NEXT"
+               ((org-agenda-overriding-header "In Progress")
+                (org-agenda-files '("~/wiki/gtd/someday.org"
+                                    "~/wiki/gtd/projects.org"
+                                    "~/wiki/gtd/next.org"))
+                ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
+                ))
+         (todo "TODO"
+               ((org-agenda-overriding-header "Projects")
+                (org-agenda-files '("~/wiki/gtd/projects.org"))
+                (org-agenda-skip-function #'moritzs/org-agenda-skip-all-siblings-but-first)))
+         (todo "TODO"
+               ((org-agenda-overriding-header "One-off Tasks")
+                (org-agenda-files '("~/wiki/gtd/next.org"))
+                (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
+         nil)))
+
+(defun moritzs/org-agenda-skip-all-siblings-but-first ()
+  "Skip all but the first non-done entry."
+  (let (should-skip-entry)
+    (unless (or (org-current-is-todo)
+                (not (org-get-scheduled-time (point))))
+      (setq should-skip-entry t))
+    (save-excursion
+      (while (and (not should-skip-entry) (org-goto-sibling t))
+        (when (org-current-is-todo)
+          (setq should-skip-entry t))))
+    (when should-skip-entry
+      (or (outline-next-heading)
+          (goto-char (point-max))))))
+
+(defun org-current-is-todo ()
+  (string= "TODO" (org-get-todo-state)))
+
+(defun moritzs/switch-to-agenda ()
+  (interactive)
+  (org-agenda nil " ")
+  (delete-other-windows))
+
+(bind-key "<f1>" 'moritzs/switch-to-agenda)
+(setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
+(setq org-agenda-custom-commands 
+      `(,moritzs/org-agenda-inbox-view
+        ,moritzs/org-agenda-someday-view
+        ,moritzs/org-agenda-todo-view
+        ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -338,9 +514,12 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+    ("/home/moritz/wiki/gtd/inbox.org" "~/Projects/dachboden/TODOs.org" "~/Projects/phd/TODOs.org" "~/Projects/dachboden/TODOs.org" "~/Projects/phd/TODOs.org" "~/Projects/phd/TODOs.org" "~/Projects/dachboden/TODOs.org")))
  '(package-selected-packages
    (quote
-    (spotify helm-spotify-plus multi unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip evil-magit magit magit-popup git-commit ghub treepy graphql with-editor company-statistics auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc flycheck cython-mode company-anaconda company anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
