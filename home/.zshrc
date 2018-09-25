@@ -107,6 +107,8 @@ source $ZSH/oh-my-zsh.sh
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
+BROWSER=firefox
+
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
 if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
         case $(tmux showenv TERM 2>/dev/null) in
