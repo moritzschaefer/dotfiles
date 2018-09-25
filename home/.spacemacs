@@ -354,164 +354,167 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq org-refile-targets '(("next.org" :level . 0)
                              ("someday.org" :level . 0)
                              ("projects.org" :maxlevel . 1)))
-(defvar moritzs/org-agenda-bulk-process-key ?f
-  "Default key for bulk processing inbox items.")
+  (defvar moritzs/org-agenda-bulk-process-key ?f
+    "Default key for bulk processing inbox items.")
 
-(defun moritzs/org-process-inbox ()
-  "Called in org-agenda-mode, processes all inbox items."
-  (interactive)
-  (org-agenda-bulk-mark-regexp "inbox:")
-  (moritzs/bulk-process-entries))
+  (defun moritzs/org-process-inbox ()
+    "Called in org-agenda-mode, processes all inbox items."
+    (interactive)
+    (org-agenda-bulk-mark-regexp "inbox:")
+    (moritzs/bulk-process-entries))
 
-(defun moritzs/org-agenda-process-inbox-item ()
-  "Process a single item in the org-agenda."
-  (org-with-wide-buffer
-   (org-agenda-set-tags)
-   (org-agenda-priority)
-   (org-agenda-set-effort)
-   (org-agenda-refile nil nil t)))
+  (defun moritzs/org-agenda-process-inbox-item ()
+    "Process a single item in the org-agenda."
+    (org-with-wide-buffer
+    (org-agenda-set-tags)
+    (org-agenda-priority)
+    (org-agenda-set-effort)
+    (org-agenda-refile nil nil t)))
 
-(defun moritzs/bulk-process-entries ()
-  (if (not (null org-agenda-bulk-marked-entries))
-      (let ((entries (reverse org-agenda-bulk-marked-entries))
-            (processed 0)
-            (skipped 0))
-        (dolist (e entries)
-          (let ((pos (text-property-any (point-min) (point-max) 'org-hd-marker e)))
-            (if (not pos)
-                (progn (message "Skipping removed entry at %s" e)
-                       (cl-incf skipped))
-              (goto-char pos)
-              (let (org-loop-over-headlines-in-active-region) (funcall 'moritzs/org-agenda-process-inbox-item))
-              ;; `post-command-hook' is not run yet.  We make sure any
-              ;; pending log note is processed.
-              (when (or (memq 'org-add-log-note (default-value 'post-command-hook))
-                        (memq 'org-add-log-note post-command-hook))
-                (org-add-log-note))
-              (cl-incf processed))))
-        (org-agenda-redo)
-        (unless org-agenda-persistent-marks (org-agenda-bulk-unmark-all))
-        (message "Acted on %d entries%s%s"
-                 processed
-                 (if (= skipped 0)
-                     ""
-                   (format ", skipped %d (disappeared before their turn)"
-                           skipped))
-                 (if (not org-agenda-persistent-marks) "" " (kept marked)")))
-    ))
+  (defun moritzs/bulk-process-entries ()
+    (if (not (null org-agenda-bulk-marked-entries))
+        (let ((entries (reverse org-agenda-bulk-marked-entries))
+              (processed 0)
+              (skipped 0))
+          (dolist (e entries)
+            (let ((pos (text-property-any (point-min) (point-max) 'org-hd-marker e)))
+              (if (not pos)
+                  (progn (message "Skipping removed entry at %s" e)
+                        (cl-incf skipped))
+                (goto-char pos)
+                (let (org-loop-over-headlines-in-active-region) (funcall 'moritzs/org-agenda-process-inbox-item))
+                ;; `post-command-hook' is not run yet.  We make sure any
+                ;; pending log note is processed.
+                (when (or (memq 'org-add-log-note (default-value 'post-command-hook))
+                          (memq 'org-add-log-note post-command-hook))
+                  (org-add-log-note))
+                (cl-incf processed))))
+          (org-agenda-redo)
+          (unless org-agenda-persistent-marks (org-agenda-bulk-unmark-all))
+          (message "Acted on %d entries%s%s"
+                  processed
+                  (if (= skipped 0)
+                      ""
+                    (format ", skipped %d (disappeared before their turn)"
+                            skipped))
+                  (if (not org-agenda-persistent-marks) "" " (kept marked)")))
+      ))
 
 
 
-(defun moritzs/org-inbox-capture ()
-  (interactive)
-  "Capture a task in agenda mode."
-  (org-capture nil "i"))
+  (defun moritzs/org-inbox-capture ()
+    (interactive)
+    "Capture a task in agenda mode."
+    (org-capture nil "i"))
 
-(setq org-agenda-bulk-custom-functions `((,moritzs/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
+  (setq org-agenda-bulk-custom-functions `((,moritzs/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
 
-(define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
-(define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
-(define-key org-agenda-mode-map "R" 'org-agenda-refile)
-(define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
+  (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
+  (define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
+  (define-key org-agenda-mode-map "R" 'org-agenda-refile)
+  (define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-    )
-  (defvar moritzs/new-project-template
-    "
-    *Project Purpose/Principles*:
+    "Configuration function for user code.
+  This function is called at the very end of Spacemacs initialization after
+  layers configuration.
+  This is the place where most of your configurations should be done. Unless it is
+  explicitly specified that a variable should be set before a package is loaded,
+  you should place your code here."
+    (with-eval-after-load 'org-agenda
+      (require 'org-projectile)
+      (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+      )
+    (defvar moritzs/new-project-template
+      "
+      *Project Purpose/Principles*:
 
-    *Project Outcome*:
-    "
-    "Project template, inserted when a new project is created")
+      *Project Outcome*:
+      "
+      "Project template, inserted when a new project is created")
 
-  (defvar moritzs/is-new-project nil
-    "Boolean indicating whether it's during the creation of a new project")
+    (defvar moritzs/is-new-project nil
+      "Boolean indicating whether it's during the creation of a new project")
 
-  (defun moritzs/refile-new-child-advice (orig-fun parent-target child)
-    (let ((res (funcall orig-fun parent-target child)))
+    (defun moritzs/refile-new-child-advice (orig-fun parent-target child)
+      (let ((res (funcall orig-fun parent-target child)))
+        (save-excursion
+          (find-file (nth 1 parent-target))
+          (goto-char (org-find-exact-headline-in-buffer child))
+          (org-add-note)
+          )
+        res))
+
+    (advice-add 'org-refile-new-child :around #'moritzs/refile-new-child-advice)
+    (defun moritzs/set-todo-state-next ()
+      "Visit each parent task and change NEXT states to TODO"
+      (org-todo "NEXT"))
+
+    (add-hook 'org-clock-in-hook 'moritzs/set-todo-state-next 'append)
+  (setq org-agenda-block-separator nil)
+  (setq org-agenda-start-with-log-mode t)
+  (setq moritzs/org-agenda-todo-view
+        `(" " "Agenda"
+          ((agenda ""
+                  ((org-agenda-span 'day)
+                    (org-deadline-warning-days 365)))
+          (todo "TODO"
+                ((org-agenda-overriding-header "To Refile")
+                  (org-agenda-files '("~/wiki/gtd/inbox.org"))))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Emails")
+                  (org-agenda-files '("~/wiki/gtd/emails.org"))))
+          (todo "NEXT"
+                ((org-agenda-overriding-header "In Progress")
+                  (org-agenda-files '("~/wiki/gtd/someday.org"
+                                      "~/wiki/gtd/projects.org"
+                                      "~/wiki/gtd/next.org"))
+                  ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
+                  ))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Projects")
+                  (org-agenda-files '("~/wiki/gtd/projects.org"))
+                  (org-agenda-skip-function #'moritzs/org-agenda-skip-all-siblings-but-first)))
+          (todo "TODO"
+                ((org-agenda-overriding-header "One-off Tasks")
+                  (org-agenda-files '("~/wiki/gtd/next.org"))
+                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
+          nil)))
+
+  (defun moritzs/org-agenda-skip-all-siblings-but-first ()
+    "Skip all but the first non-done entry."
+    (let (should-skip-entry)
+      (unless (or (org-current-is-todo)
+                  (not (org-get-scheduled-time (point))))
+        (setq should-skip-entry t))
       (save-excursion
-        (find-file (nth 1 parent-target))
-        (goto-char (org-find-exact-headline-in-buffer child))
-        (org-add-note)
-        )
-      res))
+        (while (and (not should-skip-entry) (org-goto-sibling t))
+          (when (org-current-is-todo)
+            (setq should-skip-entry t))))
+      (when should-skip-entry
+        (or (outline-next-heading)
+            (goto-char (point-max))))))
 
-  (advice-add 'org-refile-new-child :around #'moritzs/refile-new-child-advice)
-  (defun moritzs/set-todo-state-next ()
-    "Visit each parent task and change NEXT states to TODO"
-    (org-todo "NEXT"))
+  (defun org-current-is-todo ()
+    (string= "TODO" (org-get-todo-state)))
 
-  (add-hook 'org-clock-in-hook 'moritzs/set-todo-state-next 'append)
-(setq org-agenda-block-separator nil)
-(setq org-agenda-start-with-log-mode t)
-(setq moritzs/org-agenda-todo-view
-      `(" " "Agenda"
-        ((agenda ""
-                 ((org-agenda-span 'day)
-                  (org-deadline-warning-days 365)))
-         (todo "TODO"
-               ((org-agenda-overriding-header "To Refile")
-                (org-agenda-files '("~/wiki/gtd/inbox.org"))))
-         (todo "TODO"
-               ((org-agenda-overriding-header "Emails")
-                (org-agenda-files '("~/wiki/gtd/emails.org"))))
-         (todo "NEXT"
-               ((org-agenda-overriding-header "In Progress")
-                (org-agenda-files '("~/wiki/gtd/someday.org"
-                                    "~/wiki/gtd/projects.org"
-                                    "~/wiki/gtd/next.org"))
-                ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                ))
-         (todo "TODO"
-               ((org-agenda-overriding-header "Projects")
-                (org-agenda-files '("~/wiki/gtd/projects.org"))
-                (org-agenda-skip-function #'moritzs/org-agenda-skip-all-siblings-but-first)))
-         (todo "TODO"
-               ((org-agenda-overriding-header "One-off Tasks")
-                (org-agenda-files '("~/wiki/gtd/next.org"))
-                (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
-         nil)))
+  (defun moritzs/switch-to-agenda ()
+    (interactive)
+    (org-agenda nil " ")
+    (delete-other-windows))
 
-(defun moritzs/org-agenda-skip-all-siblings-but-first ()
-  "Skip all but the first non-done entry."
-  (let (should-skip-entry)
-    (unless (or (org-current-is-todo)
-                (not (org-get-scheduled-time (point))))
-      (setq should-skip-entry t))
-    (save-excursion
-      (while (and (not should-skip-entry) (org-goto-sibling t))
-        (when (org-current-is-todo)
-          (setq should-skip-entry t))))
-    (when should-skip-entry
-      (or (outline-next-heading)
-          (goto-char (point-max))))))
-
-(defun org-current-is-todo ()
-  (string= "TODO" (org-get-todo-state)))
-
-(defun moritzs/switch-to-agenda ()
-  (interactive)
-  (org-agenda nil " ")
-  (delete-other-windows))
-
-(bind-key "<f1>" 'moritzs/switch-to-agenda)
-(setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
-(setq org-agenda-custom-commands
+  (bind-key "<f1>" 'moritzs/switch-to-agenda)
+  (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
+  (setq org-agenda-custom-commands
       `(,moritzs/org-agenda-inbox-view
         ,moritzs/org-agenda-someday-view
         ,moritzs/org-agenda-todo-view
         ))
   )
+
+    ;;(zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme ess-smart-equals ess-R-data-view ctable ess julia-mode ein skewer-mode request-deferred websocket deferred js2-mode simple-httpd spotify helm-spotify-plus multi unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip evil-magit magit magit-popup git-commit ghub treepy graphql with-editor company-statistics auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc flycheck cython-mode company-anaconda company anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    ;;(org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -520,17 +523,13 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-/*  '(org-agenda-files */ ;; this variable should work with all the other code
-/*    (quote */
-/*     ("/home/moritz/wiki/gtd/inbox.org" "~/Projects/dachboden/TODOs.org" "~/Projects/phd/TODOs.org"))) */
  '(package-selected-packages
    (quote
-    /* (zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme ess-smart-equals ess-R-data-view ctable ess julia-mode ein skewer-mode request-deferred websocket deferred js2-mode simple-httpd spotify helm-spotify-plus multi unfill smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip evil-magit magit magit-popup git-commit ghub treepy graphql with-editor company-statistics auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc flycheck cython-mode company-anaconda company anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))) */
-    /* (org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))) */
-    ())))
+    (magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme yapfify ws-butler winum white-sand-theme which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle seti-theme reverse-theme restart-emacs rebecca-theme rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el paradox orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mwim mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum live-py-mode linum-relative link-hint light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ess-smart-equals ess-R-data-view espresso-theme elisp-slime-nav ein dumb-jump dracula-theme django-theme diminish define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-statistics company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
