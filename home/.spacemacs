@@ -430,6 +430,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'ess-mode-hook
             (lambda ()
               (ess-toggle-underscore nil)))
+    (require 'exec-path-from-shell)
+    (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+    (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
     (with-eval-after-load 'org-agenda
       (require 'org-projectile)
       (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
