@@ -326,8 +326,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
            "* TODO %?")
           ("p" "paper" entry (file "~/wiki/gtd/papers.org")
            "* TODO %(moritzs/trim-citation-title \"%:title\")\n%a" :immediate-finish t)
-          ("e" "email" entry (file+headline "~/wiki/gtd/emails.org" "Emails")
-           "* TODO [#A] Reply: %a :@home:@office:" :immediate-finish t)
+          ;; ("e" "email" entry (file+headline "~/wiki/gtd/emails.org" "Emails")
+          ;;  "* TODO [#A] Reply: %a :@home:@office:" :immediate-finish t)
           ("w" "Weekly Review" entry (file+olp+datetree "~/wiki/gtd/reviews.org")
            (file "~/wiki/gtd/templates/weekly_review.org"))
           ("s" "Snippet" entry (file "~/wiki/deft/capture.org")
@@ -433,10 +433,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
   This is the place where most of your configurations should be done. Unless it is
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
+  ;; clipboard management
   (setq x-select-enable-clipboard nil)
   (define-key evil-insert-state-map  (kbd "C-v") (kbd "+"))
   (define-key evil-ex-completion-map (kbd "C-v") (kbd "+"))
   (define-key evil-ex-search-keymap  (kbd "C-v") (kbd "+"))
+
+  ;; 
+  (defun org-archive-done-tasks ()
+    (interactive)
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (outline-previous-heading)))
+     "/DONE" 'tree))
+  (spacemacs/set-leader-keys "aoA" 'org-archive-done-tasks)
 
   (add-hook 'ess-mode-hook
             (lambda ()
@@ -444,10 +455,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (require 'exec-path-from-shell)
     (exec-path-from-shell-copy-env "SSH_AGENT_PID")
     (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
-    (with-eval-after-load 'org-agenda
-      (require 'org-projectile)
-      (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-      )
+    ;; TODO dont add projectile files...
+    ;; (with-eval-after-load 'org-agenda
+    ;;   (require 'org-projectile)
+    ;;   (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+    ;;   )
     (defvar moritzs/new-project-template
       "
       *Project Purpose/Principles*:
@@ -484,9 +496,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
           (todo "TODO"
                 ((org-agenda-overriding-header "To Refile")
                   (org-agenda-files '("~/wiki/gtd/inbox.org"))))
-          (todo "TODO"
-                ((org-agenda-overriding-header "Emails")
-                  (org-agenda-files '("~/wiki/gtd/emails.org"))))
+          ;; (todo "TODO"
+          ;;       ((org-agenda-overriding-header "Emails")
+          ;;         (org-agenda-files '("~/wiki/gtd/emails.org")))) TODO add later..
           (todo "NEXT"
                 ((org-agenda-overriding-header "In Progress")
                   (org-agenda-files '("~/wiki/gtd/someday.org"
@@ -548,7 +560,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files
    (quote
-    ("/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/gtd/main.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/reviews.org" "/home/moritz/wiki/gtd/someday.org" "/home/moritz/wiki/gtd/next.org" "/home/moritz/wiki/gtd/templates/weekly_review.org")))
+    ("/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/main.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/reviews.org" "/home/moritz/wiki/gtd/someday.org" "/home/moritz/wiki/gtd/next.org")))
  '(package-selected-packages
    (quote
     (ox-reveal yaml-mode xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc company-tern tern coffee-mode tide typescript-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme yapfify ws-butler winum white-sand-theme which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle seti-theme reverse-theme restart-emacs rebecca-theme rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el paradox orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mwim mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum live-py-mode linum-relative link-hint light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ess-smart-equals ess-R-data-view espresso-theme elisp-slime-nav ein dumb-jump dracula-theme django-theme diminish define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-statistics company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
