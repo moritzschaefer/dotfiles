@@ -74,7 +74,7 @@ export TERM="xterm-256color"
 export ARCHFLAGS="-arch x86_64"
 
 # anaconda
-export PATH="/opt/anaconda/bin:$PATH"
+# export PATH="/opt/anaconda/bin:$PATH"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
