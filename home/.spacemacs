@@ -330,17 +330,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq moritzs/org-agenda-directory "~/wiki/gtd/")
   (setq org-agenda-files
         (find-lisp-find-files moritzs/org-agenda-directory "\.org$"))
-  (setq org-capture-templates
-        `(("i" "inbox" entry (file "~/wiki/gtd/inbox.org")
-           "* TODO %?")
-          ("p" "paper" entry (file "~/wiki/gtd/papers.org")
-           "* TODO %(moritzs/trim-citation-title \"%:title\")\n%a" :immediate-finish t)
-          ;; ("e" "email" entry (file+headline "~/wiki/gtd/emails.org" "Emails")
-          ;;  "* TODO [#A] Reply: %a :@home:@office:" :immediate-finish t)
-          ("w" "Weekly Review" entry (file+olp+datetree "~/wiki/gtd/reviews.org")
-           (file "~/wiki/gtd/templates/weekly_review.org"))
-          ("s" "Snippet" entry (file "~/wiki/deft/capture.org")
-           "* Snippet %<%Y-%m-%d %H:%M>\n%?")))
   (require 'org-agenda)
   (setq moritzs/org-agenda-inbox-view
         `("i" "Inbox" todo ""
@@ -595,6 +584,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
      ("i" "inbox" entry
       (file "~/wiki/gtd/inbox.org")
       "* TODO %?")
+     ;;         ;; ("e" "email" entry (file+headline "~/wiki/gtd/emails.org" "Emails")
+     ;;         ;;  "* TODO [#A] Reply: %a :@home:@office:" :immediate-finish t)
      ("p" "paper" entry
       (file "~/wiki/gtd/papers.org")
       "* TODO %(moritzs/trim-citation-title \"%:title\")
