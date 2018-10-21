@@ -433,6 +433,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   This is the place where most of your configurations should be done. Unless it is
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
+  (use-package org
+    :config
+    (setq org-startup-indented t))
   ;; clipboard management
   (setq x-select-enable-clipboard nil)
   (define-key evil-insert-state-map  (kbd "C-v") (kbd "+"))
