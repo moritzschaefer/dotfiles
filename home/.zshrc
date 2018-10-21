@@ -65,10 +65,13 @@ plugins=(git adb archlinux autopep8 docker docker-compose gnu-utils pip vi-mode 
 # export LANG=en_US.UTF-8
 
 # bindkey ae vi-cmd-mode
-export EDITOR=vim
-export VISUAL=vim
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
+export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 export RM_STAR_WAIT=1
 export TERM="xterm-256color"
+
+BROWSER=firefox
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -107,7 +110,6 @@ source $ZSH/oh-my-zsh.sh
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
-BROWSER=firefox
 
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
 if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
