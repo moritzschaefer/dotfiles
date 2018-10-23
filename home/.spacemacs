@@ -447,6 +447,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (spacemacs/toggle-truncate-lines-on)
 
+  (use-package org
+    :config
+    (setq org-startup-indented t))
   ;; clipboard management
   (setq x-select-enable-clipboard nil)
   (define-key evil-insert-state-map  (kbd "C-v") (kbd "+"))
