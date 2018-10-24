@@ -433,6 +433,25 @@ before packages are loaded. If you are unsure, you should try in setting them in
   This is the place where most of your configurations should be done. Unless it is
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
+
+  ;; add sketch to org file
+  (defun org-download-sketch ()
+    "Draw sketch and download it. Used tool is mypaint"
+    (interactive)
+    ;; We can use most of the objects from org-download
+    (call-process-shell-command (format "rm %s" org-download-screenshot-file)
+                                nil "*Shell Command Output*" t)
+    (call-process-shell-command (format "/usr/bin/mypaint %s"
+                                        org-download-screenshot-file)
+                                nil "*Shell Command Output*" t
+                                )
+    (org-download-image org-download-screenshot-file))
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "id" 'org-download-sketch)
+  ;; auto org save buffers after refile.
+  (advice-add 'org-refile :after
+              (lambda (&rest _)
+                (org-save-all-org-buffers)))
   (use-package org
     :config
     (setq org-startup-indented t))
