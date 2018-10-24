@@ -10,4 +10,6 @@ lxqt-policykit-agent &
 seafile-applet &
 blueman-applet &
 sparkleshare &
-emacs --fg-daemon &
+emacs --bg-daemon
+emacsclient -c &
+
