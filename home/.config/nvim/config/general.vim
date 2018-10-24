@@ -13,9 +13,9 @@ set smartcase
 
 set number
 
-inoremap ae <Esc>
-inoremap a<Space> a
-inoremap <Esc> <Nop>
+" inoremap ae <Esc>
+" inoremap a<Space> a
+" inoremap <Esc> <Nop>
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start

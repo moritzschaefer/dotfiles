@@ -18,7 +18,7 @@ main_bar = bar.Bar(
             widget.Volume(theme_path=icon_theme_path),
             widget.WindowName(),
             widget.Net(interface='wlp2s0'),
-            widget.Systray(icon_size=46),
+            widget.Systray(icon_size=72),
             widget.Sep(**soft_sep),
             widget.Battery(foreground='247052', low_percentage=0.20,
                            low_foreground='fa5e5b', update_delay=10,
@@ -26,7 +26,7 @@ main_bar = bar.Bar(
                            '{watt:.2}W'),
             widget.Sep(**soft_sep),
             widget.Clock(timezone='Europe/Paris', format='%B %-d, %H:%M'),
-            ], 45)
+            ], 70)
 
 # bar.Bar(
 #             [
