@@ -11,3 +11,4 @@ seafile-applet &
 blueman-applet &
 sparkleshare &
 emacs --fg-daemon &
+touchegg &

@@ -369,6 +369,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defvar moritzs/org-agenda-bulk-process-key ?f
     "Default key for bulk processing inbox items.")
 
+  (defun moritzs/fetch-citation-title (url)
+    (let ((title))
+      (with-current-buffer (url-retrieve-synchronously url)
+        (goto-char (point-min))
+        (re-search-forward "<title>\\([^<]*\\)</title>" nil t 1)
+        (setq title (match-string 1))
+        (goto-char (point-min))
+        (re-search-forward "charset=\\([-0-9a-zA-Z]*\\)" nil t 1)
+        (decode-coding-string title (intern (match-string 1))))))
+
   (defun moritzs/org-process-inbox ()
     "Called in org-agenda-mode, processes all inbox items."
     (interactive)
@@ -430,6 +440,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   This is the place where most of your configurations should be done. Unless it is
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
+  (define-coding-system-alias 'UTF-8 'utf-8)
 
   (global-set-key (kbd "<left>") 'evil-window-left)
   (global-set-key (kbd "<right>") 'evil-window-right)
@@ -596,8 +607,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
       "* TODO %?")
      ("p" "paper" entry
       (file "~/wiki/gtd/papers.org")
-      "* TODO %(moritzs/trim-citation-title \"%:title\")
-%a" :immediate-finish t)
+      "* TODO %(moritzs/fetch-citation-title \"%x\")
+%x" :immediate-finish t)
+     ("P" "paper with notes" entry
+      (file "~/wiki/gtd/papers.org")
+      "* TODO %(moritzs/fetch-citation-title \"%x\")
+%x")
      ("w" "Weekly Review" entry
       (file+olp+datetree "~/wiki/gtd/reviews.org")
       (file "~/wiki/gtd/templates/weekly_review.org"))
