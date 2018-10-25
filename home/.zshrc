@@ -127,6 +127,8 @@ function cs () {
     ls
 }
 
+export FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up'
+
 _Z_CMD=c
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 

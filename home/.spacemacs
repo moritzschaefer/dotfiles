@@ -442,6 +442,24 @@ before packages are loaded. If you are unsure, you should try in setting them in
   you should place your code here."
   (define-coding-system-alias 'UTF-8 'utf-8)
 
+  ;; add sketch to org file
+  (defun org-download-sketch ()
+    "Draw sketch and download it. Used tool is mypaint"
+    (interactive)
+    ;; We can use most of the objects from org-download
+    (call-process-shell-command (format "rm %s" org-download-screenshot-file)
+                                nil "*Shell Command Output*" t)
+    (call-process-shell-command (format "/usr/bin/mypaint %s"
+                                        org-download-screenshot-file)
+                                nil "*Shell Command Output*" t
+                                )
+    (org-download-image org-download-screenshot-file))
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "id" 'org-download-sketch)
+  ;; auto org save buffers after refile.
+  (advice-add 'org-refile :after
+              (lambda (&rest _)
+                (org-save-all-org-buffers)))
   (global-set-key (kbd "<left>") 'evil-window-left)
   (global-set-key (kbd "<right>") 'evil-window-right)
   (global-set-key (kbd "<up>") 'evil-window-up)
