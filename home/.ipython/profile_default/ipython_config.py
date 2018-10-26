@@ -604,7 +604,7 @@ c.TerminalInteractiveShell.editor = 'vim'
 
 
 c.TerminalIPythonApp.display_banner = False
-c.InteractiveShellApp.log_level = 'INFO'
+c.InteractiveShellApp.log_level = 50
 c.InteractiveShellApp.exec_lines = [
     'import numpy as np',
     'import scipy as sp',
