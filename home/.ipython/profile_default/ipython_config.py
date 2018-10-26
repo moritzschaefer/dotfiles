@@ -1,4 +1,5 @@
 # Configuration file for ipython.
+c = get_config()
 
 #------------------------------------------------------------------------------
 # InteractiveShellApp(Configurable) configuration
@@ -596,26 +597,24 @@ c.TerminalInteractiveShell.editor = 'vim'
 
 ## If True, any %store-d variables will be automatically restored when IPython
 #  starts.
-#c.StoreMagics.autorestore = False
+# c.StoreMagics.autorestore = False
 
-import uuid
-from IPython.display import display_javascript, display_html, display
-import json
 
-class RenderJSON(object):
-    def __init__(self, json_data):
-        if isinstance(json_data, dict):
-            self.json_str = json.dumps(json_data)
-        else:
-            self.json_str = json
-        self.uuid = str(uuid.uuid4())
 
-    def _ipython_display_(self):
-        display_html('<div id="{}" style="height: 600px; width:100%;"></div>'.format(self.uuid),
-            raw=True
-        )
-        display_javascript("""
-        require(["https://rawgit.com/caldwell/renderjson/master/renderjson.js"], function() {
-          document.getElementById('%s').appendChild(renderjson(%s))
-        });
-        """ % (self.uuid, self.json_str), raw=True)
+
+
+c.TerminalIPythonApp.display_banner = False
+c.InteractiveShellApp.log_level = 'INFO'
+c.InteractiveShellApp.exec_lines = [
+    'import numpy as np',
+    'import scipy as sp',
+    'import pandas as pd',
+    'import matplotlib.pyplot as plt',
+    'import seaborn as sns'
+]
+c.InteractiveShell.colors = 'Linux'
+c.InteractiveShell.confirm_exit = False
+c.InteractiveShell.editor = 'vim'
+c.InteractiveShell.xmode = 'Context'
+
+c.PrefilterManager.multi_line_specials = True
