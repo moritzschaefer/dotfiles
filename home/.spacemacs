@@ -317,6 +317,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  (spacemacs/toggle-truncate-lines-on)
   ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (define-key key-translation-map [dead-grave] "`")
   (define-key key-translation-map [dead-acute] "'")
@@ -431,6 +433,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (setq org-agenda-bulk-custom-functions `((,moritzs/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
 
+  (defun moritzs/recent-download-file ()
+    (interactive)
+    "Open a recently downloaded file."
+
+    (setq downloaded-file (shell-command-to-string "ls -t ~/Downloads/ | head -n 1 | tr -d '\n'"))
+                                
+    (find-file-existing (format "~/Downloads/%s" downloaded-file))
+
+    )
+
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -466,6 +479,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                 nil "*Shell Command Output*" t
                                 )
     (org-download-image org-download-screenshot-file))
+  (spacemacs/set-leader-keys
+    "fd" 'moritzs/recent-download-file
+    )
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "id" 'org-download-sketch)
   ;; auto org save buffers after refile.
@@ -486,7 +502,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-ex-search-keymap [left] 'evil-backward-char)
   (define-key evil-ex-search-keymap [right] 'evil-forward-char)
 
-  (spacemacs/toggle-truncate-lines-on)
 
   (use-package org
     :config
