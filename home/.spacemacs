@@ -323,6 +323,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  (spacemacs/toggle-truncate-lines-on)
   ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
   (setq shell-file-name "/bin/bash") 
@@ -371,15 +373,28 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defvar moritzs/org-agenda-bulk-process-key ?f
     "Default key for bulk processing inbox items.")
 
-  (defun moritzs/fetch-citation-title (url)
-    (let ((title))
-      (with-current-buffer (url-retrieve-synchronously url)
-        (goto-char (point-min))
-        (re-search-forward "<title>\\([^<]*\\)</title>" nil t 1)
-        (setq title (match-string 1))
-        (goto-char (point-min))
-        (re-search-forward "charset=\\([-0-9a-zA-Z]*\\)" nil t 1)
-        (decode-coding-string title (intern (match-string 1))))))
+  (defun moritzs/compute-paper-template ()
+    (let (tmp url title abstract)
+      (setq url (shell-command-to-string "xsel -b"))
+      (setq title
+        (with-current-buffer (url-retrieve-synchronously url)
+          (goto-char (point-min))
+          (re-search-forward "<title>\\([^<]*\\)</title>" nil t 1)
+          (setq tmp (match-string 1))
+          (goto-char (point-min))
+          (re-search-forward "charset=\\([-0-9a-zA-Z]*\\)" nil t 1)
+          (decode-coding-string tmp (intern (match-string 1)))))
+      (setq abstract (shell-command-to-string (format "python -c \"import eutils; c=eutils.Client(); a=c.efetch('pubmed', c.esearch('pubmed', '%s').ids[0]); print(next(iter(a)).abstract, end='')\" 2> /dev/null" title )))
+
+      (format "TODO %s
+[[%s][Article]], [[file:%s][PDF]]
+** Abstract
+%s
+** Notes
+- %%?" title url "none yet" abstract)
+      )
+    )
+
 
   (defun moritzs/org-process-inbox ()
     "Called in org-agenda-mode, processes all inbox items."
@@ -433,6 +448,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (setq org-agenda-bulk-custom-functions `((,moritzs/org-agenda-bulk-process-key jethro/org-agenda-process-inbox-item)))
 
+  (defun moritzs/recent-download-file ()
+    (interactive)
+    "Open a recently downloaded file."
+
+    (setq downloaded-file (shell-command-to-string "ls -t ~/Downloads/ | head -n 1 | tr -d '\n'"))
+                                
+    (find-file-existing (format "~/Downloads/%s" downloaded-file))
+
+    )
+
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -443,6 +469,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
   (define-coding-system-alias 'UTF-8 'utf-8)
+
+  (add-hook 'org-capture-mode-hook 'evil-insert-state)
+
+  (require 'org-agenda)
+  (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
+  (define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
+  (define-key org-agenda-mode-map "R" 'org-agenda-refile)
+  (define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -468,6 +502,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                 nil "*Shell Command Output*" t
                                 )
     (org-download-image org-download-screenshot-file))
+  (spacemacs/set-leader-keys
+    "fd" 'moritzs/recent-download-file
+    )
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "id" 'org-download-sketch)
   ;; auto org save buffers after refile.
@@ -492,8 +529,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-set-key (kbd "M-/") 'hippie-expand)
 
 
-  (spacemacs/toggle-truncate-lines-on)
-
   (use-package org
     :config
     (setq org-startup-indented t))
@@ -507,10 +542,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (eval-after-load "ansi-term"
     '(define-key ansi-term-raw-map (kbd "C-v") 'term-paste))
 
-  (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
-  (define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
-  (define-key org-agenda-mode-map "R" 'org-agenda-refile)
-  (define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
   (defun org-archive-done-tasks ()
     (interactive)
     (org-map-entries
@@ -643,12 +674,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
       "* TODO %?")
      ("p" "paper" entry
       (file "~/wiki/gtd/papers.org")
-      "* TODO %(moritzs/fetch-citation-title \"%x\")
-%x" :immediate-finish t)
+      "* %(moritzs/compute-paper-template)" :immediate-finish t)
      ("P" "paper with notes" entry
       (file "~/wiki/gtd/papers.org")
-      "* TODO %(moritzs/fetch-citation-title \"%x\")
-%x")
+      "* %(moritzs/compute-paper-template)")
      ("w" "Weekly Review" entry
       (file+olp+datetree "~/wiki/gtd/reviews.org")
       (file "~/wiki/gtd/templates/weekly_review.org"))
