@@ -526,8 +526,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-ex-search-keymap [right] 'evil-forward-char)
 
   ;; refine autocompletion behavior
-  (global-set-key (kbd "M-/") 'hippie-expand)
-
+  (global-set-key (kbd "M-n") 'hippie-expand)
+  (global-set-key (kbd "M-n") 'yas-expand)
 
   (use-package org
     :config
