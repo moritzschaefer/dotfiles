@@ -15,6 +15,18 @@ music_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
              '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
 
 
+def emulate_tab():
+    def __inner(qtile):
+        subprocess.call(['xte', 'key Tab'])
+    return __inner
+
+
+def lock_screen():
+    def __inner(qtile):
+        subprocess.call(['mate-screensaver-command', '--lock'])
+    return __inner
+
+
 def restart():
     def __inner(qtile):
         subprocess.call(['setxkbmap', 'de'])  # workaround/fix
@@ -52,7 +64,7 @@ def screenshot(save=True, copy=True):
     def f(qtile):
         path = Path.home() / 'Screenshots'
         path /= f'screenshot_{str(int(time() * 100))}.png'
-        shot = subprocess.run(['maim', '-s'], stdout=subprocess.PIPE)
+        shot = subprocess.run(['maim', '-s', '-k'], stdout=subprocess.PIPE)
 
         if save:
             with open(path, 'wb') as sc:
@@ -115,11 +127,15 @@ keys = [
     Key([], 'XF86MonBrightnessDown', lazy.spawn('xbacklight -dec 10')),
     Key([], 'XF86MonBrightnessUp', lazy.spawn('xbacklight -inc 10')),
 
-
+    #  Workaround
+    Key(["shift"], 'space', lazy.function(emulate_tab())),
+    Key(["shift"], 'Return', lazy.function(emulate_tab())),
 
     # Toggle between different layouts as defined below
     Key([mod], 'space', lazy.next_layout()),
 
+
+    Key([mod, 'control'], 'l', lazy.function(lock_screen())),
     Key([mod, 'control'], 'r', lazy.function(restart())),
     Key([mod, 'control'], 'q', lazy.shutdown()),
     Key([mod], 'c', lazy.spawncmd()),
