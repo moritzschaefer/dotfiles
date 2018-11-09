@@ -2,7 +2,6 @@ import subprocess
 from time import time
 from pathlib import Path
 
-
 from libqtile.config import Key, Drag, Click
 from libqtile.command import lazy
 
@@ -14,11 +13,6 @@ mod = 'mod4'
 music_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
              '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
 
-
-def emulate_tab():
-    def __inner(qtile):
-        subprocess.call(['xte', 'key Tab'])
-    return __inner
 
 
 def lock_screen():
@@ -127,9 +121,6 @@ keys = [
     Key([], 'XF86MonBrightnessDown', lazy.spawn('xbacklight -dec 10')),
     Key([], 'XF86MonBrightnessUp', lazy.spawn('xbacklight -inc 10')),
 
-    #  Workaround
-    Key(["shift"], 'space', lazy.function(emulate_tab())),
-    Key(["shift"], 'Return', lazy.function(emulate_tab())),
 
     # Toggle between different layouts as defined below
     Key([mod], 'space', lazy.next_layout()),
