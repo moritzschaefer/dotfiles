@@ -318,7 +318,6 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  (spacemacs/toggle-truncate-lines-on)
   ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (define-key key-translation-map [dead-grave] "`")
   (define-key key-translation-map [dead-acute] "'")
@@ -470,6 +469,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
+  ;; only the third line works apparently...
+  ;;(add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines f)))
+  ;;(spacemacs/toggle-truncate-lines-off)
+  (add-hook 'org-mode-hook #'spacemacs/toggle-truncate-lines-off)
+
   (require 'org-agenda)
   (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
   (define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
@@ -532,7 +536,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (define-key evil-insert-state-map  (kbd "C-v") (kbd "+"))
   (define-key evil-ex-completion-map (kbd "C-v") (kbd "+"))
   (define-key evil-ex-search-keymap  (kbd "C-v") (kbd "+"))
-
 
   (eval-after-load "ansi-term"
     '(define-key ansi-term-raw-map (kbd "C-v") 'term-paste))
