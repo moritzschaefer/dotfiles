@@ -2,7 +2,6 @@ import subprocess
 from time import time
 from pathlib import Path
 
-
 from libqtile.config import Key, Drag, Click
 from libqtile.command import lazy
 
@@ -13,6 +12,13 @@ mod = 'mod4'
 
 music_cmd = ('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
              '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.')
+
+
+
+def lock_screen():
+    def __inner(qtile):
+        subprocess.call(['mate-screensaver-command', '--lock'])
+    return __inner
 
 
 def restart():
@@ -52,7 +58,7 @@ def screenshot(save=True, copy=True):
     def f(qtile):
         path = Path.home() / 'Screenshots'
         path /= f'screenshot_{str(int(time() * 100))}.png'
-        shot = subprocess.run(['maim', '-s'], stdout=subprocess.PIPE)
+        shot = subprocess.run(['maim', '-s', '-k'], stdout=subprocess.PIPE)
 
         if save:
             with open(path, 'wb') as sc:
@@ -116,10 +122,11 @@ keys = [
     Key([], 'XF86MonBrightnessUp', lazy.spawn('xbacklight -inc 10')),
 
 
-
     # Toggle between different layouts as defined below
     Key([mod], 'space', lazy.next_layout()),
 
+
+    Key([mod, 'control'], 'l', lazy.function(lock_screen())),
     Key([mod, 'control'], 'r', lazy.function(restart())),
     Key([mod, 'control'], 'q', lazy.shutdown()),
     Key([mod], 'c', lazy.spawncmd()),

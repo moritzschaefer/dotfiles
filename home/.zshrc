@@ -67,7 +67,7 @@ plugins=(git adb archlinux autopep8 docker docker-compose gnu-utils pip vi-mode 
 # bindkey ae vi-cmd-mode
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
-export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
+export VISUAL="emacsclient -t"                  # $VISUAL opens in terminal as well
 export RM_STAR_WAIT=1
 export TERM="xterm-256color"
 
