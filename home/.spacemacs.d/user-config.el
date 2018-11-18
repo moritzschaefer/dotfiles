@@ -44,6 +44,25 @@
   (org-download-image org-download-screenshot-file))
 
 (spacemacs/set-leader-keys
+  "feuc" (lambda () (interactive) (find-file "~/.spacemacs.d/user-config.el"))
+  )
+
+(spacemacs/set-leader-keys
+  "feui" (lambda () (interactive) (find-file "~/.spacemacs.d/user-init.el"))
+  )
+(apply #'spacemacs/declare-prefix '("fw" "wiki files"))
+(spacemacs/set-leader-keys
+  "fwm" (lambda () (interactive) (find-file "~/wiki/main.org"))
+  )
+(spacemacs/set-leader-keys
+  "fwp" (lambda () (interactive) (find-file "~/wiki/gtd/projects.org"))
+  )
+(spacemacs/set-leader-keys
+  "fww" (lambda () (interactive) (find-file "~/wiki/gtd/reviews.org"))
+  )
+
+
+(spacemacs/set-leader-keys
   "fd" 'moritzs/recent-download-file
   )
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
@@ -51,6 +70,9 @@
 
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
   "ip" 'moritzs/download-smartphone-photo)
+
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "$" 'moritzs/org-archive-done-tasks)
 
 ;; auto org save buffers after refile.
 (advice-add 'org-refile :after
@@ -90,15 +112,6 @@
 
 (eval-after-load "ansi-term"
   '(define-key ansi-term-raw-map (kbd "C-v") 'term-paste))
-
-(defun org-archive-done-tasks ()
-  (interactive)
-  (org-map-entries
-    (lambda ()
-      (org-archive-subtree)
-      (setq org-map-continue-from (outline-previous-heading)))
-    "/DONE" 'tree))
-(spacemacs/set-leader-keys "aoA" 'org-archive-done-tasks)
 
 (add-hook 'ess-mode-hook
           (lambda ()
