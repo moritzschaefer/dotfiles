@@ -59,12 +59,13 @@
         (decode-coding-string tmp (intern (match-string 1)))))
     (setq abstract (shell-command-to-string (format "python -c \"import eutils; c=eutils.Client(); a=c.efetch('pubmed', c.esearch('pubmed', '%s').ids[0]); print(next(iter(a)).abstract, end='')\" 2> /dev/null" title )))
 
+    ;; maybe add[[file:%s][PDF]]
     (format "TODO %s
-[[%s][Article]], [[file:%s][PDF]]
+[[%s][Article]], 
 ** Abstract
 %s
 ** Notes
-- %%?" title url "none yet" abstract)
+- %%?" title url abstract)
     )
   )
 
@@ -124,12 +125,18 @@
 (defun moritzs/recent-download-file ()
   "Open a recently downloaded file."
 
-  (setq downloaded-file (shell-command-to-string (format "ls -t /home/moritz/Downloads | head -n 1 | tr -d '\n'" path)))
+  (setq downloaded-file (shell-command-to-string "ls -t /home/moritz/Downloads | head -n 1 | tr -d '\n'"))
 
-  (find-file-existing (format "%s/%s" path downloaded-file))
+  (find-file-existing (format "/home/moritz/Downloads/%s" downloaded-file))
   )
 
 (defun moritzs/recent-smartphone-photo ()
   "Open a recently taken smartphone picture."
   (format "/home/moritz/Seafile/Main/My Photos/Camera/%s" (shell-command-to-string "ls -t  '/home/moritz/Seafile/Main/My Photos/Camera/' | head -n 1 | tr -d '\n'"))
+  )
+
+
+(defun moritzs/download-smartphone-photo ()
+  (interactive)
+  (org-download-image (moritzs/recent-smartphone-photo))
   )

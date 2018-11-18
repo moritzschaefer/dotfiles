@@ -99,6 +99,7 @@ PATH="$(ruby -e 'print Gem.user_dir')/bin:/root/.gem/ruby/2.5.0/bin:$PATH"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias l='ls -lahtr'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

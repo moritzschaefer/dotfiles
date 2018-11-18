@@ -31,7 +31,7 @@
 ;; (add-to-list 'org-latex-minted-langs '(ipython "python"))
 
 ;; add sketch to org file
-(defun org-download-sketch ()
+(defun moritzs/org-download-sketch ()
   "Draw sketch and download it. Used tool is mypaint"
   (interactive)
   ;; We can use most of the objects from org-download
@@ -42,11 +42,16 @@
                               nil "*Shell Command Output*" t
                               )
   (org-download-image org-download-screenshot-file))
+
 (spacemacs/set-leader-keys
   "fd" 'moritzs/recent-download-file
   )
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
-  "id" 'org-download-sketch)
+  "id" 'moritzs/org-download-sketch)
+
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "ip" 'moritzs/download-smartphone-photo)
+
 ;; auto org save buffers after refile.
 (advice-add 'org-refile :after
             (lambda (&rest _)
@@ -192,12 +197,10 @@
       ,moritzs/org-agenda-todo-view
       ))
 
-(defun moritzs/download-smartphone-photo ()
-  (when (equal (buffer-name)
-               (concat "CAPTURE-" "receipts.org"))
+(defun moritzs/org-capture-hook ()
+  (when (equal (buffer-name) "CAPTURE-receipts.org")
     (newline)
-    (org-download-image (moritzs/recent-smartphone-photo))
-
+    (moritzs/download-smartphone-photo)
     ))
 
-(add-hook 'org-capture-before-finalize-hook 'moritzs/download-smartphone-photo)
+(add-hook 'org-capture-before-finalize-hook 'moritzs/org-capture-hook)
