@@ -605,12 +605,22 @@ c.TerminalInteractiveShell.editor = 'vim'
 
 c.TerminalIPythonApp.display_banner = False
 c.InteractiveShellApp.log_level = 50
+c.InteractiveShellApp.extensions = ['autoreload']
 c.InteractiveShellApp.exec_lines = [
+    'import os, sys, logging'
+    'import numpy as np',
     'import numpy as np',
     'import scipy as sp',
     'import pandas as pd',
     'import matplotlib.pyplot as plt',
-    'import seaborn as sns'
+    'import seaborn as sns',
+    '%autoreload 2'
+    'sns.set_context("poster")',
+    'sns.set(rc={"figure.figsize": (16, 9.)})',
+    'sns.set_style("whitegrid")',
+    'pd.set_option("display.max_rows", 120)',
+    'pd.set_option("display.max_columns", 120)',
+    'logging.basicConfig(level=logging.INFO, stream=sys.stdout)',
 ]
 c.InteractiveShell.colors = 'Linux'
 c.InteractiveShell.confirm_exit = False
