@@ -124,6 +124,7 @@
 
 (defun moritzs/recent-download-file ()
   "Open a recently downloaded file."
+  (interactive)
 
   (setq downloaded-file (shell-command-to-string "ls -t /home/moritz/Downloads | head -n 1 | tr -d '\n'"))
 

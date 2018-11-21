@@ -217,3 +217,7 @@
     ))
 
 (add-hook 'org-capture-before-finalize-hook 'moritzs/org-capture-hook)
+
+(eval-after-load 'ox '(require 'ox-koma-letter))
+(eval-after-load 'ox-latex
+  '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))

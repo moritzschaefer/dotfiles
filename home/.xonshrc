@@ -1,0 +1,6 @@
+# XONSH WIZARD START
+$MULTILINE_PROMPT = '.'
+$VI_MODE = '1'
+# source-zsh "echo loading xonsh foreign shell"
+xontrib load autojump autoxsh docker_tabcomplete jedi mpl prompt_ret_code vox vox_tabcomplete xonda avox z powerline prompt_vi_mode fzf-widgets
+# XONSH WIZARD END
