@@ -607,8 +607,7 @@ c.TerminalIPythonApp.display_banner = False
 c.InteractiveShellApp.log_level = 50
 c.InteractiveShellApp.extensions = ['autoreload']
 c.InteractiveShellApp.exec_lines = [
-    'import os, sys, logging'
-    'import numpy as np',
+    'import os, sys, logging',
     'import numpy as np',
     'import scipy as sp',
     'import pandas as pd',
