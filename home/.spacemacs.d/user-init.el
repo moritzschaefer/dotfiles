@@ -156,3 +156,5 @@
      (setq org-map-continue-from (outline-previous-heading)))
    "/CANCELLED" 'file)
   )
+
+(setq org-odt-preferred-output-format "docx")

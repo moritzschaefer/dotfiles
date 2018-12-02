@@ -221,3 +221,12 @@
 (eval-after-load 'ox '(require 'ox-koma-letter))
 (eval-after-load 'ox-latex
   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+
+(setq org-ref-notes-directory "~/wiki/papers/notes"
+      org-ref-default-bibliography '("~/wiki/papers/references.bib")
+      org-ref-pdf-directory "~/wiki/papers/"
+      org-ref-bibliography-notes "~/wiki/papers.org")
+
+(setq helm-bibtex-bibliography "~/wiki/papers/references.bib"
+      helm-bibtex-library-path "~/wiki/papers/"
+      helm-bibtex-notes-path "~/wiki/papers.org")
