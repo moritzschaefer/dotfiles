@@ -71,14 +71,14 @@ def screenshot(save=True, copy=True):
 
 
 keys = [
-    Key([mod], "h", lazy.layout.shrink_main()),
-    Key([mod], "l", lazy.layout.grow_main()),
-    Key([mod, 'control'], "h", lazy.layout.shrink()),
-    Key([mod, 'control'], "l", lazy.layout.grow()),
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "n", lazy.layout.normalize()),
-    Key([mod], "m", lazy.layout.maximize()),
+    Key([mod], 'h', lazy.layout.shrink_main()),
+    Key([mod], 'l', lazy.layout.grow_main()),
+    Key([mod, 'control'], 'h', lazy.layout.shrink()),
+    Key([mod, 'control'], 'l', lazy.layout.grow()),
+    Key([mod], 'j', lazy.layout.down()),
+    Key([mod], 'k', lazy.layout.up()),
+    Key([mod], 'n', lazy.layout.normalize()),
+    Key([mod], 'm', lazy.layout.maximize()),
     Key([mod, 'control'], 'm', lazy.window.toggle_fullscreen()),
     Key([mod], 'b', lazy.window.toggle_floating()),
 
@@ -94,7 +94,7 @@ keys = [
     Key([mod, 'shift'], 'Tab', lazy.layout.rotate()),
 
     # switch screens
-    Key([mod], "o", lazy.function(switch_screens())),
+    Key([mod], 'o', lazy.function(switch_screens())),
 
 
     # Toggle between split and unsplit sides of stack.
@@ -132,11 +132,11 @@ keys = [
     Key([mod], 'c', lazy.spawncmd()),
     Key([mod, 'shift'], 'c', lazy.window.kill()),
 
-    Key([mod], "i", lazy.to_screen(0)),
-    Key([mod, "shift"], "i", lazy.function(move_window_to_screen(0))),
-    Key([mod], "a", lazy.to_screen(1)),
-    Key([mod, "shift"], "a", lazy.function(move_window_to_screen(1))),
-    Key([mod], "u", lazy.group['keeppad'].dropdown_toggle('Google Keep')),
+    Key([mod], 'i', lazy.to_screen(0)),
+    Key([mod, 'shift'], 'i', lazy.function(move_window_to_screen(0))),
+    Key([mod], 'a', lazy.to_screen(1)),
+    Key([mod, 'shift'], 'a', lazy.function(move_window_to_screen(1))),
+    Key([mod], 'u', lazy.group['keeppad'].dropdown_toggle('Google Keep')),
 ]
 
 for group, key in zip(groups, group_keys):

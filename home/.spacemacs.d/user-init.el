@@ -124,6 +124,7 @@
 
 (defun moritzs/recent-download-file ()
   "Open a recently downloaded file."
+  (interactive)
 
   (setq downloaded-file (shell-command-to-string "ls -t /home/moritz/Downloads | head -n 1 | tr -d '\n'"))
 
@@ -155,3 +156,5 @@
      (setq org-map-continue-from (outline-previous-heading)))
    "/CANCELLED" 'file)
   )
+
+(setq org-odt-preferred-output-format "docx")

@@ -1,0 +1,9 @@
+# XONSH WIZARD START
+$MULTILINE_PROMPT = '.'
+$VI_MODE = '1'
+$PROJECT_DIRS='/home/moritz/Projects'
+# source-zsh "echo loading xonsh foreign shell"
+xontrib load autoxsh docker_tabcomplete jedi mpl prompt_ret_code vox vox_tabcomplete xonda avox z powerline prompt_vi_mode fzf-widgets
+# XONSH WIZARD END
+
+source-bash eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa
