@@ -243,3 +243,14 @@
 (setq bibtex-completion-pdf-open-function 'org-open-file)
 
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+
+(setq org-file-apps
+      '(("\\.docx\\'" . system)
+        ("\\.x?html?\\'" . default)
+        ("\\.svg\\'" . "inkscape %s")
+        ("\\.pdf\\'" . default)
+        (system . system)
+        (auto-mode . emacs)))
+(setq openwith-associations '(("\\.svg\\'" "inkscape" (file))))
+
+(openwith-mode t)
