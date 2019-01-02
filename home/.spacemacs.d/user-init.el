@@ -158,3 +158,8 @@
   )
 
 (setq org-odt-preferred-output-format "docx")
+
+(setq org-src-tab-acts-natively t)
+
+(add-hook 'python-mode-hook (lambda ()
+                           (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))

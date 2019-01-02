@@ -114,6 +114,8 @@
   (setq org-startup-indented t))
 ;; clipboard management
 (setq x-select-enable-clipboard nil)
+(setq x-select-enable-primary t)
+(setq mouse-drag-copy-region t)
 (define-key evil-insert-state-map  (kbd "C-v") (kbd "+"))
 (define-key evil-ex-completion-map (kbd "C-v") (kbd "+"))
 (define-key evil-ex-search-keymap  (kbd "C-v") (kbd "+"))
@@ -230,6 +232,8 @@
 (eval-after-load 'ox-latex
   '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
 
+(setq reftex-default-bibliography '("~/wiki/papers/references.bib"))
+
 (setq org-ref-notes-directory "~/wiki/papers/notes"
       org-ref-default-bibliography '("~/wiki/papers/references.bib")
       org-ref-pdf-directory "~/wiki/papers/"
@@ -238,3 +242,23 @@
 (setq helm-bibtex-bibliography "~/wiki/papers/references.bib"
       helm-bibtex-library-path "~/wiki/papers/"
       helm-bibtex-notes-path "~/wiki/papers.org")
+
+(setq bibtex-completion-bibliography "~/wiki/papers/references.bib"
+      bibtex-completion-library-path "~/wiki/papers/"
+      bibtex-completion-notes-path "~/wiki/papers.org")
+
+
+(setq bibtex-completion-pdf-open-function 'org-open-file)
+
+(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+
+(setq org-file-apps
+      '(("\\.docx\\'" . system)
+        ("\\.x?html?\\'" . default)
+        ("\\.svg\\'" . "inkscape %s")
+        ("\\.pdf\\'" . default)
+        (system . system)
+        (auto-mode . emacs)))
+(setq openwith-associations '(("\\.svg\\'" "inkscape" (file))))
+
+(openwith-mode t)
