@@ -13,3 +13,4 @@ sparkleshare &
 touchegg &
 emacs --bg-daemon
 emacsclient -c &
+pasystray & 

@@ -1,5 +1,6 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 
+
 (setq org-download-method 'attach)
 
 ;; For all programming modes
@@ -126,9 +127,10 @@
 (add-hook 'ess-mode-hook
           (lambda ()
             (ess-toggle-underscore nil)))
-  (require 'exec-path-from-shell)
-  (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+
+  ;; (require 'exec-path-from-shell)
+  ;; (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+  ;;(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
   ;; TODO dont add projectile files...
   ;; (with-eval-after-load 'org-agenda
   ;;   (require 'org-projectile)

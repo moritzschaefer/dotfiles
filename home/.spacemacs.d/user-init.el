@@ -1,4 +1,6 @@
 ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+(with-eval-after-load 'org
+  (require 'org-capture))
 
 (setq shell-file-name "/bin/bash") 
 (setq org-reveal-root "file:///opt/reveal.js-3.7.0/")
