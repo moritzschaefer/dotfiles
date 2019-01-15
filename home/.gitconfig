@@ -140,3 +140,5 @@
 	includeStatusHeader = false
 	includePullRequestsSection = false
 	includeIssuesSection = false
+[github]
+	user = moritzschaefer

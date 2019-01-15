@@ -264,3 +264,8 @@
 (setq openwith-associations '(("\\.svg\\'" "inkscape" (file))))
 
 (openwith-mode t)
+
+(setq google-translate-default-target-language "de")
+(setq google-translate-default-source-language "en")
+
+(load "~/.spacemacs.d/lisp/exwm.el")
