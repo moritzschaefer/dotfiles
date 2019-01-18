@@ -1,3 +1,5 @@
+(setq exwm-workspace-number 4)
+
 (defvar exwm-terminal-command "urxvt"
   "Terminal command to run.")
 
@@ -12,7 +14,6 @@
 
 (exwm-input-set-key (kbd "s-<escape>") 'exwm-reset)
 
-(exwm-input-set-key (kbd "s-f") #'spacemacs/exwm-layout-toggle-fullscreen)
 (exwm-input-set-key (kbd "<s-tab>") #'spacemacs/exwm-jump-to-last-exwm)
 ;; + Bind a key to switch workspace interactively
 (exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
@@ -80,7 +81,7 @@
 ;; ;;              XF86AudioNext))
 ;; ;;   (pushnew k exwm-input-prefix-keys))
 
-
+;; TODO i could also use https://melpa.org/#/desktop-environment for all this..
 (defun moritzs/exwm-start-screenshot () (interactive) (start-process-shell-command "scrot" nil "scrot -s ~/Screenshots/%F-%T.png -e 'xclip -selection clipboard -t image/png $f'"))
 
 (exwm-input-set-key (kbd "<XF86LaunchB>") #'moritzs/exwm-start-screenshot)
@@ -93,5 +94,30 @@
 (exwm-input-set-key (kbd "<XF86MonBrightnessDown>") #'moritzs/exwm-brightness-dec)
 
 
+(exwm-input-set-key (kbd "s-v") #'moritzs/open-browser)
+
+
 ;; (exwm-input-set-key (kbd "s-C") #'spacemacs/exwm-app-launcher)
 ;; (exwm-input-set-key (kbd "<Print>") #'moritzs/exwm-start-screenshot)
+
+(setq browse-url-generic-program "qutebrowser")
+;; (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
+;; (setq helm-exwm-source (helm-exwm-build-source))
+;; (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
+;;                                   helm-exwm-source
+;;                                   helm-source-recentf)
+(setq exwm-layout-show-all-buffers t)
+(setq exwm-workspace-show-all-buffers t)
+(add-to-list 'helm-source-names-using-follow "EXWM buffers")
+
+;; TODO
+;; hotkey for opening new window in qutebrowser (with input)
+;; hotkey for helm-all browser windows
+;; (hotkey for all exwm windows)
+
+;(exwm-input-set-key (kbd "s-v") 'helm-exwm-switch-browser)
+; (exwm-input-set-key (kbd "s-v") 'helm-exwm)
+
+(exwm-input-set-key exwm-workspace-move-window)
+
+;; TODO symon.el?

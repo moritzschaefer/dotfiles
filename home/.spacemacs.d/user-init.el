@@ -5,7 +5,6 @@
 (setq shell-file-name "/bin/bash") 
 (setq org-reveal-root "file:///opt/reveal.js-3.7.0/")
 ;; set specific browser to open links
-(setq browse-url-browser-function 'browse-url-firefox)
 (require 'find-lisp)
 (setq moritzs/org-agenda-directory "~/wiki/gtd/")
 (setq org-agenda-files

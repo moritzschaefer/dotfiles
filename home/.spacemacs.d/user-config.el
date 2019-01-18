@@ -263,6 +263,12 @@
         (auto-mode . emacs)))
 (setq openwith-associations '(("\\.svg\\'" "inkscape" (file))))
 
+(defun moritzs/open-browser ()
+  "Prompt user to enter a string, with input history support."
+  (interactive)
+  (browse-url (read-string "Enter qutebrowser term: "))
+  )
+
 (openwith-mode t)
 
 (setq google-translate-default-target-language "de")

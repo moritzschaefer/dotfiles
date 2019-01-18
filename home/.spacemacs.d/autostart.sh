@@ -14,4 +14,4 @@ if ! pgrep nm-applet; then
     touchegg &
     pasystray & 
     qutebrowser & 
-done
+fi

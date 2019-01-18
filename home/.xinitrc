@@ -13,7 +13,7 @@ gnome-settings-daemon &
 # xsetroot -cursor_name left_ptr
 
 # Keyboard repeat rate
-xset r rate 300 70
+xset r rate 180 50
 
 # Capslock ctrl key
 setxkbmap de neo
