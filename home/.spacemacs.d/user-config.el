@@ -74,6 +74,16 @@
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
   "$" 'moritzs/org-archive-done-tasks)
 
+(spacemacs/set-leader-keys
+  "aoj" 'org-now
+  )
+
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "j" 'org-now) ; jetzt
+
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "in" 'org-now-link) ; insert->now
+
 ;; auto org save buffers after refile.
 (advice-add 'org-refile :after
             (lambda (&rest _)
@@ -254,3 +264,10 @@
 (setq openwith-associations '(("\\.svg\\'" "inkscape" (file))))
 
 (openwith-mode t)
+(require 'org-now)
+;; (use-package org-now
+;;   :general (:keymaps 'org-mode-map
+;;                      :prefix "M-SPC"
+;;                      "rl" #'org-now-link
+;;                      "rn" #'org-now-refile-to-now
+;;                      "rp" #'org-now-refile-to-previous-location))
