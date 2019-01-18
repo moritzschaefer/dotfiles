@@ -1,5 +1,6 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 
+
 (setq org-download-method 'attach)
 
 ;; For all programming modes
@@ -51,12 +52,20 @@
   "feui" (lambda () (interactive) (find-file "~/.spacemacs.d/user-init.el"))
   )
 (apply #'spacemacs/declare-prefix '("fw" "wiki files"))
+
+(apply #'spacemacs/declare-prefix '("fwm" "main.org"))
 (spacemacs/set-leader-keys
   "fwm" (lambda () (interactive) (find-file "~/wiki/main.org"))
   )
+(apply #'spacemacs/declare-prefix '("fwp" "projects.org"))
 (spacemacs/set-leader-keys
   "fwp" (lambda () (interactive) (find-file "~/wiki/gtd/projects.org"))
   )
+(apply #'spacemacs/declare-prefix '("fwd" "phd.org"))
+(spacemacs/set-leader-keys
+  "fwd" (lambda () (interactive) (find-file "~/wiki/gtd/phd.org"))
+  )
+(apply #'spacemacs/declare-prefix '("fww" "reviews.org"))
 (spacemacs/set-leader-keys
   "fww" (lambda () (interactive) (find-file "~/wiki/gtd/reviews.org"))
   )
@@ -128,9 +137,10 @@
 (add-hook 'ess-mode-hook
           (lambda ()
             (ess-toggle-underscore nil)))
-  (require 'exec-path-from-shell)
-  (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+
+  ;; (require 'exec-path-from-shell)
+  ;; (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+  ;;(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
   ;; TODO dont add projectile files...
   ;; (with-eval-after-load 'org-agenda
   ;;   (require 'org-projectile)
