@@ -265,9 +265,11 @@
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
 
 (setq org-file-apps
-      '(("\\.docx\\'" . system)
+      '(("\\.docx?\\'" . system)
+        ("\\.pptx?\\'" . system)
         ("\\.x?html?\\'" . default)
         ("\\.svg\\'" . "inkscape %s")
+        ("\\.gan\\'" . "ganttproject %s")
         ("\\.pdf\\'" . default)
         (system . system)
         (auto-mode . emacs)))
