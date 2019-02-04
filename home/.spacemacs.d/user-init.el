@@ -166,8 +166,7 @@
                            (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
 
 
-(erc :server "irc.freenode.net" :port 6697 :nick "moritzschaefer")
-(setq erc-autojoin-channels-alist
-      '(("freenode.net" "#spacemacs" "#wiki" "#nethack" "#neo")))
-
+;; (erc :server "irc.freenode.net" :port 6697 :nick "moritzschaefer")
+;; (setq erc-autojoin-channels-alist
+;;       '(("freenode.net" "#spacemacs" "#wiki" "#nethack" "#neo")))
 

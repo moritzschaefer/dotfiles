@@ -259,6 +259,7 @@
         ("\\.x?html?\\'" . default)
         ("\\.svg\\'" . "inkscape %s")
         ("\\.pdf\\'" . default)
+        ("\\.png\\'" . system)
         (system . system)
         (auto-mode . emacs)))
 (setq openwith-associations '(("\\.svg\\'" "inkscape" (file))))
@@ -266,12 +267,28 @@
 (defun moritzs/open-browser ()
   "Prompt user to enter a string, with input history support."
   (interactive)
-  (browse-url (read-string "Enter qutebrowser term: "))
+  (let ((user-input (read-string "Enter qutebrowser term: ")))
+    (call-process-shell-command (format "qutebrowser \":open -t %s\""
+                                        user-input)
+                                nil "*Shell Command Output*" t
+                                )
+    )
   )
 
-(openwith-mode t)
+(defun moritzs/dired-copy-file-path
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (with-temp-buffer
+        (insert filename)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message filename))))
 
-(setq google-translate-default-target-language "de")
-(setq google-translate-default-source-language "en")
+(define-key dired-mode-map "y" 'moritzs/dired-copy-file-path)
+
+
+(openwith-mode t)
 
 (load "~/.spacemacs.d/lisp/exwm.el")

@@ -95,9 +95,10 @@
 
 
 (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser)
+(exwm-input-set-key (kbd "s-S-v") #'moritzs/open-browser)
 
 
-;; (exwm-input-set-key (kbd "s-C") #'spacemacs/exwm-app-launcher)
+(exwm-input-set-key (kbd "s-S-c") #'spacemacs/exwm-app-launcher)
 ;; (exwm-input-set-key (kbd "<Print>") #'moritzs/exwm-start-screenshot)
 
 (setq browse-url-generic-program "qutebrowser")
@@ -108,7 +109,7 @@
 ;;                                   helm-source-recentf)
 (setq exwm-layout-show-all-buffers t)
 (setq exwm-workspace-show-all-buffers t)
-(add-to-list 'helm-source-names-using-follow "EXWM buffers")
+;; (add-to-list 'helm-source-names-using-follow "EXWM buffers")
 
 ;; TODO
 ;; hotkey for opening new window in qutebrowser (with input)
@@ -118,6 +119,6 @@
 ;(exwm-input-set-key (kbd "s-v") 'helm-exwm-switch-browser)
 ; (exwm-input-set-key (kbd "s-v") 'helm-exwm)
 
-(exwm-input-set-key exwm-workspace-move-window)
+;; (exwm-input-set-key exwm-workspace-move-window)
 
 ;; TODO symon.el?

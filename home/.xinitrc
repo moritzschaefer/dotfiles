@@ -21,4 +21,4 @@ setxkbmap de neo
 # SSH agent essentials
 eval `ssh-agent -s`
 
-exec dbus-launch --exit-with-session emacs --eval "(progn (require 'exwm-systemtray) (exwm-systemtray-enable) (exwm-enable))"
+exec emacs --eval "(progn (require 'exwm-systemtray) (exwm-systemtray-enable) (exwm-enable))"
