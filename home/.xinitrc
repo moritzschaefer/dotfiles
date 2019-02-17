@@ -18,7 +18,6 @@ xset r rate 180 50
 # Capslock ctrl key
 setxkbmap de neo
 
-# SSH agent essentials
-eval `ssh-agent -s`
+eval $(ssh-agent)
 
 exec emacs --eval "(progn (require 'exwm-systemtray) (exwm-systemtray-enable) (exwm-enable))"

@@ -1,5 +1,3 @@
-(setq exwm-workspace-number 4)
-
 (defvar exwm-terminal-command "urxvt"
   "Terminal command to run.")
 
@@ -43,62 +41,35 @@
 ;;   Emacs.
 (exwm-input-set-key (kbd "s-c") #'spacemacs/exwm-app-launcher)
 
+(exwm-input-set-key (kbd "s-S-b") #'helm-exwm)
+
 (fancy-battery-mode)
 
-(defun exwm-logout ()
+(defun moritzs/exwm-logout ()
   (interactive)
   (recentf-save-list)
   (save-some-buffers)
   (start-process-shell-command "logout" nil "kill -9 -1"))
 
+(exwm-input-set-key (kbd "s-C-q") #'moritzs/exwm-logout)
+
 
 ;; autostart
-
 (call-process-shell-command "/home/moritz/.spacemacs.d/autostart.sh")
 
-;; media hotkeys
-;; Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer sset Master 5%+')),
-;; Key([], 'XF86AudioLowerVolume', lazy.spawn('amixer sset Master 5%-')),
-;; Key([], 'XF86AudioMute', lazy.spawn('amixer sset Master toggle')),
-;; Key([], 'XF86AudioPlay', lazy.spawn(music_cmd + 'PlayPause')),
-;; Key([], 'XF86AudioNext', lazy.function(next_prev('Next'))),
-;; Key([], 'XF86AudioPrev', lazy.function(next_prev('Previous'))),
-;;; Volume control
-(when (require 'pulseaudio-control nil t)
-  ;; (exwm-input-set-key (kbd "s-<kp-subtract>") #'pulseaudio-control-decrease-volume)
-  ;; (exwm-input-set-key (kbd "s-<kp-add>") #'pulseaudio-control-increase-volume)
-  ;; (exwm-input-set-key (kbd "s-<kp-enter>") #'pulseaudio-control-toggle-current-sink-mute)
-  (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") #'pulseaudio-control-decrease-volume)
-  (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") #'pulseaudio-control-increase-volume)
-  (exwm-input-set-key (kbd "<XF86AudioMute>") #'pulseaudio-control-toggle-current-sink-mute))
-
-;; ;; TODO TEST:
-;; ;; (dolist (k '(XF86AudioLowerVolume
-;; ;;              XF86AudioRaiseVolume
-;; ;;              XF86AudioPlay
-;; ;;              XF86AudioStop
-;; ;;              XF86AudioPrev
-;; ;;              XF86AudioNext))
-;; ;;   (pushnew k exwm-input-prefix-keys))
-
-;; TODO i could also use https://melpa.org/#/desktop-environment for all this..
-(defun moritzs/exwm-start-screenshot () (interactive) (start-process-shell-command "scrot" nil "scrot -s ~/Screenshots/%F-%T.png -e 'xclip -selection clipboard -t image/png $f'"))
-
-(exwm-input-set-key (kbd "<XF86LaunchB>") #'moritzs/exwm-start-screenshot)
+(desktop-environment-mode) 
 
 
-(defun moritzs/exwm-brightness-inc () (interactive) (start-process-shell-command "xbacklight" nil "xbacklight -inc 10" ))
-(exwm-input-set-key (kbd "<XF86MonBrightnessUp>") #'moritzs/exwm-brightness-inc)
-
-(defun moritzs/exwm-brightness-dec () (interactive) (start-process-shell-command "xbacklight" nil "xbacklight -dec 10" ))
-(exwm-input-set-key (kbd "<XF86MonBrightnessDown>") #'moritzs/exwm-brightness-dec)
+(exwm-input-set-key (kbd "<XF86LaunchB>") #'desktop-environment-screenshot)
+(exwm-input-set-key (kbd "S-<XF86LaunchB>") #'desktop-environment-screenshot-part)
 
 
-(exwm-input-set-key (kbd "s-v") #'moritzs/open-browser)
-(exwm-input-set-key (kbd "s-S-v") #'moritzs/open-browser)
+(exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
+(exwm-input-set-key (kbd "s-S-v") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
 
+(exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
+(exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
-(exwm-input-set-key (kbd "s-S-c") #'spacemacs/exwm-app-launcher)
 ;; (exwm-input-set-key (kbd "<Print>") #'moritzs/exwm-start-screenshot)
 
 (setq browse-url-generic-program "qutebrowser")
@@ -107,8 +78,9 @@
 ;; (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
 ;;                                   helm-exwm-source
 ;;                                   helm-source-recentf)
-(setq exwm-layout-show-all-buffers t)
-(setq exwm-workspace-show-all-buffers t)
+
+; (setq exwm-layout-show-all-buffers nil)  ;; enable switching to other workspaces
+;; (setq exwm-workspace-show-all-buffers t)
 ;; (add-to-list 'helm-source-names-using-follow "EXWM buffers")
 
 ;; TODO
@@ -121,4 +93,30 @@
 
 ;; (exwm-input-set-key exwm-workspace-move-window)
 
+(defun sarg/run-or-raise (NAME PROGRAM)
+  (interactive)
+  (let ((buf (cl-find-if
+              (lambda (buf) (string= NAME (buffer-name buf)))
+              (buffer-list))))
+
+    (if buf (switch-to-buffer buf)
+      (start-process NAME nil PROGRAM))))
+
+(defun sarg/with-browser ()
+  "Opens browser side-by-side with current window"
+  (interactive)
+  (delete-other-windows)
+  (set-window-buffer (split-window-horizontally) "qutebrowser"))
+
+(exwm-input-set-key (kbd "s-p") 'sarg/with-browser)
+
 ;; TODO symon.el?
+
+(defun pinentry-emacs (desc prompt ok error)
+  (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
+    str))
+
+(use-package pinentry
+  :config
+  (setq epa-pinentry-mode 'loopback)
+  (pinentry-start))
