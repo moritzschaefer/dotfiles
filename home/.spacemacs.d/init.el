@@ -467,12 +467,18 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(desktop-environment-mode t nil (desktop-environment))
+ '(desktop-environment-screenshot-directory "")
+ '(desktop-environment-screenshot-command "flameshot full -c -p ~/Screenshots")
+ '(desktop-environment-screenshot-partial-command "flameshot gui -p ~/Screenshots")
  '(evil-want-Y-yank-to-eol nil)
  '(exwm-workspace-number 4)
- '(google-translate-default-source-language "de")
- '(google-translate-default-target-language "en")
- '(google-translate-enable-ido-completion t)
- '(google-translate-show-phonetic t)
+ '(exwm-manage-configurations '(((equal exwm-class-name "qutebrowser")
+                               workspace 2)))
+ '(google-translate-default-source-language "de" t)
+ '(google-translate-default-target-language "en" t)
+ '(google-translate-enable-ido-completion t t)
+ '(google-translate-show-phonetic t t)
  '(org-agenda-files
    (quote
     ("/home/moritz/wiki/gtd/next.org" "/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/main.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/reviews.org" "/home/moritz/wiki/gtd/someday.org")))
@@ -519,5 +525,5 @@ Brief description:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil)))))
+ )
 )

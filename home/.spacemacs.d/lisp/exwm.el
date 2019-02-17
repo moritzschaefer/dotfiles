@@ -41,7 +41,7 @@
 ;;   Emacs.
 (exwm-input-set-key (kbd "s-c") #'spacemacs/exwm-app-launcher)
 
-(exwm-input-set-key (kbd "s-S-b") #'helm-exwm)
+(exwm-input-set-key (kbd "s-a") #'helm-exwm)
 
 (fancy-battery-mode)
 
@@ -57,7 +57,7 @@
 ;; autostart
 (call-process-shell-command "/home/moritz/.spacemacs.d/autostart.sh")
 
-(desktop-environment-mode) 
+;; (desktop-environment-mode)  (inside config now)
 
 
 (exwm-input-set-key (kbd "<XF86LaunchB>") #'desktop-environment-screenshot)
@@ -70,7 +70,6 @@
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
 (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
-;; (exwm-input-set-key (kbd "<Print>") #'moritzs/exwm-start-screenshot)
 
 (setq browse-url-generic-program "qutebrowser")
 ;; (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
@@ -79,17 +78,21 @@
 ;;                                   helm-exwm-source
 ;;                                   helm-source-recentf)
 
-; (setq exwm-layout-show-all-buffers nil)  ;; enable switching to other workspaces
-;; (setq exwm-workspace-show-all-buffers t)
-;; (add-to-list 'helm-source-names-using-follow "EXWM buffers")
+(setq exwm-layout-show-all-buffers t)  ;; enable switching to other workspaces
+(setq exwm-workspace-show-all-buffers nil)
+(add-to-list 'helm-source-names-using-follow "EXWM buffers")
 
 ;; TODO
 ;; hotkey for opening new window in qutebrowser (with input)
 ;; hotkey for helm-all browser windows
 ;; (hotkey for all exwm windows)
 
-;(exwm-input-set-key (kbd "s-v") 'helm-exwm-switch-browser)
-; (exwm-input-set-key (kbd "s-v") 'helm-exwm)
+;;(exwm-input-set-key (kbd "s-v") 'helm-exwm-switch-browser)
+;; (exwm-input-set-key (kbd "s-v") 'helm-exwm)
+
+(exwm-input-set-key (kbd "<XF86AudioPlay>") #'spotify-playpause)
+(exwm-input-set-key (kbd "<XF86AudioNext>") #'spotify-next)
+(exwm-input-set-key (kbd "<XF86AudioPrev>") #'spotify-previous)
 
 ;; (exwm-input-set-key exwm-workspace-move-window)
 
@@ -112,11 +115,7 @@
 
 ;; TODO symon.el?
 
-(defun pinentry-emacs (desc prompt ok error)
-  (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
-    str))
-
-(use-package pinentry
-  :config
-  (setq epa-pinentry-mode 'loopback)
-  (pinentry-start))
+(require 'term)
+(define-key term-raw-map (kbd "s-c") (lambda () (interactive) (term-send-raw-string "\C-c")))
+(define-key term-raw-map (kbd "s-d") (lambda () (interactive) (term-send-raw-string "\C-d")))
+(define-key term-raw-map (kbd "s-r") (lambda () (interactive) (term-send-raw-string "\C-r")))
