@@ -457,7 +457,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   you should place your code here."
   (if (file-readable-p "~/.spacemacs.d/user-config.el") (load "~/.spacemacs.d/user-config.el"))
   )
-  
+
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -502,7 +502,7 @@ This function is called at the very end of Spacemacs initialization."
       "* TODO %?")
      ("a" "Article" entry
       (file+headline "~/wiki/papers.org" "Article")
-      "* %^{Title} %(org-set-tags)  :article: 
+      "* %^{Title} %(org-set-tags)  :article:
 :PROPERTIES:
 :Created: %U
 :Linked: %A
@@ -524,7 +524,7 @@ Brief description:
       "* %?")
      ("s" "Snippet" entry
       (file "~/wiki/deft/capture.org")
-%?"))))
+))))
  '(org-now-location (quote ("~/wiki/gtd/now.org")))
  '(package-selected-packages
    (quote

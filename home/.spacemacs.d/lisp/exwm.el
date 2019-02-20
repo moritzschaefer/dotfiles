@@ -80,7 +80,7 @@
 
 (setq exwm-layout-show-all-buffers t)  ;; enable switching to other workspaces
 (setq exwm-workspace-show-all-buffers nil)
-(add-to-list 'helm-source-names-using-follow "EXWM buffers")
+; (add-to-list 'helm-source-names-using-follow "EXWM buffers")
 
 ;; TODO
 ;; hotkey for opening new window in qutebrowser (with input)
@@ -112,6 +112,7 @@
   (set-window-buffer (split-window-horizontally) "qutebrowser"))
 
 (exwm-input-set-key (kbd "s-p") 'sarg/with-browser)
+
 
 ;; TODO symon.el?
 
