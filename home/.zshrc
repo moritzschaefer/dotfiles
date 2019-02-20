@@ -82,6 +82,10 @@ export ARCHFLAGS="-arch x86_64"
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# eutils
+#
+PATH="$HOME/edirect/:$PATH"
+
 # android
 export ANDROID_HOME=/opt/android-sdk
 PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"

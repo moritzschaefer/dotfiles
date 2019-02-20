@@ -83,6 +83,16 @@
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
   "$" 'moritzs/org-archive-done-tasks)
 
+(spacemacs/set-leader-keys
+  "aoj" 'org-now
+  )
+
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "j" 'org-now) ; jetzt
+
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "in" 'org-now-link) ; insert->now
+
 ;; auto org save buffers after refile.
 (advice-add 'org-refile :after
             (lambda (&rest _)
@@ -107,8 +117,15 @@
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
 ;; refine autocompletion behavior
+
+;; I can use the error keys her
+(require 'company)
+(define-key company-active-map (kbd "M-n") nil)
+(define-key company-active-map (kbd "M-p") nil)
+
 (global-set-key (kbd "M-n") 'hippie-expand)
-(global-set-key (kbd "M-n") 'yas-expand)
+;; (global-set-key (kbd "M-n") 'yas-expand)
+
 
 (use-package org
   :config
@@ -255,9 +272,11 @@
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
 
 (setq org-file-apps
-      '(("\\.docx\\'" . system)
+      '(("\\.docx?\\'" . system)
+        ("\\.pptx?\\'" . system)
         ("\\.x?html?\\'" . default)
         ("\\.svg\\'" . "inkscape %s")
+        ("\\.gan\\'" . "ganttproject %s")
         ("\\.pdf\\'" . default)
         ("\\.png\\'" . system)
         (system . system)
@@ -290,5 +309,15 @@
 
 
 (openwith-mode t)
+
+(require 'org-now)
+;; (use-package org-now
+;;   :general (:keymaps 'org-mode-map
+;;                      :prefix "M-SPC"
+;;                      "rl" #'org-now-link
+;;                      "rn" #'org-now-refile-to-now
+;;                      "rp" #'org-now-refile-to-previous-location))
+
+(setq org-link-abbrev-alist '(("att" . org-attach-expand-link)))
 
 (load "~/.spacemacs.d/lisp/exwm.el")
