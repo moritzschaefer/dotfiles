@@ -21,7 +21,7 @@ settings:
   tabs.background:
     global: true
   tabs.tabs_are_windows:
-    global: true
+    global: false
   url.searchengines:
     global:
       DEFAULT: https://google.com/search?q={}
