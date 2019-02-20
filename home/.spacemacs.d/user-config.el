@@ -117,8 +117,15 @@
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
 ;; refine autocompletion behavior
+
+;; I can use the error keys her
+(require 'company)
+(define-key company-active-map (kbd "M-n") nil)
+(define-key company-active-map (kbd "M-p") nil)
+
 (global-set-key (kbd "M-n") 'hippie-expand)
-(global-set-key (kbd "M-n") 'yas-expand)
+;; (global-set-key (kbd "M-n") 'yas-expand)
+
 
 (use-package org
   :config
@@ -283,3 +290,5 @@
 ;;                      "rl" #'org-now-link
 ;;                      "rn" #'org-now-refile-to-now
 ;;                      "rp" #'org-now-refile-to-previous-location))
+
+(setq org-link-abbrev-alist '(("att" . org-attach-expand-link)))

@@ -71,7 +71,7 @@ export VISUAL="emacsclient -t"                  # $VISUAL opens in terminal as w
 export RM_STAR_WAIT=1
 export TERM="xterm-256color"
 
-BROWSER=firefox
+BROWSER=qutebrowser
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -81,6 +81,10 @@ export ARCHFLAGS="-arch x86_64"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# eutils
+#
+PATH="$HOME/edirect/:$PATH"
 
 # android
 export ANDROID_HOME=/opt/android-sdk
