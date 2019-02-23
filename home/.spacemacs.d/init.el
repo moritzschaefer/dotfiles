@@ -478,7 +478,7 @@ This function is called at the very end of Spacemacs initialization."
  '(desktop-environment-screenshot-command "flameshot full -c -p ~/Screenshots")
  '(desktop-environment-screenshot-partial-command "flameshot gui -p ~/Screenshots")
  '(evil-want-Y-yank-to-eol nil)
- '(exwm-workspace-number 4)
+ '(exwm-workspace-number 7)
  '(exwm-manage-configurations '(((equal exwm-class-name "Rambox")
                                  workspace 3)
                                 ((equal exwm-class-name "qutebrowser")

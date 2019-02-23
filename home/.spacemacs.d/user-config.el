@@ -122,6 +122,7 @@
 (require 'company)
 (define-key company-active-map (kbd "M-n") nil)
 (define-key company-active-map (kbd "M-p") nil)
+(add-to-list 'company-backends 'company-ob-ipython)
 
 (global-set-key (kbd "M-n") 'hippie-expand)
 ;; (global-set-key (kbd "M-n") 'yas-expand)
