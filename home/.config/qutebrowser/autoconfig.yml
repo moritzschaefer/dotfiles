@@ -10,6 +10,35 @@ settings:
       wq: quit --save
   auto_save.session:
     global: true
+  fonts.completion.category:
+    global: bold 12pt monospace
+  fonts.completion.entry:
+    global: 12pt monospace
+  fonts.debug_console:
+    global: 12pt monospace
+  fonts.downloads:
+    global: 12pt monospace
+  fonts.hints:
+    global: bold 12pt monospace
+  fonts.keyhint:
+    global: 12pt monospace
+  fonts.messages.error:
+    global: 12pt monospace
+  fonts.messages.info:
+    global: 12pt monospace
+  fonts.messages.warning:
+    global: 12pt monospace
+  fonts.monospace:
+    global: '"DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono",
+      "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
+  fonts.prompts:
+    global: 12pt sans-serif
+  fonts.statusbar:
+    global: 12pt monospace
+  fonts.tabs:
+    global: 12pt monospace
+  fonts.web.family.cursive:
+    global: null
   input.insert_mode.auto_leave:
     global: false
   input.insert_mode.auto_load:
