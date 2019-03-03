@@ -308,6 +308,9 @@
 
 (define-key dired-mode-map "y" 'moritzs/dired-copy-file-path)
 
+(require 'evil-surround)
+(add-hook 'python-mode-hook (lambda ()
+                              (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
 
 (openwith-mode t)
 

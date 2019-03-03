@@ -162,8 +162,7 @@
 
 (setq org-src-tab-acts-natively t)
 
-(add-hook 'python-mode-hook (lambda ()
-                           (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
+
 
 
 ;; (erc :server "irc.freenode.net" :port 6697 :nick "moritzschaefer")

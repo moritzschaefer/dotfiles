@@ -43,6 +43,8 @@
 
 (exwm-input-set-key (kbd "s-a") #'helm-exwm)
 
+(exwm-input-set-key (kbd "s-x") #'helm-bibtex)
+
 (fancy-battery-mode)
 
 (defun moritzs/exwm-logout ()
