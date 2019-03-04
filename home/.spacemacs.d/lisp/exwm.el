@@ -80,7 +80,10 @@
 
 (setq exwm-layout-show-all-buffers t)  ;; enable switching to other workspaces
 (setq exwm-workspace-show-all-buffers nil)
-; (add-to-list 'helm-source-names-using-follow "EXWM buffers")
+(require 'helm)
+(add-to-list 'helm-source-names-using-follow "EXWM buffers")
+(setq helm-follow-mode-persistent t)
+
 
 ;; TODO
 ;; hotkey for opening new window in qutebrowser (with input)
@@ -120,3 +123,5 @@
 (define-key term-raw-map (kbd "s-c") (lambda () (interactive) (term-send-raw-string "\C-c")))
 (define-key term-raw-map (kbd "s-d") (lambda () (interactive) (term-send-raw-string "\C-d")))
 (define-key term-raw-map (kbd "s-r") (lambda () (interactive) (term-send-raw-string "\C-r")))
+
+;;;;(setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI1")) (start-process-shell-command "xrandr" nil "xrandr --fb 7680x2160 --output HDMI1 --transform none && xrandr --fb 7680x2160 --output eDP1 --gamma 1.0:1.0:1.0 --mode 3840x2160 --pos 0x0 --primary --rate 60.00 --reflect normal --rotate normal --output HDMI1 --gamma 1.0:1.0:1.0 --mode 1920x1080 --pos 3840x0 --rate 60.00 --reflect normal --rotate normal --transform 2.000000,0.000000,0.000000,0.000000,2.000000,0.000000,0.000000,0.000000,1.000000")))

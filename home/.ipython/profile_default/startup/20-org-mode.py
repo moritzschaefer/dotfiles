@@ -1,13 +1,19 @@
 import IPython
 from tabulate import tabulate
+import numpy as np
+import pandas as pd
+
 
 class OrgFormatter(IPython.core.formatters.BaseFormatter):
     def __call__(self, obj):
-        try:
-            return tabulate(obj, headers='keys',
-                            tablefmt='orgtbl', showindex='always')
-        except:
-            return None
+        if type(obj) in (pd.DataFrame, np.ndarray, np.matrix):
+            try:
+                return tabulate(
+                    obj, headers='keys', tablefmt='orgtbl', showindex='always')
+            except:
+                pass
+
+        return None
 
 
 ip = IPython.get_ipython()

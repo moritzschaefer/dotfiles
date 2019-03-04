@@ -165,6 +165,7 @@
 (add-hook 'python-mode-hook (lambda ()
                            (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
 
+(require 'ox-beamer)
 
 ;; (erc :server "irc.freenode.net" :port 6697 :nick "moritzschaefer")
 ;; (setq erc-autojoin-channels-alist

@@ -10,6 +10,20 @@ settings:
       wq: quit --save
   auto_save.session:
     global: true
+  bindings.commands:
+    global:
+      prompt:
+        <Ctrl+O>: prompt-open-download
+  bindings.key_mappings:
+    global:
+      <Ctrl-6>: <Ctrl-^>
+      <Ctrl-Enter>: <Ctrl-Return>
+      <Ctrl-J>: <Return>
+      <Ctrl-M>: <Return>
+      <Ctrl-[>: <Escape>
+      <Enter>: <Return>
+      <Shift-Enter>: <Return>
+      <Shift-Return>: <Return>
   fonts.completion.category:
     global: bold 12pt monospace
   fonts.completion.entry:

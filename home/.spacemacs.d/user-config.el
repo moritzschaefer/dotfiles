@@ -273,6 +273,8 @@
 
 (setq org-file-apps
       '(("\\.docx?\\'" . system)
+        ("\\.odt?\\'" . system)
+        ("\\.odp?\\'" . system)
         ("\\.pptx?\\'" . system)
         ("\\.x?html?\\'" . default)
         ("\\.svg\\'" . "inkscape %s")
@@ -319,5 +321,32 @@
 ;;                      "rp" #'org-now-refile-to-previous-location))
 
 (setq org-link-abbrev-alist '(("att" . org-attach-expand-link)))
+
+;; TODO run lsyncd automatically on project change if an lsyncd file exists
+(defun auto-lsyncd ()
+  "Perform some action after switching Projectile projects."
+  (message "Project changed...")
+  ;; Do something interesting here...
+  ;;
+  ;; `projectile-current-project-files', and `projectile-current-project-dirs' can be used
+  ;; to get access to the new project's files, and directories.
+  )
+
+;; (add-hook 'projectile-after-switch-project-hook #'my-switch-project-hook)
+
+(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
+  "b" 'org-ref-pdf-to-bibtex)
+;; (load "~/.spacemacs.d/lisp/science.el")
+
+;; keyfreq
+(setq keyfreq-excluded-commands
+      '(self-insert-command
+        abort-recursive-edit
+        forward-char
+        backward-char
+        previous-line
+        next-line))
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
 
 (load "~/.spacemacs.d/lisp/exwm.el")
