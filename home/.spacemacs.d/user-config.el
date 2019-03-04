@@ -122,6 +122,7 @@
 (require 'company)
 (define-key company-active-map (kbd "M-n") nil)
 (define-key company-active-map (kbd "M-p") nil)
+(add-to-list 'company-backends 'company-ob-ipython)
 
 (global-set-key (kbd "M-n") 'hippie-expand)
 ;; (global-set-key (kbd "M-n") 'yas-expand)
@@ -309,6 +310,9 @@
 
 (define-key dired-mode-map "y" 'moritzs/dired-copy-file-path)
 
+(require 'evil-surround)
+(add-hook 'python-mode-hook (lambda ()
+                              (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
 
 (openwith-mode t)
 

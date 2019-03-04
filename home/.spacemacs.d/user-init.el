@@ -162,8 +162,7 @@
 
 (setq org-src-tab-acts-natively t)
 
-(add-hook 'python-mode-hook (lambda ()
-                           (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
+
 
 (require 'ox-beamer)
 
