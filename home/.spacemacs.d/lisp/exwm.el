@@ -65,9 +65,12 @@
 (exwm-input-set-key (kbd "<XF86LaunchB>") #'desktop-environment-screenshot)
 (exwm-input-set-key (kbd "S-<XF86LaunchB>") #'desktop-environment-screenshot-part)
 
+(exwm-input-set-key (kbd "s-f") #'desktop-environment-screenshot)
+(exwm-input-set-key (kbd "s-F") #'desktop-environment-screenshot-part)
+
 
 (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
-(exwm-input-set-key (kbd "s-S-v") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
+(exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
 
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
 (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
