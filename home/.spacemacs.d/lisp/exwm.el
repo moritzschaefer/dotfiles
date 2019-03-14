@@ -68,6 +68,12 @@
 (exwm-input-set-key (kbd "s-f") #'desktop-environment-screenshot)
 (exwm-input-set-key (kbd "s-F") #'desktop-environment-screenshot-part)
 
+(require 'desktop-environment)
+(define-key desktop-environment-mode-map (kbd "s-l") nil)
+(define-key desktop-environment-mode-map (kbd "s-L") #'desktop-environment-lock-screen)
+(define-key global-map (kbd "s-l") nil)
+(define-key global-map (kbd "s-l") #'evil-window-right)
+
 
 (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
 (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
