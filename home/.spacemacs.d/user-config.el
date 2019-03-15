@@ -57,6 +57,9 @@
 (define-key minibuffer-local-map [left] 'evil-backward-char)
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
+(define-key evil-motion-state-map (kbd "C-f") nil)
+(define-key evil-motion-state-map (kbd "C-f") 'evil-avy-goto-char-timer)
+
 ;; refine autocompletion behavior
 
 ;; I can use the error keys her
@@ -131,8 +134,6 @@
 
 (spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
   "b" 'org-ref-pdf-to-bibtex)
-'(pdf-misc-print-programm "/usr/bin/lpr") 
-'(pdf-misc-print-programm-args (quote ("-o media=A4" "-o fitplot")))
 ;; (load "~/.spacemacs.d/lisp/science.el")
 
 ;; keyfreq
