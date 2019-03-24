@@ -116,6 +116,7 @@
 (define-key minibuffer-local-map [left] 'evil-backward-char)
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
+(define-key term-raw-map (kbd "s-r") nil)
 ;; refine autocompletion behavior
 
 ;; I can use the error keys her
