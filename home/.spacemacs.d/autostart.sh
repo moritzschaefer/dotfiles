@@ -3,7 +3,7 @@
 if ! pgrep nm-applet; then
     clipit &
     nm-applet &
-    rambox &
+    # rambox &
     ~/bin/redshift-workaround &
     udiskie &
     syndaemon -d  -t  -i 1.0s
