@@ -133,8 +133,6 @@
 
 ;; (add-hook 'projectile-after-switch-project-hook #'my-switch-project-hook)
 
-(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
-  "b" 'org-ref-pdf-to-bibtex)
 ;; (load "~/.spacemacs.d/lisp/science.el")
 
 ;; keyfreq
@@ -147,6 +145,25 @@
         next-line))
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
+
+
+
+(defun moritzs/pdf-misc-print-current-page (filename &optional interactive-p)
+  (interactive
+   (list (pdf-view-buffer-file-name) t))
+  (cl-check-type filename (and string file-readable))
+  (let ((programm (pdf-misc-print-programm interactive-p))
+        (args (append pdf-misc-print-programm-args (list filename "-P" (number-to-string(image-mode-window-get 'page))))))
+    (unless programm
+      (error "No print program available"))
+    (apply #'start-process "printing" nil programm args)
+    (message "Print job started: %s %s"
+             programm (mapconcat #'identity args " "))))
+
+(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
+  "b" 'org-ref-pdf-to-bibtex)
+(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
+  "c" 'moritzs/pdf-misc-print-current-page)
 
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
