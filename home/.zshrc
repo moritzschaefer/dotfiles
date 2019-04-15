@@ -62,7 +62,7 @@ plugins=(git adb archlinux autopep8 docker docker-compose gnu-utils pip vi-mode 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # bindkey ae vi-cmd-mode
 export ALTERNATE_EDITOR=""
