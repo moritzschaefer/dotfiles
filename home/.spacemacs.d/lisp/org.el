@@ -155,6 +155,12 @@
   (define-key org-agenda-mode-map "R" 'org-agenda-refile)
   (define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
 
+
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "br" 'python-shell-send-region)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "bR" 'spacemacs/python-shell-send-region-switch)
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((ipython . t)
