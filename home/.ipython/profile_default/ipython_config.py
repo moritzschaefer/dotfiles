@@ -616,8 +616,6 @@ c.InteractiveShellApp.exec_lines = [
     'pd.set_option("display.max_rows", 120)',
     'pd.set_option("display.max_columns", 120)',
     'logging.basicConfig(level=logging.INFO, stream=sys.stdout)',
-    # '%load_ext autoreload',
-    # '%autoreload 2',
 ]
 c.InteractiveShell.colors = 'Linux'
 c.InteractiveShell.confirm_exit = False
