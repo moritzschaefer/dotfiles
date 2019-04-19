@@ -81,6 +81,7 @@
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
 (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
+(setq exwm-input--update-focus-interval 0.2)
 
 (setq browse-url-generic-program "qutebrowser")
 ;; (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
