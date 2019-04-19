@@ -599,10 +599,6 @@ c.TerminalInteractiveShell.editor = 'vim'
 #  starts.
 # c.StoreMagics.autorestore = False
 
-
-
-
-
 c.TerminalIPythonApp.display_banner = False
 c.InteractiveShellApp.log_level = 50
 c.InteractiveShellApp.extensions = ['autoreload']
@@ -613,7 +609,7 @@ c.InteractiveShellApp.exec_lines = [
     'import pandas as pd',
     'import matplotlib.pyplot as plt',
     'import seaborn as sns',
-    '%autoreload 2'
+    'import moritzsphd as mphd',
     'sns.set_context("poster")',
     'sns.set(rc={"figure.figsize": (16, 9.)})',
     'sns.set_style("whitegrid")',

@@ -15,6 +15,10 @@
 (spacemacs/set-leader-keys
   "feui" (lambda () (interactive) (find-file "~/.spacemacs.d/user-init.el"))
   )
+
+(spacemacs/set-leader-keys
+  "fes" (lambda () (interactive) (yas-visit-snippet-file))
+  )
 (apply #'spacemacs/declare-prefix '("fw" "wiki files"))
 
 (apply #'spacemacs/declare-prefix '("fwm" "main.org"))
@@ -145,6 +149,7 @@
 (keyfreq-autosave-mode 1)
 
 
+(evil-set-initial-state 'pdf-view-mode 'normal)
 
 (defun moritzs/pdf-misc-print-current-page (filename &optional interactive-p)
   (interactive
@@ -165,3 +170,5 @@
 
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
+(load "~/.spacemacs.d/lisp/dna.el")
+

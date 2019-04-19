@@ -57,7 +57,7 @@
 
 
 ;; autostart
-(call-process-shell-command "/home/moritz/.spacemacs.d/autostart.sh")
+(start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh")
 
 ;; (desktop-environment-mode)  (inside config now)
 
@@ -139,3 +139,13 @@
 ;;   )
 
 ;;;;(setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI1")) (start-process-shell-command "xrandr" nil "xrandr --fb 7680x2160 --output HDMI1 --transform none && xrandr --fb 7680x2160 --output eDP1 --gamma 1.0:1.0:1.0 --mode 3840x2160 --pos 0x0 --primary --rate 60.00 --reflect normal --rotate normal --output HDMI1 --gamma 1.0:1.0:1.0 --mode 1920x1080 --pos 3840x0 --rate 60.00 --reflect normal --rotate normal --transform 2.000000,0.000000,0.000000,0.000000,2.000000,0.000000,0.000000,0.000000,1.000000")))
+
+(add-hook 'server-switch-hook
+          (lambda nil
+            (let ((server-buf (current-buffer)))
+              (bury-buffer)
+              (exwm-workspace-switch 3)
+              (switch-to-buffer server-buf)
+              )
+            )
+          )
