@@ -57,7 +57,6 @@
 (define-key minibuffer-local-map [left] 'evil-backward-char)
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
-(define-key term-raw-map (kbd "s-r") nil)
 (define-key evil-motion-state-map (kbd "C-f") nil)
 (define-key evil-motion-state-map (kbd "C-f") 'evil-avy-goto-char-timer)
 
@@ -81,8 +80,7 @@
 (define-key evil-ex-completion-map (kbd "C-v") (kbd "+"))
 (define-key evil-ex-search-keymap  (kbd "C-v") (kbd "+"))
 
-(eval-after-load "ansi-term"
-  '(define-key ansi-term-raw-map (kbd "C-v") 'term-paste))
+
 
 (add-hook 'ess-mode-hook
           (lambda ()
