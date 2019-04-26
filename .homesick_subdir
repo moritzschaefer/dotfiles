@@ -1,2 +1,3 @@
 .config
 .ipython/profile_default
+.local/share/qutebrowser

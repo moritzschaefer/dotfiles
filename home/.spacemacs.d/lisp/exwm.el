@@ -81,6 +81,7 @@
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
 (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
+(setq exwm-input--update-focus-interval 0.2)
 
 (setq browse-url-generic-program "qutebrowser")
 ;; (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
@@ -130,10 +131,13 @@
 
 ;; TODO symon.el?
 
-(require 'term)
-(define-key term-raw-map (kbd "s-c") (lambda () (interactive) (term-send-raw-string "\C-c")))
-(define-key term-raw-map (kbd "s-d") (lambda () (interactive) (term-send-raw-string "\C-d")))
-(define-key term-raw-map (kbd "s-r") (lambda () (interactive) (term-send-raw-string "\C-r")))
+;; (eval-after-load "ansi-term"
+;;   (define-key ansi-term-raw-map (kbd "s-c") (lambda () (interactive) (term-send-raw-string "\C-c")))
+;;   (define-key ansi-term-raw-map (kbd "s-d") (lambda () (interactive) (term-send-raw-string "\C-d")))
+;;   (define-key ansi-term-raw-map (kbd "s-r") (lambda () (interactive) (term-send-raw-string "\C-r")))
+;;   (define-key ansi-term-raw-map (kbd "s-r") nil)
+;;   (define-key ansi-term-raw-map (kbd "C-v") 'term-paste)
+;;   )
 
 ;;;;(setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI1")) (start-process-shell-command "xrandr" nil "xrandr --fb 7680x2160 --output HDMI1 --transform none && xrandr --fb 7680x2160 --output eDP1 --gamma 1.0:1.0:1.0 --mode 3840x2160 --pos 0x0 --primary --rate 60.00 --reflect normal --rotate normal --output HDMI1 --gamma 1.0:1.0:1.0 --mode 1920x1080 --pos 3840x0 --rate 60.00 --reflect normal --rotate normal --transform 2.000000,0.000000,0.000000,0.000000,2.000000,0.000000,0.000000,0.000000,1.000000")))
 
