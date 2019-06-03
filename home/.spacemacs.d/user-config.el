@@ -84,7 +84,9 @@
 (define-key evil-ex-completion-map (kbd "C-v") (kbd "+"))
 (define-key evil-ex-search-keymap  (kbd "C-v") (kbd "+"))
 
-
+(with-eval-after-load "ansi-term"
+  (define-key term-raw-map (kbd "s-r") nil)
+  (define-key ansi-term-raw-map (kbd "C-v") 'term-paste))
 
 (add-hook 'ess-mode-hook
           (lambda ()
