@@ -24,6 +24,12 @@ settings:
       <Enter>: <Return>
       <Shift-Enter>: <Return>
       <Shift-Return>: <Return>
+  content.host_blocking.whitelist:
+    global:
+    - piwik.org
+    - www.googleadservices.com
+  content.hyperlink_auditing:
+    global: false
   fonts.completion.category:
     global: bold 12pt monospace
   fonts.completion.entry:
@@ -72,6 +78,7 @@ settings:
       g: https://google.com/search?q={}
       gs: https://scholar.google.ch/scholar?q={}
       maps: https://google.com/maps/search/{}
+      pm: https://www.ncbi.nlm.nih.gov/pubmed/?term={}
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}
   url.start_pages:

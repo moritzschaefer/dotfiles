@@ -22,3 +22,6 @@ if ! pgrep nm-applet; then
         qutebrowser & 
     fi
 fi
+
+sleep infinity
+

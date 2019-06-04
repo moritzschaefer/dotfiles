@@ -17,6 +17,10 @@
   )
 
 (spacemacs/set-leader-keys
+  "feux" (lambda () (interactive) (find-file "~/.spacemacs.d/lisp/exwm.el"))
+  )
+
+(spacemacs/set-leader-keys
   "fes" (lambda () (interactive) (yas-visit-snippet-file))
   )
 (apply #'spacemacs/declare-prefix '("fw" "wiki files"))
@@ -38,23 +42,23 @@
   "fww" (lambda () (interactive) (find-file "~/wiki/gtd/reviews.org"))
   )
 
-
 (spacemacs/set-leader-keys
   "fd" 'moritzs/recent-download-file
   )
-(global-set-key (kbd "<left>") 'evil-window-left)
-(global-set-key (kbd "<right>") 'evil-window-right)
-(global-set-key (kbd "<up>") 'evil-window-up)
-(global-set-key (kbd "<down>") 'evil-window-down)
-(define-key evil-motion-state-map (kbd "<left>") 'evil-window-left)
-(define-key evil-motion-state-map (kbd "<right>") 'evil-window-right)
-(define-key evil-motion-state-map (kbd "<up>") 'evil-window-up)
-(define-key evil-motion-state-map (kbd "<down>") 'evil-window-down)
 
-(define-key evil-ex-completion-map [left] 'evil-backward-char)
-(define-key evil-ex-completion-map [right] 'evil-forward-char)
-(define-key evil-ex-search-keymap [left] 'evil-backward-char)
-(define-key evil-ex-search-keymap [right] 'evil-forward-char)
+(global-set-key [s-left] 'evil-window-left)
+(global-set-key [s-right] 'evil-window-right)
+(global-set-key [s-up] 'evil-window-up)
+(global-set-key [s-down] 'evil-window-down)
+(define-key evil-motion-state-map [s-left] 'evil-window-left)
+(define-key evil-motion-state-map [s-right] 'evil-window-right)
+(define-key evil-motion-state-map [s-up] 'evil-window-up)
+(define-key evil-motion-state-map [s-down] 'evil-window-down)
+
+;; (define-key evil-ex-completion-map [left] 'evil-backward-char)
+;; (define-key evil-ex-completion-map [right] 'evil-forward-char)
+;; (define-key evil-ex-search-keymap [left] 'evil-backward-char)
+;; (define-key evil-ex-search-keymap [right] 'evil-forward-char)
 
 (define-key minibuffer-local-map [up] 'evil-previous-line)
 (define-key minibuffer-local-map [down] 'evil-next-line)
@@ -187,7 +191,8 @@
                        string)))
   (shell-command-on-region start end command t t)
   )
-
+;; fix google translate workarround: https://github.com/atykhonov/google-translate/issues/52
+(defun google-translate--search-tkk () "Search TKK." (list 433232 899235537))
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/dna.el")

@@ -69,9 +69,9 @@
 (exwm-input-set-key (kbd "s-F") #'desktop-environment-screenshot-part)
 
 (require 'desktop-environment)
-(define-key desktop-environment-mode-map (kbd "s-l") nil)
+;; (define-key desktop-environment-mode-map (kbd "s-l") nil)
 (define-key desktop-environment-mode-map (kbd "s-L") #'desktop-environment-lock-screen)
-(define-key global-map (kbd "s-l") nil)
+;; (define-key global-map (kbd "s-l") nil)
 (define-key global-map (kbd "s-l") #'evil-window-right)
 
 
