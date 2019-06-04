@@ -191,8 +191,32 @@
                        string)))
   (shell-command-on-region start end command t t)
   )
+
+(defun ag-on-region-replace (start end regexp)
+  "Run shell-command-on-region interactivly replacing the region in place"
+  (interactive (let (string) 
+                 (unless (mark)
+                   (error "The mark is not set now, so there is no region"))
+                 ;; Do this before calling region-beginning
+                 ;; and region-end, in case subprocess output
+                 ;; relocates them while we are in the minibuffer.
+                 ;; call-interactively recognizes region-beginning and
+                 ;; region-end specially, leaving them in the history.
+                 (setq string (read-regexp "regex on region"))
+                 (list (region-beginning) (region-end)
+                       string)))
+  (shell-command-on-region start end (format "ag -o \"%s\"" regexp) t t)
+  )
+
+;; enable proselint in textual modes:
+(add-hook 'markdown-mode-hook #'flycheck-mode)
+(add-hook 'text-mode-hook #'flycheck-mode)
+(add-hook 'message-mode-hook #'flycheck-mode)
+(add-hook 'org-mode-hook #'flycheck-mode)
+
 ;; fix google translate workarround: https://github.com/atykhonov/google-translate/issues/52
 (defun google-translate--search-tkk () "Search TKK." (list 433232 899235537))
+
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/dna.el")

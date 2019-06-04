@@ -24,12 +24,11 @@ settings:
       <Enter>: <Return>
       <Shift-Enter>: <Return>
       <Shift-Return>: <Return>
-  content.host_blocking.whitelist:
+  content.host_blocking.enabled:
+    global: true
+  content.host_blocking.lists:
     global:
-    - piwik.org
-    - www.googleadservices.com
-  content.hyperlink_auditing:
-    global: false
+    - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
   fonts.completion.category:
     global: bold 12pt monospace
   fonts.completion.entry:
