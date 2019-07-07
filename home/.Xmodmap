@@ -1,12 +1,7 @@
-keycode  65 = ISO_Level3_Shift NoSymbol ISO_Level3_Shift
-keycode  66 = space space space space space nobreakspace KP_0 KP_0 U202F
-!keycode 134 = ISO_Level5_Shift ISO_Level5_Shift ISO_Level5_Shift ISO_Level5_Shift ISO_Level5_Shift ISO_Level5_Shift ISO_Level5_Lock ISO_Level5_Lock ISO_Level5_Lock ISO_Level5_Lock
-!clear mod4
-!add mod4 = Super_L
-!add mod1 = Super_R
-
-remove mod3 = ISO_Level5_Shift
-remove mod4 = Super_L Super_R
-keysym Super_R = ISO_Level5_Shift
-add mod3 = ISO_Level5_Shift
-add mod4 = Super_L Super_R
+clear control
+clear mod3
+clear mod4
+keycode 108 = Control_R
+add mod3 = Super_R ISO_Level5_Shift
+add control = Control_L Control_R
+add mod4 = Super_L
