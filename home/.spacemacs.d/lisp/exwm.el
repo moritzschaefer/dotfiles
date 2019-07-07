@@ -20,13 +20,13 @@
                     (lambda () (interactive) (exwm-workspace-switch 0)))
 (exwm-input-set-key (kbd "s-r")
                     (lambda () (interactive) (exwm-workspace-switch 1)))
-(exwm-input-set-key (kbd "s-t")
+(exwm-input-set-key (kbd "s-s")
                     (lambda () (interactive) (exwm-workspace-switch 2)))
-(exwm-input-set-key (kbd "s-d")
-                    (lambda () (interactive) (exwm-workspace-switch 3)))
 (exwm-input-set-key (kbd "s-g")
+                    (lambda () (interactive) (exwm-workspace-switch 3)))
+(exwm-input-set-key (kbd "s-h")
                     (lambda () (interactive) (exwm-workspace-switch 4)))
-(exwm-input-set-key (kbd "s-6")
+(exwm-input-set-key (kbd "s-l")
                     (lambda () (interactive) (exwm-workspace-switch 5)))
 (exwm-input-set-key (kbd "s-7")
                     (lambda () (interactive) (exwm-workspace-switch 6)))
@@ -39,9 +39,9 @@
 ;; + Application launcher ('M-&' also works if the output buffer does not
 ;;   bother you). Note that there is no need for processes to be created by
 ;;   Emacs.
-(exwm-input-set-key (kbd "s-c") #'spacemacs/exwm-app-launcher)
+(exwm-input-set-key (kbd "s-a") #'spacemacs/exwm-app-launcher)
 
-(exwm-input-set-key (kbd "s-a") #'helm-exwm)
+(exwm-input-set-key (kbd "s-e") #'helm-exwm)
 
 (exwm-input-set-key (kbd "s-x") #'helm-bibtex)
 
@@ -79,7 +79,7 @@
 (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
 
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
-(exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
+;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
 (setq exwm-input--update-focus-interval 0.2)
 
