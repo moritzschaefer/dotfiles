@@ -1,7 +1,13 @@
 #!/bin/sh
 
+# Keyboard repeat rate
+xset r rate 180 50
+
+setxkbmap -layout de -variant bone -option "lv5:rwin_switch_lock"
+
+# [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
 xrdb -merge ~/.Xresources
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # Make Java applications aware this is a non-reparenting window manager.
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -12,11 +18,6 @@ gnome-settings-daemon &
 # Fallback cursor # dont know what this is for..
 # xsetroot -cursor_name left_ptr
 
-# Keyboard repeat rate
-xset r rate 180 50
-
-# Capslock ctrl key
-setxkbmap de neo
 
 eval $(ssh-agent)
 
