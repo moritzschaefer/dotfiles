@@ -126,7 +126,9 @@
 
 (require 'evil-surround)
 (add-hook 'python-mode-hook (lambda ()
-                              (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
+                              (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)
+                              (push '(?a . ("['" . "']")) evil-surround-pairs-alist)
+                              ))
 
 
 ;; TODO run lsyncd automatically on project change if an lsyncd file exists
@@ -162,7 +164,7 @@
    (list (pdf-view-buffer-file-name) t))
   (cl-check-type filename (and string file-readable))
   (let ((programm (pdf-misc-print-programm interactive-p))
-        (args (append pdf-misc-print-programm-args (list filename "-P" (number-to-string(image-mode-window-get 'page))))))
+        (args (append pdf-misc-print-programm-args (list filename "-o" (format "page-ranges=%s " (image-mode-window-get 'page))))))
     (unless programm
       (error "No print program available"))
     (apply #'start-process "printing" nil programm args)
@@ -174,7 +176,7 @@
    (list (pdf-view-buffer-file-name) t))
   (cl-check-type filename (and string file-readable))
   (let ((programm (pdf-misc-print-programm interactive-p))
-        (args (append pdf-misc-print-programm-args (list filename "-P" (format "1-%s" (number-to-string(image-mode-window-get 'page)))))))
+        (args (append pdf-misc-print-programm-args (list filename "-o" (format "page-ranges=1-%s" (image-mode-window-get 'page))))))
     (unless programm
       (error "No print program available"))
     (apply #'start-process "printing" nil programm args)
