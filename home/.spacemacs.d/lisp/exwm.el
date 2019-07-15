@@ -14,7 +14,7 @@
 
 (exwm-input-set-key (kbd "<s-tab>") #'spacemacs/exwm-jump-to-last-exwm)
 ;; + Bind a key to switch workspace interactively
-(exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
+;; (exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
 ;; + Set shortcuts to switch to a certain workspace.
 (exwm-input-set-key (kbd "s-n")
                     (lambda () (interactive) (exwm-workspace-switch 0)))
@@ -24,24 +24,21 @@
                     (lambda () (interactive) (exwm-workspace-switch 2)))
 (exwm-input-set-key (kbd "s-g")
                     (lambda () (interactive) (exwm-workspace-switch 3)))
-(exwm-input-set-key (kbd "s-h")
+(exwm-input-set-key (kbd "s-y")
                     (lambda () (interactive) (exwm-workspace-switch 4)))
-(exwm-input-set-key (kbd "s-l")
+(exwm-input-set-key (kbd "s-z")
                     (lambda () (interactive) (exwm-workspace-switch 5)))
-(exwm-input-set-key (kbd "s-7")
+(exwm-input-set-key (kbd "s-,")
                     (lambda () (interactive) (exwm-workspace-switch 6)))
-(exwm-input-set-key (kbd "s-8")
+(exwm-input-set-key (kbd "s-.")
                     (lambda () (interactive) (exwm-workspace-switch 7)))
-(exwm-input-set-key (kbd "s-9")
-                    (lambda () (interactive) (exwm-workspace-switch 8)))
-(exwm-input-set-key (kbd "s-0")
-                    (lambda () (interactive) (exwm-workspace-switch 9)))
+
 ;; + Application launcher ('M-&' also works if the output buffer does not
 ;;   bother you). Note that there is no need for processes to be created by
 ;;   Emacs.
 (exwm-input-set-key (kbd "s-a") #'spacemacs/exwm-app-launcher)
 
-(exwm-input-set-key (kbd "s-e") #'helm-exwm)
+(exwm-input-set-key (kbd "s-c") #'helm-exwm)
 
 (exwm-input-set-key (kbd "s-x") #'helm-bibtex)
 
@@ -72,12 +69,16 @@
 ;; (define-key desktop-environment-mode-map (kbd "s-l") nil)
 (define-key desktop-environment-mode-map (kbd "s-L") #'desktop-environment-lock-screen)
 ;; (define-key global-map (kbd "s-l") nil)
-(define-key global-map (kbd "s-l") #'evil-window-right)
 
+(exwm-input-set-key (kbd "s-w") #'exwm-floating-toggle-floating)
+(exwm-input-set-key (kbd "s-d") #'spacemacs/delete-window)
+(exwm-input-set-key (kbd "s-v") #'split-window-right)
+(exwm-input-set-key (kbd "s-V") #'split-window-right-and-focus)
+(exwm-input-set-key (kbd "s-h") #'split-window-below)
+(exwm-input-set-key (kbd "s-H") #'split-window-below-and-focus)
 
-(exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
-(exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
-
+;; (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
+;; (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
 ;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 

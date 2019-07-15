@@ -494,7 +494,7 @@ This function is called at the very end of Spacemacs initialization."
       workspace 1)
      ((equal exwm-class-name "qutebrowser")
       workspace 2))))
- '(exwm-workspace-number 7)
+ '(exwm-workspace-number 8)
  '(google-translate-default-source-language "de")
  '(google-translate-default-target-language "en")
  '(google-translate-enable-ido-completion t)
