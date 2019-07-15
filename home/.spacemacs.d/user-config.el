@@ -126,7 +126,9 @@
 
 (require 'evil-surround)
 (add-hook 'python-mode-hook (lambda ()
-                              (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)))
+                              (push '(?e . ("enumerate(" . ")")) evil-surround-pairs-alist)
+                              (push '(?a . ("['" . "']")) evil-surround-pairs-alist)
+                              ))
 
 
 ;; TODO run lsyncd automatically on project change if an lsyncd file exists
@@ -162,7 +164,19 @@
    (list (pdf-view-buffer-file-name) t))
   (cl-check-type filename (and string file-readable))
   (let ((programm (pdf-misc-print-programm interactive-p))
-        (args (append pdf-misc-print-programm-args (list filename "-P" (number-to-string(image-mode-window-get 'page))))))
+        (args (append pdf-misc-print-programm-args (list filename "-o" (format "page-ranges=%s " (image-mode-window-get 'page))))))
+    (unless programm
+      (error "No print program available"))
+    (apply #'start-process "printing" nil programm args)
+    (message "Print job started: %s %s"
+             programm (mapconcat #'identity args " "))))
+
+(defun moritzs/pdf-misc-print-until-current-page (filename &optional interactive-p)
+  (interactive
+   (list (pdf-view-buffer-file-name) t))
+  (cl-check-type filename (and string file-readable))
+  (let ((programm (pdf-misc-print-programm interactive-p))
+        (args (append pdf-misc-print-programm-args (list filename "-o" (format "page-ranges=1-%s" (image-mode-window-get 'page))))))
     (unless programm
       (error "No print program available"))
     (apply #'start-process "printing" nil programm args)
@@ -173,6 +187,8 @@
   "b" 'org-ref-pdf-to-bibtex)
 (spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
   "c" 'moritzs/pdf-misc-print-current-page)
+(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
+  "u" 'moritzs/pdf-misc-print-until-current-page)
 
 (defun shell-command-on-region-replace (start end command)
   "Run shell-command-on-region interactivly replacing the region in place"

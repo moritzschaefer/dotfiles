@@ -1,6 +1,7 @@
 ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 (with-eval-after-load 'org
   (require 'org-capture)
+  (require 'org-attach)
 
   (setq org-reveal-root "file:///opt/reveal.js-3.7.0/")
   ;; set specific browser to open links
@@ -358,4 +359,50 @@
           ("\\.png\\'" . system)
           (system . system)
           (auto-mode . emacs)))
+
+  (defun moritzs/hack-export (texfile)
+    "docstring"
+    (let ((tmpname (format "%s.mod" texfile)
+                   ))
+      (call-process-shell-command (format "~/format-tex.py %s %s" texfile tmpname)
+                                  nil "*Shell Command Output*" t)
+      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=/home/moritz/wiki/template.docx --bibliography=/home/moritz/wiki/papers/references.bib -i %s -o %s" tmpname (format "%s.docx" texfile))
+                                  nil "*Shell Command Output*" t)
+      )
+    )
+
+  ;;;###autoload
+  (defun moritzs/org-export-docx
+    (&optional async subtreep visible-only body-only ext-plist)
+    "Export current buffer to LaTeX then process through to PDF.
+
+  If narrowing is active in the current buffer, only export its
+  narrowed part.
+
+  If a region is active, export that region.
+
+  A non-nil optional argument ASYNC means the process should happen
+  asynchronously.  The resulting file should be accessible through
+  the `org-export-stack' interface.
+
+  When optional argument SUBTREEP is non-nil, export the sub-tree
+  at point, extracting information from the headline properties
+  first.
+
+  When optional argument VISIBLE-ONLY is non-nil, don't export
+  contents of hidden elements.
+
+  When optional argument BODY-ONLY is non-nil, only write code
+  between \"\\begin{document}\" and \"\\end{document}\".
+
+  EXT-PLIST, when provided, is a property list with external
+  parameters overriding Org default settings, but still inferior to
+  file-local settings.
+
+  Return PDF file's name."
+    (interactive)
+    (let ((outfile (org-export-output-file-name ".tex" subtreep)))
+      (org-export-to-file 'latex outfile
+        async subtreep visible-only body-only ext-plist
+        (lambda (file) (moritzs/hack-export file)))))
   )
