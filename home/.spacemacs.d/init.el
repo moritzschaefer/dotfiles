@@ -527,6 +527,8 @@ This function is called at the very end of Spacemacs initialization."
       "* %?")
      ("s" "Snippet" entry
       (file "~/wiki/deft/capture.org"))
+     ("q" " Quick Notebook" entry
+      (file moritzs/notebook-name))
      ("p" "Blog post" entry
       (file moritzs/blog-post-name)
       (file "~/Projects/homepage/templates/post.md")))))

@@ -28,10 +28,10 @@
                     (lambda () (interactive) (exwm-workspace-switch 4)))
 (exwm-input-set-key (kbd "s-z")
                     (lambda () (interactive) (exwm-workspace-switch 5)))
-(exwm-input-set-key (kbd "s-,")
-                    (lambda () (interactive) (exwm-workspace-switch 6)))
+;; (exwm-input-set-key (kbd "s-,")
+;;                     (lambda () (interactive) (exwm-workspace-switch 6)))
 (exwm-input-set-key (kbd "s-.")
-                    (lambda () (interactive) (exwm-workspace-switch 7)))
+                    (lambda () (interactive) (exwm-workspace-switch 6)))
 
 ;; + Application launcher ('M-&' also works if the output buffer does not
 ;;   bother you). Note that there is no need for processes to be created by
