@@ -224,6 +224,15 @@
   (shell-command-on-region start end (format "ag -o \"%s\"" regexp) t t)
   )
 
+;;https://github.com/ch11ng/exwm/issues/611 fix y-or-n blocking issue 
+(define-advice set-transient-map (:around (fun map &optional keep-pred on-exit) exwm-passthrough)
+  (setq exwm-input-line-mode-passthrough t)
+  (let ((on-exit (lexical-let ((on-exit on-exit))
+                   (lambda ()
+                     (setq exwm-input-line-mode-passthrough nil)
+                     (when on-exit (funcall on-exit))))))
+    (funcall fun map keep-pred on-exit)))
+
 ;; enable proselint in textual modes:
 (add-hook 'markdown-mode-hook #'flycheck-mode)
 (add-hook 'text-mode-hook #'flycheck-mode)
