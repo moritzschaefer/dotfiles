@@ -527,6 +527,13 @@ This function is called at the very end of Spacemacs initialization."
       "* %?")
      ("s" "Snippet" entry
       (file "~/wiki/deft/capture.org"))
+     ("f" "Flash card" entry
+      (file+headline "~/wiki/flashcards.org" "Miscellaneous")
+      "* Flashcard :drill:
+%^{Question}
+** Back
+%^{Answer}
+")
      ("p" "Blog post" entry
       (file moritzs/blog-post-name)
       (file "~/Projects/homepage/templates/post.md")))))
