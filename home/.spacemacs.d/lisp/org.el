@@ -362,11 +362,18 @@
 
   (defun moritzs/hack-export (texfile)
     "docstring"
-    (let ((tmpname (format "%s.mod" texfile)
-                   ))
+    (let* ((basename (file-name-sans-extension texfile))
+          (tmpname (format "%s.mod.tex" basename))
+          (reference-doc
+           (if (file-exists-p (format "%s_template.docx" basename) )
+               (format "%s_template.docx" basename)
+               "/home/moritz/wiki/template.docx"
+               ))
+                   )
       (call-process-shell-command (format "~/format-tex.py %s %s" texfile tmpname)
                                   nil "*Shell Command Output*" t)
-      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=/home/moritz/wiki/template.docx --bibliography=/home/moritz/wiki/papers/references.bib -i %s -o %s" tmpname (format "%s.docx" texfile))
+
+      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/references.bib --csl springerprotocols -i %s -o %s.docx" reference-doc tmpname basename)
                                   nil "*Shell Command Output*" t)
       )
     )
