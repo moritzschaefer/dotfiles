@@ -73,10 +73,12 @@
 (exwm-input-set-key (kbd "s-V") #'split-window-right-and-focus)
 (exwm-input-set-key (kbd "s-h") #'split-window-below)
 (exwm-input-set-key (kbd "s-H") #'split-window-below-and-focus)
+(exwm-input-set-key (kbd "s-t") #'evil-window-next) ;; import window
 
 ;; (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
 ;; (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
+
 ;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
 (setq exwm-input--update-focus-interval 0.2)
