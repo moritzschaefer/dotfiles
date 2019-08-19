@@ -38,7 +38,7 @@
 ;;   Emacs.
 (exwm-input-set-key (kbd "s-a") #'spacemacs/exwm-app-launcher)
 
-(exwm-input-set-key (kbd "s-c") #'helm-exwm)
+(exwm-input-set-key (kbd "s-c") #'org-capture)
 
 (exwm-input-set-key (kbd "s-x") #'helm-bibtex)
 
@@ -66,9 +66,6 @@
 (exwm-input-set-key (kbd "s-F") #'desktop-environment-screenshot-part)
 
 (require 'desktop-environment)
-;; (define-key desktop-environment-mode-map (kbd "s-l") nil)
-(define-key desktop-environment-mode-map (kbd "s-L") #'desktop-environment-lock-screen)
-;; (define-key global-map (kbd "s-l") nil)
 
 (exwm-input-set-key (kbd "s-w") #'exwm-floating-toggle-floating)
 (exwm-input-set-key (kbd "s-d") #'spacemacs/delete-window)
@@ -84,7 +81,6 @@
 
 (setq exwm-input--update-focus-interval 0.2)
 
-(setq browse-url-generic-program "qutebrowser")
 ;; (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
 ;; (setq helm-exwm-source (helm-exwm-build-source))
 ;; (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source

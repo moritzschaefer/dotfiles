@@ -224,6 +224,10 @@
   (shell-command-on-region start end (format "ag -o \"%s\"" regexp) t t)
   )
 
+(defun moritzs/copy-current-kill-to-clipboard ()
+  (interactive)
+  (gui-set-selection 'CLIPBOARD (current-kill 0)))
+
 ;; enable proselint in textual modes:
 (add-hook 'markdown-mode-hook #'flycheck-mode)
 (add-hook 'text-mode-hook #'flycheck-mode)
