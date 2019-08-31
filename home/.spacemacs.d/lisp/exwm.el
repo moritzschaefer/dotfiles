@@ -151,3 +151,20 @@
               )
             )
           )
+(defun exwm-y-or-n-p-wrapper (orig-fun &rest args)
+  (let ((is-exwm-mode (derived-mode-p 'exwm-mode))
+        (is-fullscreen (exwm-layout--fullscreen-p)))
+    (when is-exwm-mode
+      (when is-fullscreen
+        (exwm-layout-unset-fullscreen))
+      (call-interactively #'exwm-input-grab-keyboard))
+    (let ((res (apply orig-fun args)))
+      (when is-exwm-mode
+        (call-interactively #'exwm-input-release-keyboard)
+        (when is-fullscreen
+          (exwm-layout-set-fullscreen))
+        )
+      res)))
+
+(advice-add #'y-or-n-p :around #'exwm-y-or-n-p-wrapper)
+;; (advice-remove #'y-or-n-p #'exwm-y-or-n-p-wrapper)
