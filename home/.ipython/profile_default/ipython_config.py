@@ -611,6 +611,7 @@ c.InteractiveShellApp.exec_lines = [
     'import seaborn as sns',
     'import moritzsphd as mphd',
     'sns.set_context("poster")',
+    'sns.set_palette(sns.husl_palette(10, l=.7, s=.6))',
     'sns.set(rc={"figure.figsize": (16, 9.)})',
     'sns.set_style("whitegrid")',
     'pd.set_option("display.max_rows", 120)',
