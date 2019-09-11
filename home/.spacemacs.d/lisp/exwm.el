@@ -93,7 +93,6 @@
 (setq exwm-workspace-show-all-buffers nil)
 (require 'helm)
 (add-to-list 'helm-source-names-using-follow "EXWM buffers")
-(setq helm-follow-mode-persistent t)
 
 
 ;; TODO

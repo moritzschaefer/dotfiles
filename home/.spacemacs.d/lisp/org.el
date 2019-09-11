@@ -158,6 +158,8 @@
 
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "ld" 'doi-utils-add-bibtex-entry-from-doi)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "br" 'python-shell-send-region)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "bR" 'spacemacs/python-shell-send-region-switch)
