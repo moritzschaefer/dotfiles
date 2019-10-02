@@ -497,6 +497,7 @@ This function is called at the very end of Spacemacs initialization."
  '(desktop-environment-screenshot-command "flameshot full -c -p ~/Screenshots")
  '(desktop-environment-screenshot-directory "")
  '(desktop-environment-screenshot-partial-command "flameshot gui -p ~/Screenshots")
+ '(epa-pinentry-mode (quote loopback))
  '(evil-want-Y-yank-to-eol nil)
  '(exwm-manage-configurations
    (quote
@@ -506,8 +507,7 @@ This function is called at the very end of Spacemacs initialization."
       workspace 1)
      ((equal exwm-class-name "qutebrowser")
       workspace 2)
-     (t char-mode t)
-     )))
+     (t char-mode t))))
  '(exwm-workspace-number 8)
  '(google-translate-default-source-language "de")
  '(google-translate-default-target-language "en")

@@ -164,5 +164,7 @@
         )
       res)))
 
+
 (advice-add #'y-or-n-p :around #'exwm-y-or-n-p-wrapper)
 ;; (advice-remove #'y-or-n-p #'exwm-y-or-n-p-wrapper)
+(setq epg-pinentry-mode 'loopback)
