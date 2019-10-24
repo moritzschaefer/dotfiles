@@ -12,8 +12,10 @@ settings:
     global: true
   bindings.commands:
     global:
+      normal:
+        edoi: spawn --userscript getbib
       prompt:
-        <Ctrl+O>: prompt-open-download
+        <Ctrl+o>: prompt-open-download
   bindings.key_mappings:
     global:
       <Ctrl-6>: <Ctrl-^>
@@ -93,7 +95,7 @@ settings:
   window.hide_decoration:
     global: false
   window.title_format:
-    global: '{perc}{title}{title_sep}qutebrowser'
+    global: '{perc}{current_title}{title_sep}qutebrowser'
   zoom.default:
     global: 100%
   zoom.levels:

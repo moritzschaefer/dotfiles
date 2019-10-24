@@ -158,6 +158,10 @@
 
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "sp" 'org-set-property)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "sH" 'helm-org-in-buffer-headings)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "ld" 'doi-utils-add-bibtex-entry-from-doi)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "br" 'python-shell-send-region)
@@ -362,6 +366,22 @@
           (system . system)
           (auto-mode . emacs)))
 
+  (defun moritzs/org-ref-bibtex-assoc-pdf-with-entry (&optional prefix)
+    "Adapted from org-ref"
+    (interactive "P")
+    (save-excursion
+      (let* (
+      (bibtex-expand-strings t)
+            (key (helm-bibtex))
+            (pdf (concat org-ref-pdf-directory (concat key ".pdf")))
+      (file-move-func (org-ref-bibtex-get-file-move-func prefix)))
+        (if (file-exists-p pdf)
+      (message (format "A file named %s already exists" pdf))
+    (progn
+      (funcall file-move-func buffer-file-name pdf)
+      (message (format "Created file %s" pdf)))))))
+
+
   (defun moritzs/hack-export (texfile)
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
@@ -375,7 +395,7 @@
       (call-process-shell-command (format "~/format-tex.py %s %s" texfile tmpname)
                                   nil "*Shell Command Output*" t)
 
-      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/references.bib --csl springerprotocols -i %s -o %s.docx" reference-doc tmpname basename)
+      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/references.bib --csl plos-computational-biology.csl -i %s -o %s.docx" reference-doc tmpname basename)
                                   nil "*Shell Command Output*" t)
       )
     )
