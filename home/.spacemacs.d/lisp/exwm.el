@@ -93,6 +93,7 @@
 (setq exwm-workspace-show-all-buffers nil)
 (require 'helm)
 (add-to-list 'helm-source-names-using-follow "EXWM buffers")
+(setq helm-follow-mode-persistent t)
 
 
 ;; TODO
@@ -163,5 +164,7 @@
         )
       res)))
 
+
 (advice-add #'y-or-n-p :around #'exwm-y-or-n-p-wrapper)
 ;; (advice-remove #'y-or-n-p #'exwm-y-or-n-p-wrapper)
+(setq epg-pinentry-mode 'loopback)
