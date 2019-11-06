@@ -307,7 +307,6 @@
     (org-agenda nil " ")
     (delete-other-windows))
 
-  (bind-key "<f1>" 'moritzs/switch-to-agenda)
   (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
   (setq org-agenda-custom-commands
         `(,moritzs/org-agenda-inbox-view

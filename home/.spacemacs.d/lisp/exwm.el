@@ -41,6 +41,7 @@
 (exwm-input-set-key (kbd "s-c") #'org-capture)
 
 (exwm-input-set-key (kbd "s-x") #'helm-bibtex)
+(exwm-input-set-key (kbd "s-o") #'moritzs/switch-to-agenda)
 
 (fancy-battery-mode)
 
