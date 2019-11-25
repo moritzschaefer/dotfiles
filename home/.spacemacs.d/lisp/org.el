@@ -167,6 +167,8 @@
     "br" 'python-shell-send-region)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "bR" 'spacemacs/python-shell-send-region-switch)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "tC" 'org-table-create-or-convert-from-region)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -434,4 +436,5 @@
       (org-export-to-file 'latex outfile
         async subtreep visible-only body-only ext-plist
         (lambda (file) (moritzs/hack-export file)))))
+
   )
