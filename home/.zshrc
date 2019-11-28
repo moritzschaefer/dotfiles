@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
@@ -76,9 +76,6 @@ BROWSER=qutebrowser
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# anaconda
-# export PATH="/opt/anaconda/bin:$PATH"
-
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -144,3 +141,5 @@ PERL5LIB="/home/moritz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LI
 PERL_LOCAL_LIB_ROOT="/home/moritz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/moritz/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/moritz/perl5"; export PERL_MM_OPT;
+
+QUTE_BIB_FILEPATH="/home/moritz/wiki/papers/references.bib"

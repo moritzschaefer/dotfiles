@@ -65,8 +65,8 @@
 (define-key minibuffer-local-map [left] 'evil-backward-char)
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
-(define-key evil-motion-state-map (kbd "C-f") nil)
-(define-key evil-motion-state-map (kbd "C-f") 'evil-avy-goto-char-timer)
+(define-key evil-motion-state-map (kbd "C-m") nil)
+(define-key evil-motion-state-map (kbd "C-m") 'evil-avy-goto-char-timer)
 
 ;; refine autocompletion behavior
 
@@ -111,7 +111,7 @@
     )
   )
 
-(defun moritzs/dired-copy-file-path
+(defun moritzs/dired-copy-file-path ()
   (interactive)
   (let ((filename (if (equal major-mode 'dired-mode)
                       default-directory
@@ -235,6 +235,25 @@
                      (setq exwm-input-line-mode-passthrough nil)
                      (when on-exit (funcall on-exit))))))
     (funcall fun map keep-pred on-exit)))
+
+
+(defun moritzs/notebook-name ()
+  (interactive)
+  (let* ((name (read-string "notebook name: "))
+        (path "~/wiki/gtd/quick/")
+        (complete-name (expand-file-name (format "%s.org"
+                              name) path))
+    )
+    (find-file complete-name)
+    )
+  )
+
+(defun moritzs/reverse-characters-region (beg end)
+  "Reverse characters between BEG and END."
+  (interactive "r")
+  (let ((region (buffer-substring beg end)))
+    (delete-region beg end)
+    (insert (nreverse region))))
 
 ;; enable proselint in textual modes:
 (add-hook 'markdown-mode-hook #'flycheck-mode)

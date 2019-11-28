@@ -158,9 +158,17 @@
 
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "sp" 'org-set-property)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "sH" 'helm-org-in-buffer-headings)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "ld" 'doi-utils-add-bibtex-entry-from-doi)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "br" 'python-shell-send-region)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "bR" 'spacemacs/python-shell-send-region-switch)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "tC" 'org-table-create-or-convert-from-region)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -359,6 +367,22 @@
           (system . system)
           (auto-mode . emacs)))
 
+  (defun moritzs/org-ref-bibtex-assoc-pdf-with-entry (&optional prefix)
+    "Adapted from org-ref"
+    (interactive "P")
+    (save-excursion
+      (let* (
+      (bibtex-expand-strings t)
+            (key (helm-bibtex))
+            (pdf (concat org-ref-pdf-directory (concat key ".pdf")))
+      (file-move-func (org-ref-bibtex-get-file-move-func prefix)))
+        (if (file-exists-p pdf)
+      (message (format "A file named %s already exists" pdf))
+    (progn
+      (funcall file-move-func buffer-file-name pdf)
+      (message (format "Created file %s" pdf)))))))
+
+
   (defun moritzs/hack-export (texfile &optional csl-file)
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
@@ -412,4 +436,5 @@
       (org-export-to-file 'latex outfile
         async subtreep visible-only body-only ext-plist
         (lambda (file) (moritzs/hack-export file)))))
+
   )

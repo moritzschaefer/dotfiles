@@ -9,7 +9,7 @@ if ! pgrep nm-applet; then
     udiskie &
     syndaemon -d  -t  -i 1.0s
     lxqt-policykit-agent &
-    seafile-applet &
+    # seafile-applet &
     blueman-applet &
     sparkleshare &
     touchegg &

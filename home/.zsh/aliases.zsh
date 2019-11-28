@@ -75,3 +75,5 @@ alias shake='adb shell input keyevent 82'
 alias cat='bat'
 alias ping='prettyping --nolegend'
 alias l='ls -lhrt'
+
+alias ec='emacsclient'
