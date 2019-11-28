@@ -22,16 +22,16 @@
                     (lambda () (interactive) (exwm-workspace-switch 1)))
 (exwm-input-set-key (kbd "s-s")
                     (lambda () (interactive) (exwm-workspace-switch 2)))
-(exwm-input-set-key (kbd "s-g")
-                    (lambda () (interactive) (exwm-workspace-switch 3)))
-(exwm-input-set-key (kbd "s-y")
-                    (lambda () (interactive) (exwm-workspace-switch 4)))
+;; (exwm-input-set-key (kbd "s-g")
+;;                     (lambda () (interactive) (exwm-workspace-switch 3)))
 (exwm-input-set-key (kbd "s-z")
-                    (lambda () (interactive) (exwm-workspace-switch 5)))
-;; (exwm-input-set-key (kbd "s-,")
-;;                     (lambda () (interactive) (exwm-workspace-switch 6)))
+                    (lambda () (interactive) (exwm-workspace-switch 3)))
+(exwm-input-set-key (kbd "s-,")
+                    (lambda () (interactive) (exwm-workspace-switch 4)))
 (exwm-input-set-key (kbd "s-.")
-                    (lambda () (interactive) (exwm-workspace-switch 6)))
+                    (lambda () (interactive) (exwm-workspace-switch 5)))
+;; (exwm-input-set-key (kbd "s-.")
+;;                     (lambda () (interactive) (exwm-workspace-switch 6)))
 
 ;; + Application launcher ('M-&' also works if the output buffer does not
 ;;   bother you). Note that there is no need for processes to be created by
@@ -144,7 +144,7 @@
           (lambda nil
             (let ((server-buf (current-buffer)))
               (bury-buffer)
-              (exwm-workspace-switch 3)
+              (exwm-workspace-switch 1)
               (switch-to-buffer server-buf)
               )
             )
