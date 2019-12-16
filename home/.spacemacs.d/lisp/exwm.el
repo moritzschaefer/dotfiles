@@ -44,6 +44,12 @@
 
 (fancy-battery-mode)
 
+(defun moritzs/exwm-reboot ()
+  (interactive)
+  (recentf-save-list)
+  (save-some-buffers)
+  (start-process-shell-command "reboot" nil "systemctl reboot"))
+
 (defun moritzs/exwm-logout ()
   (interactive)
   (recentf-save-list)

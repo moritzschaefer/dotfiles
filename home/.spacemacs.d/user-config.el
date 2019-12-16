@@ -2,6 +2,7 @@
 
 (require 'forge)
 (require 'ox-beamer)
+(require 'pdf-misc)
 
 
 ;; For all programming modes

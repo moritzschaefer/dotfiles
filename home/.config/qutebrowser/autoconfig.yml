@@ -77,7 +77,7 @@ settings:
     global: false
   url.searchengines:
     global:
-      DEFAULT: https://google.com/search?q={}
+      DEFAULT: https://beta.cliqz.com/search?lang=en&country=us&q={}
       ens: https://www.ensembl.org/Mouse/Search/Results?q={};site=ensembl;facet_species=Mouse;page=1
       g: https://google.com/search?q={}
       gs: https://scholar.google.ch/scholar?q={}

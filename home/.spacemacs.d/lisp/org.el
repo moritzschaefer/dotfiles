@@ -2,6 +2,11 @@
 (with-eval-after-load 'org
   (require 'org-capture)
   (require 'org-attach)
+  (require 'ox-extra)
+
+
+  (ox-extras-activate '(ignore-headlines))
+
 
   (setq org-reveal-root "file:///opt/reveal.js-3.7.0/")
   ;; set specific browser to open links
@@ -26,7 +31,8 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-log-state-notes-insert-after-drawers nil)
-  (setq org-tag-alist (quote (("@errand" . ?e)
+  (setq org-tag-alist (quote (("ignore" . ?i)
+                              ("@errand" . ?e)
                               ("@office" . ?o)
                               ("@question" . ?q)
                               ("@home" . ?h)
