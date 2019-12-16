@@ -321,7 +321,6 @@
     (org-agenda nil " ")
     (delete-other-windows))
 
-  (bind-key "<f1>" 'moritzs/switch-to-agenda)
   (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
   (setq org-agenda-custom-commands
         `(,moritzs/org-agenda-inbox-view
@@ -390,10 +389,11 @@
       (message (format "Created file %s" pdf)))))))
 
 
-  (defun moritzs/hack-export (texfile)
+  (defun moritzs/hack-export (texfile &optional csl-file)
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
-          (tmpname (format "%s.mod.tex" basename))
+           (tmpname (format "%s.mod.tex" basename))
+           (csl-file (or csl-file "bioinformatics.csl"))
           (reference-doc
            (if (file-exists-p (format "%s_template.docx" basename) )
                (format "%s_template.docx" basename)
@@ -403,7 +403,7 @@
       (call-process-shell-command (format "~/format-tex.py %s %s" texfile tmpname)
                                   nil "*Shell Command Output*" t)
 
-      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/references.bib --csl plos-computational-biology.csl -i %s -o %s.docx" reference-doc tmpname basename)
+      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)
                                   nil "*Shell Command Output*" t)
       )
     )
