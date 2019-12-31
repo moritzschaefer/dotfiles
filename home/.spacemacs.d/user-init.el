@@ -1,5 +1,6 @@
 (setq shell-file-name "/bin/bash") 
 
+(require 'cl) ;; fix spacemacs-os issue https://github.com/timor/spacemacsOS/issues/7
 
 (defun moritzs/recent-download-file ()
   "Open a recently downloaded file."
