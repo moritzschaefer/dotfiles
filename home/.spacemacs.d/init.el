@@ -502,7 +502,7 @@ This function is called at the very end of Spacemacs initialization."
      ((equal exwm-class-name "URxvt")
       workspace 4)
      ((equal exwm-class-name "qutebrowser")
-      workspace 0)
+      workspace 2)
      (t char-mode t))))
  '(exwm-workspace-number 8)
  '(google-translate-default-source-language "de" t)

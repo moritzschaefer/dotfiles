@@ -151,7 +151,7 @@
           (lambda nil
             (let ((server-buf (current-buffer)))
               (bury-buffer)
-              (exwm-workspace-switch 1)
+              (exwm-workspace-switch 2)
               (switch-to-buffer server-buf)
               )
             )
