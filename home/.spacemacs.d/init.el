@@ -244,7 +244,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -498,9 +498,9 @@ This function is called at the very end of Spacemacs initialization."
  '(exwm-manage-configurations
    (quote
     (((equal exwm-class-name "Rambox")
-      workspace 3)
-     ((equal exwm-class-name "URxvt")
       workspace 4)
+     ((equal exwm-class-name "URxvt")
+      workspace 3)
      ((equal exwm-class-name "qutebrowser")
       workspace 2)
      (t char-mode t))))

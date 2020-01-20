@@ -14,7 +14,7 @@ if ! pgrep nm-applet; then
     sparkleshare &
     touchegg &
     pasystray & 
-    echo "$USER@$HOSTNAME" >> /home/moritz/debug.out
+    # echo "$USER@$HOSTNAME" >> /home/moritz/debug.out
     urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec command tmux new-session -n$USER -s$USER@$HOSTNAME" &
     export QUTE_BIB_FILEPATH="/home/moritz/wiki/papers/references.bib"
     if xrandr | ag "DP2 connected"; then
