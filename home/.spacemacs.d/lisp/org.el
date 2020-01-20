@@ -393,7 +393,7 @@
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
            (tmpname (format "%s.mod.tex" basename))
-           (csl-file (or csl-file "bioinformatics.csl"))
+           (csl-file (or csl-file "csbj.csl"))
           (reference-doc
            (if (file-exists-p (format "%s_template.docx" basename) )
                (format "%s_template.docx" basename)
