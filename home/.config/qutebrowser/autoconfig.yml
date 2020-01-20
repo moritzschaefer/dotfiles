@@ -77,17 +77,18 @@ settings:
     global: false
   url.searchengines:
     global:
-      DEFAULT: https://beta.cliqz.com/search?lang=en&country=us&q={}
+      DEFAULT: https://google.com/search?q={}
       ens: https://www.ensembl.org/Mouse/Search/Results?q={};site=ensembl;facet_species=Mouse;page=1
       g: https://google.com/search?q={}
       gs: https://scholar.google.ch/scholar?q={}
       imdb: https://www.imdb.com/find?ref_=nv_sr_fn&q={}
       maps: https://google.com/maps/search/{}
+      mirbase: http://www.mirbase.org/textsearch.shtml?q={}&submit=submit
       pm: https://www.ncbi.nlm.nih.gov/pubmed/?term={}
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}
   url.start_pages:
-    global: https://start.duckduckgo.com
+    global: https://zeit.de
   url.yank_ignored_parameters:
     global:
     - ref
