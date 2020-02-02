@@ -58,6 +58,7 @@
   (start-process-shell-command "logout" nil "kill -9 -1"))
 
 (exwm-input-set-key (kbd "s-C-q") #'moritzs/exwm-logout)
+(exwm-input-set-key (kbd "s-C-r") #'moritzs/exwm-reboot)
 
 
 ;; autostart
@@ -151,7 +152,7 @@
           (lambda nil
             (let ((server-buf (current-buffer)))
               (bury-buffer)
-              (exwm-workspace-switch 1)
+              (exwm-workspace-switch 5)
               (switch-to-buffer server-buf)
               )
             )

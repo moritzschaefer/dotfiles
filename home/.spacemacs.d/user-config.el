@@ -67,6 +67,7 @@
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
 (define-key evil-motion-state-map (kbd "C-m") nil)
+(define-key org-mode-map (kbd "C-m") nil)
 (define-key evil-motion-state-map (kbd "C-m") 'evil-avy-goto-char-timer)
 
 ;; refine autocompletion behavior
