@@ -30,6 +30,26 @@
                     (lambda () (interactive) (exwm-workspace-switch 4)))
 (exwm-input-set-key (kbd "s-.")
                     (lambda () (interactive) (exwm-workspace-switch 5)))
+
+;; Shortcuts to move buffer to a certain workspace
+(exwm-input-set-key (kbd "s-C-n") #'buffer-to-window-1)  ;; # TODO use move-buffer-window-no-follow to not focus to the new window?
+(exwm-input-set-key (kbd "s-C-r") #'buffer-to-window-2)
+(exwm-input-set-key (kbd "s-C-s") #'buffer-to-window-3)
+(exwm-input-set-key (kbd "s-C-z") #'buffer-to-window-4)
+(exwm-input-set-key (kbd "s-C-,") #'buffer-to-window-5)
+(exwm-input-set-key (kbd "s-C-.") #'buffer-to-window-6)
+
+;; TODO Shortcuts to move buffer to a certain workspace as vertical split
+;; get-current-buffer-id -> exwm-workspace-switch-123456 -> split-window-right t (switch-to-window) -> import buffer with stored buffer id
+
+(exwm-input-set-key (kbd "s-S-n") #'buffer-to-window-1)
+(exwm-input-set-key (kbd "s-S-r") #'buffer-to-window-2)
+(exwm-input-set-key (kbd "s-S-s") #'buffer-to-window-3)
+(exwm-input-set-key (kbd "s-S-z") #'buffer-to-window-4)
+(exwm-input-set-key (kbd "s-S-,") #'buffer-to-window-5)
+(exwm-input-set-key (kbd "s-S-.") #'buffer-to-window-6)
+
+
 ;; (exwm-input-set-key (kbd "s-.")
 ;;                     (lambda () (interactive) (exwm-workspace-switch 6)))
 
@@ -81,7 +101,9 @@
 (exwm-input-set-key (kbd "s-V") #'split-window-right-and-focus)
 (exwm-input-set-key (kbd "s-h") #'split-window-below)
 (exwm-input-set-key (kbd "s-H") #'split-window-below-and-focus)
-(exwm-input-set-key (kbd "s-t") #'evil-window-next) ;; import window
+
+(exwm-input-set-key (kbd "s-t") #'spacemacs/alternate-window)
+(exwm-input-set-key (kbd "s-j") #'spacemacs/alternate-buffer)
 
 ;; (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
 ;; (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
