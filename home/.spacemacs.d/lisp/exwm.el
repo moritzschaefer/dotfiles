@@ -45,6 +45,12 @@
 
 (fancy-battery-mode)
 
+(defun moritzs/exwm-shutdown ()
+  (interactive)
+  (recentf-save-list)
+  (save-some-buffers)
+  (start-process-shell-command "shutdown" nil "systemctl poweroff"))
+
 (defun moritzs/exwm-reboot ()
   (interactive)
   (recentf-save-list)
@@ -59,6 +65,7 @@
 
 (exwm-input-set-key (kbd "s-C-q") #'moritzs/exwm-logout)
 (exwm-input-set-key (kbd "s-C-r") #'moritzs/exwm-reboot)
+(exwm-input-set-key (kbd "s-C-s") #'moritzs/exwm-shutdown)
 
 
 ;; autostart
@@ -86,6 +93,7 @@
 ;; (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
 ;; (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
+(exwm-input-set-key (kbd "s-b") #'lazy-helm/helm-mini) ;; import buffer
 
 ;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 

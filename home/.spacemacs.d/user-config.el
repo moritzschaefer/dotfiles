@@ -266,6 +266,16 @@
 ;; fix google translate workarround: https://github.com/atykhonov/google-translate/issues/52
 (defun google-translate--search-tkk () "Search TKK." (list 433232 899235537))
 
+;; towards emacs mode: unmap remap C-z it to undo-tree-undo
+(define-key global-map (kbd "C-z") 'undo-tree-undo)
+(define-key global-map (kbd "C-S-z") 'undo-tree-redo)
+
+;; S-r is reverse search. how to insert different registers??
+(define-key global-map (kbd "C-S-s") 'isearch-backward)
+(define-key global-map (kbd "C-r") 'evil-paste-from-register)
+
+;; TODO map C-e to C-x
+
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/dna.el")
