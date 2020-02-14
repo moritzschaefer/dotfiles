@@ -282,7 +282,8 @@
 
 (load "~/.spacemacs.d/lisp/rebinder.el")
 
-(define-key global-map (kbd "s-e") (rebinder-dynamic-binding "C-x"))
+(define-key global-map (kbd "C-e") (rebinder-dynamic-binding "C-x"))
+(define-key global-map (kbd "C-i") (rebinder-dynamic-binding "C-c"))
 ;; (define-key rebinder-mode-map (kbd "C-c") 'backward-char)
 
 (rebinder-hook-to-mode 't 'after-change-major-mode-hook)

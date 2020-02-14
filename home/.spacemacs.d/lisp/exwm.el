@@ -12,7 +12,8 @@
 
 (exwm-input-set-key (kbd "s-<escape>") 'exwm-reset)
 
-(exwm-input-set-key (kbd "<s-tab>") #'spacemacs/exwm-jump-to-last-exwm)
+
+;; TODO rebind s-enter
 ;; + Bind a key to switch workspace interactively
 ;; (exwm-input-set-key (kbd "s-w") 'exwm-workspace-switch)
 ;; + Set shortcuts to switch to a certain workspace.
@@ -122,7 +123,8 @@
 (exwm-input-set-key (kbd "s-H") #'split-window-below-and-focus)
 
 (exwm-input-set-key (kbd "s-t") #'spacemacs/alternate-window)
-(exwm-input-set-key (kbd "s-j") #'spacemacs/alternate-buffer)
+;; (exwm-input-set-key (kbd "<s-tab>") #'spacemacs/exwm-jump-to-last-exwm)
+(exwm-input-set-key (kbd "<s-tab>") #'spacemacs/alternate-buffer)
 
 ;; (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
 ;; (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
