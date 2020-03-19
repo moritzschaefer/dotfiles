@@ -30,6 +30,8 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(systemd
+     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp" mu4e-account-alist t)
+     dap
      lsp
      ruby
      nginx
@@ -509,10 +511,10 @@ This function is called at the very end of Spacemacs initialization."
       workspace 2)
      (t char-mode t))))
  '(exwm-workspace-number 8)
- '(google-translate-default-source-language "de")
- '(google-translate-default-target-language "en")
- '(google-translate-enable-ido-completion t)
- '(google-translate-show-phonetic t)
+ '(google-translate-default-source-language "de" t)
+ '(google-translate-default-target-language "en" t)
+ '(google-translate-enable-ido-completion t t)
+ '(google-translate-show-phonetic t t)
  '(helm-completion-style (quote emacs))
  '(helm-external-programs-associations (quote (("docx" . "loffice"))))
  '(helm-ff-lynx-style-map t)
@@ -576,7 +578,8 @@ This function is called at the very end of Spacemacs initialization."
  '(paradox-github-token t)
  '(pdf-misc-print-programm "/usr/bin/lpr")
  '(pdf-misc-print-programm-args (quote ("-o media=A4" "-o fitplot")))
- '(python-shell-prompt-block-regexp "\\.\\.\\.:? "))
+ '(python-shell-prompt-block-regexp "\\.\\.\\.:? ")
+ '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

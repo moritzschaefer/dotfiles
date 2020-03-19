@@ -89,7 +89,7 @@ PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 
 
 # ruby gems
-PATH="$(ruby -e 'print Gem.user_dir')/bin:/root/.gem/ruby/2.5.0/bin:$PATH"
+PATH="$(ruby -e 'print Gem.user_dir')/bin:/root/.gem/ruby/2.7.0/bin:$PATH"
 
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
