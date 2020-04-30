@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : subp
+#key : subp
+#contributor : Moritz Schäfer
+# --
+fig, ax = plt.subplots($0figsize=($1))
+$2

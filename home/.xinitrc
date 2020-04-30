@@ -13,7 +13,7 @@ xrdb -merge ~/.Xresources
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Themes, etc
-gnome-settings-daemon &
+#gnome-settings-daemon &
 
 # Fallback cursor # dont know what this is for..
 # xsetroot -cursor_name left_ptr

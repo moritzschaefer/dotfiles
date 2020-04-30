@@ -273,6 +273,7 @@
 ;; C-S-r is reverse search. how to insert different registers??
 (define-key global-map (kbd "C-S-s") 'isearch-backward)
 (define-key global-map (kbd "C-r") 'evil-paste-from-register)
+(define-key minibuffer-local-map (kbd "C-r") 'evil-paste-from-register)
 (define-key evil-emacs-state-map (kbd "C-z") nil)
 
 ;;

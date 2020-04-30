@@ -7,3 +7,9 @@
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 
 
+[submodule "home/.spacemacs.d/layers/exwm"]
+	path = home/.spacemacs.d/layers/exwm
+	url = https://github.com/timor/spacemacsOS
+[submodule "home/.spacemacs.d/layers/w3m-layer"]
+	path = home/.spacemacs.d/layers/w3m
+	url = https://github.com/venmos/w3m-layer.git

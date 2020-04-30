@@ -73,7 +73,7 @@ URxvt.intensityStyles: false
 *color13:                 S_violet
 *color14:                 S_base1
 *color15:                 S_base3
-Xft.dpi: 192
+Xft.dpi: 240
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull

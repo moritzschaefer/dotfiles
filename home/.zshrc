@@ -91,6 +91,7 @@ PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 # ruby gems
 PATH="$(ruby -e 'print Gem.user_dir')/bin:/root/.gem/ruby/2.7.0/bin:$PATH"
 
+zstyle ':vcs_info:*' disable-patterns "/mnt"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
