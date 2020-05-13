@@ -237,21 +237,49 @@
 (define-key global-map (kbd "C-z") 'undo-tree-undo)
 (define-key global-map (kbd "C-S-z") 'undo-tree-redo)
 
-;; S-r is reverse search. how to insert different registers??
+;; C-S-r is reverse search. how to insert different registers??
 (define-key global-map (kbd "C-S-s") 'isearch-backward)
 (define-key global-map (kbd "C-r") 'evil-paste-from-register)
+(define-key minibuffer-local-map (kbd "C-r") 'evil-paste-from-register)
+(define-key evil-emacs-state-map (kbd "C-z") nil)
 
-;; TODO map C-e to C-x
+;;
+(define-key global-map (kbd "C-p") nil)
 
+
+;; duplicate lines (https://www.emacswiki.org/emacs/CopyingWholeLines)
+(defun duplicate-current-line (&optional n)
+  "duplicate current line, make more than 1 copy given a numeric argument"
+  (interactive "p")
+  (save-excursion
+    (let ((nb (or n 1))
+          (current-line (thing-at-point 'line)))
+      ;; when on last line, insert a newline first
+      (when (or (= 1 (forward-line 1)) (eq (point) (point-max)))
+        (insert "\n"))
+      
+      ;; now insert as many time as requested
+      (while (> n 0)
+        (insert current-line)
+        (decf n)))))
+
+(define-key global-map (kbd "C-d") 'duplicate-current-line)
+
+
+
+;; TODO automatically import everything in lisp/
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
+(load "~/.spacemacs.d/lisp/isearch.el")
+(load "~/.spacemacs.d/lisp/mu4e.el")
 
+;; TODO map C-e to C-x
 (load "~/.spacemacs.d/lisp/rebinder.el")
 
 (define-key global-map (kbd "C-e") (rebinder-dynamic-binding "C-x"))
-(define-key global-map (kbd "C-i") (rebinder-dynamic-binding "C-c"))
+(define-key global-map (kbd "C-n") (rebinder-dynamic-binding "C-c"))
 ;; (define-key rebinder-mode-map (kbd "C-c") 'backward-char)
 
 (rebinder-hook-to-mode 't 'after-change-major-mode-hook)

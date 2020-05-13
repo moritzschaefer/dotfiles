@@ -608,10 +608,9 @@ c.InteractiveShellApp.exec_lines = [
     'import scipy as sp',
     'import pandas as pd',
     'import matplotlib.pyplot as plt',
+    # 'import moritzsphd as mphd',
     'import seaborn as sns',
-    'import moritzsphd as mphd',
-    ]
-['sns.set_context("poster")',
+    'sns.set_context("poster")',
     'sns.set(rc={"figure.figsize": (10, 5.)})',
     'sns.set_style("whitegrid")',
     'sns.set_palette(sns.husl_palette(10, l=.7, s=.6))',

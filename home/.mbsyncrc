@@ -1,0 +1,74 @@
+IMAPAccount gmail
+# Address to connect to
+Host imap.gmail.com
+User mollitz@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/mail/mailpass_gmail.gpg"
+#
+# Use SSL
+SSLType IMAPS
+# The following line should work. If get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile ~/.cert/imap.gmail.com.pem
+#CertificateFile ~/.cert/Equifax_Secure_CA.pem
+PipelineDepth 30
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Subfolders Verbatim
+# The trailing "/" is important
+Path ~/mail/gmail/
+Inbox ~/mail/gmail/Inbox
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Or include everything
+#Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+######## ETH Webmail ###########
+
+IMAPAccount ethz
+# Address to connect to
+Host mail.ethz.ch
+# User moritz.schaefer@biol.ethz.ch
+# User schamori@ethz.ch
+User d\\schamori
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/mail/mailpass_ethz.gpg"
+#
+# Use SSL
+SSLType IMAPS
+AuthMech LOGIN
+# The following line should work. If get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile ~/.cert/imap.gmail.com.pem
+#CertificateFile ~/.cert/Equifax_Secure_CA.pem
+PipelineDepth 30
+
+IMAPStore ethz-remote
+Account ethz
+
+MaildirStore ethz-local
+Subfolders Verbatim
+# The trailing "/" is important
+Path ~/mail/ethz/
+Inbox ~/mail/ethz/Inbox
+
+Channel ethz
+Master :ethz-remote:
+Slave :ethz-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+# Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Or include everything
+Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *

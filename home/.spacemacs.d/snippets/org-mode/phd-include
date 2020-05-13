@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: phd include
+# key: <iphd
+# --
+
+#+INCLUDE: "./phd.org::#weekly_id:$0" :only-contents ${1:$$(yas-choose-value '("nil" "t"))}
