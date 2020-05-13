@@ -2,7 +2,6 @@
 
 (require 'forge)
 (require 'ox-beamer)
-(require 'pdf-misc)
 
 
 ;; For all programming modes
@@ -159,38 +158,6 @@
 (keyfreq-autosave-mode 1)
 
 
-(evil-set-initial-state 'pdf-view-mode 'normal)
-
-(defun moritzs/pdf-misc-print-current-page (filename &optional interactive-p)
-  (interactive
-   (list (pdf-view-buffer-file-name) t))
-  (cl-check-type filename (and string file-readable))
-  (let ((programm (pdf-misc-print-programm interactive-p))
-        (args (append pdf-misc-print-programm-args (list filename "-o" (format "page-ranges=%s " (image-mode-window-get 'page))))))
-    (unless programm
-      (error "No print program available"))
-    (apply #'start-process "printing" nil programm args)
-    (message "Print job started: %s %s"
-             programm (mapconcat #'identity args " "))))
-
-(defun moritzs/pdf-misc-print-until-current-page (filename &optional interactive-p)
-  (interactive
-   (list (pdf-view-buffer-file-name) t))
-  (cl-check-type filename (and string file-readable))
-  (let ((programm (pdf-misc-print-programm interactive-p))
-        (args (append pdf-misc-print-programm-args (list filename "-o" (format "page-ranges=1-%s" (image-mode-window-get 'page))))))
-    (unless programm
-      (error "No print program available"))
-    (apply #'start-process "printing" nil programm args)
-    (message "Print job started: %s %s"
-             programm (mapconcat #'identity args " "))))
-
-(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
-  "b" 'org-ref-pdf-to-bibtex)
-(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
-  "c" 'moritzs/pdf-misc-print-current-page)
-(spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
-  "u" 'moritzs/pdf-misc-print-until-current-page)
 
 (defun shell-command-on-region-replace (start end command)
   "Run shell-command-on-region interactivly replacing the region in place"
@@ -279,6 +246,7 @@
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/dna.el")
+(load "~/.spacemacs.d/lisp/pdf.el")
 
 (load "~/.spacemacs.d/lisp/rebinder.el")
 
@@ -287,3 +255,4 @@
 ;; (define-key rebinder-mode-map (kbd "C-c") 'backward-char)
 
 (rebinder-hook-to-mode 't 'after-change-major-mode-hook)
+

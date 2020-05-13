@@ -177,7 +177,7 @@
   (delete-other-windows)
   (set-window-buffer (split-window-horizontally) "qutebrowser"))
 
-(exwm-input-set-key (kbd "s-p") 'sarg/with-browser)
+;; (exwm-input-set-key (kbd "s-p") 'sarg/with-browser)
 
 
 ;; TODO symon.el?
