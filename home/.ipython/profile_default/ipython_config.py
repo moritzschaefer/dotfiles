@@ -604,6 +604,7 @@ c.InteractiveShellApp.log_level = 50
 c.InteractiveShellApp.extensions = ['autoreload']
 c.InteractiveShellApp.exec_lines = [
     'import os, sys, logging',
+    'sys.path.append("/home/moritz/Projects/moritzsphd/src")',
     'import numpy as np',
     'import scipy as sp',
     'import pandas as pd',

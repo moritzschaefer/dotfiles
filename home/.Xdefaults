@@ -26,7 +26,7 @@ URxvt*urgentOnBell: true
 URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-readline,clipboard
 URxvt*matcher.button: 1
 # don't forget to change this to your favorite browser
-URxvt*urlLauncher: chromium-browser
+URxvt*urlLauncher: qutebrowser
 
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste

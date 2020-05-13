@@ -46,6 +46,9 @@
 (spacemacs/set-leader-keys
   "fd" 'moritzs/recent-download-file
   )
+(spacemacs/set-leader-keys
+  "fn" (lambda () (interactive) (find-file "~/nixos-config/README.org"))
+  )
 
 (global-set-key [s-left] 'evil-window-left)
 (global-set-key [s-right] 'evil-window-right)
@@ -298,6 +301,32 @@
 
 (define-key global-map (kbd "C-d") 'duplicate-current-line)
 
+
+(defun sudo-shell-command (buffer password command)
+  (let ((proc (start-process-shell-command
+               "*sudo*"
+               buffer
+               (concat "sudo bash -c "
+                       (shell-quote-argument command)))))
+    (process-send-string proc password)
+    (process-send-string proc "\r")
+    (process-send-eof proc)))
+
+(defun sudo-nixos-rebuild ()
+  (interactive)
+  (let ((password (read-passwd "Sudo password for nixos-rebuild switch: ")))
+
+    (find-file  "/home/moritz/nixos-config/README.org")
+    (org-babel-tangle)
+    (sudo-shell-command
+     "*nixos-rebuild*"
+     password
+     "nixos-rebuild switch")
+    (clear-string password))
+  (switch-to-buffer "*nixos-rebuild*")
+  )
+(define-key global-map (kbd "s-C") 'sudo-nixos-rebuild)
+(define-key global-map (kbd "s-S-c") 'sudo-nixos-rebuild)
 
 
 ;; TODO automatically import everything in lisp/

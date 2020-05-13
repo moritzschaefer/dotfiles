@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if ! pgrep nm-applet; then
     clipit &

@@ -1,4 +1,4 @@
-(setq shell-file-name "/bin/bash") 
+(setq shell-file-name "/bin/sh") 
 
 (require 'cl) ;; fix spacemacs-os issue https://github.com/timor/spacemacsOS/issues/7
 
