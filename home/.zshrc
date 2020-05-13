@@ -144,3 +144,4 @@ PERL_MB_OPT="--install_base \"/home/moritz/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/moritz/perl5"; export PERL_MM_OPT;
 
 QUTE_BIB_FILEPATH="/home/moritz/wiki/papers/references.bib"
+export PATH=/home/moritz/Projects/basteln/Tools/environment_install/ardupilot/Tools/autotest:$PATH
