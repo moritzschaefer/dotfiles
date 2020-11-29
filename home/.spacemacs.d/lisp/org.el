@@ -156,15 +156,28 @@
   ;;(spacemacs/toggle-truncate-lines-off)
   (add-hook 'org-mode-hook #'spacemacs/toggle-truncate-lines-off)
 
+
+
   (require 'org-agenda)
   (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
   (define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
   (define-key org-agenda-mode-map "R" 'org-agenda-refile)
   (define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
 
+  (defun moritzs/org-set-weekly-id-property ()
+    (interactive)
+      (let ((value (read-string "weekly_id:")))  ;; TODO could use interactive as well..
+        (org-set-property "CUSTOM_ID" (concat "weekly_id:" value))
+        (kill-new (concat "#+INCLUDE: \"./phd.org::#weekly_id:" value "\" :only-contents t"))
+        )
+    )
+
+
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "sp" 'org-set-property)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "sw" 'moritzs/org-set-weekly-id-property)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "sH" 'helm-org-in-buffer-headings)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
@@ -176,12 +189,6 @@
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "tC" 'org-table-create-or-convert-from-region)
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((ipython . t)
-     ;; other languages..
-     ))
-  (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
 
   ;;; display/update images in the buffer after I evaluate TODO don't know if this is necessary
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
@@ -228,7 +235,14 @@
   ;;                      "rn" #'org-now-refile-to-now
   ;;                      "rp" #'org-now-refile-to-previous-location))
 
-  (setq org-link-abbrev-alist '(("att" . org-attach-expand-link)))
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (define-key dired-mode-map
+                (kbd "C-c C-x a")
+                #'org-attach-dired-to-subtree)))
+  ;; https://emacs.stackexchange.com/questions/18404/can-i-display-org-mode-attachments-as-inline-images-in-my-document
+  ;; (setq org-link-abbrev-alist '(("attachment" . org-attach-expand) ("att" . org-attach-expand)))
+
   ;; auto org save buffers after refile.
   (advice-add 'org-refile :after
               (lambda (&rest _)
@@ -393,14 +407,14 @@
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
            (tmpname (format "%s.mod.tex" basename))
-           (csl-file (or csl-file "csbj.csl"))
+           (csl-file (or csl-file "elsevier-harvard2.csl"))  ;; use csbj.csl for [1] numbers
           (reference-doc
            (if (file-exists-p (format "%s_template.docx" basename) )
                (format "%s_template.docx" basename)
                "/home/moritz/wiki/template.docx"
                ))
                    )
-      (call-process-shell-command (format "~/format-tex.py %s %s" texfile tmpname)
+      (call-process-shell-command (format "~/bin/format-tex.py %s %s" texfile tmpname)
                                   nil "*Shell Command Output*" t)
 
       (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)

@@ -29,7 +29,9 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(systemd
+   '(shell-scripts
+     ;; scimax-layer
+     systemd
      c-c++
 ;;     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp" mu4e-account-alist t)
      dap
@@ -37,12 +39,27 @@ This function should only modify configuration layer settings."
      ruby
      nginx
      nixos
-     ;; erc
+     (erc :variables
+            erc-server-list
+            '(("irc.freenode.net"
+               :port "6697"
+               :ssl t
+               :nick "muronglizi")))
+               ;; :password "")))
      w3m
      clojure
      latex
      rust
-     exwm
+     (exwm :variables
+           exwm-enable-systray t
+           exwm-use-autorandr t
+           exwm-autostart-xdg-applications t
+           exwm-locking-command "slock"
+           exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "eDP1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")
+           ;; exwm-install-logind-lock-handler t ;; dont know..?
+           exwm-terminal-command "urxvt"  ;; unused anyways..
+           ;; exwm-custom-init (lambda() (gpastel-mode))
+	   )
      csv
      yaml
      react
@@ -50,7 +67,11 @@ This function should only modify configuration layer settings."
      javascript
      html
      themes-megapack
-     (python :variables python-enable-yapf-format-on-save t
+     (python :variables
+             ;;python-backend 'lsp
+             ;;python-lsp-server 'pyright
+             python-backend 'anaconda
+             python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -58,7 +79,9 @@ This function should only modify configuration layer settings."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     (auto-completion :variables
+     (auto-completion
+      ;; :disabled-for ;; org spacemacs-org
+      :variables
                       auto-completion-return-key-behavior 'nil
                       auto-completion-tab-key-behavior 'complete
                       auto-completion-enable-snippets-in-popup t
@@ -74,7 +97,10 @@ This function should only modify configuration layer settings."
      github
      markdown
      syntax-checking
-     (org :variables org-projectile-file "TODOs.org")
+     (org :variables org-projectile-file "TODOs.org"
+          org-enable-roam-support t
+
+          )
                      ;; org-enable-reveal-js-support t)
      bibtex
      (shell :variables
@@ -83,13 +109,16 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
+     pass
      ;;modefault
      )
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(org-noter github-clone el-patch telega synosaurus ob-ipython yasnippet-snippets editorconfig interleave org-cliplink synonymous openwith pulseaudio-control helm-exwm desktop-environment pinentry spotify ssh-agency snakemake-mode keyfreq
+   ;; jupyter only works, because I manually compiled zmq using nix-shell -p and the dependencies within this package: https://github.com/NixOS/nixpkgs/pull/64612/files 
+   dotspacemacs-additional-packages '(jupyter clipmon org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig interleave org-cliplink synonymous openwith pulseaudio-control helm-exwm desktop-environment pinentry spotify ssh-agency snakemake-mode 
                                                  (org-now :location (recipe :fetcher github :repo "alphapapa/org-now"))
                                                  )
    ;; A list of packages that cannot be updated.
@@ -104,7 +133,7 @@ This function should only modify configuration layer settings."
    ;; `used-but-keep-unused' installs only the used packages but won't uninstall
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
-   dotspacemacs-install-packages 'used-only))
+   dotspacemacs-install-packages 'used-but-keep-unused))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -231,7 +260,7 @@ values."
                                ;;:size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.3)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -255,7 +284,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab t
+   dotspacemacs-distinguish-gui-tab nil
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -457,7 +486,7 @@ See the header of this file for more information."
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
-This function is called immediately after `dotspacemacs/init', before layer
+This function is called immedfiately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
@@ -498,38 +527,41 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(avy-all-windows t)
- '(avy-keys (quote (99 116 105 101 110 114 115 103 107)))
+ '(avy-keys '(99 116 105 101 110 114 115 103 107))
  '(avy-timeout-seconds 0.2)
- '(browse-url-browser-function (quote browse-url-generic))
- '(browse-url-generic-program "qutebrowser")
+ '(browse-url-browser-function 'browse-url-generic)
+ '(browse-url-generic-program "firefox")
  '(desktop-environment-brightness-small-decrement "2%-")
  '(desktop-environment-brightness-small-increment "2%+")
  '(desktop-environment-mode t nil (desktop-environment))
- '(desktop-environment-screenshot-command "flameshot full -c -p ~/Screenshots")
+ '(desktop-environment-screenshot-command "escrotum /tmp/screenshot-$(date +%F_%T).png -C")
  '(desktop-environment-screenshot-directory "")
- '(desktop-environment-screenshot-partial-command "flameshot gui -p ~/Screenshots")
- '(epa-pinentry-mode (quote loopback))
+ '(desktop-environment-screenshot-partial-command "escrotum -s /tmp/screenshot-$(date +%F_%T).png -C")
+ '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
+ '(eww-search-prefix "https://google.com/search?q=")
  '(exwm-manage-configurations
-   (quote
-    (((equal exwm-class-name "Rambox")
+   '(((equal exwm-class-name "Rambox")
       workspace 4)
      ((equal exwm-class-name "URxvt")
       workspace 3)
+     ((equal exwm-class-name "Spotify")
+      workspace 5)
      ((equal exwm-class-name "qutebrowser")
       workspace 2)
-     (t char-mode t))))
+     (t char-mode t)))
  '(exwm-workspace-number 8)
+ '(garbage-collection-messages t)
  '(google-translate-default-source-language "de" t)
  '(google-translate-default-target-language "en")
  '(google-translate-enable-ido-completion t t)
  '(google-translate-show-phonetic t t)
- '(helm-completion-style (quote emacs))
- '(helm-external-programs-associations (quote (("docx" . "loffice"))))
+ '(helm-completion-style 'emacs)
+ '(helm-external-programs-associations '(("docx" . "loffice")))
+ '(helm-ff-initial-sort-method 'newest)
  '(helm-ff-lynx-style-map t)
  '(helm-google-suggest-actions
-   (quote
-    (("Google Search" . helm-google-suggest-action)
+   '(("Google Search" . helm-google-suggest-action)
      ("Wikipedia" lambda
       (candidate)
       (helm-search-suggest-perform-additional-action helm-search-suggest-action-wikipedia-url candidate))
@@ -547,16 +579,39 @@ This function is called at the very end of Spacemacs initialization."
       (helm-search-suggest-perform-additional-action helm-search-suggest-action-google-news-url candidate))
      ("Stack Snippet" lambda
       (candidate)
-      (helm-search-suggest-perform-additional-action "http://www.stacksnippet.com/#gsc.tab=0&gsc.q=%s" candidate)))))
- '(hybrid-style-default-state (quote emacs))
+      (helm-search-suggest-perform-additional-action "http://www.stacksnippet.com/#gsc.tab=0&gsc.q=%s" candidate))))
+ '(helm-kill-ring-actions
+   '(("Copy to clipboard" lambda
+      (str)
+      (gui-set-selection 'CLIPBOARD str))
+     ("Yank marked" . helm-kill-ring-action-yank)
+     ("Delete marked" . helm-kill-ring-action-delete)))
+ '(hybrid-style-default-state 'emacs)
  '(hybrid-style-enable-evilified-state nil)
+ '(image-dired-thumb-height 512)
+ '(image-dired-thumb-size 512)
+ '(image-dired-thumb-width 512)
  '(large-file-warning-threshold 50000000)
+ '(orb-preformat-keywords
+   '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "file" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "url" "author-or-editor" "keywords"))
+ '(orb-templates
+   '(("r" "ref" plain #'org-roam-capture--get-point "" :file-name "${citekey}" :head "#+TITLE: ${citekey}: ${title}
+#+ROAM_KEY: ${ref}
+
+- tags ::
+
+* ${title}
+:PROPERTIES:
+:Custom_ID: ${citekey}
+:URL: ${url}
+:AUTHOR: ${author-or-editor}
+:NOTER_DOCUMENT: /home/moritz/wiki/papers/${citekey}.pdf
+:NOTER_PAGE:
+:END:" :immediate-finish t)) nil nil "I hope it works")
  '(org-agenda-files
-   (quote
-    ("/home/moritz/wiki/gtd/next.org" "/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/main.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/reviews.org" "/home/moritz/wiki/gtd/someday.org")))
+   '("/home/moritz/wiki/gtd/next.org" "/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/main.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/reviews.org" "/home/moritz/wiki/gtd/someday.org"))
  '(org-capture-templates
-   (quote
-    (("b" "Buy (add to shopping list)
+   '(("b" "Buy (add to shopping list)
             " entry
             (file "~/wiki/gtd/einkaufen.org")
             "* TODO %?")
@@ -580,22 +635,32 @@ This function is called at the very end of Spacemacs initialization."
 ")
      ("p" "Blog post" entry
       (file moritzs/blog-post-name)
-      (file "~/Projects/homepage/templates/post.md")))))
+      (file "~/Projects/homepage/templates/post.md"))))
+ '(org-download-screenshot-method "gnome-screenshot -a -f %s")
  '(org-edit-src-content-indentation 0)
  '(org-export-with-tags nil)
- '(org-now-location (quote ("~/wiki/gtd/now.org")))
- '(org-src-preserve-indentation t)
+ '(org-noter-kill-frame-at-session-end nil)
+ '(org-now-location '("~/wiki/gtd/now.org"))
+ '(org-roam-bibtex-mode t)
+ '(org-roam-capture-templates
+   '(("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+TITLE: ${title}
+
+- tags ::
+
+" :unnarrowed t :immediate-finish t)))
+ '(org-roam-directory "/home/moritz/wiki/roam")
+ '(org-src-preserve-indentation nil)
+ '(org-src-tab-acts-natively nil)
  '(package-selected-packages
-   (quote
-    (sudo-ext zones el-patch writeroom-mode vterm treemacs-persp treemacs-magit treemacs-icons-dired visual-fill-column pulseaudio-control posframe pdf-tools org-noter org-brain modus-vivendi-theme modus-operandi-theme magit-section kaolin-themes js2-mode impatient-mode helm-exwm bibtex-completion forge ghub eziam-theme ess julia-mode emr list-utils polymode websocket doom-themes treemacs pfuture company helm avy yasnippet markdown-mode package-lint transient helm-core all-the-icons helm-rtags google-c-style flycheck-ycmd flycheck-rtags disaster cquery cpp-auto-include company-ycmd ycmd request-deferred company-rtags rtags company-c-headers clang-format ccls lsp-python helm-w3m w3m systemd tree-mode lsp-ui lsp-python-ms helm-lsp dap-mode lsp-treemacs bui company-lsp lsp-mode ansi package-build shut-up git commander f dash s telega clojure-snippets cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a synosaurus flyspell-correct-helm flyspell-correct auto-dictionary seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rbenv rake minitest helm-gtags ggtags enh-ruby-mode counsel-gtags chruby bundler inf-ruby nginx-mode org-gcal keyfreq ssh-agency exwm snakemake-mode company-auctex auctex-latexmk auctex powerline spinner org-category-capture alert log4e gntp org-plus-contrib hydra parent-mode projectile gitignore-mode flycheck pkg-info epl flx highlight magit magit-popup git-commit with-editor smartparens iedit anzu evil goto-chg undo-tree org-now openwith synonymous org-cliplink interleave org-ref key-chord ivy tablist helm-bibtex parsebib biblio biblio-core editorconfig yasnippet-snippets company-quickhelp ob-ipython toml-mode racer flycheck-rust cargo rust-mode csv-mode ox-reveal yaml-mode xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc company-tern tern coffee-mode tide typescript-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme yapfify ws-butler winum white-sand-theme which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle seti-theme reverse-theme restart-emacs rebecca-theme rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el paradox orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mwim mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum live-py-mode linum-relative link-hint light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ess-smart-equals ess-R-data-view espresso-theme elisp-slime-nav ein dumb-jump dracula-theme django-theme diminish define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-statistics company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+   '(clipmon gpastel insert-shebang flycheck-bashate fish-mode counsel swiper company-shell helm-pass password-store auth-source-pass org-roam-bibtex erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks org-roam sudo-ext zones el-patch writeroom-mode vterm treemacs-persp treemacs-magit treemacs-icons-dired visual-fill-column pulseaudio-control posframe pdf-tools org-noter org-brain modus-vivendi-theme modus-operandi-theme magit-section kaolin-themes js2-mode impatient-mode helm-exwm bibtex-completion forge ghub eziam-theme ess julia-mode emr list-utils polymode websocket doom-themes treemacs pfuture company helm avy yasnippet markdown-mode package-lint transient helm-core all-the-icons helm-rtags google-c-style flycheck-ycmd flycheck-rtags disaster cquery cpp-auto-include company-ycmd ycmd request-deferred company-rtags rtags company-c-headers clang-format ccls lsp-python helm-w3m w3m systemd tree-mode lsp-ui lsp-python-ms helm-lsp dap-mode lsp-treemacs bui company-lsp lsp-mode ansi package-build shut-up git commander f dash s telega clojure-snippets cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a synosaurus flyspell-correct-helm flyspell-correct auto-dictionary seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rbenv rake minitest helm-gtags ggtags enh-ruby-mode counsel-gtags chruby bundler inf-ruby nginx-mode org-gcal keyfreq ssh-agency exwm snakemake-mode company-auctex auctex-latexmk auctex powerline spinner org-category-capture alert log4e gntp org-plus-contrib hydra parent-mode projectile gitignore-mode flycheck pkg-info epl flx highlight magit magit-popup git-commit with-editor smartparens iedit anzu evil goto-chg undo-tree org-now openwith synonymous org-cliplink interleave org-ref key-chord ivy tablist helm-bibtex parsebib biblio biblio-core editorconfig yasnippet-snippets company-quickhelp toml-mode racer flycheck-rust cargo rust-mode csv-mode ox-reveal yaml-mode xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc company-tern tern coffee-mode tide typescript-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht zenburn-theme zen-and-art-theme yapfify ws-butler winum white-sand-theme which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle seti-theme reverse-theme restart-emacs rebecca-theme rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el paradox orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mwim mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum live-py-mode linum-relative link-hint light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu ess-smart-equals ess-R-data-view espresso-theme elisp-slime-nav ein dumb-jump dracula-theme django-theme diminish define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-statistics company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
  '(pdf-annot-activate-created-annotations t)
- '(pdf-misc-print-programm "/usr/bin/lpr")
- '(pdf-misc-print-programm-args (quote ("-o media=A4" "-o fitplot")))
- '(python-shell-interpreter "ipython")
- '(python-shell-interpreter-args "--simple-prompt -i")
+ '(pdf-misc-print-program "/usr/bin/lpr" t)
+ '(pdf-misc-print-program-args '("-o media=A4" "-o fitplot") t)
+ '(python-shell-interpreter "python")
+ '(python-shell-interpreter-args "")
  '(python-shell-prompt-block-regexp "\\.\\.\\.:? ")
- '(send-mail-function (quote smtpmail-send-it)))
+ '(send-mail-function 'smtpmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

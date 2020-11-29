@@ -1,7 +1,8 @@
 #!/bin/sh
 
 if ! pgrep nm-applet; then
-    clipit &
+    gpaste & 
+    # clipit &
     nm-applet &
     # rambox &
     system-config-printer-applet &

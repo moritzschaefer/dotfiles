@@ -1,14 +1,23 @@
-(defvar exwm-terminal-command "urxvt"
-  "Terminal command to run.")
-
-(defvar exwm--locking-command "lock"
-  "Command to run when locking session")
-
-(defvar exwm-app-launcher--prompt "$ "
-  "Prompt for the EXWM application launcher")
-
 (defvar exwm--hide-tiling-modeline nil
   "Whether to hide modeline.")
+
+;; clipboard
+
+(defun moritzs/exwm-helm-yank-pop ()
+  "Same as `helm-show-kill-ring' and paste into exwm buffer."
+  (interactive)
+  (let ((inhibit-read-only t)
+        ;; Make sure we send selected yank-pop candidate to
+        ;; clipboard: 
+        (yank-pop-change-selection t))
+    (call-interactively #'helm-show-kill-ring))
+  (when (derived-mode-p 'exwm-mode)
+    ;; https://github.com/ch11ng/exwm/issues/413#issuecomment-386858496
+    (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
+    (exwm-input--fake-key ?\C-v)))
+
+(exwm-input-set-key (kbd "M-y") #'moritzs/exwm-helm-yank-pop)
+
 
 (exwm-input-set-key (kbd "s-<escape>") 'exwm-reset)
 
@@ -69,7 +78,7 @@
 ;; + Application launcher ('M-&' also works if the output buffer does not
 ;;   bother you). Note that there is no need for processes to be created by
 ;;   Emacs.
-(exwm-input-set-key (kbd "s-a") #'spacemacs/exwm-app-launcher)
+(exwm-input-set-key (kbd "s-a") #'helm-run-external-command) ;; exwm/app-launcher)
 
 (exwm-input-set-key (kbd "s-c") #'org-capture)
 
@@ -97,15 +106,14 @@
   (start-process-shell-command "logout" nil "kill -9 -1"))
 
 (exwm-input-set-key (kbd "s-C-q") #'moritzs/exwm-logout)
-;; (exwm-input-set-key (kbd "s-C-s") #'moritzs/exwm-shutdown) ;; TODO hotkeys are in use..
-;; (exwm-input-set-key (kbd "s-C-r") #'moritzs/exwm-reboot)
+(exwm-input-set-key (kbd "s-C-s") #'moritzs/exwm-shutdown) ;; TODO hotkeys are in use..
+(exwm-input-set-key (kbd "s-C-r") #'moritzs/exwm-reboot)
 
 
 ;; autostart
-(start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh")
+;; (start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh")
 
 ;; (desktop-environment-mode)  (inside config now)
-
 
 (exwm-input-set-key (kbd "<XF86LaunchB>") #'desktop-environment-screenshot)
 (exwm-input-set-key (kbd "S-<XF86LaunchB>") #'desktop-environment-screenshot-part)

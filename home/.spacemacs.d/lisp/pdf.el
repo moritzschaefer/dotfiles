@@ -30,8 +30,30 @@
     (pdf-view-auto-slice-minor-mode)
     (run-at-time "0.5 sec" nil #'org-noter))
 
-  (add-hook 'pdf-view-mode-hook 'org-noter-init-pdf-view))
-
+  ;; (add-hook 'pdf-view-mode-hook 'org-noter-init-pdf-view)
+  )
+;; from /home/moritz/.emacs.d/elpa/27.1/develop/org-ref-20201002.1514/org-ref-pdf.el
+(defun moritzs/org-ref-pdf-to-bibtex ()
+  "Add pdf of current buffer to bib file and save pdf to
+`org-ref-default-bibliography'. The pdf should be open in Emacs
+using the `pdf-tools' package."
+  (interactive)
+  (when (not (f-ext? (downcase (buffer-file-name)) "pdf"))
+    (error "Buffer is not a pdf file"))
+  ;; Get doi from pdf of current buffer
+  (let* ((dois (org-ref-extract-doi-from-pdf (buffer-file-name)))
+         (doi-utils-download-pdf nil)
+         (doi (if (= 1 (length dois))
+                  (car dois)
+                (completing-read "Select DOI: " dois))))
+    ;; Add bib entry from doi:
+    (doi-utils-add-bibtex-entry-from-doi doi (car org-ref-default-bibliography)) ;; only modification is that I added bibliography here
+    ;; Copy pdf to `org-ref-pdf-directory':
+    (let ((key (org-ref-bibtex-key-from-doi doi)))
+      (funcall org-ref-pdf-to-bibtex-function
+	             (buffer-file-name)
+               (expand-file-name (format "%s.pdf" key)
+                                 org-ref-pdf-directory)))))
 
 (defun moritzs/pdf-misc-print-current-page (filename &optional interactive-p)
   (interactive

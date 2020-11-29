@@ -3,4 +3,4 @@
 # key: <iphd
 # --
 
-#+INCLUDE: "./phd.org::#weekly_id:$0" :only-contents ${1:$$(yas-choose-value '("nil" "t"))}
+#+INCLUDE: "./phd.org::#weekly_id:#$1" :only-contents ${0:$$(yas-choose-value '("nil" "t"))}

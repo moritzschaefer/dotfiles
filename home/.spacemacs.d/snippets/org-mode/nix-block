@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: nix block
+# key: nix
+# --
+#+name: nixos-section
+#+begin_src nix
+$0
+#+end_src

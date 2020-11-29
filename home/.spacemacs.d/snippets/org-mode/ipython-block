@@ -2,6 +2,6 @@
 # name: ipython block
 # key: py
 # --
-#+BEGIN_SRC ipython :session :results raw drawer :exports results
+#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
 $0
 #+END_SRC

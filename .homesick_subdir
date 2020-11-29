@@ -2,3 +2,5 @@
 .ipython/profile_default
 .local/share/qutebrowser
 .screenlayout
+.local/share/applications
+.gnupg

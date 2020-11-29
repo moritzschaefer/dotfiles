@@ -1,6 +1,8 @@
 (setq shell-file-name "/bin/sh") 
 
-(require 'cl) ;; fix spacemacs-os issue https://github.com/timor/spacemacsOS/issues/7
+(require 'cl) ;; fix spacemacs-os issue https://github.com/timor/spacemacsOS/issues/7  cl has been deprecated and should be replaced by cl-lib
+
+(require 'xdg)
 
 (defun moritzs/recent-download-file ()
   "Open a recently downloaded file."

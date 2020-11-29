@@ -17,6 +17,9 @@ settings:
     global:
       normal:
         edoi: spawn --userscript getbib
+        gc: open javascript:void(location.href='org-protocol://roam-ref?template=r&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title))
+        ',p': spawn --userscript qute-pass --dmenu-invocation dmenu
+        ',P': spawn --userscript qute-pass --dmenu-invocation dmenu --password-only
       prompt:
         <Ctrl+o>: prompt-open-download
   bindings.key_mappings:
@@ -34,6 +37,8 @@ settings:
   content.host_blocking.lists:
     global:
     - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+  content.register_protocol_handler:
+    https://mail.google.com?extsrc=mailto&url=%25s: true
   fonts.completion.category:
     global: bold 12pt default_family
   fonts.completion.entry:
@@ -69,7 +74,9 @@ settings:
     global: 12pt sans-serif
   fonts.statusbar:
     global: 12pt default_family
-  fonts.tabs:
+  fonts.tabs.selected:
+    global: 12pt default_family
+  fonts.tabs.unselected:
     global: 12pt default_family
   fonts.web.family.cursive:
     global: null
@@ -79,6 +86,10 @@ settings:
     global: true
   new_instance_open_target:
     global: tab
+  qt.highdpi:
+    global: false
+  qt.low_end_device_mode:
+    global: auto
   scrolling.smooth:
     global: true
   tabs.background:
@@ -112,7 +123,7 @@ settings:
   window.title_format:
     global: '{perc}{current_title}{title_sep}qutebrowser'
   zoom.default:
-    global: 75%
+    global: 100%
   zoom.levels:
     global:
     - 25%

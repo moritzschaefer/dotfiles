@@ -46,6 +46,9 @@
   "fd" 'moritzs/recent-download-file
   )
 (spacemacs/set-leader-keys
+  "fp" (lambda () (interactive) (progn (moritzs/recent-download-file) (moritzs/org-ref-pdf-to-bibtex)))
+  )
+(spacemacs/set-leader-keys
   "fn" (lambda () (interactive) (find-file "~/nixos-config/README.org"))
   )
 
@@ -73,12 +76,14 @@
 (define-key evil-motion-state-map (kbd "C-m") 'evil-avy-goto-char-timer)
 
 ;; refine autocompletion behavior
+(eval-after-load "company"
+  '(add-to-list 'company-backends 'company-anaconda))
+(require 'company)
 
 ;; I can use the error keys her
-(require 'company)
 (define-key company-active-map (kbd "M-n") nil)
 (define-key company-active-map (kbd "M-p") nil)
-(add-to-list 'company-backends 'company-ob-ipython)
+;; (add-to-list 'company-backends 'company-ob-ipython)
 
 (global-set-key (kbd "M-n") 'hippie-expand)
 ;; (global-set-key (kbd "M-n") 'yas-expand)
@@ -94,6 +99,8 @@
 
 (with-eval-after-load "ansi-term"
   (define-key term-raw-map (kbd "s-r") nil)
+  (define-key term-raw-map (kbd "<prior>") nil)
+  (define-key term-raw-map (kbd "<next>") nil)
   (define-key ansi-term-raw-map (kbd "C-v") 'term-paste))
 
 (add-hook 'ess-mode-hook
@@ -134,6 +141,19 @@
                               (push '(?a . ("['" . "']")) evil-surround-pairs-alist)
                               ))
 
+;; projectile search
+
+(defun moritzs/projectile-switch-search ()
+  "Switch project and search for file"
+  (interactive)
+  (let ((projectile-switch-project-action 'spacemacs/helm-project-smart-do-search))
+    (projectile-switch-project)
+    )
+  )
+
+(spacemacs/set-leader-keys
+  "ps" 'moritzs/projectile-switch-search
+  )
 
 ;; TODO run lsyncd automatically on project change if an lsyncd file exists
 (defun auto-lsyncd ()
@@ -150,15 +170,15 @@
 ;; (load "~/.spacemacs.d/lisp/science.el")
 
 ;; keyfreq
-(setq keyfreq-excluded-commands
-      '(self-insert-command
-        abort-recursive-edit
-        forward-char
-        backward-char
-        previous-line
-        next-line))
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+;; (setq keyfreq-excluded-commands
+;;       '(self-insert-command
+;;         abort-recursive-edit
+;;         forward-char
+;;         backward-char
+;;         previous-line
+;;         next-line))
+;; (keyfreq-mode 1)
+;; (keyfreq-autosave-mode 1)
 
 
 
@@ -196,9 +216,14 @@
   (shell-command-on-region start end (format "ag -o \"%s\"" regexp) t t)
   )
 
+
 (defun moritzs/copy-current-kill-to-clipboard ()
   (interactive)
   (gui-set-selection 'CLIPBOARD (current-kill 0)))
+
+(spacemacs/set-leader-keys "rc" 'moritzs/copy-current-kill-to-clipboard)
+
+
 ;;https://github.com/ch11ng/exwm/issues/611 fix y-or-n blocking issue TODO can be deleted after exwm upgrade!
 (define-advice set-transient-map (:around (fun map &optional keep-pred on-exit) exwm-passthrough)
   (setq exwm-input-line-mode-passthrough t)
@@ -237,17 +262,24 @@
 (defun google-translate--search-tkk () "Search TKK." (list 433232 899235537))
 
 ;; towards emacs mode: unmap remap C-z it to undo-tree-undo
+(define-key evil-emacs-state-map (kbd "C-z") nil)
+(define-key evil-motion-state-map (kbd "C-z") nil)
+
+(define-key undo-tree-map (kbd "C-r") nil)  ;; TODO not working yet
+(define-key evil-motion-state-map (kbd "C-r") 'isearch-backward)  ;; TODO not working yet
+
 (define-key global-map (kbd "C-z") 'undo-tree-undo)
 (define-key global-map (kbd "C-S-z") 'undo-tree-redo)
 
-;; C-S-r is reverse search. how to insert different registers??
-(define-key global-map (kbd "C-S-s") 'isearch-backward)
-(define-key global-map (kbd "C-r") 'evil-paste-from-register)
-(define-key minibuffer-local-map (kbd "C-r") 'evil-paste-from-register)
-(define-key evil-emacs-state-map (kbd "C-z") nil)
+
+(define-key global-map (kbd "C-v") 'evil-paste-from-register)
 
 ;;
 (define-key global-map (kbd "C-p") nil)
+
+(require 'key-chord)
+(key-chord-define-global "dm" 'evil-avy-goto-char-timer)  ;; dm because it's fast to type
+(key-chord-mode +1)
 
 
 ;; duplicate lines (https://www.emacswiki.org/emacs/CopyingWholeLines)
@@ -294,17 +326,32 @@
   )
 (define-key global-map (kbd "s-C") 'sudo-nixos-rebuild)
 (define-key global-map (kbd "s-S-c") 'sudo-nixos-rebuild)
+;; org-roam
+(define-key org-roam-mode-map (kbd "s-p") 'org-roam-insert) ;; [p]aste
+(define-key global-map (kbd "s-g") 'org-roam-find-file) ;; [g]o
+;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version/29757750#29757750
+(defun ediff-copy-both-to-C ()
+  (interactive)
+  (ediff-copy-diff ediff-current-difference nil 'C nil
+                   (concat
+                    (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
+                    (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
+(defun add-d-to-ediff-mode-map () (define-key 'ediff-mode-map "c" 'ediff-copy-both-to-C))
+(add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
 
+;; monitor the system clipboard and add any changes to the kill ring
+;; (clipmon-mode-start)  <- sometimes freezes emacs...
 
 ;; TODO automatically import everything in lisp/
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
+(load "~/.spacemacs.d/lisp/org-babel.el")
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
 (load "~/.spacemacs.d/lisp/mu4e.el")
 
-;; TODO map C-e to C-x
+;; TODO map C-e to C-x doesn't work anymore...
 (load "~/.spacemacs.d/lisp/rebinder.el")
 
 (define-key global-map (kbd "C-e") (rebinder-dynamic-binding "C-x"))

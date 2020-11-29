@@ -1,0 +1,5 @@
+[Added Associations]
+application/pdf=emacs.desktop;
+
+[Default Applications]
+x-scheme-handler/org-protocol=org-protocol.desktop
