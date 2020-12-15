@@ -16,10 +16,10 @@ settings:
   bindings.commands:
     global:
       normal:
+        ',P': spawn --userscript qute-pass --dmenu-invocation dmenu --password-only
+        ',p': spawn --userscript qute-pass --dmenu-invocation dmenu
         edoi: spawn --userscript getbib
         gc: open javascript:void(location.href='org-protocol://roam-ref?template=r&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title))
-        ',p': spawn --userscript qute-pass --dmenu-invocation dmenu
-        ',P': spawn --userscript qute-pass --dmenu-invocation dmenu --password-only
       prompt:
         <Ctrl+o>: prompt-open-download
   bindings.key_mappings:

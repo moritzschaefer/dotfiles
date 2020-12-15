@@ -327,8 +327,12 @@
 (define-key global-map (kbd "s-C") 'sudo-nixos-rebuild)
 (define-key global-map (kbd "s-S-c") 'sudo-nixos-rebuild)
 ;; org-roam
-(define-key org-roam-mode-map (kbd "s-p") 'org-roam-insert) ;; [p]aste
-(define-key global-map (kbd "s-g") 'org-roam-find-file) ;; [g]o
+
+(define-key org-roam-mode-map (kbd "s-P") 'org-roam-insert) ;; [p]aste
+(define-key org-roam-mode-map (kbd "s-p") 'org-roam-insert-immediate)
+(define-key global-map (kbd "s-G") 'org-roam-find-file) ;; [g]o
+(define-key org-roam-mode-map (kbd "s-g") 'org-roam-find-file-immediate)
+
 ;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version/29757750#29757750
 (defun ediff-copy-both-to-C ()
   (interactive)
