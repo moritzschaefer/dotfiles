@@ -270,6 +270,7 @@
 
 (define-key global-map (kbd "C-z") 'undo-tree-undo)
 (define-key global-map (kbd "C-S-z") 'undo-tree-redo)
+(define-key global-map (kbd "<redo>") 'undo-tree-redo)
 
 
 (define-key global-map (kbd "C-v") 'evil-paste-from-register)
@@ -332,6 +333,9 @@
 (define-key org-roam-mode-map (kbd "s-p") 'org-roam-insert-immediate)
 (define-key global-map (kbd "s-G") 'org-roam-find-file) ;; [g]o
 (define-key org-roam-mode-map (kbd "s-g") 'org-roam-find-file-immediate)
+
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "SPC" 'org-roam)
 
 ;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version/29757750#29757750
 (defun ediff-copy-both-to-C ()

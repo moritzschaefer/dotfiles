@@ -38,7 +38,7 @@ This function should only modify configuration layer settings."
      lsp
      ruby
      nginx
-     nixos
+     ;;nixos
      (erc :variables
             erc-server-list
             '(("irc.freenode.net"
@@ -50,16 +50,16 @@ This function should only modify configuration layer settings."
      clojure
      latex
      rust
-     (exwm :variables
-           exwm-enable-systray t
-           exwm-use-autorandr t
-           exwm-autostart-xdg-applications t
-           exwm-locking-command "slock"
-           exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "eDP1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")
-           ;; exwm-install-logind-lock-handler t ;; dont know..?
-           exwm-terminal-command "urxvt"  ;; unused anyways..
-           ;; exwm-custom-init (lambda() (gpastel-mode))
-	   )
+     ;; (exwm :variables
+           ;;exwm-enable-systray t
+           ;;exwm-use-autorandr t
+           ;;exwm-autostart-xdg-applications t
+           ;;exwm-locking-command "slock"
+           ;;exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "eDP1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")
+           ;;;; exwm-install-logind-lock-handler t ;; dont know..?
+           ;;exwm-terminal-command "urxvt"  ;; unused anyways..
+           ;;;; exwm-custom-init (lambda() (gpastel-mode))
+	   ;;)
      csv
      yaml
      react
@@ -99,7 +99,6 @@ This function should only modify configuration layer settings."
      syntax-checking
      (org :variables org-projectile-file "TODOs.org"
           org-enable-roam-support t
-
           )
                      ;; org-enable-reveal-js-support t)
      bibtex
@@ -118,7 +117,8 @@ This function should only modify configuration layer settings."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    ;; jupyter only works, because I manually compiled zmq using nix-shell -p and the dependencies within this package: https://github.com/NixOS/nixpkgs/pull/64612/files 
-   dotspacemacs-additional-packages '(jupyter clipmon org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig interleave org-cliplink synonymous openwith pulseaudio-control helm-exwm desktop-environment pinentry spotify ssh-agency snakemake-mode 
+   ;; TODO add helm-exwm desktop-environment
+   dotspacemacs-additional-packages '(jupyter clipmon org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig interleave org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode 
                                                  (org-now :location (recipe :fetcher github :repo "alphapapa/org-now"))
                                                  )
    ;; A list of packages that cannot be updated.
@@ -501,7 +501,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   This is the place where most of your configurations should be done. Unless it is
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
-  (if (file-readable-p "~/.spacemacs.d/user-config.el") (load "~/.spacemacs.d/user-config.el"))
+  ;;(if (file-readable-p "~/.spacemacs.d/user-config.el") (load "~/.spacemacs.d/user-config.el"))
   )
 
 (defun moritzs/blog-post-name ()
@@ -531,12 +531,12 @@ This function is called at the very end of Spacemacs initialization."
  '(avy-timeout-seconds 0.2)
  '(browse-url-browser-function 'browse-url-generic)
  '(browse-url-generic-program "firefox")
- '(desktop-environment-brightness-small-decrement "2%-")
- '(desktop-environment-brightness-small-increment "2%+")
- '(desktop-environment-mode t nil (desktop-environment))
- '(desktop-environment-screenshot-command "escrotum /tmp/screenshot-$(date +%F_%T).png -C")
- '(desktop-environment-screenshot-directory "")
- '(desktop-environment-screenshot-partial-command "escrotum -s /tmp/screenshot-$(date +%F_%T).png -C")
+ ;'(desktop-environment-brightness-small-decrement "2%-")
+ ;'(desktop-environment-brightness-small-increment "2%+")
+ ;'(desktop-environment-mode t nil (desktop-environment))
+ ;'(desktop-environment-screenshot-command "escrotum /tmp/screenshot-$(date +%F_%T).png -C")
+ ;'(desktop-environment-screenshot-directory "")
+ ;'(desktop-environment-screenshot-partial-command "escrotum -s /tmp/screenshot-$(date +%F_%T).png -C")
  '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
  '(eww-search-prefix "https://google.com/search?q=")
@@ -607,7 +607,7 @@ This function is called at the very end of Spacemacs initialization."
 :AUTHOR: ${author-or-editor}
 :NOTER_DOCUMENT: /home/moritz/wiki/papers/${citekey}.pdf
 :NOTER_PAGE:
-:END:" :immediate-finish t)) nil nil "I hope it works")
+:END:" :immediate-finish t)))
  '(org-agenda-files
    '("/home/moritz/wiki/gtd/next.org" "/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/main.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/reviews.org" "/home/moritz/wiki/gtd/someday.org"))
  '(org-capture-templates
@@ -642,13 +642,35 @@ This function is called at the very end of Spacemacs initialization."
  '(org-noter-kill-frame-at-session-end nil)
  '(org-now-location '("~/wiki/gtd/now.org"))
  '(org-roam-bibtex-mode t)
+ '(org-roam-capture-immediate-template
+   '("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+title: ${title}
+
+- tags :: 
+" :unnarrowed t :immediate-finish t))
  '(org-roam-capture-templates
    '(("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+TITLE: ${title}
 
 - tags ::
 
+" :unnarrowed t :immediate-finish t)
+     ("g" "gene" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-gene-${slug}" :head "#+title: Gene ${title}
+
+- tags :: [[file:20201227091702-gene.org][Gene]]
+
+
+* Mutant upregulation
+#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
+df = pd.read_csv('/home/moritz/mesc-regulation/mrna_data_protein_coding.csv', index_col=[0,1], header=[0,1])
+df.xs(axis=1, level=1, key='log2FoldChange').reset_index(level=0).loc['${title}']
+#+END_SRC
+
+* TPM expression
+#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
+df.xs(axis=1, level=1, key='tpm_expression').reset_index(level=0, drop=True).loc['${title}'].plot(kind='bar')
+#+END_SRC
 " :unnarrowed t :immediate-finish t)))
  '(org-roam-directory "/home/moritz/wiki/roam")
+ '(org-roam-mode t nil (org-roam))
  '(org-src-preserve-indentation nil)
  '(org-src-tab-acts-natively nil)
  '(package-selected-packages
@@ -660,7 +682,9 @@ This function is called at the very end of Spacemacs initialization."
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
  '(python-shell-prompt-block-regexp "\\.\\.\\.:? ")
- '(send-mail-function 'smtpmail-send-it))
+ '(send-mail-function 'smtpmail-send-it)
+ '(undo-tree-auto-save-history t)
+ '(undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
