@@ -218,17 +218,17 @@
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "$" 'moritzs/org-archive-done-tasks)
 
-  (spacemacs/set-leader-keys
-    "aoj" 'org-now
-    )
+  ;; (spacemacs/set-leader-keys
+  ;;   "aoj" 'org-now
+  ;;   )
 
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "j" 'org-now) ; jetzt
+  ;; (spacemacs/set-leader-keys-for-major-mode 'org-mode
+  ;;   "j" 'org-now) ; jetzt
 
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "in" 'org-now-link) ; insert->now
+  ;; (spacemacs/set-leader-keys-for-major-mode 'org-mode
+  ;;   "in" 'org-now-link) ; insert->now
 
-  (require 'org-now)
+  ;; (require 'org-now)
   ;; (use-package org-now
   ;;   :general (:keymaps 'org-mode-map
   ;;                      :prefix "M-SPC"

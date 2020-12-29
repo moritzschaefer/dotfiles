@@ -357,14 +357,14 @@
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
-(load "~/.spacemacs.d/lisp/mu4e.el")
+;;(load "~/.spacemacs.d/lisp/mu4e.el")
 
 ;; TODO map C-e to C-x doesn't work anymore...
-(load "~/.spacemacs.d/lisp/rebinder.el")
+;; (load "~/.spacemacs.d/lisp/rebinder.el")
 
-(define-key global-map (kbd "C-e") (rebinder-dynamic-binding "C-x"))
-(define-key global-map (kbd "C-n") (rebinder-dynamic-binding "C-c"))
+;; (define-key global-map (kbd "C-e") (rebinder-dynamic-binding "C-x"))
+;; (define-key global-map (kbd "C-n") (rebinder-dynamic-binding "C-c"))
 ;; (define-key rebinder-mode-map (kbd "C-c") 'backward-char)
 
-(rebinder-hook-to-mode 't 'after-change-major-mode-hook)
+;; (rebinder-hook-to-mode 't 'after-change-major-mode-hook)
 

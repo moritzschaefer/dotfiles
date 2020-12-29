@@ -1,3 +1,5 @@
+;; more can be found here: [[file:~/.spacemacs.d.old/layers/exwm/packages.el::(eval-after-load 'persp-mode]]
+
 (defvar exwm--hide-tiling-modeline nil
   "Whether to hide modeline.")
 
@@ -138,6 +140,35 @@
 ;; (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
 (exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
 (exwm-input-set-key (kbd "s-b") #'lazy-helm/helm-mini) ;; import buffer
+(exwm-input-set-key (kbd "s-m") #'spacemacs/toggle-maximize-buffer) ;; import buffer
+
+
+(evil-define-key 'normal exwm-mode-map (kbd "i") 'exwm/enter-insert-state)
+(dolist (k '("<down-mouse-1>" "<down-mouse-2>" "<down-mouse-3>"))
+  (evil-define-key 'normal exwm-mode-map (kbd k) 'exwm/enter-insert-state))
+
+;; Define super-space as default leader key.
+(exwm-input-set-key (kbd "s-SPC") spacemacs-default-map)
+;; Don't have to lift finger from s-key for M-x behavior:
+(if (configuration-layer/layer-used-p 'helm)
+    (spacemacs/set-leader-keys "s-SPC" 'helm-M-x)
+  (spacemacs/set-leader-keys "s-SPC" 'execute-extended-command))
+
+;; EXWM does not bypass exwm-mode-map keybindings in line-mode, so the
+;; default bindings are still mapped to C-c.  We remap that to C-s-c.
+
+(define-key exwm-mode-map (kbd "C-s-c") (lookup-key exwm-mode-map (kbd "C-c")))
+(define-key exwm-mode-map (kbd "C-c") nil)
+
+;; User s-q to close buffers
+(exwm-input-set-key (kbd "s-q") 'spacemacs/kill-this-buffer)
+
+;; Don't override any keybindings in line-mode
+(setq exwm-input-prefix-keys '())
+
+;; Undo window configurations
+(exwm-input-set-key (kbd "s-u") #'winner-undo)
+(exwm-input-set-key (kbd "s-U") #'winner-redo)
 
 ;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
