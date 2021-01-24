@@ -88,6 +88,11 @@
 (global-set-key (kbd "M-n") 'hippie-expand)
 ;; (global-set-key (kbd "M-n") 'yas-expand)
 
+;; (spaceline-define-segment datetime  <- this fucks up everything
+  ;; (shell-command-to-string "echo -n $(date '+%a %d %b %I:%M%p')"))
+;; (spaceline-spacemacs-theme 'datetime)
+
+(display-time-mode)
 
 ;; clipboard management
 (setq x-select-enable-clipboard nil)

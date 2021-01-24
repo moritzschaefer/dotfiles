@@ -5,6 +5,8 @@
 
 ;; clipboard
 
+(clipmon-mode-start)
+
 (defun moritzs/exwm-helm-yank-pop ()
   "Same as `helm-show-kill-ring' and paste into exwm buffer."
   (interactive)
@@ -19,6 +21,18 @@
     (exwm-input--fake-key ?\C-v)))
 
 (exwm-input-set-key (kbd "M-y") #'moritzs/exwm-helm-yank-pop)
+
+
+(defun exwm-rename-buffer ()
+  (interactive)
+  (exwm-workspace-rename-buffer
+   (concat exwm-class-name ":"
+           (if (<= (length exwm-title) 50) exwm-title
+             (concat (substring exwm-title 0 49) "...")))))
+
+;; Add these hooks in a suitable place (e.g., as done in exwm-config-default)
+(add-hook 'exwm-update-class-hook 'exwm-rename-buffer)
+(add-hook 'exwm-update-title-hook 'exwm-rename-buffer)
 
 
 (exwm-input-set-key (kbd "s-<escape>") 'exwm-reset)
