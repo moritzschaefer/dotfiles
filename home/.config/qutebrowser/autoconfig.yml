@@ -105,6 +105,7 @@ settings:
       imdb: https://www.imdb.com/find?ref_=nv_sr_fn&q={}
       maps: https://google.com/maps/search/{}
       mirbase: http://www.mirbase.org/textsearch.shtml?q={}&submit=submit
+      nix: https://search.nixos.org/packages?channel=20.09&from=0&size=30&sort=relevance&query={}
       pm: https://www.ncbi.nlm.nih.gov/pubmed/?term={}
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}
