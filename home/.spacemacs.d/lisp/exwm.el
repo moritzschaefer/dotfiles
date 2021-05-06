@@ -127,9 +127,15 @@
 
 
 ;; autostart
-;; (start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh")
+(start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh")
 
-;; (desktop-environment-mode)  (inside config now)
+(desktop-environment-mode)  ;; (not in config anymore)
+;; (setq desktop-environment-brightness-small-decrement "2%-")
+;; (setq desktop-environment-brightness-small-increment "2%+")
+;; (setq desktop-environment-mode t nil (desktop-environment))
+;; (setq desktop-environment-screenshot-command "escrotum /tmp/screenshot-$(date +%F_%T).png -C")
+;; (setq desktop-environment-screenshot-directory "")
+;; (setq desktop-environment-screenshot-partial-command "escrotum -s /tmp/screenshot-$(date +%F_%T).png -C")
 
 (exwm-input-set-key (kbd "<XF86LaunchB>") #'desktop-environment-screenshot)
 (exwm-input-set-key (kbd "S-<XF86LaunchB>") #'desktop-environment-screenshot-part)

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Create subplots
+# key: subp
+# group : general
+# --
+fig, ax = plt.subplots(${1:1}, ${2:1}, figsize=(${3:8}, ${4:5}))

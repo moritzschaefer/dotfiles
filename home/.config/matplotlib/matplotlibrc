@@ -88,7 +88,7 @@ patch.antialiased      : True    # render patches in antialised (no jaggies)
 # The font.size property is the default font size for text, given in pts.
 # 12pt is the standard value.
 #
-font.family          : DejaVu Sans
+font.family          : sans-serif
 #font.style          : normal
 #font.variant        : normal
 #font.weight         : medium
@@ -101,6 +101,7 @@ font.family          : DejaVu Sans
 font.size           : 10.0
 # font.serif          : Bitstream Vera Serif, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif
 #font.sans-serif     : Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
+font.sans-serif      : Arial
 #font.cursive        : Apple Chancery, Textile, Zapf Chancery, Sand, cursive
 #font.fantasy        : Comic Sans MS, Chicago, Charcoal, Impact, Western, fantasy
 font.monospace      : Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
@@ -182,10 +183,10 @@ font.monospace      : Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, T
 # default fontsizes for ticklabels, and so on.  See
 # http://matplotlib.sourceforge.net/api/axes_api.html#module-matplotlib.axes
 #axes.hold           : True    # whether to clear the axes by default on
-axes.facecolor      : eeeeee   # axes background color
+axes.facecolor      : ffffff   # axes background color
 axes.edgecolor      : bcbcbc   # axes edge color
 axes.linewidth      : 1        # edge linewidth
-axes.grid           : True     # display grid or not
+axes.grid           : False     # display grid or not
 axes.titlesize      : x-large  # fontsize of the axes title
 axes.labelsize      : large    # fontsize of the x any y labels
 axes.labelcolor     : 555555
@@ -260,7 +261,7 @@ legend.fancybox      : True  # if True, use a rounded box for the
 # See http://matplotlib.sourceforge.net/api/figure_api.html#matplotlib.figure.Figure
 figure.figsize   : 15, 11    # figure size in inches
 figure.dpi       : 220      # figure dots per inch
-figure.facecolor : 0.85    # figure facecolor; 0.75 is scalar gray
+figure.facecolor : 1.0    # figure facecolor; 0.75 is scalar gray
 figure.edgecolor : 0.50   # figure edgecolor
 
 # The figure subplot parameters.  All dimensions are fraction of the
@@ -311,6 +312,7 @@ figure.subplot.hspace  : 0.5    # the amount of height reserved for white space 
 #savefig.facecolor : white    # figure facecolor when saving
 #savefig.edgecolor : white    # figure edgecolor when saving
 #savefig.extension : auto     # what extension to use for savefig('foo'), or 'auto'
+savefig.transparent: True
 
 #cairo.format      : png      # png, ps, pdf, svg
 
@@ -374,4 +376,4 @@ keymap.save : s                     # saving current figure
 keymap.grid : g                     # switching on/off a grid in current axes
 keymap.yscale : l                   # toggle scaling of y-axes ('log'/'linear')
 keymap.xscale : L, k                # toggle scaling of x-axes ('log'/'linear')
-keymap.all_axes : a                 # enable all axes
+# keymap.all_axes : a                 # enable all axes

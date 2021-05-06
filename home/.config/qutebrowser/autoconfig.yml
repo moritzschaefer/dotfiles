@@ -39,6 +39,8 @@ settings:
     - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
+  content.user_stylesheets:
+    global: solarized-dark-all-sites.css
   fonts.completion.category:
     global: bold 12pt default_family
   fonts.completion.entry:

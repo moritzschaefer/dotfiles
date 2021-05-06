@@ -5,9 +5,7 @@
   (require 'ox-extra)
   (require 'org-roam-protocol)
 
-
   (ox-extras-activate '(ignore-headlines))
-
 
   (setq org-reveal-root "file:///opt/reveal.js-3.7.0/")
   ;; set specific browser to open links
@@ -26,7 +24,7 @@
   (setq org-log-into-drawer t)
   (setq org-log-state-notes-insert-after-drawers nil)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        '((sequence "BACKLOG(b)" "TODO(t)" "NEXT(n)" "|" "DONE(d)")
           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
 
   (setq org-log-done 'time)
@@ -408,13 +406,13 @@
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
            (tmpname (format "%s.mod.tex" basename))
-           (csl-file (or csl-file "elsevier-harvard2.csl"))  ;; use csbj.csl for [1] numbers
+           (csl-file (or csl-file "/home/moritz/wiki/gtd/elsevier-harvard2.csl"))  ;; use csbj.csl for [1] numbers and elsevier-harvard2.csl for years,name
           (reference-doc
            (if (file-exists-p (format "%s_template.docx" basename) )
                (format "%s_template.docx" basename)
                "/home/moritz/wiki/template.docx"
                ))
-                   )
+          )
       (call-process-shell-command (format "~/bin/format-tex.py %s %s" texfile tmpname)
                                   nil "*Shell Command Output*" t)
 

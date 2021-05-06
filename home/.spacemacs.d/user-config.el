@@ -85,14 +85,27 @@
 (define-key company-active-map (kbd "M-p") nil)
 ;; (add-to-list 'company-backends 'company-ob-ipython)
 
+;; helm help
+(require 'helm)
+(global-set-key [C-f1] 'help-command)
+(define-key helm-read-file-map (kbd "C-c t") 'helm-ff-sort-by-newest)
+(define-key helm-read-file-map (kbd "C-c s") 'helm-ff-sort-by-size)
+(define-key helm-read-file-map (kbd "C-c n") 'helm-ff-sort-alpha)
+
+;; helm-swoop: search in file
+(spacemacs/set-leader-keys "ä" 'helm-swoop)
+
 (global-set-key (kbd "M-n") 'hippie-expand)
 ;; (global-set-key (kbd "M-n") 'yas-expand)
 
-;; (spaceline-define-segment datetime  <- this fucks up everything
-  ;; (shell-command-to-string "echo -n $(date '+%a %d %b %I:%M%p')"))
-;; (spaceline-spacemacs-theme 'datetime)
-
+;;display time in powerline
 (display-time-mode)
+
+;;display emacs memory usage in pwoerline (https://emacs.stackexchange.com/questions/16735/how-to-add-date-and-time-into-spacemacs-mode-line)
+;; (spaceline-define-segment emacs-memory-segment
+;;   (shell-command-to-string "echo -n $(ps aux | grep emacs-exwm-load | grep -v grep | awk '{print $4}')")
+;;                                     )
+;; (spaceline-spacemacs-theme 'emacs-memory-segment)
 
 ;; clipboard management
 (setq x-select-enable-clipboard nil)
@@ -351,6 +364,43 @@
                     (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
 (defun add-d-to-ediff-mode-map () (define-key 'ediff-mode-map "c" 'ediff-copy-both-to-C))
 (add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
+
+
+;; https://www.reddit.com/r/emacs/comments/c6m4db/grepping_recent_files_is_underrated/
+(defun my-grep-recent-files (filepattern pattern)
+  (interactive "sFiles regexp: \nsSearch regexp: ")
+  (let ((files (if filepattern
+                   (cl-remove-if-not (lambda (item) (string-match filepattern item))
+                                     recentf-list)
+                 recentf-list))
+        (limit 50)
+        (grep-use-null-device nil))
+    (if (> (length files) limit)
+        (subseq files 0 limit))
+
+    (let* ((tempfile (make-temp-file "emacs"))
+           (orig compilation-finish-functions))
+      (add-to-list 'compilation-finish-functions
+                   (lambda (buf result)
+                     (setq font-lock-keywords-case-fold-search t)
+                     (highlight-regexp pattern 'hi-yellow)
+                     (delete-file tempfile) 
+                     (setq compilation-finish-functions orig)))
+
+      (write-region  (mapconcat 'identity files (char-to-string 0))
+                     nil tempfile)
+
+      (grep (format "%s %s | xargs -0 grep -n -i \"%s\" "
+                    (if (eq system-type 'windows-nt)
+                        "type"
+                      "cat")
+
+                    (if (eq system-type 'windows-nt)
+                        (replace-regexp-in-string "/" "\\\\" tempfile)
+                      tempfile)
+
+                    pattern)))))
+
 
 ;; monitor the system clipboard and add any changes to the kill ring
 ;; (clipmon-mode-start)  <- sometimes freezes emacs...
