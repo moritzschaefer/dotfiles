@@ -3,6 +3,8 @@
   (require 'org-capture)
   (require 'org-attach)
   (require 'ox-extra)
+  ;; (setq org-roam-v2-ack t)
+  ;; (org-roam-setup)
   (require 'org-roam-protocol)
 
   (ox-extras-activate '(ignore-headlines))

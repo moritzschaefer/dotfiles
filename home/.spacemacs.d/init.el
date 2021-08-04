@@ -53,8 +53,12 @@ This function should only modify configuration layer settings."
      clojure
      latex
      rust
-     ;; (exwm :variables   # this is better handled in nixos-config
-     ;;       exwm-enable-systray t
+     (elfeed :variables rmh-elfeed-org-files (list "~/wiki/elfeed.org"))
+     (exwm :variables   ;; this is better handled in nixos-config
+           exwm-enable-systray t
+           exwm-autostart-xdg-applications nil
+           exwm-workspace-number 8)
+
      ;;       exwm-use-autorandr t
      ;;       exwm-autostart-xdg-applications t
      ;;       exwm-locking-command "slock"
@@ -122,7 +126,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8 jupyter clipmon org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig interleave org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")))
+   dotspacemacs-additional-packages '(feedly git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8 (jupyter :hook (jupyter-repl-mode . (lambda () (company-mode)))) clipmon org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -596,7 +600,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(avy-all-windows t)
+ '(avy-all-windows t t)
  '(avy-keys '(99 116 105 101 110 114 115 103 107))
  '(avy-timeout-seconds 0.2)
  '(browse-url-browser-function 'browse-url-generic)
@@ -609,6 +613,8 @@ This function is called at the very end of Spacemacs initialization."
  '(desktop-environment-screenshot-command "escrotum /tmp/screenshot-$(date +%F_%T).png -C")
  '(desktop-environment-screenshot-directory "")
  '(desktop-environment-screenshot-partial-command "escrotum -s /tmp/screenshot-$(date +%F_%T).png -C")
+ '(desktop-environment-update-exwm-global-keys :global)
+ '(elfeed-search-filter "@6-months-ago +unread -reddit")
  '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
  '(eww-search-prefix "https://google.com/search?q=")
@@ -625,7 +631,7 @@ This function is called at the very end of Spacemacs initialization."
  '(exwm-workspace-number 8)
  '(gac-debounce-interval 200)
  '(gac-shell-and "&&")
- '(gac-silent-message-p nil)
+ '(gac-silent-message-p t)
  '(garbage-collection-messages t)
  '(google-translate-default-source-language "de" t)
  '(google-translate-default-target-language "en")
@@ -742,19 +748,22 @@ This function is called at the very end of Spacemacs initialization."
 - tags :: 
 " :unnarrowed t :immediate-finish t))
  '(org-roam-capture-templates
-   '(("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+TITLE: ${title}
+   '(("d" "default" plain "%?" :if-new
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}
 
 - tags ::
 
-" :unnarrowed t :immediate-finish t)
-     ("g" "gene" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-gene-${slug}" :head "#+title: Gene ${title}
+")
+      :immediate-finish t :unnarrowed t)
+     ("g" "gene" plain "%?" :if-new
+      (file+head "%<%Y%m%d%H%M%S>-gene-${slug}.org" "#+title: Gene ${title}
 
-- tags :: [[file:20201227091702-gene.org][Gene]]
+- tags :: [[id:131686dd-7a7e-49ca-8407-1ea72a780e4e][Gene]]
 
 
 * Mutant upregulation
 #+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
-df = pd.read_csv('/home/moritz/mesc-regulation/mrna_data_protein_coding.csv', index_col=[0,1], header=[0,1])
+df = pd.read_csv('/home/moritz/mesc-regulation/output/mrna_data_all.csv', index_col=[0,1], header=[0,1])
 df.xs(axis=1, level=1, key='log2FoldChange').reset_index(level=0).loc['${title}']
 #+END_SRC
 
@@ -762,10 +771,20 @@ df.xs(axis=1, level=1, key='log2FoldChange').reset_index(level=0).loc['${title}'
 #+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
 df.xs(axis=1, level=1, key='tpm_expression').reset_index(level=0, drop=True).loc['${title}'].plot(kind='bar')
 #+END_SRC
-" :unnarrowed t :immediate-finish t)
-     ("t" "talk" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-talk_${slug}" :head "#+title: Talk: ${title}
 
-- tags :: [[file:20200922150310-talk.org][Talk]] " :unnarrowed t :immediate-finish t)))
+* Isoform expression
+#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
+from moritzsphd.integration import gene_transcript_expression
+gene_transcript_expression('${title}', plot=True)
+#+END_SRC")
+      :immediate-finish t :unnarrowed t)
+     ("t" "talk" plain "%?" :if-new
+      (file+head "%<%Y%m%d%H%M%S>-talk_${slug}.org" "#+title: Talk: ${title}
+
+- tags :: [[id:15f006d2-a3b7-4a2c-bfc1-754220b11797][Talk]]
+
+")
+      :immediate-finish t :unnarrowed t)))
  '(org-roam-directory "/home/moritz/wiki/roam")
  '(org-roam-mode t nil (org-roam))
  '(org-src-preserve-indentation nil)
@@ -775,7 +794,7 @@ df.xs(axis=1, level=1, key='tpm_expression').reset_index(level=0, drop=True).loc
  '(paradox-github-token t)
  '(pdf-annot-activate-created-annotations t)
  '(pdf-misc-print-program "/usr/bin/lpr" t)
- '(pdf-misc-print-program-args '("-o media=A4" "-o fitplot") t)
+ '(pdf-misc-print-program-args '("-o media=A4" "-o fitplot"))
  '(projectile-globally-ignored-file-suffixes '("svg" "ipynb"))
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")

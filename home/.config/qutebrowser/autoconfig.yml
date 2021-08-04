@@ -18,29 +18,41 @@ settings:
       normal:
         ',P': spawn --userscript qute-pass --dmenu-invocation dmenu --password-only
         ',p': spawn --userscript qute-pass --dmenu-invocation dmenu
+        ;t: hint userscript link translate
         edoi: spawn --userscript getbib
         gc: open javascript:void(location.href='org-protocol://roam-ref?template=r&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title))
+        ge: spawn --userscript translate --text -t de
+        sd: set content.user_stylesheets 'solarized-dark-all-sites.css'
+        sn: set content.user_stylesheets ''
       prompt:
         <Ctrl+o>: prompt-open-download
   bindings.key_mappings:
     global:
-      <Ctrl-6>: <Ctrl-^>
-      <Ctrl-Enter>: <Ctrl-Return>
-      <Ctrl-J>: <Return>
-      <Ctrl-M>: <Return>
-      <Ctrl-[>: <Escape>
+      <Ctrl+6>: <Ctrl+^>
+      <Ctrl+Enter>: <Ctrl+Return>
+      <Ctrl+[>: <Escape>
+      <Ctrl+j>: <Return>
+      <Ctrl+m>: <Return>
       <Enter>: <Return>
-      <Shift-Enter>: <Return>
-      <Shift-Return>: <Return>
-  content.host_blocking.enabled:
+      <Shift+Enter>: <Return>
+      <Shift+Return>: <Return>
+  colors.webpage.darkmode.algorithm:
+    global: lightness-cielab
+  colors.webpage.darkmode.contrast:
+    global: 0.0
+  colors.webpage.darkmode.enabled:
+    global: false
+  colors.webpage.darkmode.grayscale.all:
+    global: false
+  content.blocking.enabled:
     global: true
-  content.host_blocking.lists:
+  content.blocking.hosts.lists:
     global:
     - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
   content.user_stylesheets:
-    global: solarized-dark-all-sites.css
+    global: null
   fonts.completion.category:
     global: bold 12pt default_family
   fonts.completion.entry:
@@ -102,6 +114,7 @@ settings:
     global:
       DEFAULT: https://google.com/search?q={}
       ens: https://www.ensembl.org/Mouse/Search/Results?q={};site=ensembl;facet_species=Mouse;page=1
+      ens38: https://nov2020.archive.ensembl.org/Mouse/Search/Results?q={};site=ensembl;facet_species=Mouse;page=1
       g: https://google.com/search?q={}
       gs: https://scholar.google.ch/scholar?q={}
       imdb: https://www.imdb.com/find?ref_=nv_sr_fn&q={}

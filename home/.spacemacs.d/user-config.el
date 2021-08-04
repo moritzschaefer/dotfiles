@@ -46,7 +46,7 @@
   "fd" 'moritzs/recent-download-file
   )
 (spacemacs/set-leader-keys
-  "fp" (lambda () (interactive) (progn (moritzs/recent-download-file) (moritzs/org-ref-pdf-to-bibtex)))
+  "fp" (lambda () (interactive) (progn (moritzs/recent-download-file) (org-ref-pdf-to-bibtex)))
   )
 (spacemacs/set-leader-keys
   "fn" (lambda () (interactive) (find-file "~/nixos-config/README.org"))
@@ -347,13 +347,14 @@
 (define-key global-map (kbd "s-S-c") 'sudo-nixos-rebuild)
 ;; org-roam
 
-(define-key org-roam-mode-map (kbd "s-P") 'org-roam-insert) ;; [p]aste
-(define-key org-roam-mode-map (kbd "s-p") 'org-roam-insert-immediate)
-(define-key global-map (kbd "s-G") 'org-roam-find-file) ;; [g]o
-(define-key org-roam-mode-map (kbd "s-g") 'org-roam-find-file-immediate)
+(setq org-roam-v2-ack t)
+; (define-key org-roam-mode-map (kbd "s-P") 'org-roam-insert) ;; [p]aste
+(exwm-input-set-key (kbd "s-p") 'org-roam-node-insert)  ;; org-roam-mode-map 
+; (define-key global-map (kbd "s-G") 'org-roam-find-file) ;; [g]o
+(exwm-input-set-key (kbd "s-g") 'org-roam-node-find)
 
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
-  "SPC" 'org-roam)
+  "SPC" 'org-roam-buffer-toggle)
 
 ;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version/29757750#29757750
 (defun ediff-copy-both-to-C ()
@@ -412,6 +413,11 @@
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
+(load "~/.spacemacs.d/secrets/feedly.el")
+
+;; disable because it collides with org-roam or so :/
+(global-git-gutter+-mode)
+
 ;;(load "~/.spacemacs.d/lisp/mu4e.el")
 
 ;; TODO map C-e to C-x doesn't work anymore...

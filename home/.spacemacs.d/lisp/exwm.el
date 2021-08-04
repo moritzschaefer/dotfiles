@@ -278,4 +278,6 @@
 
 (advice-add #'y-or-n-p :around #'exwm-y-or-n-p-wrapper)
 ;; (advice-remove #'y-or-n-p #'exwm-y-or-n-p-wrapper)
+
+(exwm-input--update-global-prefix-keys)
 (setq epg-pinentry-mode 'loopback)

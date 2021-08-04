@@ -611,6 +611,8 @@ c.InteractiveShellApp.exec_lines = [
     'import matplotlib.pyplot as plt',
     # 'plt.prism()',
     'import moritzsphd as mphd',
+    'from moritzsphd.util import remote_file',
+    'from moritzsphd.data import gid2n, gn2id',
     'import seaborn as sns',
     'sns.set_context("poster")',
     'sns.set(rc={"figure.figsize": (10, 5.)})',
