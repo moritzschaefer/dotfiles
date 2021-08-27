@@ -126,7 +126,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(feedly git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8 (jupyter :hook (jupyter-repl-mode . (lambda () (company-mode)))) clipmon org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")))
+   dotspacemacs-additional-packages '(git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8 (jupyter :hook (jupyter-repl-mode . (lambda () (company-mode)))) clipmon org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -610,9 +610,11 @@ This function is called at the very end of Spacemacs initialization."
  '(desktop-environment-brightness-small-decrement "2%-")
  '(desktop-environment-brightness-small-increment "2%+")
  '(desktop-environment-mode t nil (desktop-environment))
- '(desktop-environment-screenshot-command "escrotum /tmp/screenshot-$(date +%F_%T).png -C")
+ '(desktop-environment-screenshot-command
+   "escrotum -e 'xclip -selection clipboard -t image/png -i \\$f' /tmp/screenshot-$(date +%F_%T).png ")
  '(desktop-environment-screenshot-directory "")
- '(desktop-environment-screenshot-partial-command "escrotum -s /tmp/screenshot-$(date +%F_%T).png -C")
+ '(desktop-environment-screenshot-partial-command
+   "escrotum -e 'xclip -selection clipboard -t image/png -i \\$f' -s /tmp/screenshot-$(date +%F_%T).png")
  '(desktop-environment-update-exwm-global-keys :global)
  '(elfeed-search-filter "@6-months-ago +unread -reddit")
  '(epg-pinentry-mode 'loopback)
@@ -677,20 +679,6 @@ This function is called at the very end of Spacemacs initialization."
  '(large-file-warning-threshold 50000000)
  '(orb-preformat-keywords
    '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "file" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "url" "author-or-editor" "keywords"))
- '(orb-templates
-   '(("r" "ref" plain #'org-roam-capture--get-point "" :file-name "${citekey}" :head "#+TITLE: ${citekey}: ${title}
-#+ROAM_KEY: ${ref}
-
-- tags ::
-
-* ${title}
-:PROPERTIES:
-:Custom_ID: ${citekey}
-:URL: ${url}
-:AUTHOR: ${author-or-editor}
-:NOTER_DOCUMENT: /home/moritz/wiki/papers/${citekey}.pdf
-:NOTER_PAGE:
-:END:" :immediate-finish t)))
  '(org-agenda-files
    '("/home/moritz/wiki/gtd/next.org" "/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/main.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/reviews.org" "/home/moritz/wiki/gtd/someday.org"))
  '(org-capture-templates
@@ -778,6 +766,10 @@ from moritzsphd.integration import gene_transcript_expression
 gene_transcript_expression('${title}', plot=True)
 #+END_SRC")
       :immediate-finish t :unnarrowed t)
+     ("r" "ref" plain
+      (file "/home/moritz/wiki/templates/noter_ref.template")
+      :if-new
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\\n"))
      ("t" "talk" plain "%?" :if-new
       (file+head "%<%Y%m%d%H%M%S>-talk_${slug}.org" "#+title: Talk: ${title}
 

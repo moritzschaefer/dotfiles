@@ -249,6 +249,13 @@
 ;;   (define-key ansi-term-raw-map (kbd "C-v") 'term-paste)
 ;;   )
 
+(setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "HDMI1" 5 "HDMI1"))  ;; TODO set this in function of the connected monitor
+(add-hook 'exwm-randr-screen-change-hook
+          (lambda ()
+            (start-process-shell-command
+             "autorandr" nil "autorandr -c")))
+
+
 ;;;;(setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI1")) (start-process-shell-command "xrandr" nil "xrandr --fb 7680x2160 --output HDMI1 --transform none && xrandr --fb 7680x2160 --output eDP1 --gamma 1.0:1.0:1.0 --mode 3840x2160 --pos 0x0 --primary --rate 60.00 --reflect normal --rotate normal --output HDMI1 --gamma 1.0:1.0:1.0 --mode 1920x1080 --pos 3840x0 --rate 60.00 --reflect normal --rotate normal --transform 2.000000,0.000000,0.000000,0.000000,2.000000,0.000000,0.000000,0.000000,1.000000")))
 
 (add-hook 'server-switch-hook

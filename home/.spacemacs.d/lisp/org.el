@@ -3,9 +3,12 @@
   (require 'org-capture)
   (require 'org-attach)
   (require 'ox-extra)
-  ;; (setq org-roam-v2-ack t)
-  ;; (org-roam-setup)
   (require 'org-roam-protocol)
+  ;; from rasendubi
+  (setq org-roam-db-node-include-function
+        (defun moritz/org-roam-include ()
+          ;; exclude org-fc headlines from org-roam
+          (not (member "fc" (org-get-tags)))))
 
   (ox-extras-activate '(ignore-headlines))
 
@@ -167,9 +170,13 @@
 
   (defun moritzs/org-set-weekly-id-property ()
     (interactive)
-      (let ((value (read-string "weekly_id:")))  ;; TODO could use interactive as well..
-        (org-set-property "CUSTOM_ID" (concat "weekly_id:" value))
-        (kill-new (concat "#+INCLUDE: \"./phd.org::#weekly_id:" value "\" :only-contents t"))
+    (let* ((value (read-string "weekly_id:")) ;; TODO could use interactive as well..
+           (file_full_path (buffer-file-name(window-buffer (minibuffer-selected-window))))
+           (file_relative_path (concat "../roam/" (file-name-nondirectory file_full_path)))
+           )
+
+      (org-set-property "CUSTOM_ID" (concat "weekly_id:" value))
+      (kill-new (concat "#+INCLUDE: \"" file_relative_path "::#weekly_id:" value "\" :only-contents t"))
         )
     )
 

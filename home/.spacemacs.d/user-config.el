@@ -345,9 +345,10 @@
   )
 (define-key global-map (kbd "s-C") 'sudo-nixos-rebuild)
 (define-key global-map (kbd "s-S-c") 'sudo-nixos-rebuild)
-;; org-roam
 
-(setq org-roam-v2-ack t)
+
+;; org-roam
+(global-page-break-lines-mode 0) ;; temporary fix: https://github.com/org-roam/org-roam/issues/1732#issuecomment-891550040
 ; (define-key org-roam-mode-map (kbd "s-P") 'org-roam-insert) ;; [p]aste
 (exwm-input-set-key (kbd "s-p") 'org-roam-node-insert)  ;; org-roam-mode-map 
 ; (define-key global-map (kbd "s-G") 'org-roam-find-file) ;; [g]o
@@ -413,6 +414,7 @@
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
+(load "~/.spacemacs.d/lisp/feedly.el")
 (load "~/.spacemacs.d/secrets/feedly.el")
 
 ;; disable because it collides with org-roam or so :/
