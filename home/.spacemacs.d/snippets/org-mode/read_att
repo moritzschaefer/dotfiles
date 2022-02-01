@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Read attached CSV file
+# key: read_att
+# --
+pd.read_csv('../roam/data/`(insert (substring (org-id-get) 0 2))`/`(insert (substring (org-id-get) 2))`/$0')

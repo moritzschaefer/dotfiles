@@ -3,5 +3,5 @@
 #key : subp
 #contributor : Moritz Schäfer
 # --
-fig, ax = plt.subplots($0figsize=($1))
-$2
+fig, ax = plt.subplots($1figsize=($2))
+$0

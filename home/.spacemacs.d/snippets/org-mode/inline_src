@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: inline src py
+# key: src_py
+# --
+
+src_python[:session py]{$1}
+$0

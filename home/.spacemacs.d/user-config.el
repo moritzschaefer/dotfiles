@@ -1,8 +1,9 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 
 (require 'forge)
-(require 'ox-beamer)
 
+;; delete (after update)
+;; (defalias 'dnd-unescape-uri 'dnd--unescape-uri)
 
 ;; For all programming modes
 (add-hook 'prog-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -72,7 +73,6 @@
 (define-key minibuffer-local-map [right] 'evil-forward-char)
 
 (define-key evil-motion-state-map (kbd "C-m") nil)
-(define-key org-mode-map (kbd "C-m") nil)
 (define-key evil-motion-state-map (kbd "C-m") 'evil-avy-goto-char-timer)
 
 ;; refine autocompletion behavior
@@ -274,7 +274,6 @@
 (add-hook 'markdown-mode-hook #'flycheck-mode)
 (add-hook 'text-mode-hook #'flycheck-mode)
 (add-hook 'message-mode-hook #'flycheck-mode)
-(add-hook 'org-mode-hook #'flycheck-mode)
 
 ;; fix google translate workarround: https://github.com/atykhonov/google-translate/issues/52
 (defun google-translate--search-tkk () "Search TKK." (list 433232 899235537))
@@ -347,15 +346,6 @@
 (define-key global-map (kbd "s-S-c") 'sudo-nixos-rebuild)
 
 
-;; org-roam
-(global-page-break-lines-mode 0) ;; temporary fix: https://github.com/org-roam/org-roam/issues/1732#issuecomment-891550040
-; (define-key org-roam-mode-map (kbd "s-P") 'org-roam-insert) ;; [p]aste
-(exwm-input-set-key (kbd "s-p") 'org-roam-node-insert)  ;; org-roam-mode-map 
-; (define-key global-map (kbd "s-G") 'org-roam-find-file) ;; [g]o
-(exwm-input-set-key (kbd "s-g") 'org-roam-node-find)
-
-(spacemacs/set-leader-keys-for-major-mode 'org-mode
-  "SPC" 'org-roam-buffer-toggle)
 
 ;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version/29757750#29757750
 (defun ediff-copy-both-to-C ()
@@ -410,15 +400,13 @@
 ;; TODO automatically import everything in lisp/
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
-(load "~/.spacemacs.d/lisp/org-babel.el")
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
+(load "~/.spacemacs.d/lisp/eaf.el")
 (load "~/.spacemacs.d/lisp/feedly.el")
 (load "~/.spacemacs.d/secrets/feedly.el")
 
-;; disable because it collides with org-roam or so :/
-(global-git-gutter+-mode)
 
 ;;(load "~/.spacemacs.d/lisp/mu4e.el")
 

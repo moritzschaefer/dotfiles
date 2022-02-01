@@ -1,14 +1,38 @@
 ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+
 (with-eval-after-load 'org
   (require 'org-capture)
   (require 'org-attach)
   (require 'ox-extra)
+  (require 'ox-beamer)
   (require 'org-roam-protocol)
+
+  ;; enable proselint in textual modes:
+  (add-hook 'org-mode-hook #'flycheck-mode)
+
+  (define-key org-mode-map (kbd "C-m") nil)
+
+  (org-roam-db-autosync-mode)  ;; should become part of org-roam layers
   ;; from rasendubi
   (setq org-roam-db-node-include-function
         (defun moritz/org-roam-include ()
-          ;; exclude org-fc headlines from org-roam
-          (not (member "fc" (org-get-tags)))))
+          ;; exclude ATTACH headlines from org-roam (convenience)
+          (not (member "ATTACH" (org-get-tags)))))
+
+  ;; org-roam
+  (global-page-break-lines-mode 0) ;; temporary fix: https://github.com/org-roam/org-roam/issues/1732#issuecomment-891550040
+
+
+  ;; TODO whats better define-key or exwm-input-set-key?
+
+  (exwm-input-set-key (kbd "s-P") 'org-roam-node-insert)  ;; org-roam-mode-map ;[p]aste
+  (exwm-input-set-key (kbd "s-p") (lambda() (interactive) (org-roam-node-insert nil :templates (list (car org-roam-capture-templates)))))
+
+  (exwm-input-set-key (kbd "s-G") 'org-roam-node-find) ;; [g]o
+  (exwm-input-set-key (kbd "s-g") (lambda() (interactive) (org-roam-node-find nil nil nil :templates (list (car org-roam-capture-templates)))))
+
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "SPC" 'org-roam-buffer-toggle)
 
   (ox-extras-activate '(ignore-headlines))
 
@@ -52,8 +76,7 @@
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-refile-targets '(("next.org" :level . 0)
                              ("einkaufen.org" :level . 0)
-                             ("someday.org" :level . 0)
-                             ("projects.org" :maxlevel . 1)))
+                             ("someday.org" :level . 0)))
   (defvar moritzs/org-agenda-bulk-process-key ?f
     "Default key for bulk processing inbox items.")
 
@@ -72,7 +95,7 @@
 
       ;; maybe add[[file:%s][PDF]]
       (format "TODO %s
-  [[%s][Article]], 
+  [[%s][Article]],
   ** Abstract
   %s
   ** Notes
@@ -160,8 +183,6 @@
   ;;(spacemacs/toggle-truncate-lines-off)
   (add-hook 'org-mode-hook #'spacemacs/toggle-truncate-lines-off)
 
-
-
   (require 'org-agenda)
   (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
   (define-key org-agenda-mode-map "r" 'moritzs/org-process-inbox)
@@ -179,8 +200,62 @@
       (kill-new (concat "#+INCLUDE: \"" file_relative_path "::#weekly_id:" value "\" :only-contents t"))
         )
     )
+  ;; Org protocol handler for DOI adding
+  (defun moritzs/add-doi-or-arxiv-to-bibtex (info)
+    "Add a doi to bibtex and create an org-roam entry via doiutils."
+    (unless (or (plist-get info :doi) (plist-get info :arxiv))
+      (user-error "No doi nor arxiv provided"))
 
+    (org-roam-plist-map! (lambda (k v)
+                           (org-link-decode
+                            (if (equal k :ref)
+                                (org-protocol-sanitize-uri v)
+                              v))) info)
 
+    (if (plist-get info :doi)
+        (doi-utils-add-bibtex-entry-from-doi
+         (plist-get info :doi)
+         (car org-ref-default-bibliography))
+        (arxiv-get-pdf-add-bibtex-entry
+         (plist-get info :arxiv)
+         (car org-ref-default-bibliography)
+         org-ref-pdf-directory
+         )
+      )
+    ;; notes are added automatically (juhuu)
+    ;; go to references.bib and get the citekey
+    (split-window-right-and-focus)
+    (let ((citekey (cdr (assoc "=key=" (car (bibtex-completion-candidates))))))
+      (orb-edit-note citekey))
+    )
+
+  (defun moritzs/org-roam-node-id-by-title (title)  ;; from https://github.com/org-roam/org-roam/issues/1902
+    "Get a node ID by its title, whether original title or alias"
+    (caar (org-roam-db-query [:select id
+                                      :from [:select [(as node_id id)
+                                                      (as alias title)]
+                                                     :from aliases
+                                                     :union-all
+                                                     :select [id title]
+                                                     :from nodes]
+                                      :where (= title $s1)
+                                      :limit 1] title)))
+
+  (push '("doi-to-bibtex"  :protocol "doi-to-bibtex"  :function moritzs/add-doi-or-arxiv-to-bibtex)
+        org-protocol-protocol-alist)
+
+  (push '("arxiv-to-bibtex"  :protocol "arxiv-to-bibtex"  :function moritzs/add-doi-or-arxiv-to-bibtex)
+        org-protocol-protocol-alist)
+
+  (defun moritzs/bibtex-completion-format-citation-org-cite (keys)
+    "Format org-links the way I have learned it. check variable bibtex-completion-format-citation-functions"
+    (format "cite:%s"
+            (s-join ","
+                    (--map (format "@%s" it) keys))))
+
+  ;; leads to bugs for some reason..
+  ;; (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
+  ;; (helm-add-action-to-source "Insert citation" 'bibtex-completion-insert-citation helm-source-bibtex 0)
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "sp" 'org-set-property)
@@ -189,14 +264,19 @@
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "sH" 'helm-org-in-buffer-headings)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "ld" 'doi-utils-add-bibtex-entry-from-doi)
+    "ui" 'org-redisplay-inline-images)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "mu" 'doi-utils-add-bibtex-entry-from-doi)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "br" 'python-shell-send-region)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "bR" 'spacemacs/python-shell-send-region-switch)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "tC" 'org-table-create-or-convert-from-region)
-
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode  ;; refile
+    "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-schedule) (call-interactively 'org-refile)))
+  (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
+    "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-agenda-schedule) (call-interactively 'org-agenda-refile)))
 
   ;;; display/update images in the buffer after I evaluate TODO don't know if this is necessary
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
@@ -307,14 +387,9 @@
            (todo "NEXT"
                  ((org-agenda-overriding-header "In Progress")
                   (org-agenda-files '("~/wiki/gtd/someday.org"
-                                      "~/wiki/gtd/projects.org"
                                       "~/wiki/gtd/next.org"))
                   ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
                   ))
-           (todo "TODO"
-                 ((org-agenda-overriding-header "Projects")
-                  (org-agenda-files '("~/wiki/gtd/projects.org"))
-                  (org-agenda-skip-function #'moritzs/org-agenda-skip-all-siblings-but-first)))
            (todo "TODO"
                  ((org-agenda-overriding-header "One-off Tasks")
                   (org-agenda-files '("~/wiki/gtd/next.org"))
@@ -415,7 +490,7 @@
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
            (tmpname (format "%s.mod.tex" basename))
-           (csl-file (or csl-file "/home/moritz/wiki/gtd/elsevier-harvard2.csl"))  ;; use csbj.csl for [1] numbers and elsevier-harvard2.csl for years,name
+           (csl-file (or csl-file "/home/moritz/wiki/gtd/csbj.csl"))  ;; use csbj.csl for [1] numbers and elsevier-harvard2.csl for years,name
           (reference-doc
            (if (file-exists-p (format "%s_template.docx" basename) )
                (format "%s_template.docx" basename)
@@ -640,4 +715,5 @@
         (funcall nb-add (buffer-substring index (point-max))))
       new-body))
 
+  (load "~/.spacemacs.d/lisp/org-babel.el")
   )

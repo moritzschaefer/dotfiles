@@ -19,11 +19,14 @@ settings:
         ',P': spawn --userscript qute-pass --dmenu-invocation dmenu --password-only
         ',p': spawn --userscript qute-pass --dmenu-invocation dmenu
         ;t: hint userscript link translate
-        edoi: spawn --userscript getbib
+        ;uy: hint images yank
+        <Ctrl+a>: mode-enter insert ;; fake-key <Ctrl-A>
+        d: null
+        dd: tab-close
+        edoi: spawn --userscript doi_to_org_ref.py
         gc: open javascript:void(location.href='org-protocol://roam-ref?template=r&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title))
         ge: spawn --userscript translate --text -t de
-        sd: set content.user_stylesheets 'solarized-dark-all-sites.css'
-        sn: set content.user_stylesheets ''
+        st: config-cycle colors.webpage.darkmode.enabled ;; restart
       prompt:
         <Ctrl+o>: prompt-open-download
   bindings.key_mappings:
@@ -36,12 +39,14 @@ settings:
       <Enter>: <Return>
       <Shift+Enter>: <Return>
       <Shift+Return>: <Return>
+  changelog_after_upgrade:
+    global: minor
   colors.webpage.darkmode.algorithm:
     global: lightness-cielab
   colors.webpage.darkmode.contrast:
     global: 0.0
   colors.webpage.darkmode.enabled:
-    global: false
+    global: true
   colors.webpage.darkmode.grayscale.all:
     global: false
   content.blocking.enabled:
@@ -49,8 +54,23 @@ settings:
   content.blocking.hosts.lists:
     global:
     - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+  content.geolocation:
+    https://outlook.office365.com: true
+    https://www.google.com: true
+    https://www.prontophot.at: true
+  content.media.video_capture:
+    https://cw1.lead-horizon.org: true
+    https://cw4.lead-horizon.org: true
+    https://cw5.lead-horizon.org: true
+    https://cw6.lead-horizon.org: true
+    https://cw7.lead-horizon.org: true
+  content.notifications.enabled:
+    https://calendar.google.com: true
   content.register_protocol_handler:
+    https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
+    https://outlook.office.com?mailtouri=%25s: true
+    https://outlook.office365.com?mailtouri=%25s: true
   content.user_stylesheets:
     global: null
   fonts.completion.category:
@@ -120,7 +140,7 @@ settings:
       imdb: https://www.imdb.com/find?ref_=nv_sr_fn&q={}
       maps: https://google.com/maps/search/{}
       mirbase: http://www.mirbase.org/textsearch.shtml?q={}&submit=submit
-      nix: https://search.nixos.org/packages?channel=20.09&from=0&size=30&sort=relevance&query={}
+      nix: https://search.nixos.org/packages?channel=21.11&from=0&size=30&sort=relevance&query={}
       pm: https://www.ncbi.nlm.nih.gov/pubmed/?term={}
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}

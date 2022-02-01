@@ -1,0 +1,5 @@
+config.load_autoconfig()
+config.unbind('d', mode='normal')
+config.bind('dd', "tab-close", mode='normal')
+config.unbind('<Ctrl-a>', mode='normal')
+config.bind('<Ctrl-a>', "mode-enter insert ;; fake-key <Ctrl-A>", mode='normal')

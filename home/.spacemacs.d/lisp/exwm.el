@@ -57,36 +57,36 @@
 (exwm-input-set-key (kbd "s-.")
                     (lambda () (interactive) (exwm-workspace-switch 5)))
 
-;; Shortcuts to move buffer to a certain workspace
-(exwm-input-set-key (kbd "s-C-n") #'buffer-to-window-1)  ;; # TODO use move-buffer-window-no-follow to not focus to the new window?
-(exwm-input-set-key (kbd "s-C-r") #'buffer-to-window-2)
-(exwm-input-set-key (kbd "s-C-s") #'buffer-to-window-3)
-(exwm-input-set-key (kbd "s-C-z") #'buffer-to-window-4)
-(exwm-input-set-key (kbd "s-C-,") #'buffer-to-window-5)
-(exwm-input-set-key (kbd "s-C-.") #'buffer-to-window-6)
+(defun buffer-to-workspace (window &optional split)
+  "move buffer to a certain workspace as vertical split"
+  (interactive "P")
+  (let (
+        (buffer (current-buffer)))
+    (exwm-workspace-switch window)
+    (when split (split-window-right-and-focus))
+    (switch-to-buffer buffer)
+    )
+  )
 
-(defun buffer-to-window-split (window)
-   "move buffer to a certain workspace as vertical split"
-   (interactive "P")
-   (let (
-         (buffer (current-buffer)))
-     (exwm-workspace-switch window)
-     (split-window-right-and-focus)
-     (switch-to-buffer buffer)
-     )
-   )
+;; Shortcuts to move buffer to a certain workspace
+(exwm-input-set-key (kbd "s-C-n") (lambda () (interactive) (buffer-to-workspace 0)))
+(exwm-input-set-key (kbd "s-C-r") (lambda () (interactive) (buffer-to-workspace 1)))
+(exwm-input-set-key (kbd "s-C-s") (lambda () (interactive) (buffer-to-workspace 2)))
+(exwm-input-set-key (kbd "s-C-z") (lambda () (interactive) (buffer-to-workspace 3)))
+(exwm-input-set-key (kbd "s-C-,") (lambda () (interactive) (buffer-to-workspace 4)))
+(exwm-input-set-key (kbd "s-C-.") (lambda () (interactive) (buffer-to-workspace 5)))
 
 ;;(exwm-input-set-key (kbd "s-S-.") (lambda () (interactive) (message "36")))
 
 ;; TODO (kbd "s-<kp-1>") can be used!!!
 
 ;; s-S cannot be combined
-(exwm-input-set-key (kbd "s-N") (lambda () (interactive) (buffer-to-window-split 0)))
-(exwm-input-set-key (kbd "s-R") (lambda () (interactive) (buffer-to-window-split 1)))
-(exwm-input-set-key (kbd "s-S") (lambda () (interactive) (buffer-to-window-split 2)))
-(exwm-input-set-key (kbd "s-Z") (lambda () (interactive) (buffer-to-window-split 3)))
-;; (exwm-input-set-key (kbd "s-–") (lambda () (interactive) (buffer-to-window-split 4)))  ;; TODO does not work
-;; (exwm-input-set-key (kbd "s-•") (lambda () (interactive) (buffer-to-window-split 5)))  ;; TODO does not work
+(exwm-input-set-key (kbd "s-N") (lambda () (interactive) (buffer-to-workspace 0 t)))
+(exwm-input-set-key (kbd "s-R") (lambda () (interactive) (buffer-to-workspace 1 t)))
+(exwm-input-set-key (kbd "s-S") (lambda () (interactive) (buffer-to-workspace 2 t)))
+(exwm-input-set-key (kbd "s-Z") (lambda () (interactive) (buffer-to-workspace 3 t)))
+(exwm-input-set-key (kbd "s-S-,") (lambda () (interactive) (buffer-to-workspace 4 t)))
+(exwm-input-set-key (kbd "s-S-.") (lambda () (interactive) (buffer-to-workspace 5 t)))
 
 ;; (exwm-input-set-key (kbd "s-.")
 ;;                     (lambda () (interactive) (exwm-workspace-switch 6)))
@@ -100,6 +100,17 @@
 
 (exwm-input-set-key (kbd "s-x") #'helm-bibtex)
 (exwm-input-set-key (kbd "s-o") #'moritzs/switch-to-agenda)
+
+
+(defun moritzs/search-wiki ()
+  (interactive)
+  (let ((helm-ag-command-option  "-G\.org$ "))
+    (helm-do-ag "/home/moritz/wiki/")
+    )
+)
+
+(exwm-input-set-key (kbd "s-y") #'moritzs/search-wiki)
+
 
 (fancy-battery-mode)
 
@@ -121,13 +132,12 @@
   (save-some-buffers)
   (start-process-shell-command "logout" nil "kill -9 -1"))
 
-(exwm-input-set-key (kbd "s-C-q") #'moritzs/exwm-logout)
-(exwm-input-set-key (kbd "s-C-s") #'moritzs/exwm-shutdown) ;; TODO hotkeys are in use..
-(exwm-input-set-key (kbd "s-C-r") #'moritzs/exwm-reboot)
-
+(exwm-input-set-key (kbd "s-M-q") #'moritzs/exwm-logout)
+(exwm-input-set-key (kbd "s-M-s") #'moritzs/exwm-shutdown) ;; TODO hotkeys are in use..
+(exwm-input-set-key (kbd "s-M-r") #'moritzs/exwm-reboot)
 
 ;; autostart
-(start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh")
+(start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh") ;; TODO is this working?
 
 (desktop-environment-mode)  ;; (not in config anymore)
 ;; (setq desktop-environment-brightness-small-decrement "2%-")
@@ -140,10 +150,28 @@
 (exwm-input-set-key (kbd "<XF86LaunchB>") #'desktop-environment-screenshot)
 (exwm-input-set-key (kbd "S-<XF86LaunchB>") #'desktop-environment-screenshot-part)
 
-(exwm-input-set-key (kbd "s-f") #'desktop-environment-screenshot)
-(exwm-input-set-key (kbd "s-F") #'desktop-environment-screenshot-part)
+;; screenshots;
+;; here i tried to fix  desktop-environment-screenshot-part (because the function start-process-shell-command does not work in contrast to async-shell-command)
+(defun moritzs/desktop-environment-screenshot-part (&optional delay)
+  (interactive "P")
+  (let ((default-directory (expand-file-name desktop-environment-screenshot-directory))
+        (command (if (and delay
+                          (numberp delay)
+                          (> delay 0))
+                     (concat desktop-environment-screenshot-partial-command
+                             " "
+                             (format desktop-environment-screenshot-delay-argument delay))
+                   desktop-environment-screenshot-partial-command)))
+    (message ( concat "Please select the part of your screen to shoot. Running: " command))
+    (start-process-shell-command "desktop-environment-screenshot" nil command)))
 
-(require 'desktop-environment)
+;; block popup of async buffer
+(add-to-list 'display-buffer-alist
+             (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
+
+(exwm-input-set-key (kbd "s-f") #'desktop-environment-screenshot)
+(exwm-input-set-key (kbd "s-F") (lambda () (interactive) (start-process-shell-command "screenshot" nil "gnome-screenshot -i")))
+
 
 (exwm-input-set-key (kbd "s-w") #'exwm-floating-toggle-floating)
 (exwm-input-set-key (kbd "s-d") #'spacemacs/delete-window)
@@ -158,7 +186,7 @@
 
 ;; (exwm-input-set-key (kbd "s-v") #'moritzs/open-browser) ;; todo open in workspace 2or 3
 ;; (exwm-input-set-key (kbd "s-V") #'moritzs/open-browser)  ;; todo open in side tab on current workspace
-(exwm-input-set-key (kbd "s-i") #'exwm-workspace-switch-to-buffer) ;; import window
+(exwm-input-set-key (kbd "s-i") #'helm-exwm) ;; import window ;; before: exwm-workspace-switch-to-buffer
 (exwm-input-set-key (kbd "s-b") #'lazy-helm/helm-mini) ;; import buffer
 (exwm-input-set-key (kbd "s-m") #'spacemacs/toggle-maximize-buffer) ;; import buffer
 
@@ -192,18 +220,18 @@
 
 ;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
-(setq exwm-input--update-focus-interval 0.2)
+(setq exwm-input--update-focus-interval 0.01) ;; TODO use 0.2 if issues
 
-;; (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
-;; (setq helm-exwm-source (helm-exwm-build-source))
-;; (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
-;;                                   helm-exwm-source
-;;                                   helm-source-recentf)
+(setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
+(setq helm-exwm-source (helm-exwm-build-source))
+(setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
+                                  ;; helm-exwm-source
+                                  helm-source-recentf))
 
 (setq exwm-layout-show-all-buffers t)  ;; enable switching to other workspaces
 (setq exwm-workspace-show-all-buffers nil)
 (require 'helm)
-(add-to-list 'helm-source-names-using-follow "EXWM buffers")
+;; (add-to-list 'helm-source-names-using-follow "EXWM buffers")  ;; don't do follow on EXWM buffers
 (setq helm-follow-mode-persistent t)
 
 
@@ -249,7 +277,10 @@
 ;;   (define-key ansi-term-raw-map (kbd "C-v") 'term-paste)
 ;;   )
 
-(setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "HDMI1" 5 "HDMI1"))  ;; TODO set this in function of the connected monitor
+
+
+;; might need a call to exwm-randr-refresh
+(setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "DP1-3" 2 "DP1-1" 3 "eDP1" 4 "DP1-3" 5 "DP1-1"))  ;; TODO set this in function of the connected monitor
 (add-hook 'exwm-randr-screen-change-hook
           (lambda ()
             (start-process-shell-command
