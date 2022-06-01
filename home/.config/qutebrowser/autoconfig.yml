@@ -46,7 +46,7 @@ settings:
   colors.webpage.darkmode.contrast:
     global: 0.0
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.grayscale.all:
     global: false
   content.blocking.enabled:
@@ -54,18 +54,54 @@ settings:
   content.blocking.hosts.lists:
     global:
     - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+  content.desktop_capture:
+    https://meet.google.com: true
+    https://meet.jit.si: true
+    https://teams.microsoft.com: true
   content.geolocation:
+    https://at.getaround.com: true
+    https://eu.docusign.net: true
+    https://outlook.office.com: true
     https://outlook.office365.com: true
     https://www.google.com: true
+    https://www.ikea.com: true
+    https://www.mydpd.at: true
     https://www.prontophot.at: true
+  content.media.audio_capture:
+    https://app.gather.town: true
+    https://euc-powerpoint.officeapps.live.com: true
+    https://meet.google.com: true
+    https://meet.jit.si: true
+    https://teams.microsoft.com: true
+    https://web.telegram.org: true
+    https://www.poptox.com: true
+  content.media.audio_video_capture:
+    https://app.gather.town: true
+    https://meet.google.com: true
+    https://meet.jit.si: true
+    https://teams.microsoft.com: true
   content.media.video_capture:
+    https://app.gather.town: true
+    https://app.gazerecorder.com: true
     https://cw1.lead-horizon.org: true
+    https://cw2.lead-horizon.org: true
+    https://cw3.lead-horizon.org: true
     https://cw4.lead-horizon.org: true
     https://cw5.lead-horizon.org: true
     https://cw6.lead-horizon.org: true
     https://cw7.lead-horizon.org: true
+    https://cw8.lead-horizon.org: true
+    https://cw9.lead-horizon.org: true
+    https://meet.google.com: true
+    https://meet.jit.si: true
+    https://teams.microsoft.com: true
   content.notifications.enabled:
     https://calendar.google.com: true
+    https://dnschecker.org: true
+    https://meet.google.com: true
+    https://teams.microsoft.com: true
+    https://ubiquiti-networks-forum.de: true
+    https://www.stern.de: true
   content.register_protocol_handler:
     https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
@@ -141,7 +177,7 @@ settings:
       maps: https://google.com/maps/search/{}
       mirbase: http://www.mirbase.org/textsearch.shtml?q={}&submit=submit
       nix: https://search.nixos.org/packages?channel=21.11&from=0&size=30&sort=relevance&query={}
-      pm: https://www.ncbi.nlm.nih.gov/pubmed/?term={}
+      pm: https://pubmed.ncbi.nlm.nih.gov/?term={}&sort=date
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}
   url.start_pages:

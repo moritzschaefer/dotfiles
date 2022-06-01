@@ -18,10 +18,12 @@ if ! pgrep urxvt; then
     # urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec command tmux new-session -n$USER -s$USER@$HOSTNAME" &
     urxvt -e fish -c tmux &
     # export QUTE_BIB_FILEPATH="/home/moritz/wiki/papers/references.bib" # this is taken care of already
-    qutebrowser &
+    qutebrowser-niced &
     blueman-applet &
     pasystray &
-    teams &
+    # teams &  # use in browser
+    discord &
+    renice -n -15 -p $(pidof emacs)
     # if xrandr | ag "DP2 connected"; then
     #     sleep 2
     #     # xrandr --output eDP1 --auto --pos 0x0 --output HDMI1 --scale 2x2 --auto --pos 3840x0 --output DP2 --scale 2x2 --auto --pos 7680x0 --fb 11520x2160

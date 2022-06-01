@@ -108,12 +108,20 @@
 ;; (spaceline-spacemacs-theme 'emacs-memory-segment)
 
 ;; clipboard management
-(setq x-select-enable-clipboard nil)
-(setq x-select-enable-primary t)
+;; (setq x-select-enable-clipboard nil)
+;; (setq x-select-enable-primary t)
 (setq mouse-drag-copy-region t)
-(define-key evil-insert-state-map  (kbd "C-v") (kbd "+"))
+
+;; (define-key evil-insert-state-map  (kbd "C-v") (kbd ""))
 (define-key evil-ex-completion-map (kbd "C-v") (kbd "+"))
 (define-key evil-ex-search-keymap  (kbd "C-v") (kbd "+"))
+
+(define-key global-map (kbd "C-v") 'evil-paste-from-register)
+
+
+;;   (define-key ansi-term-raw-map (kbd "s-c") (lambda () (interactive) (term-send-raw-string "\C-c")))
+
+
 
 (with-eval-after-load "ansi-term"
   (define-key term-raw-map (kbd "s-r") nil)
@@ -197,6 +205,14 @@
 ;;         next-line))
 ;; (keyfreq-mode 1)
 ;; (keyfreq-autosave-mode 1)
+
+;; apparently there is no evidence that color change shift is good in any way?
+;; theme-changer (https://github.com/hadronzoo/theme-changer)
+;; (setq calendar-location-name "Vienna, Austria")
+;; (setq calendar-latitude 48.21003)
+;; (setq calendar-longitude 16.363449)
+;; (require 'theme-changer)
+;; (change-theme 'spacemacs-light 'spacemacs-dark)  ;; spacemacs-light vs spacemacs-night?
 
 
 
@@ -290,7 +306,6 @@
 (define-key global-map (kbd "<redo>") 'undo-tree-redo)
 
 
-(define-key global-map (kbd "C-v") 'evil-paste-from-register)
 
 ;;
 (define-key global-map (kbd "C-p") nil)
@@ -342,10 +357,8 @@
     (clear-string password))
   (switch-to-buffer "*nixos-rebuild*")
   )
-(define-key global-map (kbd "s-C") 'sudo-nixos-rebuild)
-(define-key global-map (kbd "s-S-c") 'sudo-nixos-rebuild)
-
-
+(define-key global-map (kbd "s-M-c") 'sudo-nixos-rebuild)
+(define-key global-map (kbd "s-C-c") 'sudo-nixos-rebuild)
 
 ;; https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version/29757750#29757750
 (defun ediff-copy-both-to-C ()
@@ -398,14 +411,15 @@
 ;; (clipmon-mode-start)  <- sometimes freezes emacs...
 
 ;; TODO automatically import everything in lisp/
-(load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/org.el")
+(load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
-(load "~/.spacemacs.d/lisp/eaf.el")
-(load "~/.spacemacs.d/lisp/feedly.el")
-(load "~/.spacemacs.d/secrets/feedly.el")
+
+;; (load "~/.spacemacs.d/lisp/eaf.el")
+;; (load "~/.spacemacs.d/lisp/feedly.el")
+;; (load "~/.spacemacs.d/secrets/feedly.el")
 
 
 ;;(load "~/.spacemacs.d/lisp/mu4e.el")

@@ -5,8 +5,6 @@
 
 ;; clipboard
 
-(clipmon-mode-start)
-
 (defun moritzs/exwm-helm-yank-pop ()
   "Same as `helm-show-kill-ring' and paste into exwm buffer."
   (interactive)
@@ -96,10 +94,20 @@
 ;;   Emacs.
 (exwm-input-set-key (kbd "s-a") #'helm-run-external-command) ;; exwm/app-launcher)
 
-(exwm-input-set-key (kbd "s-c") #'org-capture)
 
-(exwm-input-set-key (kbd "s-x") #'helm-bibtex)
 (exwm-input-set-key (kbd "s-o") #'moritzs/switch-to-agenda)
+(exwm-input-set-key (kbd "s-c") (lambda () (interactive) (org-capture nil "i")))
+(exwm-input-set-key (kbd "s-C") #'org-capture)
+(exwm-input-set-key (kbd "s-S-c") #'org-capture)
+(exwm-input-set-key (kbd "s-X") #'helm-bibtex)
+(exwm-input-set-key (kbd "s-x") #'helm-bibtex)
+;; (exwm-input-set-key (kbd "s-x") #'org-ref-cite-insert-helm)  ;; we are not using org-ref anymore
+
+(exwm-input-set-key (kbd "s-P") 'org-roam-node-insert)  ;; org-roam-mode-map ;[p]aste
+(exwm-input-set-key (kbd "s-p") (lambda() (interactive) (org-roam-node-insert nil :templates (list (car org-roam-capture-templates)))))
+
+(exwm-input-set-key (kbd "s-G") 'org-roam-node-find) ;; [g]o
+(exwm-input-set-key (kbd "s-g") (lambda() (interactive) (org-roam-node-find nil nil nil :templates (list (car org-roam-capture-templates)))))
 
 
 (defun moritzs/search-wiki ()
@@ -170,7 +178,7 @@
              (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
 
 (exwm-input-set-key (kbd "s-f") #'desktop-environment-screenshot)
-(exwm-input-set-key (kbd "s-F") (lambda () (interactive) (start-process-shell-command "screenshot" nil "gnome-screenshot -i")))
+(exwm-input-set-key (kbd "s-F") (lambda () (interactive) (start-process-shell-command "screenshot" nil "gnome-screenshot -i -a")))
 
 
 (exwm-input-set-key (kbd "s-w") #'exwm-floating-toggle-floating)
@@ -181,6 +189,8 @@
 (exwm-input-set-key (kbd "s-H") #'split-window-below-and-focus)
 
 (exwm-input-set-key (kbd "s-t") #'spacemacs/alternate-window)
+(exwm-input-set-key (kbd "s-k") (lambda () (interactive) (exwm-workspace-switch (car (delete exwm-workspace--current (seq-filter #'exwm-workspace--active-p exwm-workspace--list)))))) ;; TODO more than 3 monitors not supported ATM
+
 ;; (exwm-input-set-key (kbd "<s-tab>") #'spacemacs/exwm-jump-to-last-exwm)
 (exwm-input-set-key (kbd "<s-tab>") #'spacemacs/alternate-buffer)
 
@@ -243,9 +253,17 @@
 ;;(exwm-input-set-key (kbd "s-v") 'helm-exwm-switch-browser)
 ;; (exwm-input-set-key (kbd "s-v") 'helm-exwm)
 
-(exwm-input-set-key (kbd "<XF86AudioPlay>") #'spotify-playpause)
-(exwm-input-set-key (kbd "<XF86AudioNext>") #'spotify-next)
-(exwm-input-set-key (kbd "<XF86AudioPrev>") #'spotify-previous)
+;; (exwm-input-set-key (kbd "<XF86AudioPlay>") #'spotify-playpause)
+;; (exwm-input-set-key (kbd "<XF86AudioNext>") #'spotify-next)
+(exwm-input-set-key (kbd "s-D") #'desktop-environment-brightness-increment)
+(exwm-input-set-key (kbd "s-J") #'desktop-environment-brightness-decrement)
+
+(exwm-input-set-key (kbd "s-M") #'desktop-environment-toggle-mute)
+(exwm-input-set-key (kbd "s-l") #'desktop-environment-volume-decrement)
+(exwm-input-set-key (kbd "s-L") #'desktop-environment-volume-increment)
+(exwm-input-set-key (kbd "s-l") #'desktop-environment-volume-decrement)
+
+;; (kbd "<XF86MonBrightnessUp>")
 
 ;; (exwm-input-set-key exwm-workspace-move-window)
 
@@ -279,13 +297,40 @@
 
 
 
-;; might need a call to exwm-randr-refresh
-(setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "DP1-3" 2 "DP1-1" 3 "eDP1" 4 "DP1-3" 5 "DP1-1"))  ;; TODO set this in function of the connected monitor
+(setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "DP1-3" 2 "DP1-1" 3 "eDP1" 4 "DP1-3" 5 "DP1-1"))
+
+;; very simple: if detected=work, then the DP list, otherwise the home list and exwm-randr-refresh
+(setq exwm-randr-screen-change-hook nil)
 (add-hook 'exwm-randr-screen-change-hook
           (lambda ()
             (start-process-shell-command
-             "autorandr" nil "autorandr -c")))
-
+             "autorandr" nil "sleep 0.2 && autorandr -c")  ;; 0.2 seconds waiting seems to be a working workaround when connecting my stupid monitor
+            ;; Update exwm-randr-workspace-monitor-plist... -.-
+            (with-temp-buffer
+              (call-process "autorandr" nil t)
+              (goto-char (point-min))
+              (search-forward "(detected)")
+              (beginning-of-line)
+              (setq startPos (point))
+              (evil-forward-WORD-end)
+              (setq setup-name (buffer-substring-no-properties startPos (1+ (point))))
+              (cond
+               ((cl-search "moxps-home-adapter" setup-name)  ;; has to come before moxps-home
+                (setq exwm-randr-workspace-monitor-plist '(0 "DP1" 1 "DP1" 2 "DP1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+               ((cl-search "moxps-home" setup-name)
+                (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+               ((cl-search "moxps-lg" setup-name)
+                (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+               ((cl-search "cemm-postdoc-office-111" setup-name)
+                (setq exwm-randr-workspace-monitor-plist '(0 "DP1-1" 1 "DP1-1" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+               ((cl-search "cemm-postdoc-office-11" setup-name)
+                (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-3" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+               (t
+                (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                    )
+              (message (format "Switched monitor configuration to <%s>" setup-name))
+              )
+            ))
 
 ;;;;(setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI1")) (start-process-shell-command "xrandr" nil "xrandr --fb 7680x2160 --output HDMI1 --transform none && xrandr --fb 7680x2160 --output eDP1 --gamma 1.0:1.0:1.0 --mode 3840x2160 --pos 0x0 --primary --rate 60.00 --reflect normal --rotate normal --output HDMI1 --gamma 1.0:1.0:1.0 --mode 1920x1080 --pos 3840x0 --rate 60.00 --reflect normal --rotate normal --transform 2.000000,0.000000,0.000000,0.000000,2.000000,0.000000,0.000000,0.000000,1.000000")))
 

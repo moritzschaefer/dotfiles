@@ -74,7 +74,8 @@ URxvt.intensityStyles: false
 *color14:                 S_base1
 *color15:                 S_base3
 Xft.dpi: 220  ! was 220
-Xcursor.size: 128
+Xcursor.size: 64
+Xcursor.theme: Vanilla-DMZ
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull

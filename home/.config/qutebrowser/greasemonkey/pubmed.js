@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  Clean up 2020 update of PubMed. Modified by Moritz Schäfer
 // @author       Venkatesh L. Murthy
-// @match        *://pubmed.ncbi.nlm.nih.gov/*
+// @match        *://pubmed.ncbi.nlm.nih.gov/deactivated*
 // @grant        Creative Commons CC-BY-SA 2.0
 // @run-at       document-start
 // ==/UserScript==

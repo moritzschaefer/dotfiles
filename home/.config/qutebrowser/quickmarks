@@ -3,5 +3,10 @@ i https://duckduckgo.com/?q=livaboard&ia=web
 gm https://mail.google.com/mail/u/0/#inbox
 gms https://mail.google.com/mail/u/0/#settings/accounts
 a https://qutebrowser.org/doc/help/settings.html#input.insert_mode.auto_enter
-mcal https://outlook.office365.com/calendar/view/month
+mcal https://outlook.office.com/calendar/view/month
 gcal https://calendar.google.com/calendar/u/0/r/month
+mm https://outlook.office365.com/mail/
+muw_admin https://campus.meduniwien.ac.at/med.campus/pl/ui/$ctx/webnav.ini
+sage http://sage/dpw/scripts/cgiip.exe/WService=dpw_data/A-0000.htm?login=629&ben=mschaeafer
+od https://cemmat-my.sharepoint.com/personal/mschaefer_cemm_at/_layouts/15/onedrive.aspx
+gd https://drive.google.com/drive/my-drive

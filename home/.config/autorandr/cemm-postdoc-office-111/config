@@ -1,8 +1,8 @@
 output DP1
 off
-output DP1-2
-off
 output DP1-3
+off
+output DP1-2
 off
 output DP2
 off
@@ -12,7 +12,7 @@ output HDMI2
 off
 output VIRTUAL1
 off
-output DP1-3
+output DP1-1
 crtc 1
 gamma 1.0:0.909:0.833
 mode 1920x1200
