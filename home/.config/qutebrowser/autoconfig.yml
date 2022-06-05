@@ -83,6 +83,7 @@ settings:
   content.media.video_capture:
     https://app.gather.town: true
     https://app.gazerecorder.com: true
+    https://bumble.com: true
     https://cw1.lead-horizon.org: true
     https://cw2.lead-horizon.org: true
     https://cw3.lead-horizon.org: true
@@ -156,10 +157,10 @@ settings:
     global: true
   new_instance_open_target:
     global: tab
+  qt.chromium.low_end_device_mode:
+    global: auto
   qt.highdpi:
     global: false
-  qt.low_end_device_mode:
-    global: auto
   scrolling.smooth:
     global: true
   tabs.background:

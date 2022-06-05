@@ -143,3 +143,5 @@
 [github]
 	user = moritzschaefer
 	oauth-token = c201e575570112f1a4e71e002b2058ecd51829e3
+[pull]
+	rebase = false

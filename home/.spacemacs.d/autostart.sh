@@ -1,6 +1,7 @@
 #!/bin/sh
 
 if ! pgrep urxvt; then
+    xmodmap ~/.Xmodmap
     # gpaste & 
     # clipit &
     # nm-applet &
@@ -22,7 +23,7 @@ if ! pgrep urxvt; then
     blueman-applet &
     pasystray &
     # teams &  # use in browser
-    discord &
+    # discord &
     renice -n -15 -p $(pidof emacs)
     # if xrandr | ag "DP2 connected"; then
     #     sleep 2

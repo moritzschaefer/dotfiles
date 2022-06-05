@@ -107,8 +107,7 @@
 (exwm-input-set-key (kbd "s-p") (lambda() (interactive) (org-roam-node-insert nil :templates (list (car org-roam-capture-templates)))))
 
 (exwm-input-set-key (kbd "s-G") 'org-roam-node-find) ;; [g]o
-(exwm-input-set-key (kbd "s-g") (lambda() (interactive) (org-roam-node-find nil nil nil :templates (list (car org-roam-capture-templates)))))
-
+(exwm-input-set-key (kbd "s-g") (lambda() (interactive) (org-roam-node-find nil nil nil nil :templates (list (car org-roam-capture-templates)))))
 
 (defun moritzs/search-wiki ()
   (interactive)
@@ -232,6 +231,7 @@
 
 (setq exwm-input--update-focus-interval 0.01) ;; TODO use 0.2 if issues
 
+(require 'helm-exwm)
 (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
 (setq helm-exwm-source (helm-exwm-build-source))
 (setq helm-mini-default-sources `(helm-exwm-emacs-buffers-source
@@ -309,26 +309,29 @@
             (with-temp-buffer
               (call-process "autorandr" nil t)
               (goto-char (point-min))
-              (search-forward "(detected)")
-              (beginning-of-line)
-              (setq startPos (point))
-              (evil-forward-WORD-end)
-              (setq setup-name (buffer-substring-no-properties startPos (1+ (point))))
-              (cond
-               ((cl-search "moxps-home-adapter" setup-name)  ;; has to come before moxps-home
-                (setq exwm-randr-workspace-monitor-plist '(0 "DP1" 1 "DP1" 2 "DP1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-               ((cl-search "moxps-home" setup-name)
-                (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-               ((cl-search "moxps-lg" setup-name)
-                (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-               ((cl-search "cemm-postdoc-office-111" setup-name)
-                (setq exwm-randr-workspace-monitor-plist '(0 "DP1-1" 1 "DP1-1" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-               ((cl-search "cemm-postdoc-office-11" setup-name)
-                (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-3" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-               (t
-                (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-                    )
-              (message (format "Switched monitor configuration to <%s>" setup-name))
+              (when (search-forward "(detected)" nil t)
+                (progn
+                  (beginning-of-line)
+                  (setq startPos (point))
+                  (evil-forward-WORD-end)
+                  (setq setup-name (buffer-substring-no-properties startPos (1+ (point))))
+                  (cond
+                  ((cl-search "moxps-home-adapter" setup-name)  ;; has to come before moxps-home
+                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1" 1 "DP1" 2 "DP1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                  ((cl-search "moxps-home" setup-name)
+                    (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                  ((cl-search "moxps-lg" setup-name)
+                    (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                  ((cl-search "cemm-postdoc-office-111" setup-name)
+                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1-1" 1 "DP1-1" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                  ((cl-search "cemm-postdoc-office-11" setup-name)
+                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-3" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                  (t
+                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                        )
+                  (message (format "Switched monitor configuration to <%s>" setup-name))
+                  )
+                )
               )
             ))
 
