@@ -21,11 +21,13 @@ settings:
         ;t: hint userscript link translate
         ;uy: hint images yank
         <Ctrl+a>: mode-enter insert ;; fake-key <Ctrl-A>
+        <Ctrl+m>: quickmark-save
         d: null
         dd: tab-close
         edoi: spawn --userscript doi_to_org_ref.py
         gc: open javascript:void(location.href='org-protocol://roam-ref?template=r&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title))
         ge: spawn --userscript translate --text -t de
+        m: mode-enter set_mark
         st: config-cycle colors.webpage.darkmode.enabled ;; restart
       prompt:
         <Ctrl+o>: prompt-open-download
@@ -70,13 +72,16 @@ settings:
   content.media.audio_capture:
     https://app.gather.town: true
     https://euc-powerpoint.officeapps.live.com: true
+    https://meduniwien.webex.com: true
     https://meet.google.com: true
     https://meet.jit.si: true
     https://teams.microsoft.com: true
     https://web.telegram.org: true
+    https://web.whatsapp.com: true
     https://www.poptox.com: true
   content.media.audio_video_capture:
     https://app.gather.town: true
+    https://meduniwien.webex.com: true
     https://meet.google.com: true
     https://meet.jit.si: true
     https://teams.microsoft.com: true
@@ -93,9 +98,11 @@ settings:
     https://cw7.lead-horizon.org: true
     https://cw8.lead-horizon.org: true
     https://cw9.lead-horizon.org: true
+    https://meduniwien.webex.com: true
     https://meet.google.com: true
     https://meet.jit.si: true
     https://teams.microsoft.com: true
+    https://www.hownormalami.eu: true
   content.notifications.enabled:
     https://calendar.google.com: true
     https://dnschecker.org: true
@@ -110,6 +117,8 @@ settings:
     https://outlook.office365.com?mailtouri=%25s: true
   content.user_stylesheets:
     global: null
+  downloads.prevent_mixed_content:
+    global: false
   fonts.completion.category:
     global: bold 12pt default_family
   fonts.completion.entry:
@@ -160,7 +169,7 @@ settings:
   qt.chromium.low_end_device_mode:
     global: auto
   qt.highdpi:
-    global: false
+    global: true
   scrolling.smooth:
     global: true
   tabs.background:
@@ -177,7 +186,7 @@ settings:
       imdb: https://www.imdb.com/find?ref_=nv_sr_fn&q={}
       maps: https://google.com/maps/search/{}
       mirbase: http://www.mirbase.org/textsearch.shtml?q={}&submit=submit
-      nix: https://search.nixos.org/packages?channel=21.11&from=0&size=30&sort=relevance&query={}
+      nix: https://search.nixos.org/packages?channel=22.05&from=0&size=30&sort=relevance&query={}
       pm: https://pubmed.ncbi.nlm.nih.gov/?term={}&sort=date
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}
@@ -196,7 +205,7 @@ settings:
   window.title_format:
     global: '{perc}{current_title}{title_sep}qutebrowser'
   zoom.default:
-    global: 100%
+    global: 130%
   zoom.levels:
     global:
     - 25%

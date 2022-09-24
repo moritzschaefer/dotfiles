@@ -1,7 +1,5 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-(require 'forge)
-
 ;; delete (after update)
 ;; (defalias 'dnd-unescape-uri 'dnd--unescape-uri)
 
@@ -259,25 +257,14 @@
 
 
 ;;https://github.com/ch11ng/exwm/issues/611 fix y-or-n blocking issue TODO can be deleted after exwm upgrade!
-(define-advice set-transient-map (:around (fun map &optional keep-pred on-exit) exwm-passthrough)
-  (setq exwm-input-line-mode-passthrough t)
-  (let ((on-exit (lexical-let ((on-exit on-exit))
-                   (lambda ()
-                     (setq exwm-input-line-mode-passthrough nil)
-                     (when on-exit (funcall on-exit))))))
-    (funcall fun map keep-pred on-exit)))
+;; (define-advice set-transient-map (:around (fun map &optional keep-pred on-exit) exwm-passthrough)
+;;   (setq exwm-input-line-mode-passthrough t)
+;;   (let ((on-exit (lexical-let ((on-exit on-exit))
+;;                    (lambda ()
+;;                      (setq exwm-input-line-mode-passthrough nil)
+;;                      (when on-exit (funcall on-exit))))))
+;;     (funcall fun map keep-pred on-exit)))
 
-
-(defun moritzs/notebook-name ()
-  (interactive)
-  (let* ((name (read-string "notebook name: "))
-        (path "~/wiki/gtd/quick/")
-        (complete-name (expand-file-name (format "%s.org"
-                              name) path))
-    )
-    (find-file complete-name)
-    )
-  )
 
 (defun moritzs/reverse-characters-region (beg end)
   "Reverse characters between BEG and END."

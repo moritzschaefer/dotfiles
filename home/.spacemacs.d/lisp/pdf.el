@@ -15,6 +15,8 @@
   (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
   (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
   (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
+  (define-key pdf-view-mode-map (kbd "H") 'image-scroll-down)
+  (define-key pdf-view-mode-map (kbd "L") 'image-scroll-up)
   )
 
 ;; org-noter (https://github.com/weirdNox/org-noter/issues/57)
@@ -79,9 +81,14 @@ using the `pdf-tools' package."
     (message "Print job started: %s %s"
              programm (mapconcat #'identity args " "))))
 
+
 (spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
   "b" 'org-ref-pdf-to-bibtex)
 (spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
   "c" 'moritzs/pdf-misc-print-current-page)
 (spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
   "u" 'moritzs/pdf-misc-print-until-current-page)
+
+(require 'openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pdf\\'" "sioyek" (file))))

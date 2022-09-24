@@ -182,10 +182,10 @@
 
 (exwm-input-set-key (kbd "s-w") #'exwm-floating-toggle-floating)
 (exwm-input-set-key (kbd "s-d") #'spacemacs/delete-window)
-(exwm-input-set-key (kbd "s-v") #'split-window-right)
-(exwm-input-set-key (kbd "s-V") #'split-window-right-and-focus)
-(exwm-input-set-key (kbd "s-h") #'split-window-below)
-(exwm-input-set-key (kbd "s-H") #'split-window-below-and-focus)
+(exwm-input-set-key (kbd "s-v") #'split-window-right-and-focus)
+(exwm-input-set-key (kbd "s-V") #'split-window-right)
+(exwm-input-set-key (kbd "s-h") #'split-window-below-and-focus)
+(exwm-input-set-key (kbd "s-H") #'split-window-below)
 
 (exwm-input-set-key (kbd "s-t") #'spacemacs/alternate-window)
 (exwm-input-set-key (kbd "s-k") (lambda () (interactive) (exwm-workspace-switch (car (delete exwm-workspace--current (seq-filter #'exwm-workspace--active-p exwm-workspace--list)))))) ;; TODO more than 3 monitors not supported ATM

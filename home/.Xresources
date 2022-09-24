@@ -49,7 +49,7 @@ URxvt.intensityStyles: false
 !
 ! URxvt*background:            S_base03
 
-*background:              S_base03
+*background:              S_base00
 *foreground:              S_base0
 *fading:                  40
 *fadeColor:               S_base03
@@ -73,16 +73,15 @@ URxvt.intensityStyles: false
 *color13:                 S_violet
 *color14:                 S_base1
 *color15:                 S_base3
-Xft.dpi: 188  ! was 220
-Xcursor.size: 64
-Xcursor.theme: Vanilla-DMZ
+Xft.dpi: 130  ! this determines emacs size and urxvt size
+! Xcursor.size: 64
+! Xcursor.theme: Vanilla-DMZ
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-Xcursor.theme: Vanilla-DMZ
 
 
 ! URxvt.font: -*-terminus-medium-r-normal-*-32-*-*-*-*-*-iso10646-1

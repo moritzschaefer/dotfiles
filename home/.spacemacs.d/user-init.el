@@ -17,7 +17,7 @@
 
 (defun moritzs/recent-smartphone-photo ()
   "Open a recently taken smartphone picture."
-  (format "/home/moritz/Kamera/Pixel4a/Camera/%s" (shell-command-to-string "ls -t  '/home/moritz/Kamera/Pixel4a/Camera/' | head -n 1 | tr -d '\n'"))
+  (format "/home/moritz/Kamera/Camera/%s" (shell-command-to-string "ls -t  '/home/moritz/Kamera/Camera/' | head -n 1 | tr -d '\n'"))
   )
 
 
