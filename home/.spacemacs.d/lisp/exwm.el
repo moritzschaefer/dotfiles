@@ -318,8 +318,14 @@
                   (cond
                   ((cl-search "moxps-home-adapter" setup-name)  ;; has to come before moxps-home
                     (setq exwm-randr-workspace-monitor-plist '(0 "DP1" 1 "DP1" 2 "DP1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                  ((cl-search "mopad-office2x4k" setup-name)  ;; has to come before moxps-home
+                   (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1-1" 1 "DP-0" 2 "DP-2.2" 3 "eDP-1-1" 4 "DP-0" 5 "DP-2.2")))
+                  ((cl-search "mopad-cemm-hot1" setup-name)  ;; has to come before moxps-home
+                   (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.2" 1 "DP-2.2" 2 "DP-2.2" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
                   ((cl-search "moxps-home" setup-name)
                     (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                  ((cl-search "mopad-home" setup-name)
+                   (setq exwm-randr-workspace-monitor-plist '(0 "HDMI-0" 1 "HDMI-0" 2 "HDMI-0" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
                   ((cl-search "moxps-lg" setup-name)
                     (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
                   ((cl-search "cemm-postdoc-office-111" setup-name)
