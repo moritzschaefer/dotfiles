@@ -89,6 +89,7 @@ using the `pdf-tools' package."
 (spacemacs/set-leader-keys-for-major-mode 'pdf-view-mode
   "u" 'moritzs/pdf-misc-print-until-current-page)
 
-(require 'openwith)
-(openwith-mode t)
-(setq openwith-associations '(("\\.pdf\\'" "sioyek" (file))))
+;; (require 'openwith)
+;; (openwith-mode t)
+;; (setq openwith-associations '(("\\.pdf\\'" "sioyek" (file))))
+(setq openwith-associations nil)

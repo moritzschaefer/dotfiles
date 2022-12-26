@@ -292,7 +292,29 @@
 (define-key global-map (kbd "C-S-z") 'undo-tree-redo)
 (define-key global-map (kbd "<redo>") 'undo-tree-redo)
 
+;; copilot
 
+(with-eval-after-load 'company
+  ;; disable inline previews
+  (delq 'company-preview-if-just-one-frontend company-frontends))
+
+(with-eval-after-load 'copilot
+  (define-key copilot-completion-map (kbd "<right>") 'copilot-accept-completion)
+  ;; (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+
+
+  (add-hook 'prog-mode-hook 'copilot-mode)
+
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion-by-word)  ;; before C-
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion-by-word)
+  )
+
+
+
+;; magit
+(require 'magit)
+(define-key magit-hunk-section-map (kbd "M-RET") 'magit-diff-visit-file-other-window)
+(define-key magit-file-section-map (kbd "M-RET") 'magit-diff-visit-file-other-window)
 
 ;;
 (define-key global-map (kbd "C-p") nil)
@@ -393,11 +415,38 @@
 
                     pattern)))))
 
-
 ;; monitor the system clipboard and add any changes to the kill ring
 ;; (clipmon-mode-start)  <- sometimes freezes emacs...
 
+(with-eval-after-load 'dap-ui
+  (dap-register-debug-template
+   "Python :: Attach running debug process"
+   (list :name "Python :: Attach running debug process"
+         :type "python"
+         :args ""
+         :cwd "${workspaceFolder}"
+         :port 5678
+         :host "localhost"
+         :module nil
+         :program nil
+         :request "attach"))
+
+  (dap-register-debug-template
+   "Python :: Attach running remote debug process"
+   (list :name "Python :: Attach running remote debug process"
+         :type "python"
+         :args ""
+         :cwd "${workspaceFolder}"
+         :port 5679
+         :host "localhost"
+         :module nil
+         :program nil
+         :request "attach"))
+
+  (defvar dap-exception-breakpoints nil)
+  )
 ;; TODO automatically import everything in lisp/
+
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/exwm.el")
 (load "~/.spacemacs.d/lisp/dna.el")

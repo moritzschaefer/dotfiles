@@ -1,6 +1,9 @@
 ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
 (with-eval-after-load 'org
+  (require 'ol) ;; orgit https://github.com/magit/orgit-forge/issues/7
+  (require 'forge)
+  (require 'treemacs-workspaces)
   (require 'org-capture)
   (require 'org-attach)
   (require 'ox-extra)
@@ -30,178 +33,6 @@
 
   ;; agenda
 
-  (defun moritzs/switch-to-agenda ()
-    (interactive)
-    (org-agenda nil " ")
-    ;;(delete-other-windows)
-    )
-  (setq moritzs/org-agenda-directory "~/wiki/gtd/")
-  (setq org-agenda-files
-        (find-lisp-find-files moritzs/org-agenda-directory "\.org$"))
-  (require 'org-agenda)
-  (setq moritzs/org-agenda-inbox-view
-        `("i" "Inbox" todo ""
-          ((org-agenda-files '("~/wiki/gtd/inbox.org")))))
-  ;; (setq moritzs/org-agenda-someday-view
-  ;;       `("s" "Someday" todo ""
-  ;;         ((org-agenda-files '("~/wiki/gtd/someday.org")))))
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-  (setq org-log-state-notes-insert-after-drawers nil)
-  (setq org-todo-keywords
-        '((sequence "BACKLOG(b)" "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c!)")))
-
-  (setq org-tag-alist (quote (("ignore" . ?i)
-                              ;; ("@errand" . ?e)
-                              ("noexport" . ?n)
-                              ("@office" . ?o)
-                              ;; ("@question" . ?q)
-                              ("@home" . ?h)
-                              ;; ("@school" . ?s)
-                              (:newline)
-                              ("WAITING" . ?w)
-                              ("HOLD" . ?H)
-                              ("CANCELLED" . ?c))))
-
-  (setq org-refile-use-outline-path 'file
-        org-outline-path-complete-in-steps nil)
-  (setq org-refile-allow-creating-parent-nodes 'confirm)
-  (setq org-refile-targets '(("inbox.org" :level . 0)
-                             ("next.org" :level . 0)
-                             ("einkaufen.org" :level . 0)
-                             ("someday.org" :level . 0)))
-  ;; (defvar moritzs/org-agenda-bulk-process-key ?f
-  ;;   "Default key for bulk processing inbox items.")
-
-  (defun moritzs/org-process-undone ()
-    "Called in org-agenda-mode, processes all inbox items."
-    (interactive)
-    (org-agenda nil " ")  ;; select todo view
-    (unless org-agenda-follow-mode
-      (org-agenda-follow-mode))
-    (org-agenda-bulk-mark-all)
-    (moritzs/bulk-process-entries 'moritzs/org-agenda-process-item)
-    )
-
-  (defun moritzs/org-process-inbox ()
-    "Called in org-agenda-mode, processes all inbox items."
-    (interactive)
-    (org-agenda nil "i")  ;; select inbox view
-    (org-agenda-follow-mode)
-    (org-agenda-bulk-mark-all)
-    (moritzs/bulk-process-entries 'moritzs/org-agenda-process-item)
-    )
-
-  (defun moritzs/org-agenda-process-item ()
-    "Process a single item in the org-agenda."
-    (org-with-wide-buffer
-     ;; ask for <n>(Next/Now) <s>(Someday)
-     ;; TODO maybe allow to add comment to log-drawer if capitalized input
-
-     (cl-case (read-char "Process <n>ow, <t>omorrow, on the <w>eekend or <s>omeday? Or mark as <o>ffice or <h>ome job without date and put to someday. You can also mark a job as <c>ancelled or <d>one.")
-       (?n (org-agenda-schedule nil "+0") (org-agenda-refile nil (list "next.org" "/home/moritz/wiki/gtd/next.org" nil nil) t))
-       (?N (org-agenda-schedule nil "+0") (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "next.org" "/home/moritz/wiki/gtd/next.org" nil nil) t))
-
-       (?t (org-agenda-schedule nil "+1") (org-agenda-refile nil (list "next.org" "/home/moritz/wiki/gtd/next.org" nil nil) t))
-       (?T (org-agenda-schedule nil "+1") (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "next.org" "/home/moritz/wiki/gtd/next.org" nil nil) t))
-
-       (?w (org-agenda-priority) (org-agenda-schedule nil "sat") (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-       (?W (org-agenda-priority) (org-agenda-schedule nil "sat") (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-       (?s (org-agenda-schedule nil) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-       (?S (org-agenda-schedule nil) (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-       (?o (org-agenda-set-tags "@office") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-       (?O (org-agenda-priority) (org-agenda-set-effort) (org-agenda-set-tags "@office") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-       (?h (org-agenda-set-tags "@home") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-       (?H (org-agenda-priority) (org-agenda-set-effort) (org-agenda-set-tags "@home") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-       (?c (org-agenda-todo 7) (org-agenda-archive))
-       (?d (org-agenda-todo 4) (org-agenda-archive))
-       (t)) ;; all other keys just skip
-     )
-    )
-
-  ;; UNUSED
-  (defun moritzs/org-agenda-process-undone-item ()
-    "Process one of the undone items. Either it goes back to inbox.org or it goes to someday."
-    (org-with-wide-buffer
-     (cl-case (read-char "Put back into <i>nbox, into <n>ow/next (for today), tomorrow (next, for tomorrow) or to <s>omeday. You can also mark a job as <c>ancelled or <d>one.")
-       (?i (org-agenda-refile nil (list "inbox.org" "/home/moritz/wiki/gtd/inbox.org" nil nil) t))
-       (?n (org-agenda-schedule nil "+0") (org-agenda-refile nil (list "next.org" "/home/moritz/wiki/gtd/next.org" nil nil) t))
-       (?s (org-agenda-schedule nil) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-       (?c (org-agenda-todo 7) (org-agenda-archive))
-       (?d (org-agenda-todo 4) (org-agenda-archive)))
-     ))
-
-  (defun moritzs/bulk-process-entries (item-process-function)
-    (if (not (null org-agenda-bulk-marked-entries))
-        (let ((entries (reverse org-agenda-bulk-marked-entries))
-              (processed 0)
-              (skipped 0))
-          (dolist (e entries)
-            (let ((pos (text-property-any (point-min) (point-max) 'org-hd-marker e)))
-              (if (not pos)
-                  (progn (message "Skipping removed entry at %s" e)
-                         (cl-incf skipped))
-                (goto-char pos)
-
-                ; (save-excursion
-                ;;   (org-back-to-heading t)
-                ;;   (and (let ((case-fold-search nil))
-                ;;          (looking-at org-todo-line-regexp))
-	              ;;        (match-end 2)
-	              ;;        (match-string 2))))
-                ;; (message "%s" (get-text-property (point-at-bol) 'org-marker)) ;; same as org-get-at-bol
-                ;; (message "%s" (text-properties-at (point-at-bol))) ;; TODO exploit the text property that shows that this is green==DONE (or CANCELLED)
-                (org-agenda-do-context-action)
-                (let (org-loop-over-headlines-in-active-region) (funcall item-process-function))
-                ;; `post-command-hook' is not run yet.  We make sure any
-                ;; pending log note is processed.
-                (when (or (memq 'org-add-log-note (default-value 'post-command-hook))
-                          (memq 'org-add-log-note post-command-hook))
-                  (org-add-log-note))
-                (cl-incf processed))))
-          (org-agenda-redo)
-          (unless org-agenda-persistent-marks (org-agenda-bulk-unmark-all))
-          (message "Acted on %d entries%s%s"
-                   processed
-                   (if (= skipped 0)
-                       ""
-                     (format ", skipped %d (disappeared before their turn)"
-                             skipped))
-                   (if (not org-agenda-persistent-marks) "" " (kept marked)")))
-      ))
-
-  ;; (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
-  (define-key org-agenda-mode-map "i" 'moritzs/org-process-inbox)
-  (define-key org-agenda-mode-map "r" 'moritzs/org-process-undone)
-  (define-key org-agenda-mode-map "R" 'org-agenda-refile)
-  ;; (define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
-
-  ;; (defun moritzs/org-inbox-capture ()
-  ;;   (interactive)
-  ;;   "Capture a task in agenda mode."
-  ;;   (org-capture nil "i"))
-
-  ;; (setq org-agenda-bulk-custom-functions `((,moritzs/org-agenda-bulk-process-key moritzs/org-agenda-process-inbox-item)))
-
-  (defun moritzs/org-archive-done-tasks ()
-    (interactive)
-    (org-map-entries
-     (lambda ()
-       (org-archive-subtree)
-       (setq org-map-continue-from (outline-previous-heading)))
-     "/DONE" 'file)
-
-    (org-map-entries
-     (lambda ()
-       (org-archive-subtree)
-       (setq org-map-continue-from (outline-previous-heading)))
-     "/CANCELLED" 'file)
-    )
 
   ;; org-download
   ;; workaround: attachment-links are not exported correctly (/home/moritz/.emacs.d/elpa/27.2/develop/org-x.x.x/ox-odt.el)
@@ -292,6 +123,37 @@
       )
     )
 
+  (defun moritzs/doi-utils-get-json-metadata (doi)
+    "Try to get json metadata for DOI.  Open the DOI in a browser if we do not get it."
+    (if-let ((data (cdr (assoc doi doi-utils-cache))))
+        ;; We have the data already, so we return it.
+        data
+      (let ((url-request-method "GET")
+            (url-mime-accept-string "application/citeproc+json")
+            (json-object-type 'plist)
+            (json-data)
+      (url (concat doi-utils-dx-doi-org-url doi)))
+        (with-current-buffer
+            (url-retrieve-synchronously
+            ;; (concat "http://dx.doi.org/" doi)
+      url nil nil 7)
+    (setq json-data (buffer-substring url-http-end-of-headers (point-max)))
+
+    (when (or (string-match "<title>Error: DOI Not Found</title>" json-data)
+        (string-match "Resource not found" json-data)
+        (string-match "Status *406" json-data)
+        (string-match "400 Bad Request" json-data))
+      ;; (browse-url (concat doi-utils-dx-doi-org-url doi))
+      (error "Something went wrong.  We got this response:
+  %s
+
+  Opening %s" json-data url))
+
+    (setq data (json-read-from-string json-data))
+    (cl-pushnew (cons doi data) doi-utils-cache)
+    data))))
+  (setq doi-utils-metadata-function 'moritzs/doi-utils-get-json-metadata)
+
   (defun moritzs/org-roam-node-id-by-title (title)  ;; from https://github.com/org-roam/org-roam/issues/1902
     "Get a node ID by its title, whether original title or alias"
     (caar (org-roam-db-query [:select id
@@ -335,10 +197,10 @@
     "tC" 'org-table-create-or-convert-from-region)
   (spacemacs/set-leader-keys-for-major-mode 'org-mode  ;; refile
     "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-schedule) (call-interactively 'org-refile)))
-  (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
-    "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-agenda-schedule) (org-agenda-refile nil (list "next.org" "/home/moritz/wiki/gtd/next.org" nil nil))))
-  (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
-    "dw" (lambda () "Schedule to weekend" (interactive) (org-agenda-schedule nil "sat") (org-agenda-refile nil (list "next.org" "/home/moritz/wiki/gtd/next.org" nil nil)) ))
+  ;; (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
+  ;;   "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-agenda-schedule) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil))))
+  ;; (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
+  ;;   "dw" (lambda () "Schedule to weekend" (interactive) (org-agenda-schedule nil "sat") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil)) ))
 
   ;;; display/update images in the buffer after I evaluate TODO don't know if this is necessary
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
@@ -428,93 +290,11 @@
       res))
 
   (advice-add 'org-refile-new-child :around #'moritzs/refile-new-child-advice)
-  (defun moritzs/set-todo-state-next ()
-    "Visit each parent task and change NEXT states to TODO"
-    (org-todo "NEXT"))
-
-  (add-hook 'org-clock-in-hook 'moritzs/set-todo-state-next 'append)
-  (setq org-agenda-block-separator nil)
-  (setq org-agenda-start-with-log-mode t)
-  (setq moritzs/org-agenda-todo-view
-        `(" " "Agenda"
-          ((agenda ""
-                   ((org-agenda-span 'day)
-                    (org-deadline-warning-days 365)))
-           (todo "TODO"
-                 ((org-agenda-overriding-header "To Refile")
-                  (org-agenda-files '("~/wiki/gtd/inbox.org"))))
-           ;; (todo "TODO"
-           ;;       ((org-agenda-overriding-header "Emails")
-           ;;         (org-agenda-files '("~/wiki/gtd/emails.org")))) TODO add later..
-           (todo "NEXT"
-                 ((org-agenda-overriding-header "In Progress")
-                  (org-agenda-files '("~/wiki/gtd/someday.org"
-                                      "~/wiki/gtd/next.org"))
-                  ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                  ))
-           (todo "TODO"
-                 ((org-agenda-overriding-header "One-off Tasks")
-                  (org-agenda-files '("~/wiki/gtd/next.org"))
-                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
-           nil)))
-  (setq moritzs/org-agenda-undone-view
-        `("u" "Undone"
-          (
-           (todo "TODO"
-                 ((org-agenda-overriding-header "To Refile")
-                  (org-agenda-files '("~/wiki/gtd/inbox.org"))))
-           ;; (todo "TODO"
-           ;;       ((org-agenda-overriding-header "Emails")
-           ;;         (org-agenda-files '("~/wiki/gtd/emails.org")))) TODO add later..
-           (todo "NEXT"
-                 ((org-agenda-overriding-header "In Progress")
-                  (org-agenda-files '("~/wiki/gtd/someday.org"
-                                      "~/wiki/gtd/next.org"))
-                  ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                  ))
-           (todo "TODO"
-                 ((org-agenda-overriding-header "One-off Tasks")
-                  (org-agenda-files '("~/wiki/gtd/next.org"))
-                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
-           nil)))
-
-  (defun moritzs/org-agenda-skip-all-siblings-but-first ()
-    "Skip all but the first non-done entry."
-    (let (should-skip-entry)
-      (unless (or (org-current-is-todo)
-                  (not (org-get-scheduled-time (point))))
-        (setq should-skip-entry t))
-      (save-excursion
-        (while (and (not should-skip-entry) (org-goto-sibling t))
-          (when (org-current-is-todo)
-            (setq should-skip-entry t))))
-      (when should-skip-entry
-        (or (outline-next-heading)
-            (goto-char (point-max))))))
-
-  (defun org-current-is-todo ()
-    (string= "TODO" (org-get-todo-state)))
-
-
-  (setq org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
-  (setq org-agenda-custom-commands
-        `(,moritzs/org-agenda-inbox-view
-          ;; ,moritzs/org-agenda-someday-view
-          ,moritzs/org-agenda-todo-view
-          ,moritzs/org-agenda-undone-view
-          ))
-
-  (defun moritzs/org-capture-hook ()
-    (when (equal (buffer-name) "CAPTURE-receipts.org")
-      (newline)
-      (moritzs/download-smartphone-photo)
-      ))
-
-  (add-hook 'org-capture-before-finalize-hook 'moritzs/org-capture-hook)
-
   (eval-after-load 'ox '(require 'ox-koma-letter))
   (eval-after-load 'ox-latex
     '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+
+  ;; CITATIONS/BIBTEX
 
   ;; configure insert link functions. should become unnecessary after some time (included in spacemacs)
   (setq org-ref-insert-link-function 'org-ref-insert-link-hydra/body
@@ -527,9 +307,11 @@
   (setq org-export-before-parsing-hook '(org-ref-cite-natmove ;; do this first
 					                               org-ref-csl-preprocess-buffer
 					                               org-ref-refproc))
-  
+
 
   (setq reftex-default-bibliography '("~/wiki/papers/references.bib"))
+
+  (setq gscholar-bibtex-database-file "~/wiki/papers/references.bib")
 
   (setq org-ref-notes-directory "~/wiki/papers/notes"
         org-ref-default-bibliography '("~/wiki/papers/references.bib")

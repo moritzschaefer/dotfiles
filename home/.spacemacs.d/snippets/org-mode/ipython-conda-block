@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ipython conda block
+# key: pyc
+# --
+#+BEGIN_SRC python :session /jpy:localhost#8888:default :exports results :var ATT_DIR=(org-attach-dir)
+$0
+#+END_SRC

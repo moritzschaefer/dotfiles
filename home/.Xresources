@@ -73,7 +73,7 @@ URxvt.intensityStyles: false
 *color13:                 S_violet
 *color14:                 S_base1
 *color15:                 S_base3
-Xft.dpi: 130  ! this determines emacs size and urxvt size
+Xft.dpi: 140  ! this determines emacs size and urxvt size
 ! Xcursor.size: 64
 ! Xcursor.theme: Vanilla-DMZ
 Xft.autohint: 0

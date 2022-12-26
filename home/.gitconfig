@@ -7,6 +7,7 @@
 	excludesfile = /home/moritz/.gitignore_global
 [merge]
 	tool = vimdiff
+	conflictStyle = diff3
 [diff]
 	tool = vimdiff
 [difftool]
@@ -144,6 +145,6 @@
 	user = moritzschaefer
 	oauth-token = c201e575570112f1a4e71e002b2058ecd51829e3
 [pull]
-	rebase = false
+	rebase = true
 [init]
 	defaultBranch = main
