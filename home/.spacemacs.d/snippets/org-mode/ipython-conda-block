@@ -2,6 +2,6 @@
 # name: ipython conda block
 # key: pyc
 # --
-#+BEGIN_SRC python :session /jpy:localhost#8888:default :exports results :var ATT_DIR=(org-attach-dir)
+#+BEGIN_SRC python :session /tmp/guided_protein_diffusion_kernel.json :exports results :var ATT_DIR=(org-attach-dir)
 $0
 #+END_SRC

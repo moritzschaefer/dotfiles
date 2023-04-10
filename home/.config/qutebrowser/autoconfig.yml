@@ -22,13 +22,14 @@ settings:
         ;uy: hint images yank
         <Ctrl+a>: mode-enter insert ;; fake-key <Ctrl-A>
         <Ctrl+m>: quickmark-save
+        <Ctrl+x>: mode-enter insert ;; fake-key <Ctrl-X>
         d: null
         dd: tab-close
         edoi: spawn --userscript doi_to_org_ref.py
         gc: open javascript:void(location.href='org-protocol://roam-ref?template=r&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title))
         ge: spawn --userscript translate --text -t de
-        m: mode-enter set_mark
-        st: config-cycle colors.webpage.darkmode.enabled ;; restart
+        m: spawn mpv {url}
+        stst: config-cycle colors.webpage.darkmode.enabled ;; restart
       prompt:
         <Ctrl+o>: prompt-open-download
   bindings.key_mappings:
@@ -43,12 +44,15 @@ settings:
       <Shift+Return>: <Return>
   changelog_after_upgrade:
     global: minor
+  colors.hints.bg:
+    global: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 247, 133, 0.8),
+      stop:1 rgba(255, 197, 66, 0.8))
   colors.webpage.darkmode.algorithm:
     global: lightness-cielab
   colors.webpage.darkmode.contrast:
     global: 0.0
   colors.webpage.darkmode.enabled:
-    global: false
+    global: true
   colors.webpage.darkmode.grayscale.all:
     global: false
   content.blocking.enabled:
@@ -59,14 +63,17 @@ settings:
   content.desktop_capture:
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://plot.ardupilot.org: true
     https://teams.microsoft.com: true
   content.geolocation:
     https://at.getaround.com: true
+    https://education.github.com: true
     https://eu.docusign.net: true
     https://outlook.office.com: true
     https://outlook.office365.com: true
     https://www.google.com: true
     https://www.ikea.com: true
+    https://www.lieferando.at: true
     https://www.mydpd.at: true
     https://www.prontophot.at: true
   content.media.audio_capture:
@@ -75,15 +82,21 @@ settings:
     https://meduniwien.webex.com: true
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://otter.ai: true
+    https://teams.live.com: true
     https://teams.microsoft.com: true
+    https://tu-berlin.zoom.us: true
     https://web.telegram.org: true
     https://web.whatsapp.com: true
     https://www.poptox.com: true
+    https://zoom.us: true
   content.media.audio_video_capture:
     https://app.gather.town: true
+    https://go.idnow.de: true
     https://meduniwien.webex.com: true
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://teams.live.com: true
     https://teams.microsoft.com: true
   content.media.video_capture:
     https://app.gather.town: true
@@ -98,17 +111,26 @@ settings:
     https://cw7.lead-horizon.org: true
     https://cw8.lead-horizon.org: true
     https://cw9.lead-horizon.org: true
+    https://go.idnow.de: true
     https://meduniwien.webex.com: true
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://teams.live.com: true
     https://teams.microsoft.com: true
+    https://tu-berlin.zoom.us: true
     https://www.hownormalami.eu: true
+    https://zoom.us: true
   content.notifications.enabled:
     https://calendar.google.com: true
+    https://discourse.nixos.org: true
     https://dnschecker.org: true
     https://meet.google.com: true
+    https://mm.neuro.tu-berlin.de: true
     https://teams.microsoft.com: true
     https://ubiquiti-networks-forum.de: true
+    https://web.telegram.org: true
+    https://www.lieferando.at: true
+    https://www.reddit.com: true
     https://www.stern.de: true
   content.register_protocol_handler:
     https://calendar.google.com?cid=%25s: true
@@ -119,6 +141,15 @@ settings:
     global: null
   downloads.prevent_mixed_content:
     global: false
+  editor.command:
+    global:
+    - gvim
+    - -f
+    - '{file}'
+    - -c
+    - normal {line}G{column0}l
+  editor.encoding:
+    global: utf-8
   fonts.completion.category:
     global: bold 12pt default_family
   fonts.completion.entry:
@@ -186,7 +217,7 @@ settings:
       imdb: https://www.imdb.com/find?ref_=nv_sr_fn&q={}
       maps: https://google.com/maps/search/{}
       mirbase: http://www.mirbase.org/textsearch.shtml?q={}&submit=submit
-      nix: https://search.nixos.org/packages?channel=22.05&from=0&size=30&sort=relevance&query={}
+      nix: https://search.nixos.org/packages?channel=22.11&from=0&size=30&sort=relevance&query={}
       pm: https://pubmed.ncbi.nlm.nih.gov/?term={}&sort=date
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}
@@ -205,7 +236,7 @@ settings:
   window.title_format:
     global: '{perc}{current_title}{title_sep}qutebrowser'
   zoom.default:
-    global: 130%
+    global: 120%
   zoom.levels:
     global:
     - 25%

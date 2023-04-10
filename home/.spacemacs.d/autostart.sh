@@ -2,6 +2,7 @@
 
 if ! pgrep urxvt; then
     xmodmap ~/.Xmodmap
+    guided_prot_diff_conda_env $ 
     # gpaste & 
     # clipit &
     # nm-applet &

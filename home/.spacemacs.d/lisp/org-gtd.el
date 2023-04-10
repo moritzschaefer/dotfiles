@@ -4,9 +4,6 @@
   ;;(delete-other-windows)
   )
 
-(setq moritzs/org-agenda-directory "~/wiki/gtd/")
-(setq org-agenda-files
-      (find-lisp-find-files moritzs/org-agenda-directory "\.org$"))
 (require 'org-agenda)
 (setq moritzs/org-agenda-inbox-view
       `("i" "Inbox" todo ""
@@ -222,7 +219,7 @@
                   (org-deadline-warning-days 365)))
           (todo "NEXT"
                 ((org-agenda-overriding-header "In Progress")
-                 (org-agenda-files '("~/wiki/gtd/projects.org" "~/wiki/gtd/someday.org"))
+                 (org-agenda-files '("~/wiki/gtd/projects.org" "~/wiki/gtd/someday.org" "~/wiki/gtd/inbox.org"))
                 ;; (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
                 ))
           (todo "TODO"

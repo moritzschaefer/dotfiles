@@ -60,3 +60,24 @@
 (org-babel-jupyter-override-src-block "python")
 (org-babel-jupyter-override-src-block "ipython")
 (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
+
+(advice-add 'jupyter-command :override (lambda (&rest args)
+    "Run a Jupyter shell command synchronously, return its output.
+    The shell command run is
+
+        jupyter ARGS...
+
+    If the command fails or the jupyter shell command doesn't exist,
+    return nil."
+    (with-temp-buffer
+      (when (zerop (apply #'process-file "guided_prot_diff_cmd" nil t nil (cons "jupyter" args)))
+        (string-trim-right (buffer-string)))))
+            )
+
+(advice-add 'jupyter-locate-python :override (lambda ()
+    "Return the path to a Python executable."
+    "guided_prot_diff_repl"
+    )
+  )
+
+(jupyter-locate-python)

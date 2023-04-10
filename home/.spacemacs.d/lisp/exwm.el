@@ -8,15 +8,17 @@
 (defun moritzs/exwm-helm-yank-pop ()
   "Same as `helm-show-kill-ring' and paste into exwm buffer."
   (interactive)
-  (let ((inhibit-read-only t)
+  (let* ((inhibit-read-only t)
         ;; Make sure we send selected yank-pop candidate to
         ;; clipboard: 
-        (yank-pop-change-selection t))
-    (call-interactively #'helm-show-kill-ring))
-  (when (derived-mode-p 'exwm-mode)
-    ;; https://github.com/ch11ng/exwm/issues/413#issuecomment-386858496
-    (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
-    (exwm-input--fake-key ?\C-v)))
+        (yank-pop-change-selection t)
+        (returned-value (call-interactively #'helm-show-kill-ring)))
+    (when (and (derived-mode-p 'exwm-mode) returned-value)
+      ;; https://github.com/ch11ng/exwm/issues/413#issuecomment-386858496
+      (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
+      (exwm-input--fake-key ?\C-v))  ;; TODO could also fake-key return-value
+    ))
+    
 
 (exwm-input-set-key (kbd "M-y") #'moritzs/exwm-helm-yank-pop)
 
@@ -322,6 +324,8 @@
                    (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1-1" 1 "DP-0" 2 "DP-2.2" 3 "eDP-1-1" 4 "DP-0" 5 "DP-2.2")))
                   ((cl-search "mopad-cemm-hot1" setup-name)  ;; has to come before moxps-home
                    (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.2" 1 "DP-2.2" 2 "DP-2.2" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
+                  ((cl-search "mopad-cemm-hot2" setup-name)  ;; has to come before moxps-home
+                   (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.3" 1 "DP-2.3" 2 "DP-2.3" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
                   ((cl-search "moxps-home" setup-name)
                     (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
                   ((cl-search "mopad-home" setup-name)

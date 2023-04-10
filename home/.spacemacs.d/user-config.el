@@ -299,14 +299,15 @@
   (delq 'company-preview-if-just-one-frontend company-frontends))
 
 (with-eval-after-load 'copilot
-  (define-key copilot-completion-map (kbd "<right>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "M-<left>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "<down>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "<left>") 'copilot-accept-completion-by-word)
   ;; (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-
 
   (add-hook 'prog-mode-hook 'copilot-mode)
 
-  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion-by-word)  ;; before C-
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion-by-word)
+  (define-key copilot-completion-map (kbd "M-<right>") 'copilot-accept-completion-by-word)  ;; before C-
+  ;; (define-key copilot-completion-map (kbd "M-TAB") 'copilot-accept-completion-by-word)
   )
 
 
@@ -416,9 +417,10 @@
                     pattern)))))
 
 ;; monitor the system clipboard and add any changes to the kill ring
-;; (clipmon-mode-start)  <- sometimes freezes emacs...
+(clipmon-mode-start)  ;; <- might freeze emacs...
 
-(with-eval-after-load 'dap-ui
+(with-eval-after-load 'dap-ui  ;; TODO dap-ui is only loaded after first DAP run :/
+  (message "NOW dap-ui loaded")
   (dap-register-debug-template
    "Python :: Attach running debug process"
    (list :name "Python :: Attach running debug process"
@@ -444,7 +446,61 @@
          :request "attach"))
 
   (defvar dap-exception-breakpoints nil)
+
+  ;; Eval/Inspect (real inspect is not implemented apparently)
+  (defun moritzs/dap-eval-region-or-thing-at-point ()
+    "Evaluate the selected region or the thing at point with DAP."
+    (interactive)
+    (if (use-region-p)
+        (dap-eval-region (region-beginning) (region-end))
+      (dap-eval-thing-at-point)))
+  (defun moritzs/dap-eval-WORD-at-point ()
+    "Evaluate the WORD under the cursor with DAP."
+    (interactive)
+    (let ((pos (point))
+          (bounds (bounds-of-thing-at-point 'symbol)))
+      (if bounds
+          (progn
+            (evil-backward-WORD-begin)
+            (setq start (point))
+            (evil-inner-WORD)
+            (setq end (point))
+            (dap-eval-region start end)
+            (goto-char pos))
+        (message "No WORD at point."))))
+  (define-key dap-mode-map (kbd "M-I") #'moritzs/dap-eval-WORD-at-point)
+  (define-key dap-mode-map (kbd "M-i") #'moritzs/dap-eval-region-or-thing-at-point)
+  ;; Navigation
+  (define-key dap-mode-map (kbd "S-<right>") 'dap-next)
+  (define-key dap-mode-map (kbd "S-<left>") 'dap-continue)
+  (define-key dap-mode-map (kbd "S-<up>") 'dap-step-out)
+  (define-key dap-mode-map (kbd "S-<down>") 'dap-step-in)
+  (define-key dap-mode-map (kbd "M-<up>") 'dap-up-stack-frame)
+  (define-key dap-mode-map (kbd "M-<down>") 'dap-down-stack-frame)
   )
+
+;; add gitignore to lsp-ignore
+;; https://github.com/emacs-lsp/lsp-mode/issues/713 (the stuff below can be deleted once the issue is closed )
+(defun ++git-ignore-p (path)
+  (let* (; trailing / breaks git check-ignore if path is a symlink:
+         (path (directory-file-name path))
+         (default-directory (file-name-directory path))
+         (relpath (file-name-nondirectory path))
+         (cmd (format "git check-ignore '%s'" relpath))
+         (status (call-process-shell-command cmd)))
+    (eq status 0)))
+
+(defun ++lsp--path-is-watchable-directory-a
+    (fn path dir ignored-directories)
+  (and (not (++git-ignore-p (f-join dir path)))
+       (funcall fn path dir ignored-directories)))
+
+(advice-add 'lsp--path-is-watchable-directory
+            :around #'++lsp--path-is-watchable-directory-a)
+
+
+
+
 ;; TODO automatically import everything in lisp/
 
 (load "~/.spacemacs.d/lisp/org.el")

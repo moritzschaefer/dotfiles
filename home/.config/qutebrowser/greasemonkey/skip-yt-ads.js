@@ -3,7 +3,7 @@
 // @version      1.0.1
 // @description  Speed up and skip YouTube ads automatically. https://www.reddit.com/r/qutebrowser/comments/ntl2ko/easy_youtube_adblocker_greasemonkey_script/
 // @author       jso8910
-// @match        *://*.youtube.com/*
+// @match        *://*.youtubedisabled.com/*
 // @exclude      *://*.youtube.com/subscribe_embed?*
 // ==/UserScript==
 let main = new MutationObserver(() => {

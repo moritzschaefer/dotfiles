@@ -166,6 +166,18 @@
                                       :where (= title $s1)
                                       :limit 1] title)))
 
+  (defun moritzs/org-roam-node-id-by-ref (ref)
+    "Get a node ID by its reference (thanks ChatGPT)"
+    (caar (org-roam-db-query [:select id
+                                      :from refs
+                                      :left-join nodes
+                                      :on (= refs:node-id nodes:id)
+                                      :where (= refs:ref $s1)
+                                      :limit 1] ref)))
+
+  (moritzs/org-roam-node-id-by-title "State-of-the-Art Estimation of Protein Model Accuracy Using AlphaFold")
+  (moritzs/org-roam-node-id-by-ref "roney22_state_art_estim_protein_model")
+
   (push '("doi-to-bibtex"  :protocol "doi-to-bibtex"  :function moritzs/add-doi-or-arxiv-to-bibtex)
         org-protocol-protocol-alist)
 
