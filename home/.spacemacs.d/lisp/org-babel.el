@@ -61,23 +61,56 @@
 (org-babel-jupyter-override-src-block "ipython")
 (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
 
-(advice-add 'jupyter-command :override (lambda (&rest args)
-    "Run a Jupyter shell command synchronously, return its output.
-    The shell command run is
+(setq org-babel-default-header-args:jupyter-python '((:async . "no") (:kernel . "python3")))
+(setq org-babel-default-header-args:python '((:async . "no") (:kernel . "python3")))
 
-        jupyter ARGS...
+;; doesn't work unfortunately (because jupyter ignores the local default kernel argument)
+(defun moritzs/set-custom-kernel ()
+  (when-let ((kernel (org-entry-get nil "CUSTOM_KERNEL" t)))
+    (setq-local org-babel-default-header-args:python
+                `((:async . "no")
+                  (:kernel . ,kernel)))
+    (setq-local org-babel-default-header-args:jupyter-python
+                `((:async . "no")
+                  (:kernel . ,kernel)))
+    ))
 
-    If the command fails or the jupyter shell command doesn't exist,
-    return nil."
-    (with-temp-buffer
-      (when (zerop (apply #'process-file "guided_prot_diff_cmd" nil t nil (cons "jupyter" args)))
-        (string-trim-right (buffer-string)))))
-            )
+(add-hook 'org-mode-hook #'moritzs/set-custom-kernel)
 
-(advice-add 'jupyter-locate-python :override (lambda ()
-    "Return the path to a Python executable."
-    "guided_prot_diff_repl"
+(with-eval-after-load 'jupyter-kernel-process-manager
+  (advice-add 'jupyter-command :override (lambda (&rest args)
+      "Run a Jupyter shell command synchronously, return its output.
+      The shell command run is
+
+          jupyter ARGS...
+
+      If the command fails or the jupyter shell command doesn't exist,
+      return nil."
+      (with-temp-buffer
+        (when (zerop (apply #'process-file "guided_prot_diff_cmd" nil t nil (cons "jupyter" args)))
+          (string-trim-right (buffer-string)))))
+              )
+
+  (advice-add 'jupyter-locate-python :override (lambda ()
+      "Return the path to a Python executable."
+      "guided_prot_diff_repl"
+      )
     )
-  )
 
-(jupyter-locate-python)
+  ;; We can't use `advice-add :override' on generic functions
+  (cl-defmethod jupyter-start-kernel ((kernel jupyter-kernel-process) &rest args)
+    "Start a KERNEL process with ARGS."
+    (let ((name (jupyter-kernel-name kernel)))
+      (when jupyter--debug
+        (message "jupyter-start-kernel: default-directory = %s" default-directory)
+        (message "jupyter-start-kernel: Starting process with args \"%s\""
+                (mapconcat #'identity args " ")))
+      (oset kernel process
+            (apply #'start-file-process
+                  (format "jupyter-kernel-%s" name)
+                  (generate-new-buffer
+                    (format " *jupyter-kernel[%s]*" name))
+                  "guided_prot_diff_cmd" args)) ; <-- Change (car args) to guided_prot_diff_cmd
+      (set-process-query-on-exit-flag
+      (oref kernel process) jupyter--debug)))
+)
