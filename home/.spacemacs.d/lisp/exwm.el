@@ -232,6 +232,43 @@
 ;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
 (setq exwm-input--update-focus-interval 0.01) ;; TODO use 0.2 if issues
+;; workaround https://github.com/ch11ng/exwm/issues/759
+(with-eval-after-load 'exwm
+  (defun exwm-layout--hide (id)
+    "Hide window ID."
+    (with-current-buffer (exwm--id->buffer id)
+      (unless (or (exwm-layout--iconic-state-p)
+                  (and exwm--floating-frame
+                      (eq 4294967295. exwm--desktop)))
+        (exwm--log "Hide #x%x" id)
+        (when exwm--floating-frame
+          (let* ((container (frame-parameter exwm--floating-frame
+                                            'exwm-container))
+                (geometry (xcb:+request-unchecked+reply exwm--connection
+                              (make-instance 'xcb:GetGeometry
+                                              :drawable container))))
+            (setq exwm--floating-frame-position
+                  (vector (slot-value geometry 'x) (slot-value geometry 'y)))
+            (exwm--set-geometry container exwm-layout--floating-hidden-position
+                                exwm-layout--floating-hidden-position
+                                1
+                                1)))
+        (xcb:+request exwm--connection
+            (make-instance 'xcb:ChangeWindowAttributes
+                          :window id :value-mask xcb:CW:EventMask
+                          :event-mask xcb:EventMask:NoEvent))
+        (xcb:+request exwm--connection
+            (make-instance 'xcb:UnmapWindow :window id))
+        (xcb:+request exwm--connection
+            (make-instance 'xcb:ChangeWindowAttributes
+                          :window id :value-mask xcb:CW:EventMask
+                          :event-mask (exwm--get-client-event-mask)))
+        (exwm-layout--set-state id xcb:icccm:WM_STATE:IconicState)
+        ;; (cl-pushnew xcb:Atom:_NET_WM_STATE_HIDDEN exwm--ewmh-state) ;; COMMENTING IS THE FIX
+        (exwm-layout--set-ewmh-state id)
+        (exwm-layout--auto-iconify)
+        (xcb:flush exwm--connection))))
+  )
 
 (require 'helm-exwm)
 (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
