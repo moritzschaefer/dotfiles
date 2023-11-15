@@ -45,7 +45,8 @@
   "fd" 'moritzs/recent-download-file
   )
 (spacemacs/set-leader-keys
-  "fp" (lambda () (interactive) (progn (moritzs/recent-download-file) (org-ref-pdf-to-bibtex)))
+  ;; "fp" (lambda () (interactive) (progn (moritzs/recent-download-file) (org-ref-pdf-to-bibtex)))  ;; not using it so much...
+  "fp" 'moritzs/open-smartphone-photo
   )
 (spacemacs/set-leader-keys
   "fn" (lambda () (interactive) (find-file "~/nixos-config/README.org"))

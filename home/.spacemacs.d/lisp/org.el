@@ -232,11 +232,41 @@
                                 )
     (org-download-image org-download-screenshot-file))
 
+
+  (defun moritzs/org-html-to-clipboard ()
+    ;; TODO could also try using org-mime-htmlize. might be cleaner
+    (interactive)
+    (let* ((org-html (org-export-string-as
+                      (buffer-substring (region-beginning) (region-end)) 'html t))
+          (tmp-file (make-temp-file "org-html" nil ".html")))
+      (with-temp-file tmp-file
+        (insert org-html))
+      (call-process-shell-command (concat "cat " tmp-file " | xclip -t text/html -selection clipboard"))
+      (kill-new org-html)
+      (delete-file tmp-file)
+      (message "HTML copied to clipboard and kill-ring.")))
+
+  (defun moritzs/download-clipboard-photo ()
+    (interactive)
+    (let ((org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s"))
+      (org-download-screenshot)))
+
+  (defun moritzs/download-smartphone-photo ()
+    (interactive)
+    (org-download-image (moritzs/recent-smartphone-photo))
+    )
+
+
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "ec" 'moritzs/org-html-to-clipboard)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "iDC" 'moritzs/download-clipboard-photo)
+
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "id" 'moritzs/org-download-sketch)
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "ip" 'moritzs/download-smartphone-photo)
+    "iDp" 'moritzs/download-smartphone-photo)
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "$" 'moritzs/org-archive-done-tasks)

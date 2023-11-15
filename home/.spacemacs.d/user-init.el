@@ -20,12 +20,10 @@
   (format "/home/moritz/Kamera/Camera/%s" (shell-command-to-string "ls -t  '/home/moritz/Kamera/Camera/' | head -n 1 | tr -d '\n'"))
   )
 
-
-(defun moritzs/download-smartphone-photo ()
+(defun moritzs/open-smartphone-photo ()
   (interactive)
-  (org-download-image (moritzs/recent-smartphone-photo))
+  (find-file (moritzs/recent-smartphone-photo))
   )
-
 
 ;; (erc :server "irc.freenode.net" :port 6697 :nick "moritzschaefer")
 ;; (setq erc-autojoin-channels-alist
