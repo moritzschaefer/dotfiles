@@ -419,6 +419,7 @@
 
 ;; monitor the system clipboard and add any changes to the kill ring
 (clipmon-mode-start)  ;; <- might freeze emacs...
+(clipmon-mode 1) ;; TODO observe whether this fixes it
 
 (with-eval-after-load 'dap-ui  ;; TODO dap-ui is only loaded after first DAP run :/
   (message "NOW dap-ui loaded")

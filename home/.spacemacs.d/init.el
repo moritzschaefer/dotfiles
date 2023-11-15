@@ -31,7 +31,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(graphviz
+   '(
+     graphviz
      shell-scripts
      ;; scimax-layer
      ;; eaf
@@ -44,13 +45,13 @@ This function should only modify configuration layer settings."
      ruby
      nginx
      nixos
-     (erc :variables
-            erc-server-list
-            '(("irc.freenode.net"
-               :port "6697"
-               :ssl t
-               :nick "muronglizi")))
-               ;; :password "")))
+     ;; (erc :variables
+     ;;        erc-server-list
+     ;;        '(("irc.freenode.net"
+     ;;           :port "6697"
+     ;;           :ssl t
+     ;;           :nick "muronglizi")))
+     ;;           ;; :password "")))
      ;; w3m ; todo
      clojure
      latex
@@ -110,7 +111,10 @@ This function should only modify configuration layer settings."
           org-enable-roam-support t
           org-enable-hugo-support t
           org-enable-roam-ui t
-          org-src-tab-acts-natively nil
+          org-enable-sticky-header t
+          org-persp-start-with-default "a"
+          org-enable-appear-support  t
+          org-src-tab-acts-natively nil  ;; TODO try again?
           )
                      ;; org-enable-reveal-js-support t)
      bibtex
@@ -121,6 +125,12 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      spell-checking
      pass
+     gptel
+     copy-as-format
+
+     ;; emacs-conflict
+     ;; sync-calendars ; TODO does not work
+     ;; whisper
      ;;modefault
      )
 
@@ -132,7 +142,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '((ox-ipynb :location (recipe :fetcher github :repo "jkitchin/ox-ipynb" :files ("*.el"))) clipmon (copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist"))) org-drill keytar (lsp-grammarly :ensure t :hook (org-mode . (lambda () (message "im here")(require 'lsp-grammarly) (lsp)))) org-tree-slide theme-changer gscholar-bibtex key-chord git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8 (jupyter :hook (jupyter-repl-mode . (lambda () (company-mode)))) org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")) (seqel :location (recipe :fetcher github :repo "rnaer/seqel")))
+   dotspacemacs-additional-packages '( (ox-ipynb :location (recipe :fetcher github :repo "jkitchin/ox-ipynb" :files ("*.el"))) clipmon (copilot :location (recipe :fetcher github :repo "zerolfx/copilot.el" :files ("*.el" "dist"))) org-drill keytar (lsp-grammarly :ensure t :hook (org-mode . (lambda () (message "im here")(require 'lsp-grammarly) (lsp)))) org-tree-slide gscholar-bibtex key-chord git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8 (jupyter :hook (jupyter-repl-mode . (lambda () (company-mode)))) org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")) (seqel :location (recipe :fetcher github :repo "rnaer/seqel")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -478,7 +488,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -607,6 +617,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(appt-display-interval 10)
  '(avy-all-windows t)
  '(avy-keys
    '(101 110 105 114 116 115 99 103 117 108 98 111 100 109 97 104 228 121 252 122 118 44 46))
@@ -626,6 +637,8 @@ This function is called at the very end of Spacemacs initialization."
  '(browse-url-generic-program "qutebrowser")
  '(conda-anaconda-home "/home/moritz/.conda/")
  '(conda-env-home-directory "/home/moritz/.conda/")
+ '(dap-auto-configure-features '(locals breakpoints expressions repl tooltip))
+ '(dap-auto-configure-mode t)
  '(dap-python-debugger 'debugpy)
  '(dap-python-executable "guided_prot_diff_repl")
  '(dap-python-terminal nil)
@@ -657,6 +670,7 @@ This function is called at the very end of Spacemacs initialization."
       workspace 2)
      (t char-mode t)))
  '(exwm-workspace-number 8)
+ '(exwm-workspace-warp-cursor t)
  '(gac-debounce-interval 600)
  '(gac-shell-and "&&")
  '(gac-silent-message-p t)
@@ -665,6 +679,14 @@ This function is called at the very end of Spacemacs initialization."
  '(google-translate-default-target-language "de")
  '(google-translate-enable-ido-completion t t)
  '(google-translate-show-phonetic t t)
+ '(gptel-directives
+   '((default . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
+     (programming . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
+     (writing . "You are a large language model and a writing assistant. Respond concisely.")
+     (chat . "You are a large language model and a conversation partner. Respond concisely.")
+     (sophisticated . "You are an autoregressive language model living in Emacs and you have been fine-tuned with instruction-tuning and RLHF. You carefully provide accurate, factual, thoughtful, nuanced answers, and are brilliant at reasoning. If you think there might not be a correct answer, you say so.\12Since you are autoregressive, each token you produce is another opportunity to use computation, therefore you always spend a few sentences explaining background context, assumptions, and step-by-step thinking BEFORE you try to answer a question.\12Your users are experts in AI and ethics, so they already know you're a language model and your capabilities and limitations, so don't remind them of that. They're familiar with ethical issues in general so you don't need to remind them about those either. They also have a basic understanding of biology and deep knowledge of most molecular biology.\12Don't be verbose in your answers, but do provide details and examples where it might help the explanation.")))
+ '(gptel-model "gpt-4")
+ '(gptel-temperature 0.0)
  '(helm-ag-ignore-patterns '("*.ipynb" "*.svg" "*.csv"))
  '(helm-ag-use-agignore t)
  '(helm-completion-style 'emacs)
@@ -697,7 +719,8 @@ This function is called at the very end of Spacemacs initialization."
       (gui-set-selection 'CLIPBOARD str))
      ("Yank marked" . helm-kill-ring-action-yank)
      ("Delete marked" . helm-kill-ring-action-delete)))
- '(helm-source-names-using-follow '("Helm Xref" "mark-ring" "Org Directory Files"))
+ '(helm-source-names-using-follow
+   '("Workspace symbol" "dap-switch-stack-frame" "Helm Xref" "mark-ring" "Org Directory Files"))
  '(hybrid-style-default-state 'emacs)
  '(hybrid-style-enable-evilified-state nil)
  '(image-dired-thumb-height 512)
@@ -706,8 +729,11 @@ This function is called at the very end of Spacemacs initialization."
  '(image-use-external-converter t)
  '(jupyter-api-authentication-method 'password)
  '(jupyter-org-resource-directory "~/wiki/.ob-jupyter/")
+ '(key-chord-one-key-delay 0.05)
+ '(key-chord-two-keys-delay 0.03)
  '(large-file-warning-threshold 50000000)
  '(lpr-command "gtklp")
+ '(lsp-enable-dap-auto-configure nil)
  '(lsp-pyright-multi-root nil)
  '(native-comp-deferred-compilation-deny-list '("jupyter" "zmq" ".*jupyter.*"))
  '(orb-preformat-keywords
@@ -715,8 +741,10 @@ This function is called at the very end of Spacemacs initialization."
  '(org-agenda-file-regexp
    "\\(inbox\\|someday\\|projects\\|toread\\|smartphone\\|einkaufen\\).org$")
  '(org-agenda-files
-   '("/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/smartphone.org" "/home/moritz/wiki/gtd/someday.org" "/home/moritz/wiki/gtd/toread.org"))
+   '("/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/smartphone.org" "/home/moritz/wiki/gtd/someday.org" "/home/moritz/wiki/gtd/toread.org" "/home/moritz/wiki/calendar-sync/calendars.org"))
  '(org-agenda-follow-indirect t)
+ '(org-ai-default-chat-model "gpt-4")
+ '(org-ai-default-max-tokens 4096)
  '(org-attach-id-dir "~/wiki/data/")
  '(org-attach-store-link-p 'file)
  '(org-babel-load-languages
@@ -726,13 +754,12 @@ This function is called at the very end of Spacemacs initialization."
      (R . t)
      (jupyter . t)))
  '(org-capture-templates
-   '(("b" "Buy (add to shopping list)
-            " entry
-            (file "~/wiki/gtd/einkaufen.org")
-            "* TODO %?")
+   '(("b" "Buy (add to shopping list)\12            " entry
+      (file "~/wiki/gtd/einkaufen.org")
+      "* TODO %?")
      ("i" "inbox" entry
       (file "~/wiki/gtd/inbox.org")
-      "* TODO %?")
+      "* TODO %?\12#+created_at: %t\12")
      ("w" "Weekly Review" entry
       (file+olp+datetree "~/wiki/gtd/reviews.org")
       (file "~/wiki/gtd/templates/weekly_review.org")
@@ -744,11 +771,7 @@ This function is called at the very end of Spacemacs initialization."
       (file "~/wiki/deft/capture.org"))
      ("f" "Flash card" entry
       (file+headline "~/wiki/flashcards.org" "Miscellaneous")
-      "* Flashcard :drill:
-%^{Question}
-** Back
-%^{Answer}
-" :immediate-finish t)
+      "* Flashcard :drill:\12%^{Question}\12** Back\12%^{Answer}\12" :immediate-finish t)
      ("p" "Blog post" entry
       (file moritzs/blog-post-name)
       (file "~/Projects/homepage/templates/post.md"))))
@@ -760,6 +783,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-edit-src-content-indentation 0)
  '(org-export-with-broken-links t)
  '(org-export-with-tags nil)
+ '(org-export-with-toc nil)
  '(org-fast-tag-selection-single-key t)
  '(org-image-actual-width '(400))
  '(org-latex-prefer-user-labels t)
@@ -787,108 +811,37 @@ This function is called at the very end of Spacemacs initialization."
  '(org-refile-use-outline-path 'file)
  '(org-roam-bibtex-mode t)
  '(org-roam-capture-immediate-template
-   '("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+title: ${title}
-
-- tags :: 
-" :unnarrowed t :immediate-finish t))
+   '("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+title: ${title}\12#+created_at: %t\12\12- tags :: \12" :unnarrowed t :immediate-finish t))
  '(org-roam-capture-templates
    '(("d" "default" plain "%?" :immediate-finish t :unnarrowed t :if-new
-      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}
-
-- tags ::
-
-"))
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\12#+created_at: %t\12\12- tags ::\12\12"))
      ("a" "Analysis" plain "%?" :immediate-finish t :unnarrowed t :if-new
-      (file+head "%<%Y%m%d%H%M%S>-analysis_${slug}.org" "#+ROAM_TAGS: Analysis
-#+TITLE: ${title}
-
-- tags :: [[id:111eeb88-55d1-4d4f-a2a8-5f8ff7791472][Analysis]]
-
-* Content
-#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
-
-#+END_SRC"))
+      (file+head "%<%Y%m%d%H%M%S>-analysis_${slug}.org" "#+ROAM_TAGS: Analysis\12#+TITLE: ${title}\12#+created_at: %t\12\12- tags :: [[id:111eeb88-55d1-4d4f-a2a8-5f8ff7791472][Analysis]]\12\12* Content\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12\12#+END_SRC"))
      ("g" "gene" plain "%?" :immediate-finish t :unnarrowed t :if-new
-      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+ROAM_TAGS: Gene
-#+title: ${title}
-
-- tags :: [[id:131686dd-7a7e-49ca-8407-1ea72a780e4e][Gene]]
-
-
-* Mutant upregulation
-#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
-df = pd.read_csv('/home/moritz/mesc-regulation/output/mrna_data_all.csv', index_col=[0,1], header=[0,1])
-df.xs(axis=1, level=1, key='log2FoldChange').reset_index(level=0).loc['${title}']
-#+END_SRC
-
-* TPM expression
-#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
-df.xs(axis=1, level=1, key='tpm_expression').reset_index(level=0, drop=True).loc['${title}'].plot(kind='bar')
-#+END_SRC
-
-* Isoform expression
-#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)
-from moritzsphd.integration import gene_transcript_expression
-gene_transcript_expression('${title}', plot=True)
-#+END_SRC"))
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+ROAM_TAGS: Gene\12#+title: ${title}\12#+created_at: %t\12\12- tags :: [[id:131686dd-7a7e-49ca-8407-1ea72a780e4e][Gene]]\12\12\12* Mutant upregulation\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12df = pd.read_csv('/home/moritz/mesc-regulation/output/mrna_data_all.csv', index_col=[0,1], header=[0,1])\12df.xs(axis=1, level=1, key='log2FoldChange').reset_index(level=0).loc['${title}']\12#+END_SRC\12\12* TPM expression\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12df.xs(axis=1, level=1, key='tpm_expression').reset_index(level=0, drop=True).loc['${title}'].plot(kind='bar')\12#+END_SRC\12\12* Isoform expression\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12from moritzsphd.integration import gene_transcript_expression\12gene_transcript_expression('${title}', plot=True)\12#+END_SRC"))
      ("r" "ref" plain
       (file "/home/moritz/wiki/templates/noter_ref.template")
       :immediate-finish t :jump-to-captured t :if-new
       (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}"))
      ("f" "Friday seminar" plain "%?" :immediate-finish t :jump-to-captured t :unnarrowed t :if-new
-      (file+head "%<%Y%m%d%H%M%S>-friday_seminar_%<%Y_%m_%d>.org" "#+ROAM_TAGS: Talk
-#+title: Friday Seminar %<%Y-%m-%d>
-
-- tags :: [[id:15f006d2-a3b7-4a2c-bfc1-754220b11797][Talk]]
-
-* Content
-"))
+      (file+head "%<%Y%m%d%H%M%S>-friday_seminar_%<%Y_%m_%d>.org" "#+ROAM_TAGS: Talk\12#+title: Friday Seminar %<%Y-%m-%d>\12\12- tags :: [[id:15f006d2-a3b7-4a2c-bfc1-754220b11797][Talk]]\12\12* Content\12"))
      ("m" "meeting" plain "%?" :immediate-finish t :unnarrowed t :if-new
-      (file+head "%<%Y%m%d%H%M%S>-meeting_${slug}.org" "#+ROAM_TAGS: Meeting
-#+title: ${title}
-
-- tags :: [[id:ff7f625d-20bd-41d7-a3fd-ebbe9f40961e][Meeting]]
-
-* Content
-"))
+      (file+head "%<%Y%m%d%H%M%S>-meeting_${slug}.org" "#+ROAM_TAGS: Meeting\12#+title: ${title}\12#+created_at: %t\12\12- tags :: [[id:ff7f625d-20bd-41d7-a3fd-ebbe9f40961e][Meeting]]\12\12* Content\12"))
      ("t" "talk" plain "%?" :immediate-finish t :unnarrowed t :if-new
-      (file+head "%<%Y%m%d%H%M%S>-talk_${slug}.org" "#+ROAM_TAGS: Talk
-#+title: ${title}
-
-- tags :: [[id:15f006d2-a3b7-4a2c-bfc1-754220b11797][Talk]]
-
-* Content
-"))
+      (file+head "%<%Y%m%d%H%M%S>-talk_${slug}.org" "#+ROAM_TAGS: Talk\12#+title: ${title}\12#+created_at: %t\12\12- tags :: [[id:15f006d2-a3b7-4a2c-bfc1-754220b11797][Talk]]\12\12* Content\12"))
      ("p" "person" plain "%?" :immediate-finish t :unnarrowed t :if-new
-      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+ROAM_TAGS: Person
-#+title: ${title}
-
-- tags :: [[id:193d3f1c-cfc3-48e8-90bf-23ae33cdc313][Person]]
-
-"))))
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+ROAM_TAGS: Person\12#+title: ${title}\12#+created_at: %t\12\12- tags :: [[id:193d3f1c-cfc3-48e8-90bf-23ae33cdc313][Person]]\12\12"))))
  '(org-roam-dailies-capture-templates
    '(("d" "default" entry "* %?" :target
-      (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>
-* Morning dump
-- [/] Daily tasks 
-  - [ ] Take pills 1-2 hours after wake up
-  - [ ] Check calendar
-  - [ ] [[file:../../gtd/toread.org][Read two abstracts, optionally one paper]]
-  - [ ] Process inbox
-  - [ ] Check Agenda
-  - [ ] Check daily routine 
-  - [ ] Afternoon Take coffein at 4
-  - [ ] Between 17:00 and 19:00 do some sports
-  - [ ] [[file:../../gtd/toread.org][Read <leisure> things]]
-* Journal
-* Gratitude"))))
+      (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\12* Morning dump\12- [/] Daily tasks \12  - [ ] Take pills 1-2 hours after wake up\12  - [ ] Check calendar\12  - [ ] [[file:../../gtd/toread.org][Read two abstracts, optionally one paper]]\12  - [ ] Process inbox\12  - [ ] Check Agenda\12  - [ ] Check daily routine \12  - [ ] Afternoon Take coffein at 4\12  - [ ] Between 17:00 and 19:00 do some sports\12  - [ ] [[file:../../gtd/toread.org][Read <leisure> things]]\12* Journal\12* Gratitude"))))
  '(org-roam-directory "/home/moritz/wiki/roam")
  '(org-src-preserve-indentation nil)
  '(org-src-tab-acts-natively nil)
  '(org-startup-with-inline-images t)
+ '(org-sticky-header-full-path 'full)
  '(org-tags-exclude-from-inheritance '("project"))
  '(package-selected-packages
-   '(ox-ipynb org copilot org-drill persist seqel image-roll evil-exwm-state ox-hugo tomelr keytar lsp-grammarly grammarly org-tree-slide theme-changer gscholar-bibtex eaf git-auto-commit-mode conda helm-rg helm-org-ql org-ql peg org-super-agenda map ts py-autopep8 swiper drag-stuff button-lock matrix-client frame-purpose esxml tracking ov typescript-mode pyvenv org-roam emacsql-sqlite3 pdf-tools key-chord ivy tablist org-category-capture alert log4e gntp magit-popup origami skewer-mode hierarchy json-snatcher json-reformat multiple-cursors js2-mode epc concurrent simple-httpd htmlize password-store helm-bibtex bibtex-completion biblio parsebib biblio-core haml-mode grip-mode gitignore-mode fringe-helper git-gutter+ gh marshal logito pcache ghub closql treepy flyspell-correct magit git-commit transient ctable ess with-editor polymode anaphora websocket lsp-treemacs bui posframe ycmd request-deferred deferred web-completion-data rtags pos-tip company cider sesman queue parseedn clojure-mode parseclj a autothemer lsp-mode dash-functional markdown-mode rust-mode inf-ruby yasnippet auctex anaconda-mode pythonic auto-complete evil-easymotion dired-quick-sort zenburn-theme zen-and-art-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toxi-theme toml-mode toc-org tide terminal-here telega tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit systemd synosaurus synonymous symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection ssh-agency spotify sphinx-doc spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme snakemake-mode smyx-theme smeargle slim-mode shell-pop seti-theme seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode ron-mode robe rjsx-mode reverse-theme restart-emacs rebecca-theme rbenv rake rainbow-delimiters railscasts-theme racer pytest pyenv-mode py-isort purple-haze-theme pulseaudio-control pug-mode professional-theme prettier-js popwin planet-theme pippel pipenv pip-requirements pinentry phoenix-dark-pink-theme phoenix-dark-mono-theme password-store-otp password-generator paradox overseer orgit organic-green-theme org-superstar org-roam-bibtex org-rich-yank org-ref org-projectile org-present org-pomodoro org-now org-noter org-mime org-download org-cliplink org-brain openwith open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme nodejs-repl noctilux-theme nix-mode nginx-mode naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-python-ms lsp-pyright lsp-origami lsp-latex lorem-ipsum livid-mode live-py-mode link-hint light-soap-theme kaolin-themes jupyter json-navigator json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme interleave insert-shebang inkpot-theme indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-w3m helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-pass helm-org-rifle helm-org helm-nixos-options helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-exwm helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gist gh-md gandalf-theme fuzzy framemove forge font-lock+ flyspell-correct-helm flycheck-ycmd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flycheck-elsa flycheck-bashate flx-ido flatui-theme flatland-theme fish-mode farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emr emmet-mode elisp-slime-nav el-patch ein editorconfig dumb-jump dracula-theme dotenv-mode doom-themes django-theme disaster diminish devdocs desktop-environment define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dap-mode dakrone-theme cython-mode cyberpunk-theme csv-mode cpp-auto-include company-ycmd company-web company-shell company-rtags company-reftex company-quickhelp company-nixos-options company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clojure-snippets clipmon clean-aindent-mode cider-eval-sexp-fu chruby chocolate-theme cherry-blossom-theme cfrs centered-cursor-mode ccls cargo busybee-theme bundler bubbleberry-theme browse-at-remote blacken birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell))
+   '(copy-as-format all-the-icons elfeed-org elisp-def evil-collection eziam-themes flycheck package-lint git-modes popup helm-core inspector consult modus-themes org-contrib org-project-capture projectile f spaceline string-edit-at-point treemacs seq evil pcre2el emacs-conflict gptel excorporate url-http-oauth url-http-ntlm fsm majapahit-themes org-appear org-sticky-header greader org-ai ox-ipynb org copilot org-drill persist seqel image-roll evil-exwm-state ox-hugo tomelr keytar lsp-grammarly grammarly org-tree-slide theme-changer gscholar-bibtex eaf git-auto-commit-mode conda helm-rg helm-org-ql org-ql peg org-super-agenda map ts py-autopep8 swiper drag-stuff button-lock matrix-client frame-purpose esxml tracking ov typescript-mode pyvenv org-roam emacsql-sqlite3 pdf-tools key-chord ivy tablist org-category-capture alert log4e gntp magit-popup origami skewer-mode hierarchy json-snatcher json-reformat multiple-cursors js2-mode epc concurrent simple-httpd htmlize password-store helm-bibtex bibtex-completion biblio parsebib biblio-core haml-mode grip-mode gitignore-mode fringe-helper git-gutter+ gh marshal logito pcache ghub closql treepy flyspell-correct magit git-commit transient ctable ess with-editor polymode anaphora websocket lsp-treemacs bui posframe ycmd request-deferred deferred web-completion-data rtags pos-tip company cider sesman queue parseedn clojure-mode parseclj a autothemer lsp-mode dash-functional markdown-mode rust-mode inf-ruby yasnippet auctex anaconda-mode pythonic auto-complete evil-easymotion dired-quick-sort zenburn-theme zen-and-art-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toxi-theme toml-mode toc-org tide terminal-here telega tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit systemd synosaurus synonymous symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection ssh-agency spotify sphinx-doc spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme snakemake-mode smyx-theme smeargle slim-mode shell-pop seti-theme seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode ron-mode robe rjsx-mode reverse-theme restart-emacs rebecca-theme rbenv rake rainbow-delimiters railscasts-theme racer pytest pyenv-mode py-isort purple-haze-theme pulseaudio-control pug-mode professional-theme prettier-js popwin planet-theme pippel pipenv pip-requirements pinentry phoenix-dark-pink-theme phoenix-dark-mono-theme password-store-otp password-generator paradox overseer orgit organic-green-theme org-superstar org-roam-bibtex org-rich-yank org-ref org-projectile org-present org-pomodoro org-now org-noter org-mime org-download org-cliplink org-brain openwith open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme nodejs-repl noctilux-theme nix-mode nginx-mode naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-python-ms lsp-pyright lsp-origami lsp-latex lorem-ipsum livid-mode live-py-mode link-hint light-soap-theme kaolin-themes jupyter json-navigator json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme interleave insert-shebang inkpot-theme indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-w3m helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-pass helm-org-rifle helm-org helm-nixos-options helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-exwm helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gist gh-md gandalf-theme fuzzy framemove forge font-lock+ flyspell-correct-helm flycheck-ycmd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flycheck-elsa flycheck-bashate flx-ido flatui-theme flatland-theme fish-mode farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emr emmet-mode elisp-slime-nav el-patch ein editorconfig dumb-jump dracula-theme dotenv-mode doom-themes django-theme disaster diminish devdocs desktop-environment define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dap-mode dakrone-theme cython-mode cyberpunk-theme csv-mode cpp-auto-include company-ycmd company-web company-shell company-rtags company-reftex company-quickhelp company-nixos-options company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clojure-snippets clipmon clean-aindent-mode cider-eval-sexp-fu chruby chocolate-theme cherry-blossom-theme cfrs centered-cursor-mode ccls cargo busybee-theme bundler bubbleberry-theme browse-at-remote blacken birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t)
  '(pdf-annot-activate-created-annotations t)
  '(pdf-info-epdfinfo-error-filename "/tmp/epdfinfo.log")
@@ -896,9 +849,25 @@ gene_transcript_expression('${title}', plot=True)
  '(pdf-misc-print-program-args '("-o media=A4" "-o fitplot"))
  '(pdf-misc-print-program-executable "/run/current-system/sw/bin/gtklp")
  '(projectile-globally-ignored-file-suffixes '("svg" "ipynb"))
+ '(projectile-indexing-method 'hybrid)
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
  '(python-shell-prompt-block-regexp "\\.\\.\\.:? ")
+ '(safe-local-variable-values
+   '((eval setq org-babel-default-header-args:python
+           '((:async . "no")
+             (:kernel . "langchain")))
+     (eval setq org-babel-default-header-args:jupyter-python
+           '((:async . "no")
+             (:kernel . "langchain")))
+     (eval setq-local org-babel-default-header-args:jupyter-python
+           '((:async . "no")
+             (:kernel . "langchain")))
+     (typescript-backend . tide)
+     (typescript-backend . lsp)
+     (javascript-backend . tide)
+     (javascript-backend . tern)
+     (javascript-backend . lsp)))
  '(send-mail-function 'smtpmail-send-it)
  '(tramp-default-method "ssh")
  '(tramp-verbose 3)

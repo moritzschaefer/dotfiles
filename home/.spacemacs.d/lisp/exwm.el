@@ -295,7 +295,7 @@
 ;; (exwm-input-set-key (kbd "<XF86AudioPlay>") #'spotify-playpause)
 ;; (exwm-input-set-key (kbd "<XF86AudioNext>") #'spotify-next)
 (exwm-input-set-key (kbd "s-D") #'desktop-environment-brightness-increment)
-(exwm-input-set-key (kbd "s-J") #'desktop-environment-brightness-decrement)
+(exwm-input-set-key (kbd "s-C-d") #'desktop-environment-brightness-decrement)
 
 (exwm-input-set-key (kbd "s-M") #'desktop-environment-toggle-mute)
 (exwm-input-set-key (kbd "s-l") #'desktop-environment-volume-decrement)
@@ -342,46 +342,60 @@
 (setq exwm-randr-screen-change-hook nil)
 (add-hook 'exwm-randr-screen-change-hook
           (lambda ()
-            (start-process-shell-command
-             "autorandr" nil "sleep 0.2 && autorandr -c")  ;; 0.2 seconds waiting seems to be a working workaround when connecting my stupid monitor
             ;; Update exwm-randr-workspace-monitor-plist... -.-
             (with-temp-buffer
               (call-process "autorandr" nil t)
               (goto-char (point-min))
-              (when (search-forward "(detected)" nil t)
-                (progn
-                  (beginning-of-line)
-                  (setq startPos (point))
-                  (evil-forward-WORD-end)
-                  (setq setup-name (buffer-substring-no-properties startPos (1+ (point))))
-                  (cond
-                  ((cl-search "moxps-home-adapter" setup-name)  ;; has to come before moxps-home
-                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1" 1 "DP1" 2 "DP1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-                  ((cl-search "mopad-office2x4k" setup-name)  ;; has to come before moxps-home
-                   (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1-1" 1 "DP-0" 2 "DP-2.2" 3 "eDP-1-1" 4 "DP-0" 5 "DP-2.2")))
-                  ((cl-search "mopad-cemm-hot1" setup-name)  ;; has to come before moxps-home
-                   (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.2" 1 "DP-2.2" 2 "DP-2.2" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
-                  ((cl-search "mopad-cemm-hot2" setup-name)  ;; has to come before moxps-home
-                   (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.3" 1 "DP-2.3" 2 "DP-2.3" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
-                  ((cl-search "moxps-home" setup-name)
-                    (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-                  ((cl-search "mopad-home" setup-name)
-                   (setq exwm-randr-workspace-monitor-plist '(0 "HDMI-0" 1 "HDMI-0" 2 "HDMI-0" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
-                  ((cl-search "moxps-lg" setup-name)
-                    (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-                  ((cl-search "cemm-postdoc-office-111" setup-name)
-                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1-1" 1 "DP1-1" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-                  ((cl-search "cemm-postdoc-office-11" setup-name)
-                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-3" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-                  (t
-                    (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
-                        )
-                  (message (format "Switched monitor configuration to <%s>" setup-name))
+              (if (search-forward "(detected)" nil t)
+                  (progn
+                    (beginning-of-line)
+                    (setq startPos (point))
+                    (evil-forward-WORD-end)
+                    (setq setup-name (buffer-substring-no-properties startPos (1+ (point))))
+                    (cond
+                     ((cl-search "-above" setup-name)  ;; wildcard for above-screens
+                      (setq exwm-randr-workspace-monitor-plist '(0 "HDMI-0" 1 "HDMI-0" 2 "HDMI-0" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))  ;; TODO replace HDMI-0 with generic output (readout the screen from autorandr or so)
+                     ((cl-search "moxps-home-adapter" setup-name)  ;; has to come before moxps-home
+                      (setq exwm-randr-workspace-monitor-plist '(0 "DP1" 1 "DP1" 2 "DP1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                     ((cl-search "mopad-office2x4k" setup-name)  ;; has to come before moxps-home
+                      (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1-1" 1 "DP-0" 2 "DP-2.2" 3 "eDP-1-1" 4 "DP-0" 5 "DP-2.2")))
+                     ((cl-search "mopad-cemm-hot1" setup-name)  ;; has to come before moxps-home
+                      (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.2" 1 "DP-2.2" 2 "DP-2.2" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
+                     ((cl-search "mopad-cemm-hot2" setup-name)  ;; has to come before moxps-home
+                      (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.3" 1 "DP-2.3" 2 "DP-2.3" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
+                     ((cl-search "moxps-home" setup-name)
+                      (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                     ((cl-search "mopad-home" setup-name)
+                      (setq exwm-randr-workspace-monitor-plist '(0 "HDMI-0" 1 "HDMI-0" 2 "HDMI-0" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
+                     ((cl-search "moxps-lg" setup-name)
+                      (setq exwm-randr-workspace-monitor-plist '(0 "HDMI1" 1 "HDMI1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                     ((cl-search "cemm-postdoc-office-111" setup-name)
+                      (setq exwm-randr-workspace-monitor-plist '(0 "DP1-1" 1 "DP1-1" 2 "DP1-1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                     ((cl-search "cemm-postdoc-office-11" setup-name)
+                      (setq exwm-randr-workspace-monitor-plist '(0 "DP1-3" 1 "DP1-3" 2 "DP1-3" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                     ((cl-search "cemm-postdoc-office-new" setup-name)
+                      (setq exwm-randr-workspace-monitor-plist '(0 "DP-2" 1 "DP-2" 2 "DP-2" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
+                     (t
+                      (message "config not present. doing nothing"))
+                     )
+                    (message (format "Switched monitor configuration to <%s>" setup-name))
+                    (start-process-shell-command
+                     "autorandr" nil "sleep 0.2 && autorandr -c")  ;; 0.2 seconds waiting seems to be a working workaround when connecting my stupid monitor
+                    )
+                (progn  ;; autorandr not detected
+                  (let* ((edp-command "xrandr | grep '^.* connected' | grep -o '^eDP[^ ]*'")
+                         (dp-command "xrandr | grep '^.* connected' | grep -o '^\\(HDMI\\|DP\\)[^ ]*'")
+                         (edp-name (string-trim (shell-command-to-string edp-command)))
+                         (dp-name (string-trim (shell-command-to-string dp-command))))
+                    (setq exwm-randr-workspace-monitor-plist `(0 ,dp-name 1 ,dp-name 2 ,dp-name 3 ,edp-name 4 ,edp-name 5 ,edp-name))
+                    ;; Run EXWM to place dp-name above edp-name
+                    (message (format "Switched monitor configuration to <%s> above <%s>" dp-name edp-name))
+                    (start-process-shell-command "xrandr" nil (format "xrandr --output %s --auto --above %s" dp-name edp-name))
+                    )
                   )
                 )
-              )
-            ))
-
+              )))
+;; (exwm-randr-refresh)
 ;;;;(setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI1")) (start-process-shell-command "xrandr" nil "xrandr --fb 7680x2160 --output HDMI1 --transform none && xrandr --fb 7680x2160 --output eDP1 --gamma 1.0:1.0:1.0 --mode 3840x2160 --pos 0x0 --primary --rate 60.00 --reflect normal --rotate normal --output HDMI1 --gamma 1.0:1.0:1.0 --mode 1920x1080 --pos 3840x0 --rate 60.00 --reflect normal --rotate normal --transform 2.000000,0.000000,0.000000,0.000000,2.000000,0.000000,0.000000,0.000000,1.000000")))
 
 (add-hook 'server-switch-hook

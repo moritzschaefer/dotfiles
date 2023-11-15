@@ -130,11 +130,6 @@
     undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
     # }}}
 # }}}
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [magithub]
 	online = false
 [magithub "status"]
@@ -148,3 +143,7 @@
 	rebase = true
 [init]
 	defaultBranch = main
+[submodule]
+	recurse = true
+[color]
+	ui = true

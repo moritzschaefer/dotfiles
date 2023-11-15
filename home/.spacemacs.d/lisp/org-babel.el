@@ -64,6 +64,11 @@
 (setq org-babel-default-header-args:jupyter-python '((:async . "no") (:kernel . "python3")))
 (setq org-babel-default-header-args:python '((:async . "no") (:kernel . "python3")))
 
+(with-eval-after-load 'org
+  (evil-define-key 'normal org-mode-map (kbd "]g") 'org-babel-next-src-block)
+  (evil-define-key 'normal org-mode-map (kbd "[g") 'org-babel-previous-src-block)
+  )
+
 ;; doesn't work unfortunately (because jupyter ignores the local default kernel argument)
 (defun moritzs/set-custom-kernel ()
   (when-let ((kernel (org-entry-get nil "CUSTOM_KERNEL" t)))
@@ -77,40 +82,92 @@
 
 (add-hook 'org-mode-hook #'moritzs/set-custom-kernel)
 
-(with-eval-after-load 'jupyter-kernel-process-manager
+(with-eval-after-load 'jupyter-env
   (advice-add 'jupyter-command :override (lambda (&rest args)
-      "Run a Jupyter shell command synchronously, return its output.
-      The shell command run is
 
-          jupyter ARGS...
+  "Run a Jupyter shell command synchronously, return its output.
+The shell command run is
 
-      If the command fails or the jupyter shell command doesn't exist,
-      return nil."
-      (with-temp-buffer
-        (when (zerop (apply #'process-file "guided_prot_diff_cmd" nil t nil (cons "jupyter" args)))
-          (string-trim-right (buffer-string)))))
+    jupyter ARGS...
+
+If the command fails or the jupyter shell command doesn't exist,
+return nil."
+  (let ((stderr-file (make-temp-file "jupyter"))
+        (stdout (get-buffer-create " *jupyter-command-stdout*")))
+    (unwind-protect
+        (let* ((status (apply #'process-file "guided_prot_diff_cmd" nil (list stdout stderr-file) nil (cons "jupyter" args)))
+               (buffer (find-file-noselect stderr-file)))
+          (unwind-protect
+              (with-current-buffer buffer
+                (unless (eq (point-min) (point-max))
+                  (message "jupyter-command: Content written to stderr stream")
+                  (while (not (eq (point) (point-max)))
+                    (message "    %s" (buffer-substring (line-beginning-position)
+                                                        (line-end-position)))
+                    (forward-line))))
+            (kill-buffer buffer))
+          (when (zerop status)
+            (with-current-buffer stdout
+              (string-trim-right (buffer-string)))))
+      (delete-file stderr-file)
+      (kill-buffer stdout))))
               )
-
   (advice-add 'jupyter-locate-python :override (lambda ()
       "Return the path to a Python executable."
       "guided_prot_diff_repl"
       )
     )
+  )
+(with-eval-after-load 'jupyter-kernelspec
+  ;; Add advice after existing
+  (defun my-jupyter-kernel-argv-advice (orig-fun &rest args)
+    (let ((orig-argv (apply orig-fun args)))
+      (cons "guided_prot_diff_cmd" orig-argv)))
 
-  ;; We can't use `advice-add :override' on generic functions
-  (cl-defmethod jupyter-start-kernel ((kernel jupyter-kernel-process) &rest args)
-    "Start a KERNEL process with ARGS."
-    (let ((name (jupyter-kernel-name kernel)))
-      (when jupyter--debug
-        (message "jupyter-start-kernel: default-directory = %s" default-directory)
-        (message "jupyter-start-kernel: Starting process with args \"%s\""
-                (mapconcat #'identity args " ")))
-      (oset kernel process
-            (apply #'start-file-process
-                  (format "jupyter-kernel-%s" name)
-                  (generate-new-buffer
-                    (format " *jupyter-kernel[%s]*" name))
-                  "guided_prot_diff_cmd" args)) ; <-- Change (car args) to guided_prot_diff_cmd
-      (set-process-query-on-exit-flag
-      (oref kernel process) jupyter--debug)))
-)
+  (advice-add 'jupyter-kernel-argv :around #'my-jupyter-kernel-argv-advice)
+
+  ) ;; TODO make sure this works
+;; (with-eval-after-load 'jupyter-kernel-process ;; covered by the one above
+;;   (advice-add 'jupyter--start-kernel-process :override (lambda (name kernelspec conn-file)
+;;                                                          (let* ((process-name (format "jupyter-kernel-%s" name))
+;;                                                                 (buffer-name (format " *jupyter-kernel[%s]*" name))
+;;                                                                 (process-environment
+;;                                                                  (append (jupyter-process-environment kernelspec)
+;;                                                                          process-environment))
+;;                                                                 (args (jupyter-kernel-argv kernelspec conn-file))
+;;                                                                 (atime (nth 4 (file-attributes conn-file)))
+;;                                                                 (process (apply #'start-file-process process-name
+;;                                                                                 (generate-new-buffer buffer-name)
+;;                                                                                 "guided_prot_diff_cmd" args))) ; <-- Change (car args) to guided_prot_diff_cmd
+;;                                                                 )
+;;               (set-process-query-on-exit-flag process jupyter--debug)
+;;               ;; Wait until the connection file has been read before returning.
+;;               ;; This is to give the kernel a chance to setup before sending it
+;;               ;; messages.
+;;               ;;
+;;               ;; TODO: Replace with a check of the heartbeat channel.
+;;               (jupyter-with-timeout
+;;                   ((format "Starting %s kernel process..." name)
+;;                    jupyter-long-timeout
+;;                    (unless (process-live-p process)
+;;                      (error "Kernel process exited:\n%s"
+;;                             (with-current-buffer (process-buffer process)
+;;                               (ansi-color-apply (buffer-string))))))
+;;                 ;; Windows systems may not have good time resolution when retrieving
+;;                 ;; the last access time of a file so we don't bother with checking that
+;;                 ;; the kernel has read the connection file and leave it to the
+;;                 ;; downstream initialization to ensure that we can communicate with a
+;;                 ;; kernel.
+;;                 (or (memq system-type '(ms-dos windows-nt cygwin))
+;;                     (let ((attribs (file-attributes conn-file)))
+;;                       ;; `file-attributes' can potentially return nil, in this case
+;;                       ;; just assume it has read the connection file so that we can
+;;                       ;; know for sure it is not connected if it fails to respond to
+;;                       ;; any messages we send it.
+;;                       (or (null attribs)
+;;                           (not (equal atime (nth 4 attribs)))))))
+;;               (jupyter--gc-kernel-processes)
+;;               (push (list process conn-file) jupyter--kernel-processes)
+;;               process)
+;;               )
+;;   )

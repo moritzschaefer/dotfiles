@@ -4,3 +4,4 @@ home/.vim/bundle
 *.o
 *.hi
 id_rsa
+/home/.config/systemd

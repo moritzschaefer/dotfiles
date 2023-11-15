@@ -155,8 +155,10 @@
   This function makes sure that the current heading has
 (1) the tag :project:
 (2) has property COOKIE_DATA set to \"todo recursive\"
-(3) has any TODO keyword and
-(4) a leading progress indicator"
+(3) has any TODO keyword
+(4) a leading progress indicator and 
+(5) is refiled to projects
+"
     (interactive)
     (org-toggle-tag "project" 'on)
     (org-set-property "COOKIE_DATA" "todo recursive")
@@ -182,6 +184,9 @@
           (insert "[/] ")
           )
       )
+    (org-refile nil nil (list "projects.org" "/home/moritz/wiki/gtd/projects.org" nil nil))
+    ;; open buffer projects.org
+    (find-file "/home/moritz/wiki/gtd/projects.org")
 )
 
 ;; (defun moritzs/org-inbox-capture ()

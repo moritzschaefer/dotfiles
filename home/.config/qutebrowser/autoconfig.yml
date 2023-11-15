@@ -28,6 +28,7 @@ settings:
         edoi: spawn --userscript doi_to_org_ref.py
         gc: open javascript:void(location.href='org-protocol://roam-ref?template=r&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title))
         ge: spawn --userscript translate --text -t de
+        gp: open javascript:void(location.href='http://ez.srv.meduniwien.ac.at/login?url='+location.href)
         m: spawn mpv {url}
         stst: config-cycle colors.webpage.darkmode.enabled ;; restart
       prompt:
@@ -52,7 +53,7 @@ settings:
   colors.webpage.darkmode.contrast:
     global: 0.0
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.grayscale.all:
     global: false
   content.blocking.enabled:
@@ -61,6 +62,7 @@ settings:
     global:
     - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
   content.desktop_capture:
+    https://meduniwien.webex.com: true
     https://meet.google.com: true
     https://meet.jit.si: true
     https://plot.ardupilot.org: true
@@ -217,7 +219,7 @@ settings:
       imdb: https://www.imdb.com/find?ref_=nv_sr_fn&q={}
       maps: https://google.com/maps/search/{}
       mirbase: http://www.mirbase.org/textsearch.shtml?q={}&submit=submit
-      nix: https://search.nixos.org/packages?channel=22.11&from=0&size=30&sort=relevance&query={}
+      nix: https://search.nixos.org/packages?channel=23.05&from=0&size=30&sort=relevance&query={}
       pm: https://pubmed.ncbi.nlm.nih.gov/?term={}&sort=date
       w: https://en.wikipedia.org/wiki/{}
       y: https://www.youtube.com/results?search_query={}

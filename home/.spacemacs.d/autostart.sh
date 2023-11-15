@@ -20,7 +20,8 @@ if ! pgrep urxvt; then
     # urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec command tmux new-session -n$USER -s$USER@$HOSTNAME" &
     urxvt -e fish -c tmux &
     # export QUTE_BIB_FILEPATH="/home/moritz/wiki/papers/references.bib" # this is taken care of already
-    qutebrowser-niced &
+    # qutebrowser-niced &
+    google-chrome-stable &
     blueman-applet &
     pasystray &
     # teams &  # use in browser

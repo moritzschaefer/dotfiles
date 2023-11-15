@@ -1,1 +1,2 @@
+use-conda: true
 rerun-triggers: "mtime"
