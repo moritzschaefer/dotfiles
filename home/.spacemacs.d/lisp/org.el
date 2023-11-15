@@ -642,6 +642,22 @@
   (load "~/.spacemacs.d/lisp/org-gtd.el")
 ;;)
 
+;; Breadcrumbs :). (would be better to embed this into spacemacs but it works for now)
+;; (defun moritzs/org-breadcrumbs ()
+;;   "Return the breadcrumb of the current headings. GPT4"
+;;   (let* ((breadcrumbs (org-format-outline-path (org-get-outline-path t)))
+;;          (length (length breadcrumbs)))
+;;     (if (eq length 0)
+;;         "Top-level"
+;;       (concat "Breadcrumb: " breadcrumbs))))
+
+;; (defun moritzs/org-header-line ()
+;;   "Set up the header line for Org mode buffers. GPT4"
+;;   (setq header-line-format '((:eval (moritzs/org-breadcrumbs)))))
+;; (add-hook 'org-mode-hook 'moritzs/org-header-line)
+
+
+
 (eval-after-load "helm-bibtex"
   '(defun bibtex-completion-apa-get-value (field entry &optional default)
      "This code is copied from https://github.com/tmalsburg/helm-bibtex/pull/415/files to modify the title formatting 
