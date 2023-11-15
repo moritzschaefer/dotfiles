@@ -1,6 +1,6 @@
 ;;(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
-(with-eval-after-load 'org
+;; (with-eval-after-load 'org
   (require 'ol) ;; orgit https://github.com/magit/orgit-forge/issues/7
   (require 'forge)
   (require 'treemacs-workspaces)
@@ -31,8 +31,19 @@
   ;; set specific browser to open links
   (require 'find-lisp)
 
-  ;; agenda
+  ;; Agenda
+  
+  ;; Notify about org events!
+  (appt-activate 1)
+  (add-hook 'after-save-hook 'moritzs/org-agenda-to-appt)
+  (defun moritzs/org-agenda-to-appt ()
+    (when (eq major-mode 'org-mode)
+      (org-agenda-to-appt t)))
+  (org-agenda-to-appt t)
 
+  (setq spaceline-org-clock-p t)
+  (setq spaceline-org-clock-format-function (lambda ()
+                                              (truncate-string-to-width (org-clock-get-clock-string) (- (window-total-width) 70) 0 nil t)))
 
   ;; org-download
   ;; workaround: attachment-links are not exported correctly (/home/moritz/.emacs.d/elpa/27.2/develop/org-x.x.x/ox-odt.el)
@@ -345,26 +356,22 @@
         org-ref-insert-ref-function 'org-ref-insert-ref-link
         org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body)))
 
-  (require 'org-ref-refproc)
-  (setq org-export-before-parsing-hook '(org-ref-cite-natmove ;; do this first
-					                               org-ref-csl-preprocess-buffer
-					                               org-ref-refproc))
+  ;; (require 'org-ref-refproc)
+  ;; (setq org-export-before-parsing-hook '(org-ref-cite-natmove ;; do this first
+	;; 				                               org-ref-csl-preprocess-buffer
+	;; 				                               org-ref-refproc))
 
 
-  (setq reftex-default-bibliography '("~/wiki/papers/references.bib"))
+  (setq reftex-default-bibliography '("~/wiki/papers/references.bib" "~/wiki/papers/paperpile.bib"))
 
   (setq gscholar-bibtex-database-file "~/wiki/papers/references.bib")
 
   (setq org-ref-notes-directory "~/wiki/papers/notes"
-        org-ref-default-bibliography '("~/wiki/papers/references.bib")
+        org-ref-default-bibliography '("~/wiki/papers/references.bib" "~/wiki/papers/paperpile.bib")
         org-ref-pdf-directory "~/wiki/papers/"
         org-ref-bibliography-notes "~/wiki/papers.org")
 
-  (setq helm-bibtex-bibliography "~/wiki/papers/references.bib"
-        helm-bibtex-library-path "~/wiki/papers/"
-        helm-bibtex-notes-path "~/wiki/papers.org")
-
-  (setq bibtex-completion-bibliography "~/wiki/papers/references.bib"
+  (setq bibtex-completion-bibliography '("~/wiki/papers/references.bib" "~/wiki/papers/paperpile.bib")
         bibtex-completion-library-path "~/wiki/papers/"
         bibtex-completion-notes-path "~/wiki/papers.org")
 
@@ -416,7 +423,7 @@
       (call-process-shell-command (format "~/bin/format-tex.py %s %s" texfile tmpname)
                                   nil "*Shell Command Output*" t)
 
-      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)
+      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/paperpile.bib --bibliography=/home/moritz/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)
                                   nil "*Shell Command Output*" t)
       )
     )
@@ -633,7 +640,7 @@
 
   (load "~/.spacemacs.d/lisp/org-babel.el")
   (load "~/.spacemacs.d/lisp/org-gtd.el")
-)
+;;)
 
 (eval-after-load "helm-bibtex"
   '(defun bibtex-completion-apa-get-value (field entry &optional default)
