@@ -507,6 +507,7 @@
 
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/exwm.el")
+(load "~/.spacemacs.d/lisp/layouts.el")
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
