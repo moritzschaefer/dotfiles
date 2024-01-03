@@ -7,7 +7,7 @@
 (require 'org-agenda)
 (setq moritzs/org-agenda-inbox-view
       `("i" "Inbox" todo ""
-        ((org-agenda-files '("~/wiki/gtd/inbox.org")))))
+        ((org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/smartphone.org" )))))
 ;; (setq moritzs/org-agenda-someday-view
 ;;       `("s" "Someday" todo ""
 ;;         ((org-agenda-files '("~/wiki/gtd/someday.org")))))
@@ -26,6 +26,7 @@
                             ("@home" . ?h)
                             ("leisure" . ?l)
                             ;; ("@school" . ?s)
+                            ("delegate" . ?d)
                             (:newline)
                             ("WAITING" . ?w)
                             ("HOLD" . ?H)
@@ -229,7 +230,7 @@
                 ))
           (todo "TODO"
                 ((org-agenda-overriding-header "To Refile")
-                (org-agenda-files '("~/wiki/gtd/inbox.org"))))
+                 (org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/smartphone.org"))))
           ;; (todo "TODO"
           ;;       ((org-agenda-overriding-header "Emails")
           ;;         (org-agenda-files '("~/wiki/gtd/emails.org")))) TODO add later..
@@ -250,7 +251,7 @@
         (
           (todo "TODO"
                 ((org-agenda-overriding-header "To Refile")
-                (org-agenda-files '("~/wiki/gtd/inbox.org"))))
+                 (org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/someday.org"))))
           ;; (todo "TODO"
           ;;       ((org-agenda-overriding-header "Emails")
           ;;         (org-agenda-files '("~/wiki/gtd/emails.org")))) TODO add later..
