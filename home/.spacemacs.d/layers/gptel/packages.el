@@ -53,7 +53,19 @@
       (exwm-input-set-key (kbd "M-s-j") #'moritzs/exwm-llm-question)
       (exwm-input-set-key (kbd "s-J") #'moritzs/within-context-llm)
       (exwm-input-set-key (kbd "C-s-j") #'gptel-abort)
-      (exwm-input-set-key (kbd "s-<prior>") (lambda () (interactive) (let ((current-prefix-arg t)) (call-interactively 'gptel)))) ;; no way to call this non-interactively :()
+      (exwm-input-set-key (kbd "s-<prior>")
+                          (lambda ()
+                            (interactive)
+                            (let ((current-prefix-arg nil)
+                                  (selected-region (and (use-region-p)
+                                                        (buffer-substring (region-beginning)
+                                                                          (region-end)))))
+                              (exwm-workspace-switch 5) ; Switch to workspace 5
+                              ;; (call-interactively 'gptel)
+                              (let ((buffer (gptel "test" nil selected-region)))
+                                (switch-to-buffer buffer)
+                                )
+                              )))
 
       (with-eval-after-load 'gptel
         (define-key gptel-mode-map (kbd "C-<return>") #'gptel-send)
