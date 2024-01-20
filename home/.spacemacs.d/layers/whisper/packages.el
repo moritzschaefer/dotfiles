@@ -41,13 +41,29 @@
 ;;; Code:
 
 (defun whisper/init-whisper ()
-    (use-package whisper
-      :load-path "/home/moritz/.spacemacs.d/layers/whisper/local/whisper"
-      :bind ("C-s-g" . whisper-run))
-    (setq whisper-model "base"
-          whisper-language "en"
-          whisper-translate nil)
-    )
+  (use-package whisper
+    :load-path "/home/moritz/.spacemacs.d/layers/whisper/local/whisper")
+  (setq whisper-model "base"
+        whisper-language "en"
+        whisper-translate nil)
+
+  (exwm-input-set-key (kbd "C-s-g") #'whisper-run)
+  (remove-hook 'whisper-pre-process-hook 'whisper--check-buffer-read-only-p)
+  ;; Add a hook that kills the output of whisper (which is the 'current buffer')
+  (add-hook 'whisper-post-process-hook
+            (lambda ()
+              (kill-ring-save (point-min) (point-max))
+              (let ((major-mode (with-current-buffer whisper--point-buffer
+                                  major-mode)))
+                (when (eq major-mode 'exwm-mode)
+                  ;; Simulate Ctrl+v to paste from the clipboard
+                  (exwm-input--fake-key ?\C-v)
+                  )
+                ))
+            )
+  (setq whisper-post-process-hook nil)
+  )
+
 
 (defconst whisper-packages
   '((whisper :location local))
