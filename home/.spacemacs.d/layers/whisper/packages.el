@@ -42,7 +42,7 @@
 
 (defun whisper/init-whisper ()
     (use-package whisper
-      :load-path "/home/moritz/.spacemacs.d/layers/whisper"
+      :load-path "/home/moritz/.spacemacs.d/layers/whisper/local/whisper"
       :bind ("C-s-g" . whisper-run))
     (setq whisper-model "base"
           whisper-language "en"
@@ -50,7 +50,7 @@
     )
 
 (defconst whisper-packages
-  '(whisper)
+  '((whisper :location local))
   "The list of Lisp packages required by the whisper layer.
 
 Each entry is either:
