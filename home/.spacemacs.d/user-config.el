@@ -500,8 +500,13 @@
 (advice-add 'lsp--path-is-watchable-directory
             :around #'++lsp--path-is-watchable-directory-a)
 
+;; Prevent importmagicserver to lock my PC upon boot
+(defun renice-importmagicserver ()
+  "Renice the importmagicserver.py process."
+  (let ((command "pgrep -f importmagicserver.py | xargs -r renice -n 11"))
+    (shell-command command)))
 
-
+(add-hook 'importmagic-mode-hook 'renice-importmagicserver)
 
 ;; TODO automatically import everything in lisp/
 
