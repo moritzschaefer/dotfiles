@@ -55,15 +55,13 @@
               (kill-ring-save (point-min) (point-max))
               (let ((major-mode (with-current-buffer whisper--point-buffer
                                   major-mode)))
-                (when (eq major-mode 'exwm-mode)
-                  ;; Simulate Ctrl+v to paste from the clipboard
-                  (exwm-input--fake-key ?\C-v)
+
+                (when (derived-mode-p 'exwm-mode)
+                    (start-process-shell-command "slock" nil "sleep 0.05; echo key ctrl+v | dotool")
                   )
                 ))
             )
-  (setq whisper-post-process-hook nil)
   )
-
 
 (defconst whisper-packages
   '((whisper :location local))

@@ -7,7 +7,7 @@
 (require 'org-agenda)
 (setq moritzs/org-agenda-inbox-view
       `("i" "Inbox" todo ""
-        ((org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/smartphone.org" )))))
+        ((org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/orgzly_smartphone/Smartphone.org" )))))
 ;; (setq moritzs/org-agenda-someday-view
 ;;       `("s" "Someday" todo ""
 ;;         ((org-agenda-files '("~/wiki/gtd/someday.org")))))
@@ -230,7 +230,7 @@
                 ))
           (todo "TODO"
                 ((org-agenda-overriding-header "To Refile")
-                 (org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/smartphone.org"))))
+                 (org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/orgzly_smartphone/Smartphone.org"))))
           ;; (todo "TODO"
           ;;       ((org-agenda-overriding-header "Emails")
           ;;         (org-agenda-files '("~/wiki/gtd/emails.org")))) TODO add later..

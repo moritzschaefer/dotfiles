@@ -48,12 +48,28 @@
     :init
     (progn
 
-      (add-hook 'spacemacs-post-user-config-hook (lambda () (setq gptel-api-key (password-store-get "openai.com/meduni_my_api_key"))))
+      ;; TODO this still sucks unfortunately!!
+      ;; (add-hook 'spacemacs-post-user-config-hook (lambda () (setq gptel-api-key (password-store-get "openai.com/meduni_my_api_key"))))
+
+      ;; async version of the above
+      ;; (add-hook 'spacemacs-post-user-config-hook
+      ;;     (lambda ()
+      ;;       (let ((my-load-path load-path))  ;; need to pass the load-path into the async process
+      ;;         (async-start
+      ;;          ;; What to do in the child process
+      ;;          `(lambda ()
+      ;;             (setq load-path ',my-load-path)
+      ;;             (require 'password-store)
+      ;;             (password-store-get "openai.com/meduni_my_api_key"))
+      ;;          ;; What to do when it finishes
+      ;;          (lambda (result)
+      ;;            (setq gptel-api-key result))))))
+
       (exwm-input-set-key (kbd "s-j") #'gptel-menu)  ;; normally we should use gptel-send with a prefix argument
       (exwm-input-set-key (kbd "M-s-j") #'moritzs/exwm-llm-question)
-      (exwm-input-set-key (kbd "s-J") #'moritzs/within-context-llm)
+      (exwm-input-set-key (kbd "s-<prior>") #'moritzs/within-context-llm)
       (exwm-input-set-key (kbd "C-s-j") #'gptel-abort)
-      (exwm-input-set-key (kbd "s-<prior>")
+      (exwm-input-set-key (kbd "s-J")
                           (lambda ()
                             (interactive)
                             (let ((current-prefix-arg nil)
@@ -72,6 +88,8 @@
         )
       (setq gptel-mode-hook nil)
       (add-hook 'gptel-mode-hook #'moritzs/gptel-write-buffer)
+      ;; save buffer after each response using native emacs elisp funciton
+      (add-hook 'gptel-post-response-hook #'save-buffer)
       )))
 
 
@@ -103,7 +121,7 @@
 (defun moritzs/exwm-llm-question (user-input)
   (interactive "sYour request: ")
   (let* ((screenshot-text (moritzs/screenshot-and-ocr))
-         (prompt-intro "You are a helpful assistant and should help me on my day to day work on my computer tasks, based on the current setting on my screen (provided in an unstructured manner using OCR of a screenshot). Don't be verbose in your answer, only providing the piece of text that I requested, without additional explanations.")  ;; TODO could be improved by first letting it reason and then extract the last bit of the response
+         (prompt-intro "You are a helpful assistant and should help me on my day to day work on my computer tasks, based on the current setting on my screen (provided in an unstructured manner using OCR of a screenshot). Don't be verbose in your answer, only providing the piece of text that I requested, without additional explanations. If you return code, don't wrap it in backticks.")  ;; TODO could be improved by first letting it reason and then extract the last bit of the response
          (prompt (concat prompt-intro
                          "Active window title: " exwm-title "\n"
                          "Text on my screen currently: " screenshot-text "\n"
@@ -124,7 +142,7 @@
          (buffer-content-with-cursor (concat (substring buffer-content 0 (- (point) (max (point-min) (- (point) 3000))))
                                              "<<<CURSOR>>>"
                                              (substring buffer-content (- (point) (max (point-min) (- (point) 3000))))))
-         (prompt "You are given the content of the file I am currently editing, including the position of my cursor, indicated with the text \"<<<CURSOR>>>\". Your task is to fill in text at the cursor position, according to the user-request provided below. Don't repeat any of the provided file content, but only generate text that fits at the indicated cursor position.")
+         (prompt "You are given the content of the file I am currently editing, including the position of my cursor, indicated with the text \"<<<CURSOR>>>\". Your task is to fill in text at the cursor position, according to the user-request provided below. Don't repeat any of the provided file content and make sure that you only generate content that fits the user request.")
          )
     (gptel-request
      (concat prompt "\n" "User request: " user-input "\n\n" "Buffer content: " buffer-content-with-cursor)  ;; TODO might need to add again an short version of the text *before* <<<CURSOR>>>

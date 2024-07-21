@@ -1,5 +1,7 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 
+(helm-descbinds-mode 0)  ;; disabling, otherwise which-key mode fails
+
 ;; delete (after update)
 ;; (defalias 'dnd-unescape-uri 'dnd--unescape-uri)
 
@@ -418,8 +420,8 @@
                     pattern)))))
 
 ;; monitor the system clipboard and add any changes to the kill ring
-(clipmon-mode-start)  ;; <- might freeze emacs...
-(clipmon-mode 1) ;; TODO observe whether this fixes it
+;; (clipmon-mode-start)  ;; <- might freeze emacs...
+;; (clipmon-mode 1) ;; TODO observe whether this fixes it
 
 (with-eval-after-load 'dap-ui  ;; TODO dap-ui is only loaded after first DAP run :/
   (message "NOW dap-ui loaded")
@@ -472,6 +474,10 @@
         (message "No WORD at point."))))
   (define-key dap-mode-map (kbd "M-I") #'moritzs/dap-eval-WORD-at-point)
   (define-key dap-mode-map (kbd "M-i") #'moritzs/dap-eval-region-or-thing-at-point)
+
+  (add-hook 'dap-stopped-hook (lambda (arg) (exwm-workspace-switch 1)))  ;; an improved version would identify the workspace where dap-ui-controls-mode is active (the dap-frame and and dap-workspace fields are useless)
+  (advice-add 'dap-ui--show-many-windows :before #'(lambda (&rest args) (exwm-workspace-switch 1)))
+
   ;; Navigation
   (define-key dap-mode-map (kbd "S-<right>") 'dap-next)
   (define-key dap-mode-map (kbd "S-<left>") 'dap-continue)
@@ -479,6 +485,7 @@
   (define-key dap-mode-map (kbd "S-<down>") 'dap-step-in)
   (define-key dap-mode-map (kbd "M-<up>") 'dap-up-stack-frame)
   (define-key dap-mode-map (kbd "M-<down>") 'dap-down-stack-frame)
+
   )
 
 ;; add gitignore to lsp-ignore
@@ -503,7 +510,7 @@
 ;; Prevent importmagicserver to lock my PC upon boot
 (defun renice-importmagicserver ()
   "Renice the importmagicserver.py process."
-  (let ((command "pgrep -f importmagicserver.py | xargs -r renice -n 11"))
+  (let ((command "pgrep -f importmagicserver.py | xargs -r renice -n 11 >/dev/null 2>&1"))
     (shell-command command)))
 
 (add-hook 'importmagic-mode-hook 'renice-importmagicserver)

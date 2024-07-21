@@ -57,6 +57,7 @@
    (python . t)
    (jupyter . t)))
 (require 'jupyter)
+(add-hook 'jupyter-repl-mode-hook 'company-mode)
 (org-babel-jupyter-override-src-block "python")
 (org-babel-jupyter-override-src-block "ipython")
 (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block

@@ -9,19 +9,23 @@
   "Same as `helm-show-kill-ring' and paste into exwm buffer."
   (interactive)
   (let* ((inhibit-read-only t)
-        ;; Make sure we send selected yank-pop candidate to
-        ;; clipboard: 
-        (yank-pop-change-selection t)
-        (returned-value (call-interactively #'helm-show-kill-ring)))
-    (when (and (derived-mode-p 'exwm-mode) returned-value)
-      ;; https://github.com/ch11ng/exwm/issues/413#issuecomment-386858496
-      (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
-      (exwm-input--fake-key ?\C-v))  ;; TODO could also fake-key return-value
+         ;; Make sure we send selected yank-pop candidate to
+         ;; clipboard: 
+         (yank-pop-change-selection t)
+         (returned-value (call-interactively #'helm-show-kill-ring)))
+    (when returned-value
+
+      (if (derived-mode-p 'exwm-mode)
+          (start-process-shell-command "slock" nil "sleep 0.05; echo key ctrl+v | dotool")
+        (insert returned-value)
+        )
+      )
     ))
-    
+;; also does not work
+;; (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
+;;       (exwm-input--fake-key ?\C-ä)  ;; TODO could also fake-key return-value
 
 (exwm-input-set-key (kbd "M-y") #'moritzs/exwm-helm-yank-pop)
-
 
 (defun exwm-rename-buffer ()
   (interactive)
@@ -231,44 +235,44 @@
 
 ;; (exwm-input-set-key (kbd "s-e") #'exwm-workspace-move-window) ;; export window
 
-(setq exwm-input--update-focus-interval 0.01) ;; TODO use 0.2 if issues
-;; workaround https://github.com/ch11ng/exwm/issues/759
-(with-eval-after-load 'exwm
-  (defun exwm-layout--hide (id)
-    "Hide window ID."
-    (with-current-buffer (exwm--id->buffer id)
-      (unless (or (exwm-layout--iconic-state-p)
-                  (and exwm--floating-frame
-                      (eq 4294967295. exwm--desktop)))
-        (exwm--log "Hide #x%x" id)
-        (when exwm--floating-frame
-          (let* ((container (frame-parameter exwm--floating-frame
-                                            'exwm-container))
-                (geometry (xcb:+request-unchecked+reply exwm--connection
-                              (make-instance 'xcb:GetGeometry
-                                              :drawable container))))
-            (setq exwm--floating-frame-position
-                  (vector (slot-value geometry 'x) (slot-value geometry 'y)))
-            (exwm--set-geometry container exwm-layout--floating-hidden-position
-                                exwm-layout--floating-hidden-position
-                                1
-                                1)))
-        (xcb:+request exwm--connection
-            (make-instance 'xcb:ChangeWindowAttributes
-                          :window id :value-mask xcb:CW:EventMask
-                          :event-mask xcb:EventMask:NoEvent))
-        (xcb:+request exwm--connection
-            (make-instance 'xcb:UnmapWindow :window id))
-        (xcb:+request exwm--connection
-            (make-instance 'xcb:ChangeWindowAttributes
-                          :window id :value-mask xcb:CW:EventMask
-                          :event-mask (exwm--get-client-event-mask)))
-        (exwm-layout--set-state id xcb:icccm:WM_STATE:IconicState)
-        ;; (cl-pushnew xcb:Atom:_NET_WM_STATE_HIDDEN exwm--ewmh-state) ;; COMMENTING IS THE FIX
-        (exwm-layout--set-ewmh-state id)
-        (exwm-layout--auto-iconify)
-        (xcb:flush exwm--connection))))
-  )
+;;(setq exwm-input--update-focus-interval 0.01) ;; TODO use 0.2 if issues
+;; non-working workaround https://github.com/ch11ng/exwm/issues/759
+;; (with-eval-after-load 'exwm
+;;   (defun exwm-layout--hide (id)
+;;     "Hide window ID."
+;;     (with-current-buffer (exwm--id->buffer id)
+;;       (unless (or (exwm-layout--iconic-state-p)
+;;                   (and exwm--floating-frame
+;;                       (eq 4294967295. exwm--desktop)))
+;;         (exwm--log "Hide #x%x" id)
+;;         (when exwm--floating-frame
+;;           (let* ((container (frame-parameter exwm--floating-frame
+;;                                             'exwm-container))
+;;                 (geometry (xcb:+request-unchecked+reply exwm--connection
+;;                               (make-instance 'xcb:GetGeometry
+;;                                               :drawable container))))
+;;             (setq exwm--floating-frame-position
+;;                   (vector (slot-value geometry 'x) (slot-value geometry 'y)))
+;;             (exwm--set-geometry container exwm-layout--floating-hidden-position
+;;                                 exwm-layout--floating-hidden-position
+;;                                 1
+;;                                 1)))
+;;         (xcb:+request exwm--connection
+;;             (make-instance 'xcb:ChangeWindowAttributes
+;;                           :window id :value-mask xcb:CW:EventMask
+;;                           :event-mask xcb:EventMask:NoEvent))
+;;         (xcb:+request exwm--connection
+;;             (make-instance 'xcb:UnmapWindow :window id))
+;;         (xcb:+request exwm--connection
+;;             (make-instance 'xcb:ChangeWindowAttributes
+;;                           :window id :value-mask xcb:CW:EventMask
+;;                           :event-mask (exwm--get-client-event-mask)))
+;;         (exwm-layout--set-state id xcb:icccm:WM_STATE:IconicState)
+;;         ;; (cl-pushnew xcb:Atom:_NET_WM_STATE_HIDDEN exwm--ewmh-state) ;; COMMENTING IS THE FIX
+;;         (exwm-layout--set-ewmh-state id)
+;;         (exwm-layout--auto-iconify)
+;;         (xcb:flush exwm--connection))))
+;;   )
 
 (require 'helm-exwm)
 (setq helm-exwm-emacs-buffers-source (helm-exwm-build-emacs-buffers-source))
@@ -282,7 +286,6 @@
 (require 'helm)
 ;; (add-to-list 'helm-source-names-using-follow "EXWM buffers")  ;; don't do follow on EXWM buffers
 (setq helm-follow-mode-persistent t)
-
 
 ;; TODO
 ;; hotkey for opening new window in qutebrowser (with input)
@@ -358,7 +361,7 @@
                      ((cl-search "moxps-home-adapter" setup-name)  ;; has to come before moxps-home
                       (setq exwm-randr-workspace-monitor-plist '(0 "DP1" 1 "DP1" 2 "DP1" 3 "eDP1" 4 "eDP1" 5 "eDP1")))
                      ((cl-search "mopad-office2x4k" setup-name)  ;; has to come before moxps-home
-                      (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1-1" 1 "DP-0" 2 "DP-2.2" 3 "eDP-1-1" 4 "DP-0" 5 "DP-2.2")))
+                      (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.2" 1 "DP-2.2" 2 "DP-0" 3 "eDP-1-1" 4 "eDP-1-1" 5 "DP-0")))
                      ((cl-search "mopad-cemm-hot1" setup-name)  ;; has to come before moxps-home
                       (setq exwm-randr-workspace-monitor-plist '(0 "DP-2.2" 1 "DP-2.2" 2 "DP-2.2" 3 "eDP-1-1" 4 "eDP-1-1" 5 "eDP-1-1")))
                      ((cl-search "mopad-cemm-hot2" setup-name)  ;; has to come before moxps-home
@@ -426,5 +429,6 @@
 (advice-add #'y-or-n-p :around #'exwm-y-or-n-p-wrapper)
 ;; (advice-remove #'y-or-n-p #'exwm-y-or-n-p-wrapper)
 
-(exwm-input--update-global-prefix-keys)
+(exwm-input--update-global-prefix-keys)  ;; make all those special-key hotkeys work (e.g. s-. s-,)
 (setq epg-pinentry-mode 'loopback)
+(setq x-no-window-manager t)  ;; workaround https://github.com/ch11ng/exwm/issues/889
