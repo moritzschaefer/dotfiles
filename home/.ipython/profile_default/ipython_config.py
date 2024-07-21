@@ -604,7 +604,7 @@ c.InteractiveShellApp.log_level = 50
 c.InteractiveShellApp.extensions = ["autoreload"]
 c.InteractiveShellApp.exec_lines = [
     "import os, sys, logging",
-    'sys.path.append("/home/moritz/Projects/moritz_utils/src")',
+    # 'sys.path.append("/home/moritz/Projects/moritz_utils/src")',
     "import numpy as np",
     "from pathlib import Path",
     "import scipy as sp",
@@ -613,7 +613,7 @@ c.InteractiveShellApp.exec_lines = [
     "import matplotlib as mpl",
     "mpl.rcParams['figure.dpi'] = 150",
     # 'plt.prism()',
-    "import moritz_utils.utils as mutils",
+    # "import moritz_utils.utils as mutils",
     #'import moritzsphd as mphd',
     # 'from moritzsphd.util import remote_file',
     # 'from moritzsphd.data import gid2n, gn2id',
