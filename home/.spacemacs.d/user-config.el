@@ -425,6 +425,32 @@
 
 (with-eval-after-load 'dap-ui  ;; TODO dap-ui is only loaded after first DAP run :/
   (message "NOW dap-ui loaded")
+
+  ;; Use
+  (defun moritzs/dap-python-conda-env-advice (orig-fun &rest args)
+    "Advice to set up Python executable for dap-python with conda environment."
+    (let* ((conf (first args))
+           (original-dap-python-executable dap-python-executable)
+           (conda-env (or (plist-get conf :condaEnv) "base"))
+           (starter-file (format "/tmp/emacs_dap_python_conda_%s_starter" conda-env)))
+      ;; Create the starter script if it doesn't exist
+      (unless (file-exists-p starter-file)
+        (with-temp-file starter-file
+          (insert "#!/usr/bin/env conda-shell\n\n")
+          (insert (format "conda activate %s\n" conda-env))
+          (insert "python \"$@\"\n"))
+        (chmod starter-file #o755))
+      ;; Set the dap-python-executable to the starter script
+      (setq dap-python-executable starter-file)
+      ;; Call the original function
+      (prog1
+          (apply orig-fun args)
+        ;; Reset dap-python-executable to its original value
+        (setq dap-python-executable original-dap-python-executable))))
+
+  (advice-add 'dap-python--populate-start-file-args :around #'moritzs/dap-python-conda-env-advice)
+
+
   (dap-register-debug-template
    "Python :: Attach running debug process"
    (list :name "Python :: Attach running debug process"
