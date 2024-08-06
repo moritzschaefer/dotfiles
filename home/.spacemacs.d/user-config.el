@@ -513,6 +513,23 @@
   (let ((command "pgrep -f importmagicserver.py | xargs -r renice -n 11 >/dev/null 2>&1"))
     (shell-command command)))
 
+
+;; Whisper
+(exwm-input-set-key (kbd "C-s-g") #'whisper-run)
+(remove-hook 'whisper-pre-process-hook 'whisper--check-buffer-read-only-p)
+;; Add a hook that kills the output of whisper (which is the 'current buffer')
+(add-hook 'whisper-post-process-hook
+          (lambda ()
+            (kill-ring-save (point-min) (point-max))
+            (let ((major-mode (with-current-buffer whisper--point-buffer
+                                major-mode)))
+
+              (when (derived-mode-p 'exwm-mode)
+                (start-process-shell-command "slock" nil "sleep 0.05; echo key ctrl+v | dotool")
+                )
+              ))
+          )
+
 (add-hook 'importmagic-mode-hook 'renice-importmagicserver)
 
 ;; TODO automatically import everything in lisp/
