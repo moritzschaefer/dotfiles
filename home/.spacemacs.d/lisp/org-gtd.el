@@ -1,5 +1,6 @@
 (defun moritzs/switch-to-agenda ()
   (interactive)
+  (exwm-workspace-switch-create 4)
   (org-agenda nil " ")
   ;;(delete-other-windows)
   )

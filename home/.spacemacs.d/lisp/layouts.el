@@ -1,17 +1,8 @@
-(spacemacs|define-custom-layout "@Agenda"
+(spacemacs|define-custom-layout "@GuiApp"
   :binding "1"
   :body
   (progn
-    (moritzs/switch-to-agenda)
-    (evil-window-left)
-    (golden-ratio-mode 1)
-    (org-clock-goto)
-    ;; Add hook to org-clock-in-hook to automatically switch to this layout and call (org-clock-goto)
-    (add-hook 'org-clock-in-hook
-              (lambda ()
-                (exwm-workspace-switch-create 0)
-                (evil-window-left)
-                (org-clock-goto)))
+    ;; Placeholder for GUI application setup
     ))
 
 (spacemacs|define-custom-layout "@MainWork"
@@ -36,11 +27,23 @@
     ;; urxvt is assigned via the `exwm-manage-configurations` variable
     ))
 
-(spacemacs|define-custom-layout "@GuiApp"
+
+
+(spacemacs|define-custom-layout "@Agenda"
   :binding "5"
   :body
   (progn
-    ;; Placeholder for GUI application setup
+    (moritzs/switch-to-agenda)
+    (evil-window-left)
+
+    (golden-ratio-mode 1)
+    (org-clock-goto)
+    ;; Add hook to org-clock-in-hook to automatically switch to this layout and call (org-clock-goto)
+    ;; (add-hook 'org-clock-in-hook
+    ;;           (lambda ()
+    ;;             (exwm-workspace-switch-create 0)
+    ;;             (evil-window-left)
+    ;;             (org-clock-goto)))
     ))
 
 (spacemacs|define-custom-layout "@LanguageModel"
