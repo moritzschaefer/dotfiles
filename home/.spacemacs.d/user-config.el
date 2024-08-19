@@ -134,9 +134,9 @@
           (lambda ()
             (ess-toggle-underscore nil)))
 
-  ;; (require 'exec-path-from-shell)
-  ;; (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-  ;;(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+;; (require 'exec-path-from-shell)
+;; (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+;;(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 
 (defun moritzs/open-browser ()
   "Prompt user to enter a string, with input history support."
@@ -219,7 +219,7 @@
 
 (defun shell-command-on-region-replace (start end command)
   "Run shell-command-on-region interactivly replacing the region in place"
-  (interactive (let (string) 
+  (interactive (let (string)
                  (unless (mark)
                    (error "The mark is not set now, so there is no region"))
                  ;; Do this before calling region-beginning
@@ -237,7 +237,7 @@
 
 (defun ag-on-region-replace (start end regexp)
   "Run shell-command-on-region interactivly replacing the region in place"
-  (interactive (let (string) 
+  (interactive (let (string)
                  (unless (mark)
                    (error "The mark is not set now, so there is no region"))
                  ;; Do this before calling region-beginning
@@ -338,7 +338,7 @@
       ;; when on last line, insert a newline first
       (when (or (= 1 (forward-line 1)) (eq (point) (point-max)))
         (insert "\n"))
-      
+
       ;; now insert as many time as requested
       (while (> n 0)
         (insert current-line)
@@ -402,7 +402,7 @@
                    (lambda (buf result)
                      (setq font-lock-keywords-case-fold-search t)
                      (highlight-regexp pattern 'hi-yellow)
-                     (delete-file tempfile) 
+                     (delete-file tempfile)
                      (setq compilation-finish-functions orig)))
 
       (write-region  (mapconcat 'identity files (char-to-string 0))
@@ -475,7 +475,7 @@
          :program nil
          :request "attach"))
 
-  (defvar dap-exception-breakpoints nil)
+  (defvar dap-exception-breakpoints nil)  ;; TODO why defined as nil here
 
   ;; Eval/Inspect (real inspect is not implemented apparently)
   (defun moritzs/dap-eval-region-or-thing-at-point ()
@@ -582,4 +582,3 @@
 ;; (define-key rebinder-mode-map (kbd "C-c") 'backward-char)
 
 ;; (rebinder-hook-to-mode 't 'after-change-major-mode-hook)
-

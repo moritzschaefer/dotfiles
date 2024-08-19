@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Ignore undefined variables (for snakemake)
+# key: igun
+# group : general
+# --
+# type: ignore [reportUndefinedVariable]
