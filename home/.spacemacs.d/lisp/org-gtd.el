@@ -9,6 +9,13 @@
 (setq moritzs/org-agenda-inbox-view
       `("i" "Inbox" todo ""
         ((org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/orgzly_smartphone/Smartphone.org" )))))
+(setq moritzs/org-agenda-unsorted-productivity
+      `("p" "Unsorted Productivity items"
+        ((org-ql-block '(and (parent (heading "Unsorted productivity items"))
+                             (not (heading "Unsorted productivity items")))
+                       ((org-ql-block-header "Unsorted productivity items")
+                        (org-agenda-sorting-strategy '(timestamp-down)))))))
+
 ;; (setq moritzs/org-agenda-someday-view
 ;;       `("s" "Someday" todo ""
 ;;         ((org-agenda-files '("~/wiki/gtd/someday.org")))))
@@ -221,6 +228,7 @@
         ;; ,moritzs/org-agenda-someday-view
         ,moritzs/org-agenda-todo-view
         ,moritzs/org-agenda-undone-view
+        ,moritzs/org-agenda-unsorted-productivity
         ))
 
 (defun moritzs/org-capture-hook ()
