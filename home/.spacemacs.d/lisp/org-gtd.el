@@ -45,68 +45,6 @@
 ;; (defvar moritzs/org-agenda-bulk-process-key ?f
 ;;   "Default key for bulk processing inbox items.")
 
-(defun moritzs/org-process-undone ()
-  "Called in org-agenda-mode, processes all inbox items."
-  (interactive)
-  (org-agenda nil " ")  ;; select todo view
-  (unless org-agenda-follow-mode
-    (org-agenda-follow-mode))
-  (org-agenda-bulk-mark-all)
-  (moritzs/bulk-process-entries 'moritzs/org-agenda-process-item)
-  )
-
-(defun moritzs/org-process-inbox ()
-  "Called in org-agenda-mode, processes all inbox items."
-  (interactive)
-  (org-agenda nil "i")  ;; select inbox view
-  (org-agenda-follow-mode)
-  (org-agenda-bulk-mark-all)
-  (moritzs/bulk-process-entries 'moritzs/org-agenda-process-item)
-  )
-
-(defun moritzs/org-agenda-process-item ()
-  "Process a single item in the org-agenda. TODO include projects"
-  (org-with-wide-buffer
-   ;; ask for <n>(Next/Now) <s>(Someday)
-   ;; TODO maybe allow to add comment to log-drawer if capitalized input
-
-   (cl-case (read-char "Process <n>ow, <t>omorrow, on the <w>eekend or <s>omeday? Or mark as <o>ffice or <h>ome job without date and put to someday. You can also mark a job as <c>ancelled or <d>one.")
-     (?n (org-agenda-schedule nil "+0") (moritzs/set-todo-state-next) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-     (?N (org-agenda-schedule nil "+0") (org-agenda-todo) (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-     (?t (org-agenda-schedule nil "+1") (moritzs/set-todo-state-next) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-     (?T (org-agenda-schedule nil "+1") (org-agenda-todo) (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-     (?w (org-agenda-priority) (org-agenda-schedule nil "sat") (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-     (?W (org-agenda-priority) (org-agenda-schedule nil "sat") (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-     (?s (org-agenda-schedule nil) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-     (?S (org-agenda-schedule nil) (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-     (?o (org-agenda-set-tags "@office") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-     (?O (org-agenda-priority) (org-agenda-set-effort) (org-agenda-set-tags "@office") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-     (?h (org-agenda-set-tags "@home") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-     (?H (org-agenda-priority) (org-agenda-set-effort) (org-agenda-set-tags "@home") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-
-     (?c (org-agenda-todo 7) (org-agenda-archive))
-     (?d (org-agenda-todo 4) (org-agenda-archive))
-     (t)) ;; all other keys just skip
-   )
-  )
-
-;; UNUSED
-(defun moritzs/org-agenda-process-undone-item ()
-  "Process one of the undone items. Either it goes back to inbox.org or it goes to someday. TODO include projects"
-  (org-with-wide-buffer
-   (cl-case (read-char "Put back into <i>nbox, into <n>ow/next/tomorrow (for today) or <s>omeday. You can also mark a job as <c>ancelled or <d>one.")
-     (?i (org-agenda-refile nil (list "inbox.org" "/home/moritz/wiki/gtd/inbox.org" nil nil) t))
-     (?n (org-agenda-schedule nil "+0") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t))
-     (?s (org-agenda-schedule nil) (org-agenda-priority) (org-agenda-set-effort) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil) t)t)
-     (?c (org-agenda-todo 7) (org-agenda-archive))
-     (?d (org-agenda-todo 4) (org-agenda-archive)))
-   ))
-
 (defun moritzs/bulk-process-entries (item-process-function)
   (if (not (null org-agenda-bulk-marked-entries))
       (let ((entries (reverse org-agenda-bulk-marked-entries))
@@ -147,8 +85,6 @@
     ))
 
 ;; (define-key org-agenda-mode-map "i" 'org-agenda-clock-in)
-;; (define-key org-agenda-mode-map "i" 'moritzs/org-process-inbox)
-;; (define-key org-agenda-mode-map "r" 'moritzs/org-process-undone)
 ;; (define-key org-agenda-mode-map "R" 'org-agenda-refile)
 ;; (define-key org-agenda-mode-map "c" 'moritzs/org-inbox-capture)
 
@@ -195,8 +131,6 @@
 ;;   (interactive)
 ;;   "Capture a task in agenda mode."
 ;;   (org-capture nil "i"))
-
-;; (setq org-agenda-bulk-custom-functions `((,moritzs/org-agenda-bulk-process-key moritzs/org-agenda-process-inbox-item)))
 
 (defun moritzs/org-archive-done-tasks ()
   (interactive)
