@@ -288,8 +288,8 @@
 (define-key evil-emacs-state-map (kbd "C-z") nil)
 (define-key evil-motion-state-map (kbd "C-z") nil)
 
-(define-key undo-tree-map (kbd "C-r") nil)  ;; TODO not working yet
-(define-key evil-motion-state-map (kbd "C-r") 'isearch-backward)  ;; TODO not working yet
+;; (define-key undo-tree-map (kbd "C-r") nil)  ;; TODO not working yet
+;; (define-key evil-motion-state-map (kbd "C-r") 'isearch-backward)  ;; TODO not working yet
 
 (define-key global-map (kbd "C-z") 'undo-tree-undo)
 (define-key global-map (kbd "C-S-z") 'undo-tree-redo)

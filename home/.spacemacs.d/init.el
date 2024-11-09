@@ -31,7 +31,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(perl5
      ;; khoj ; was crashing
      graphviz
      shell-scripts
