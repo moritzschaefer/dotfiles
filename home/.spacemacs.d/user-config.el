@@ -361,7 +361,7 @@
   (interactive)
   (let ((password (read-passwd "Sudo password for nixos-rebuild switch: ")))
 
-    (find-file  "/home/moritz/nixos-config/README.org")
+    (find-file  "~/nixos-config/README.org")
     (org-babel-tangle)
     (sudo-shell-command
      "*nixos-rebuild*"

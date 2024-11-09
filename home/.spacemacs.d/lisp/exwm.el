@@ -118,7 +118,7 @@
 (defun moritzs/search-wiki ()
   (interactive)
   (let ((helm-ag-command-option  "-G\.org$ "))
-    (helm-do-ag "/home/moritz/wiki/")
+    (helm-do-ag "~/wiki/")
     )
 )
 
@@ -150,7 +150,7 @@
 (exwm-input-set-key (kbd "s-M-r") #'moritzs/exwm-reboot)
 
 ;; autostart
-(start-process-shell-command "autostart" "autostart" "/home/moritz/.spacemacs.d/autostart.sh") ;; TODO is this working?
+(start-process-shell-command "autostart" "autostart" "~/.spacemacs.d/autostart.sh") ;; TODO is this working?
 
 (desktop-environment-mode)  ;; (not in config anymore)
 ;; (setq desktop-environment-brightness-small-decrement "2%-")

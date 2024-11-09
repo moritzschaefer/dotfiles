@@ -43,11 +43,11 @@
 (setq org-refile-use-outline-path 'file
       org-outline-path-complete-in-steps nil)
 (setq org-refile-allow-creating-parent-nodes 'confirm)
-(setq org-refile-targets '(("/home/moritz/wiki/gtd/inbox.org" :level . 0)
-                           ("/home/moritz/wiki/gtd/einkaufen.org" :level . 0)
-                           ("/home/moritz/wiki/gtd/toread.org" :level . 0)
-                           ("/home/moritz/wiki/gtd/someday.org" :level . 0)
-                           ("/home/moritz/wiki/gtd/projects.org" :level . 1)
+(setq org-refile-targets '(("~/wiki/gtd/inbox.org" :level . 0)
+                           ("~/wiki/gtd/einkaufen.org" :level . 0)
+                           ("~/wiki/gtd/toread.org" :level . 0)
+                           ("~/wiki/gtd/someday.org" :level . 0)
+                           ("~/wiki/gtd/projects.org" :level . 1)
                            ))
 ;; (defvar moritzs/org-agenda-bulk-process-key ?f
 ;;   "Default key for bulk processing inbox items.")
@@ -129,9 +129,9 @@
       (insert "[/] ")
       )
     )
-  (org-refile nil nil (list "projects.org" "/home/moritz/wiki/gtd/projects.org" nil nil))
+  (org-refile nil nil (list "projects.org" "~/wiki/gtd/projects.org" nil nil))
   ;; open buffer projects.org
-  (find-file "/home/moritz/wiki/gtd/projects.org")
+  (find-file "~/wiki/gtd/projects.org")
   )
 
 ;; (defun moritzs/org-inbox-capture ()

@@ -648,8 +648,8 @@ This function is called at the very end of Spacemacs initialization."
        (default . bibtex-completion-format-citation-default)))
    '(browse-url-browser-function 'browse-url-default-browser)
    '(browse-url-generic-program "qutebrowser")
-   '(conda-anaconda-home "/home/moritz/.conda/")
-   '(conda-env-home-directory "/home/moritz/.conda/")
+   '(conda-anaconda-home "~/.conda/")
+   '(conda-env-home-directory "~/.conda/")
    '(dap-auto-configure-features '(locals breakpoints expressions repl tooltip))
    '(dap-auto-configure-mode t)
    '(dap-python-debugger 'debugpy t)
@@ -760,7 +760,7 @@ This function is called at the very end of Spacemacs initialization."
    '(org-agenda-file-regexp
      "\\(inbox\\|someday\\|projects\\|toread\\|Smartphone\\|einkaufen\\).org$")
    '(org-agenda-files
-     '("/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/someday.org" "/home/moritz/wiki/gtd/toread.org" "/home/moritz/wiki/calendar-sync/calendars.org"))
+     '("~/wiki/gtd/einkaufen.org" "~/wiki/gtd/inbox.org" "~/wiki/gtd/projects.org" "~/wiki/gtd/someday.org" "~/wiki/gtd/toread.org" "~/wiki/calendar-sync/calendars.org"))
    '(org-agenda-follow-indirect t)
    '(org-ai-default-chat-model "gpt-4")
    '(org-ai-default-max-tokens 4096)
@@ -798,7 +798,7 @@ This function is called at the very end of Spacemacs initialization."
        ("p" "Blog post" entry
         (file moritzs/blog-post-name)
         (file "~/Projects/homepage/templates/post.md"))))
-   '(org-cite-global-bibliography '("/home/moritz/wiki/papers/references.bib"))
+   '(org-cite-global-bibliography '("~/wiki/papers/references.bib"))
    '(org-cycle-hook
      '(org-cycle-hide-archived-subtrees org-cycle-show-empty-lines org-cycle-optimize-window-after-visibility-change org-cycle-display-inline-images org-cycle-hide-drawers))
    '(org-directory "~/wiki")
@@ -843,9 +843,9 @@ This function is called at the very end of Spacemacs initialization."
        ("a" "Analysis" plain "%?" :immediate-finish t :unnarrowed t :if-new
         (file+head "%<%Y%m%d%H%M%S>-analysis_${slug}.org" "#+ROAM_TAGS: Analysis\12#+TITLE: ${title}\12#+created_at: %<%Y-%m-%d %H:%M>\12\12- tags :: [[id:111eeb88-55d1-4d4f-a2a8-5f8ff7791472][Analysis]]\12\12* Content\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12\12#+END_SRC"))
        ("g" "gene" plain "%?" :immediate-finish t :unnarrowed t :if-new
-        (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+ROAM_TAGS: Gene\12#+title: ${title}\12#+created_at: %<%Y-%m-%d %H:%M>\12\12- tags :: [[id:131686dd-7a7e-49ca-8407-1ea72a780e4e][Gene]]\12\12\12* Mutant upregulation\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12df = pd.read_csv('/home/moritz/mesc-regulation/output/mrna_data_all.csv', index_col=[0,1], header=[0,1])\12df.xs(axis=1, level=1, key='log2FoldChange').reset_index(level=0).loc['${title}']\12#+END_SRC\12\12* TPM expression\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12df.xs(axis=1, level=1, key='tpm_expression').reset_index(level=0, drop=True).loc['${title}'].plot(kind='bar')\12#+END_SRC\12\12* Isoform expression\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12from moritzsphd.integration import gene_transcript_expression\12gene_transcript_expression('${title}', plot=True)\12#+END_SRC"))
+        (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+ROAM_TAGS: Gene\12#+title: ${title}\12#+created_at: %<%Y-%m-%d %H:%M>\12\12- tags :: [[id:131686dd-7a7e-49ca-8407-1ea72a780e4e][Gene]]\12\12\12* Mutant upregulation\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12df = pd.read_csv('~/mesc-regulation/output/mrna_data_all.csv', index_col=[0,1], header=[0,1])\12df.xs(axis=1, level=1, key='log2FoldChange').reset_index(level=0).loc['${title}']\12#+END_SRC\12\12* TPM expression\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12df.xs(axis=1, level=1, key='tpm_expression').reset_index(level=0, drop=True).loc['${title}'].plot(kind='bar')\12#+END_SRC\12\12* Isoform expression\12#+BEGIN_SRC python :session py :exports results :var ATT_DIR=(org-attach-dir)\12from moritzsphd.integration import gene_transcript_expression\12gene_transcript_expression('${title}', plot=True)\12#+END_SRC"))
        ("r" "ref" plain
-        (file "/home/moritz/wiki/templates/noter_ref.template")
+        (file "~/wiki/templates/noter_ref.template")
         :immediate-finish t :jump-to-captured t :if-new
         (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}"))
        ("f" "Friday seminar" plain "%?" :immediate-finish t :jump-to-captured t :unnarrowed t :if-new
@@ -859,7 +859,7 @@ This function is called at the very end of Spacemacs initialization."
    '(org-roam-dailies-capture-templates
      '(("d" "default" entry "* %?" :target
         (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\12* Morning dump\12- [/] Daily tasks \12  - [ ] Take pills 1-2 hours after wake up\12  - [ ] Check calendar\12  - [ ] [[file:../../gtd/toread.org][Read two abstracts, optionally one paper]]\12  - [ ] Process inbox\12  - [ ] Check Agenda\12  - [ ] Check daily routine \12  - [ ] Afternoon Take coffein at 4\12  - [ ] Between 17:00 and 19:00 do some sports\12  - [ ] [[file:../../gtd/toread.org][Read <leisure> things]]\12* Journal\12* Gratitude"))))
-   '(org-roam-directory "/home/moritz/wiki/roam")
+   '(org-roam-directory "~/wiki/roam")
    '(org-src-preserve-indentation nil)
    '(org-src-tab-acts-natively nil)
    '(org-startup-folded nil)

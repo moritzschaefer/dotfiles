@@ -17,7 +17,7 @@
 
 
 ;;; Set up some common mu4e variables
-(setq mu4e-maildir "/home/moritz/mail"
+(setq mu4e-maildir "~/mail"
       mu4e-trash-folder "/Trash"
       mu4e-refile-folder "/Archive"
       mu4e-get-mail-command "mbsync -a"

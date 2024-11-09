@@ -38,7 +38,7 @@
 
   ;; (add-hook 'pdf-view-mode-hook 'org-noter-init-pdf-view)
   )
-;; from /home/moritz/.emacs.d/elpa/27.1/develop/org-ref-20201002.1514/org-ref-pdf.el
+;; from ~/.emacs.d/elpa/27.1/develop/org-ref-20201002.1514/org-ref-pdf.el
 (defun moritzs/org-ref-pdf-to-bibtex ()
   "Add pdf of current buffer to bib file and save pdf to
 `org-ref-default-bibliography'. The pdf should be open in Emacs

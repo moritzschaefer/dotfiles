@@ -5,19 +5,19 @@
 
 ;; (require 'xdg)
 
-(setq org-roam-directory "/home/moritz/wiki/roam")
+(setq org-roam-directory "~/wiki/roam")
 (defun moritzs/recent-download-file ()
   "Open a recently downloaded file."
   (interactive)
 
-  (setq downloaded-file (shell-command-to-string "ls -t /home/moritz/Downloads | head -n 1 | tr -d '\n'"))
+  (setq downloaded-file (shell-command-to-string "ls -t ~/Downloads | head -n 1 | tr -d '\n'"))
 
-  (find-file-existing (format "/home/moritz/Downloads/%s" downloaded-file))
+  (find-file-existing (format "~/Downloads/%s" downloaded-file))
   )
 
 (defun moritzs/recent-smartphone-photo ()
   "Open a recently taken smartphone picture."
-  (format "/home/moritz/Kamera/Camera/%s" (shell-command-to-string "ls -t  '/home/moritz/Kamera/Camera/' | head -n 1 | tr -d '\n'"))
+  (format "~/Kamera/Camera/%s" (shell-command-to-string "ls -t  '~/Kamera/Camera/' | head -n 1 | tr -d '\n'"))
   )
 
 (defun moritzs/open-smartphone-photo ()

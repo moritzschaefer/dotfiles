@@ -16,10 +16,10 @@ if ! pgrep urxvt; then
     # dunst & 
     # sparkleshare --status-icon=gtk &
     # touchegg &
-    # echo "$USER@$HOSTNAME" >> /home/moritz/debug.out
+    # echo "$USER@$HOSTNAME" >> ~/debug.out
     # urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec command tmux new-session -n$USER -s$USER@$HOSTNAME" &
     urxvt -e fish -c tmux &
-    # export QUTE_BIB_FILEPATH="/home/moritz/wiki/papers/references.bib" # this is taken care of already
+    # export QUTE_BIB_FILEPATH="~/wiki/papers/references.bib" # this is taken care of already
     # qutebrowser-niced &
     google-chrome-stable &
     blueman-applet &
