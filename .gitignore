@@ -5,3 +5,4 @@ home/.vim/bundle
 *.hi
 id_rsa
 /home/.config/systemd
+.spacemacs.env
