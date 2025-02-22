@@ -8,7 +8,22 @@
 (require 'org-agenda)
 (setq moritzs/org-agenda-inbox-view
       `("i" "Inbox" todo ""
-        ((org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/orgzly_smartphone/Smartphone.org" )))))
+        ((org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/smartphone.org" )))))
+(setq moritzs/org-agenda-reviews-view
+      `("r" "Recent Reviews"
+        ((org-ql-block '(or (heading "Review last week, plan next week")
+                            (parent (heading "Review last week, plan next week")))
+                       ((org-ql-block-header "Review last week, plan next week")
+                        (org-agenda-sorting-strategy '(timestamp-down))))
+         (org-ql-block '(or (heading "Bi-monthly review session")
+                            (parent (heading "Bi-monthly review session")))
+                       ((org-ql-block-header "Bi-monthly review session")
+                        (org-agenda-sorting-strategy '(timestamp-down))))
+         (org-ql-block '(or (heading "Yearly review session")
+                            (parent (heading "Yearly review session")))
+                       ((org-ql-block-header "Yearly review session")
+                        (org-agenda-sorting-strategy '(timestamp-down)))))))
+
 (setq moritzs/org-agenda-unsorted-productivity
       `("p" "Unsorted Productivity items"
         ((org-ql-block '(and (parent (heading "Unsorted productivity items"))
@@ -141,18 +156,22 @@
 
 (defun moritzs/org-archive-done-tasks ()
   (interactive)
-  (org-map-entries
-   (lambda ()
-     (org-archive-subtree)
-     (setq org-map-continue-from (outline-previous-heading)))
-   "/DONE" 'file)
+  (let ((org-archive-subtree-save-file-p nil))
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (outline-previous-heading)))
+     "/DONE" 'file)
 
-  (org-map-entries
-   (lambda ()
-     (org-archive-subtree)
-     (setq org-map-continue-from (outline-previous-heading)))
-   "/CANCELLED" 'file)
-  )
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (outline-previous-heading)))
+     "/CANCELLED" 'file))
+
+  ;; Save the file if org-archive-subtree-save-file-p is non-nil
+  (when org-archive-subtree-save-file-p
+    (save-buffer)))
 (defun moritzs/set-todo-state-next ()
   "Visit each parent task and change NEXT states to TODO"
   (org-todo "NEXT"))
@@ -164,7 +183,7 @@
       `(" " "Agenda"
         ((agenda ""
                  ((org-agenda-span 'day)
-                  (org-deadline-warning-days 365)))
+                  (org-deadline-warning-days 5)))
          (todo "NEXT"
                ((org-agenda-overriding-header "In Progress")
                 (org-agenda-files '("~/wiki/gtd/projects.org" "~/wiki/gtd/someday.org" "~/wiki/gtd/inbox.org"))
@@ -172,13 +191,18 @@
                 ))
          (todo "TODO"
                ((org-agenda-overriding-header "To Refile")
-                (org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/orgzly_smartphone/Smartphone.org"))))
+                (org-agenda-files '("~/wiki/gtd/inbox.org" "~/wiki/gtd/smartphone.org" ))))
          ;; (todo "TODO"
          ;;       ((org-agenda-overriding-header "Emails")
          ;;         (org-agenda-files '("~/wiki/gtd/emails.org")))) TODO add later..
+         (todo "WAITING"
+               ((org-agenda-overriding-header "Waiting")
+                (org-agenda-files '("~/wiki/gtd/projects.org" "~/wiki/gtd/someday.org" "~/wiki/gtd/inbox.org"))
+                ))
          (todo "TODO"
                ((org-agenda-overriding-header "Reading")
                 (org-agenda-files '("~/wiki/gtd/toread.org"))
+                ;; (org-agenda-sorting-strategy 'timestamp-up) TODO would need testing
                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
          (todo "TODO"
                ((org-agenda-overriding-header "Undated")
@@ -228,6 +252,7 @@
         ;; ,moritzs/org-agenda-someday-view
         ,moritzs/org-agenda-todo-view
         ,moritzs/org-agenda-undone-view
+        ,moritzs/org-agenda-reviews-view
         ,moritzs/org-agenda-unsorted-productivity
         ))
 

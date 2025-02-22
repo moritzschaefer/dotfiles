@@ -289,7 +289,7 @@
 (define-key evil-motion-state-map (kbd "C-z") nil)
 
 ;; (define-key undo-tree-map (kbd "C-r") nil)  ;; TODO not working yet
-;; (define-key evil-motion-state-map (kbd "C-r") 'isearch-backward)  ;; TODO not working yet
+(define-key evil-motion-state-map (kbd "C-r") 'isearch-backward)  ;; TODO not working yet
 
 (define-key global-map (kbd "C-z") 'undo-tree-undo)
 (define-key global-map (kbd "C-S-z") 'undo-tree-redo)
@@ -558,11 +558,17 @@
 
 (add-hook 'importmagic-mode-hook 'renice-importmagicserver)
 
+
+(with-eval-after-load 'password-store
+  (spacemacs/set-leader-keys
+    "atPg" 'password-store-generate-no-symbols)
+  )
+
 ;; TODO automatically import everything in lisp/
 
 (load "~/.spacemacs.d/lisp/org.el")
 (load "~/.spacemacs.d/lisp/exwm.el")
-(load "~/.spacemacs.d/lisp/layouts.el")
+;; (load "~/.spacemacs.d/lisp/layouts.el")
 (load "~/.spacemacs.d/lisp/dna.el")
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")

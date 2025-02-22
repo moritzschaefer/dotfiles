@@ -1,11 +1,12 @@
 #!/bin/sh
 
+# TODO we might want to run `xrdb -merge ~/.Xresources` as well
 if ! pgrep urxvt; then
     xmodmap ~/.Xmodmap
-    # guided_prot_diff_conda_env $ 
+    # mamba_kernel $ 
     # clipit &
     nm-applet &
-    clipit 2>&1 > ~/clipit.log &
+    clipit 2>&1
     # rambox &
     # system-config-printer-applet &
     # ~/bin/redshift-workaround &
@@ -21,7 +22,7 @@ if ! pgrep urxvt; then
     urxvt -e fish -c tmux &
     # export QUTE_BIB_FILEPATH="~/wiki/papers/references.bib" # this is taken care of already
     # qutebrowser-niced &
-    google-chrome-stable &
+    chromium &
     blueman-applet &
     pasystray &
     # teams &  # use in browser

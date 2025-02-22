@@ -5,6 +5,8 @@
 
 ;; (require 'xdg)
 
+;; https://emacs.stackexchange.com/questions/2418/moving-the-mode-line-and-minibuffer-to-the-top
+;; (setq-default header-line-format mode-line-format) <- doesn't work
 (setq org-roam-directory "~/wiki/roam")
 (defun moritzs/recent-download-file ()
   "Open a recently downloaded file."
@@ -28,4 +30,3 @@
 ;; (erc :server "irc.freenode.net" :port 6697 :nick "moritzschaefer")
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("freenode.net" "#spacemacs" "#wiki" "#nethack" "#neo")))
-

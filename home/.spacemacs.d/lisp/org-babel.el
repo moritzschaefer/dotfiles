@@ -84,50 +84,53 @@
 (add-hook 'org-mode-hook #'moritzs/set-custom-kernel)
 
 (with-eval-after-load 'jupyter-env
-  (advice-add 'jupyter-command :override (lambda (&rest args)
+  (advice-add 'jupyter-command :override (
+                                          lambda (&rest args)
 
-  "Run a Jupyter shell command synchronously, return its output.
+                                          "Run a Jupyter shell command synchronously, return its output.
 The shell command run is
 
     jupyter ARGS...
 
 If the command fails or the jupyter shell command doesn't exist,
 return nil."
-  (let ((stderr-file (make-temp-file "jupyter"))
-        (stdout (get-buffer-create " *jupyter-command-stdout*")))
-    (unwind-protect
-        (let* ((status (apply #'process-file "guided_prot_diff_cmd" nil (list stdout stderr-file) nil (cons "jupyter" args)))
-               (buffer (find-file-noselect stderr-file)))
-          (unwind-protect
-              (with-current-buffer buffer
-                (unless (eq (point-min) (point-max))
-                  (message "jupyter-command: Content written to stderr stream")
-                  (while (not (eq (point) (point-max)))
-                    (message "    %s" (buffer-substring (line-beginning-position)
-                                                        (line-end-position)))
-                    (forward-line))))
-            (kill-buffer buffer))
-          (when (zerop status)
-            (with-current-buffer stdout
-              (string-trim-right (buffer-string)))))
-      (delete-file stderr-file)
-      (kill-buffer stdout))))
+                                          (let ((stderr-file (make-temp-file "jupyter"))
+                                                (stdout (get-buffer-create " *jupyter-command-stdout*")))
+                                            (unwind-protect
+                                                (let* ((status (apply #'process-file "mamba_cmd" nil (list stdout stderr-file) nil (cons "jupyter" args)))
+                                                       (buffer (find-file-noselect stderr-file)))
+                                                  (unwind-protect
+                                                      (with-current-buffer buffer
+                                                        (unless (eq (point-min) (point-max))
+                                                          (message "jupyter-command: Content written to stderr stream")
+                                                          (while (not (eq (point) (point-max)))
+                                                            (message "    %s" (buffer-substring (line-beginning-position)
+                                                                                                (line-end-position)))
+                                                            (forward-line))))
+                                                    (kill-buffer buffer))
+                                                  (when (zerop status)
+                                                    (with-current-buffer stdout
+                                                      (string-trim-right (buffer-string)))))
+                                              (delete-file stderr-file)
+                                              (kill-buffer stdout))))
               )
   (advice-add 'jupyter-locate-python :override (lambda ()
-      "Return the path to a Python executable."
-      "guided_prot_diff_repl"
-      )
-    )
+                                                 "Return the path to a Python executable."
+                                                 "mamba_repl"
+                                                 )
+              )
   )
 (with-eval-after-load 'jupyter-kernelspec
   ;; Add advice after existing
   (defun my-jupyter-kernel-argv-advice (orig-fun &rest args)
     (let ((orig-argv (apply orig-fun args)))
-      (cons "guided_prot_diff_cmd" orig-argv)))
+      (cons "mamba_cmd" orig-argv)))
 
   (advice-add 'jupyter-kernel-argv :around #'my-jupyter-kernel-argv-advice)
 
   ) ;; TODO make sure this works
+
+
 ;; (with-eval-after-load 'jupyter-kernel-process ;; covered by the one above
 ;;   (advice-add 'jupyter--start-kernel-process :override (lambda (name kernelspec conn-file)
 ;;                                                          (let* ((process-name (format "jupyter-kernel-%s" name))
@@ -139,7 +142,7 @@ return nil."
 ;;                                                                 (atime (nth 4 (file-attributes conn-file)))
 ;;                                                                 (process (apply #'start-file-process process-name
 ;;                                                                                 (generate-new-buffer buffer-name)
-;;                                                                                 "guided_prot_diff_cmd" args))) ; <-- Change (car args) to guided_prot_diff_cmd
+;;                                                                                 "mamba_cmd" args))) ; <-- Change (car args) to mamba_cmd
 ;;                                                                 )
 ;;               (set-process-query-on-exit-flag process jupyter--debug)
 ;;               ;; Wait until the connection file has been read before returning.

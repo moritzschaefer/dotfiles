@@ -46,6 +46,12 @@ This function should only modify configuration layer settings."
      ruby
      nginx
      nixos
+     (languagetool :variables
+                   languagetool-show-error-on-jump t
+                   langtool-default-language "en-US"
+                   langtool-http-server-host "localhost"
+                   langtool-http-server-port 8081
+                   )
 
      ;; (erc :variables
      ;;        erc-server-list
@@ -107,7 +113,7 @@ This function should only modify configuration layer settings."
      latex
      emacs-lisp
      git
-     ipython-notebook
+     ;; ipython-notebook never worked
      ess ;; emacs speaks statistics (R)
      markdown
      syntax-checking
@@ -136,6 +142,7 @@ This function should only modify configuration layer settings."
      ;; sync-calendars ; TODO does not work
      whisper
      ;;modefault
+     khoj
      )
 
    ;; List of additional packages that will be installed without being wrapped
@@ -147,7 +154,7 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    ;; emacsql-sqlite is in there to prevent it from uninstalling every time (it's a nixos system-installed package)
-   dotspacemacs-additional-packages '(ox-clip emacsql-sqlite (ox-ipynb :location (recipe :fetcher github :repo "jkitchin/ox-ipynb" :files ("*.el"))) clipmon org-drill keytar (lsp-grammarly :ensure t :hook (org-mode . (lambda () (message "im here")(require 'lsp-grammarly) (lsp)))) org-tree-slide gscholar-bibtex key-chord git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8 (jupyter :hook (jupyter-repl-mode . (lambda () (company-mode)))) org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")) (seqel :location (recipe :fetcher github :repo "rnaer/seqel")))
+   dotspacemacs-additional-packages '(ox-clip emacsql-sqlite (ox-ipynb :location (recipe :fetcher github :repo "jkitchin/ox-ipynb" :files ("*.el"))) clipmon org-drill keytar (lsp-grammarly :ensure t :hook (org-mode . (lambda () (message "im here")(require 'lsp-grammarly) (lsp)))) org-tree-slide gscholar-bibtex key-chord git-auto-commit-mode helm-rg helm-org-ql org-ql py-autopep8  (jupyter :hook (jupyter-repl-mode . (lambda () (company-mode)))) org-roam-bibtex org-noter github-clone el-patch telega synosaurus yasnippet-snippets editorconfig org-cliplink synonymous openwith pulseaudio-control pinentry spotify ssh-agency snakemake-mode helm-exwm desktop-environment (matrix-client :location (recipe :fetcher github :repo "alphapapa/matrix-client.el")) (seqel :location (recipe :fetcher github :repo "rnaer/seqel")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -362,7 +369,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
 
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
@@ -377,7 +384,7 @@ It should only modify the values of Spacemacs settings."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'cache
+   dotspacemacs-auto-save-file-location 'original
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
@@ -625,12 +632,13 @@ This function is called at the very end of Spacemacs initialization."
    '(appt-display-duration 4)
    '(appt-display-interval 10)
    '(auto-save-timeout 30)
+   '(auto-save-visited-interval 5)
    '(auto-save-visited-mode t)
    '(auto-save-visited-predicate
      '(lambda nil
         (and
          (eq major-mode 'org-mode)
-         (string-match "Smartphone.org$" buffer-file-name))))
+         (string-match ".org$" buffer-file-name))))
    '(avy-all-windows t)
    '(avy-keys
      '(101 110 105 114 116 115 99 103 117 108 98 111 100 109 97 104 228 121 252 122 118 44 46))
@@ -652,8 +660,8 @@ This function is called at the very end of Spacemacs initialization."
    '(conda-env-home-directory "~/.conda/")
    '(dap-auto-configure-features '(locals breakpoints expressions repl tooltip))
    '(dap-auto-configure-mode t)
-   '(dap-python-debugger 'debugpy t)
-   '(dap-python-executable "guided_prot_diff_repl")
+   '(dap-python-debugger 'debugpy)
+   '(dap-python-executable "mamba_repl")
    '(dap-python-terminal nil)
    '(desktop-environment-brightness-small-decrement "2%-")
    '(desktop-environment-brightness-small-increment "2%+")
@@ -664,6 +672,14 @@ This function is called at the very end of Spacemacs initialization."
    '(desktop-environment-screenshot-partial-command
      "bash -c 'gnome-screenshot -a -c -f  /tmp/last_screenshot.png && cat /tmp/last_screenshot.png  | xclip -i -selection clipboard -target image/png'")
    '(desktop-environment-update-exwm-global-keys nil)
+   '(desktop-environment-volume-get-command "pulsemixer --get-volume")
+   '(desktop-environment-volume-get-regexp "\\([0-9]+\\)")
+   '(desktop-environment-volume-normal-decrement "-5")
+   '(desktop-environment-volume-normal-increment "+5")
+   '(desktop-environment-volume-set-command "pulsemixer --change-volume %s --max-volume 100")
+   '(desktop-environment-volume-small-decrement "-1")
+   '(desktop-environment-volume-small-increment "+1")
+   '(desktop-environment-volume-toggle-command "pulsemixer --toggle-mute")
    '(elfeed-search-filter "@6-months-ago +unread -reddit")
    '(epg-pinentry-mode 'loopback)
    '(evil-want-Y-yank-to-eol nil)
@@ -695,13 +711,19 @@ This function is called at the very end of Spacemacs initialization."
    '(google-translate-enable-ido-completion t t)
    '(google-translate-show-phonetic t t)
    '(gptel-directives
-     '((default . "You are an autoregressive language model living in Emacs and you have been fine-tuned with instruction-tuning and RLHF. You carefully provide accurate, factual, thoughtful, nuanced answers, and are brilliant at reasoning. If you think there might not be a correct answer, you say so.\12Since you are autoregressive, each token you produce is another opportunity to use computation, therefore you always spend a few sentences explaining background context, assumptions, and step-by-step thinking BEFORE you try to answer a question.\12Your users are experts in AI and ethics, so they already know you're a language model and your capabilities and limitations, so don't remind them of that. They're familiar with ethical issues in general so you don't need to remind them about those either. They also have a basic understanding of biology and deep knowledge of most molecular biology.\12Don't be verbose in your answers, but do provide details and examples where it might help the explanation.")
-       (simple . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
+     '((research-question . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my academic advisor helping me to find a research question for my Postdoc project. Adopt the role of an outstanding scientist with a longstanding expertise in my field of study. Base the questions very specifically on the information you will be provided with.\12\12Analyze current research trends and knowledge gaps to identify three high-impact research questions suitable for a Postdoc project. For each question you come up with do the following:\12\0121. Briefly ponder on relevant and surprising directions that might be linked to what is described above\0122. Formulate a clear, testable research question as a single sentence\0123. Provide the three most relevant peer-reviewed publications from the last five years that form the basis of the question\0124. Analyze its significance:\12   - How it addresses current knowledge gaps\12   - Potential impact on field advancement\12   - Broader implications for related research areas\12   - Integration with most recent findings of the field\0125. Outline 3 distinct experimental approaches:\12   - Required methodology\12   - Key techniques\12   - Expected outcomes\12   - Potential technical challenges\12   - Resource requirements\12\12Focus on questions that:\12- Challenge current paradigms\12- Bridge distinct research areas\12- Address fundamental mechanisms\12- Have translational potential\12- Build on my technical expertise\12- Are feasible within 3-5 years\12- Can yield multiple publications\12\12Respond in this structure:\12- Research Question 1: [Single sentence question]\12- Significance: [Concise analysis of importance and potential impact]\12- Experimental Approaches: 1. [Approach 1] 2. [Approach 2] 3. [Approach 3] 4. [Approach 4] 5. [Approach 5]\12\12[Repeat for Questions 2 and 3]")
+       (grant-writing . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12[Research]\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my research assistant. You will help me rewriting provided parts of my research documents (proposals, papers, grants, statements). Rely on the provided contextual information, which includes the full draft, as much as possible. Introduce new meaningful ideas/concepts where helpful, but stick to the storyline most of the time.\12\12[No fake references]\12You will never make up any sources of your own. If you are unsure about a source, you will say that you don’t know.\12\12[Style]\12Rewrite clear and concise, do not use more words than are necessary. Always be very economical with words, but do not compromise on clarity and precision of your answers.")
+       (default . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12[Research]\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my research assistant. You will help me with finding structures for academic writing and presentation, brainstorming research questions, simplifying complex topics, mock peer review, finding narrative structures for my science, and improving style of academic writing. You will help me with improving drafts of the papers I am working on and with finding a good way to tell the story of my research. You will also engage with me in a Socratic dialog and challenge my opinions so that I am aware of any blind spots I may have. Based on our conversations, you will suggest promising hyptheses and directions for my research.\12If I ask you to give me feedback on a text, you will analyze its:\0121. Central argument with a focus on clarity and strength. Provide helpful and actionable suggestions for improvement.\0122. Evidence presented in support of the central argument. If the evidence is not convincing enough then provide actionable suggestions for improvement.\0123. Overall structure for coherence and cohesion. Provide actionable suggestion to improve the structure of the manuscript.\0124. Style consistency and adherence to established academic language.\12\12\12[Persona]\12You will respond like an academic colleague in the fields of Machine Learning and Life Science. Any claims, opinions, or figures that you cite in your responses must be cited with reference to an authentic and published source.\12\12[No fake references]\12You will never make up any sources of your own. If you are unsure about a source, you will say that you don’t know.\12\12[Style]\12Your responses should be clear and concise, do not use more words than are necessary. Always be very economical with words, but do not compromise on clarity and precision of your answers.\12You will follow my instructions strictly. If I ask you to limit your answer to two sentences, your answer must be two sentences only.")
+       (synonyms . "What are synonyms of this word:")
+       (rewrite . "Rewrite concisely and shorten:")
+       (deutsch . "Translate the following into German:")
+       (english . "Translate the following into English:")
+       (default . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
        (programming . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
        (writing . "You are a large language model and a writing assistant. Respond concisely.")
        (chat . "You are a large language model and a conversation partner. Respond concisely.")))
-   '(gptel-model "gpt-4o")
-   '(gptel-temperature 0.0)
+   '(gptel-model 'gpt-4o)
+   '(gptel-temperature 0.5)
    '(helm-ag-ignore-patterns '("*.ipynb" "*.svg" "*.csv"))
    '(helm-ag-use-agignore t)
    '(helm-completion-style 'emacs)
@@ -746,9 +768,7 @@ This function is called at the very end of Spacemacs initialization."
    '(jupyter-api-authentication-method 'password)
    '(jupyter-org-resource-directory "~/wiki/.ob-jupyter/")
    '(key-chord-one-key-delay 0.05)
-   '(key-chord-two-keys-delay 0.03)
-   '(khoj-server-is-local t)
-   '(khoj-server-url "http://127.0.0.1:42110")
+   '(key-chord-two-keys-delay 0.06)
    '(large-file-warning-threshold 50000000)
    '(lpr-command "gtklp")
    '(lsp-enable-dap-auto-configure nil)
@@ -758,9 +778,9 @@ This function is called at the very end of Spacemacs initialization."
    '(orb-preformat-keywords
      '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "file" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "url" "author-or-editor" "keywords" "journal" "title"))
    '(org-agenda-file-regexp
-     "\\(inbox\\|someday\\|projects\\|toread\\|Smartphone\\|einkaufen\\).org$")
+     "\\(inbox\\|someday\\|projects\\|toread\\|smartphone\\|einkaufen\\).org$")
    '(org-agenda-files
-     '("~/wiki/gtd/einkaufen.org" "~/wiki/gtd/inbox.org" "~/wiki/gtd/projects.org" "~/wiki/gtd/someday.org" "~/wiki/gtd/toread.org" "~/wiki/calendar-sync/calendars.org"))
+     '("~/wiki/gtd/einkaufen.org" "~/wiki/gtd/inbox.org" "~/wiki/gtd/projects.org" "~/wiki/gtd/someday.org" "~/wiki/gtd/toread.org" "~/wiki/calendar-sync/calendars.org" "~/wiki/gtd/smartphone.org"))
    '(org-agenda-follow-indirect t)
    '(org-ai-default-chat-model "gpt-4")
    '(org-ai-default-max-tokens 4096)
@@ -798,7 +818,14 @@ This function is called at the very end of Spacemacs initialization."
        ("p" "Blog post" entry
         (file moritzs/blog-post-name)
         (file "~/Projects/homepage/templates/post.md"))))
+   <<<<<<< HEAD
    '(org-cite-global-bibliography '("~/wiki/papers/references.bib"))
+   ||||||| parent of ce9fbd9 (Bankrupty commit)
+   '(org-cite-global-bibliography '("/home/moritz/wiki/papers/references.bib"))
+   =======
+   '(org-cite-global-bibliography
+     '("/home/moritz/wiki/papers/paperpile.bib" "/home/moritz/wiki/papers/references.bib"))
+   >>>>>>> ce9fbd9 (Bankrupty commit)
    '(org-cycle-hook
      '(org-cycle-hide-archived-subtrees org-cycle-show-empty-lines org-cycle-optimize-window-after-visibility-change org-cycle-display-inline-images org-cycle-hide-drawers))
    '(org-directory "~/wiki")
@@ -812,6 +839,7 @@ This function is called at the very end of Spacemacs initialization."
    '(org-fast-tag-selection-single-key t)
    '(org-image-actual-width '(400))
    '(org-latex-prefer-user-labels t)
+   '(org-latex-to-mathml-convert-command "latexmlmath %i --presentationmathml=%o")
    '(org-noter-kill-frame-at-session-end nil)
    '(org-now-location '("~/wiki/gtd/now.org"))
    '(org-odt-inline-image-rules
@@ -867,8 +895,9 @@ This function is called at the very end of Spacemacs initialization."
    '(org-sticky-header-full-path 'full)
    '(org-tags-exclude-from-inheritance '("project"))
    '(package-selected-packages
-     '(whisper eat ef-themes elisp-demos ox-clip khoj copy-as-format all-the-icons elfeed-org elisp-def evil-collection eziam-themes flycheck package-lint git-modes popup helm-core inspector consult modus-themes org-contrib org-project-capture projectile f spaceline string-edit-at-point treemacs seq evil pcre2el emacs-conflict gptel excorporate url-http-oauth url-http-ntlm fsm majapahit-themes org-appear org-sticky-header greader org-ai ox-ipynb org copilot org-drill persist seqel image-roll evil-exwm-state ox-hugo tomelr keytar lsp-grammarly grammarly org-tree-slide theme-changer gscholar-bibtex eaf git-auto-commit-mode conda helm-rg helm-org-ql org-ql peg org-super-agenda map ts py-autopep8 swiper drag-stuff button-lock matrix-client frame-purpose esxml tracking ov typescript-mode pyvenv org-roam emacsql-sqlite3 pdf-tools key-chord ivy tablist org-category-capture alert log4e gntp magit-popup origami skewer-mode hierarchy json-snatcher json-reformat multiple-cursors js2-mode epc concurrent simple-httpd htmlize password-store helm-bibtex bibtex-completion biblio parsebib biblio-core haml-mode grip-mode gitignore-mode fringe-helper git-gutter+ gh marshal logito pcache ghub closql treepy flyspell-correct magit git-commit transient ctable ess with-editor polymode anaphora websocket lsp-treemacs bui posframe ycmd request-deferred deferred web-completion-data rtags pos-tip company cider sesman queue parseedn clojure-mode parseclj a autothemer lsp-mode dash-functional markdown-mode rust-mode inf-ruby yasnippet auctex anaconda-mode pythonic auto-complete evil-easymotion dired-quick-sort zenburn-theme zen-and-art-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toxi-theme toml-mode toc-org tide terminal-here telega tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit systemd synosaurus synonymous symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection ssh-agency spotify sphinx-doc spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme snakemake-mode smyx-theme smeargle slim-mode shell-pop seti-theme seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode ron-mode robe rjsx-mode reverse-theme restart-emacs rebecca-theme rbenv rake rainbow-delimiters railscasts-theme racer pytest pyenv-mode py-isort purple-haze-theme pulseaudio-control pug-mode professional-theme prettier-js popwin planet-theme pippel pipenv pip-requirements pinentry phoenix-dark-pink-theme phoenix-dark-mono-theme password-store-otp password-generator paradox overseer orgit organic-green-theme org-superstar org-roam-bibtex org-rich-yank org-ref org-projectile org-present org-pomodoro org-now org-noter org-mime org-download org-cliplink org-brain openwith open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme nodejs-repl noctilux-theme nix-mode nginx-mode naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-python-ms lsp-pyright lsp-origami lsp-latex lorem-ipsum livid-mode live-py-mode link-hint light-soap-theme kaolin-themes jupyter json-navigator json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme interleave insert-shebang inkpot-theme indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-w3m helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-pass helm-org-rifle helm-org helm-nixos-options helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-exwm helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gist gh-md gandalf-theme fuzzy framemove forge font-lock+ flyspell-correct-helm flycheck-ycmd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flycheck-elsa flycheck-bashate flx-ido flatui-theme flatland-theme fish-mode farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emr emmet-mode elisp-slime-nav el-patch ein editorconfig dumb-jump dracula-theme dotenv-mode doom-themes django-theme disaster diminish devdocs desktop-environment define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dap-mode dakrone-theme cython-mode cyberpunk-theme csv-mode cpp-auto-include company-ycmd company-web company-shell company-rtags company-reftex company-quickhelp company-nixos-options company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clojure-snippets clipmon clean-aindent-mode cider-eval-sexp-fu chruby chocolate-theme cherry-blossom-theme cfrs centered-cursor-mode ccls cargo busybee-theme bundler bubbleberry-theme browse-at-remote blacken birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell))
+     '(langtool code-cells zmq whisper eat ef-themes elisp-demos ox-clip khoj copy-as-format all-the-icons elfeed-org elisp-def evil-collection eziam-themes flycheck package-lint git-modes popup helm-core inspector consult modus-themes org-contrib org-project-capture projectile f spaceline string-edit-at-point treemacs seq evil pcre2el emacs-conflict gptel excorporate url-http-oauth url-http-ntlm fsm majapahit-themes org-appear org-sticky-header greader org-ai ox-ipynb org copilot org-drill persist seqel image-roll evil-exwm-state ox-hugo tomelr keytar lsp-grammarly grammarly org-tree-slide theme-changer gscholar-bibtex eaf git-auto-commit-mode conda helm-rg helm-org-ql org-ql peg org-super-agenda map ts py-autopep8 swiper drag-stuff button-lock matrix-client frame-purpose esxml tracking ov typescript-mode pyvenv org-roam emacsql-sqlite3 pdf-tools key-chord ivy tablist org-category-capture alert log4e gntp magit-popup origami skewer-mode hierarchy json-snatcher json-reformat multiple-cursors js2-mode epc concurrent simple-httpd htmlize password-store helm-bibtex bibtex-completion biblio parsebib biblio-core haml-mode grip-mode gitignore-mode fringe-helper git-gutter+ gh marshal logito pcache ghub closql treepy flyspell-correct magit git-commit transient ctable ess with-editor polymode anaphora websocket lsp-treemacs bui posframe ycmd request-deferred deferred web-completion-data rtags pos-tip company cider sesman queue parseedn clojure-mode parseclj a autothemer lsp-mode dash-functional markdown-mode rust-mode inf-ruby yasnippet auctex anaconda-mode pythonic auto-complete evil-easymotion dired-quick-sort zenburn-theme zen-and-art-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify vterm volatile-highlights vi-tilde-fringe uuidgen use-package unfill undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toxi-theme toml-mode toc-org tide terminal-here telega tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit systemd synosaurus synonymous symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection ssh-agency spotify sphinx-doc spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme snakemake-mode smyx-theme smeargle slim-mode shell-pop seti-theme seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode ron-mode robe rjsx-mode reverse-theme restart-emacs rebecca-theme rbenv rake rainbow-delimiters railscasts-theme racer pytest pyenv-mode py-isort purple-haze-theme pulseaudio-control pug-mode professional-theme prettier-js popwin planet-theme pippel pipenv pip-requirements pinentry phoenix-dark-pink-theme phoenix-dark-mono-theme password-store-otp password-generator paradox overseer orgit organic-green-theme org-superstar org-roam-bibtex org-rich-yank org-ref org-projectile org-present org-pomodoro org-now org-noter org-mime org-download org-cliplink org-brain openwith open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme nodejs-repl noctilux-theme nix-mode nginx-mode naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minitest minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-python-ms lsp-pyright lsp-origami lsp-latex lorem-ipsum livid-mode live-py-mode link-hint light-soap-theme kaolin-themes jupyter json-navigator json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme interleave insert-shebang inkpot-theme indent-guide importmagic impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-w3m helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-pass helm-org-rifle helm-org helm-nixos-options helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-exwm helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gist gh-md gandalf-theme fuzzy framemove forge font-lock+ flyspell-correct-helm flycheck-ycmd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flycheck-elsa flycheck-bashate flx-ido flatui-theme flatland-theme fish-mode farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emr emmet-mode elisp-slime-nav el-patch ein editorconfig dumb-jump dracula-theme dotenv-mode doom-themes django-theme disaster diminish devdocs desktop-environment define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dap-mode dakrone-theme cython-mode cyberpunk-theme csv-mode cpp-auto-include company-ycmd company-web company-shell company-rtags company-reftex company-quickhelp company-nixos-options company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clojure-snippets clipmon clean-aindent-mode cider-eval-sexp-fu chruby chocolate-theme cherry-blossom-theme cfrs centered-cursor-mode ccls cargo busybee-theme bundler bubbleberry-theme browse-at-remote blacken birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell))
    '(paradox-github-token t)
+   '(password-store-password-length 25)
    '(pdf-annot-activate-created-annotations t)
    '(pdf-info-epdfinfo-error-filename "/tmp/epdfinfo.log")
    '(pdf-misc-print-program "/usr/bin/lpr" t)
@@ -877,13 +906,17 @@ This function is called at the very end of Spacemacs initialization."
    '(persp-autokill-buffer-on-remove 'kill)
    '(pixel-scroll-precision-mode t)
    '(projectile-git-submodule-command nil)
-   '(projectile-globally-ignored-file-suffixes '("svg" "ipynb"))
+   '(projectile-globally-ignored-file-suffixes '("svg"))
    '(projectile-indexing-method 'hybrid)
    '(python-shell-interpreter "python")
    '(python-shell-interpreter-args "")
    '(python-shell-prompt-block-regexp "\\.\\.\\.:? ")
    '(safe-local-variable-values
-     '((eval progn
+     '((time-stamp-active . t)
+       (eval unless
+             (eq system-type 'darwin)
+             (git-auto-commit-mode 1))
+       (eval progn
              (pp-buffer)
              (indent-buffer))
        (eval setq org-babel-default-header-args:python
