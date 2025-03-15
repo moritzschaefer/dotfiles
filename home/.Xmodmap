@@ -1,7 +1,0 @@
-clear control
-clear mod3
-clear mod4
-keycode 108 = Control_R
-add mod3 = Super_R ISO_Level5_Shift
-add control = Control_L Control_R
-add mod4 = Super_L
