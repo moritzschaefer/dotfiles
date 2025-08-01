@@ -587,6 +587,9 @@ With a prefix argument, it will behave as normal (50/50)."
 (load "~/.spacemacs.d/lisp/pdf.el")
 (load "~/.spacemacs.d/lisp/isearch.el")
 
+(when (eq system-type 'darwin)
+  (load "~/.spacemacs.d/lisp/macos.el"))
+
 ;; (load "~/.spacemacs.d/lisp/eaf.el")
 ;; (load "~/.spacemacs.d/lisp/feedly.el")
 ;; (load "~/.spacemacs.d/secrets/feedly.el")

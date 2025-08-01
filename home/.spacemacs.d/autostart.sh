@@ -5,7 +5,7 @@ if ! pgrep urxvt; then
     # mamba_kernel $ 
     nm-applet &
     clipit 2>&1 &
-    git -C /home/moritz/wiki status &   # Attempt to accelerate/cache git stuff so emacs does not freeze
+    git -C ~/wiki status &   # Attempt to accelerate/cache git stuff so emacs does not freeze
     # system-config-printer-applet &
     # ~/bin/redshift-workaround &
     # lxqt-policykit-agent &

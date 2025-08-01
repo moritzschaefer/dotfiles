@@ -65,25 +65,25 @@
       ;;          (lambda (result)
       ;;            (setq gptel-api-key result))))))
 
-      (exwm-input-set-key (kbd "s-j") #'gptel-menu)  ;; normally we should use gptel-send with a prefix argument
-      (exwm-input-set-key (kbd "M-s-j") #'gptel-send)
-      (exwm-input-set-key (kbd "s-<prior>") #'gptel-add)
-      (exwm-input-set-key (kbd "C-s-j") #'gptel-abort)
-      (exwm-input-set-key (kbd "s-J")
-                          (lambda ()
-                            (interactive)
+      (global-set-key (kbd "s-j") #'gptel-menu)  ;; normally we should use gptel-send with a prefix argument
+      (global-set-key (kbd "M-s-j") #'gptel-send)
+      (global-set-key (kbd "s-<prior>") #'gptel-add)
+      (global-set-key (kbd "C-s-j") #'gptel-abort)
+      (global-set-key (kbd "s-J")
+                      (lambda ()
+                        (interactive)
 
 
-                            (let ((current-prefix-arg nil)
-                                  (selected-region (and (use-region-p)
-                                                        (buffer-substring (region-beginning)
-                                                                          (region-end)))))
-                              (exwm-workspace-switch 5) ; Switch to workspace 5
-                              ;; (call-interactively 'gptel)
-                              (let ((buffer (gptel "test" nil selected-region)))
-                                (switch-to-buffer buffer)
-                                )
-                              )))
+                        (let ((current-prefix-arg nil)
+                              (selected-region (and (use-region-p)
+                                                    (buffer-substring (region-beginning)
+                                                                      (region-end)))))
+                          (exwm-workspace-switch 5) ; Switch to workspace 5
+                          ;; (call-interactively 'gptel)
+                          (let ((buffer (gptel "test" nil selected-region)))
+                            (switch-to-buffer buffer)
+                            )
+                          )))
       (setq
        gptel-model 'claude-sonnet-4-20250514 ;  "claude-3-opus-20240229" also available
        gptel-backend (gptel-make-anthropic "Claude"

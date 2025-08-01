@@ -39,7 +39,7 @@
 
 (defun moritzs/recent-smartphone-photo ()
   "Open a recently taken smartphone picture."
-  (format "~/Pictures/Camera/Camera/%s" (shell-command-to-string "ls -t  '/home/moritz/Pictures/Camera/Camera' | head -n 1 | tr -d '\n'"))
+  (format "~/Pictures/Camera/Camera/%s" (shell-command-to-string "ls -t  '~/Pictures/Camera/Camera' | head -n 1 | tr -d '\n'"))
   )
 
 (defun moritzs/open-smartphone-photo ()
@@ -51,4 +51,4 @@
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("freenode.net" "#spacemacs" "#wiki" "#nethack" "#neo")))
 
-(shell-command-to-string "ls -t  '/home/moritz/Pictures/Camera/Camera' | head -n 1 | tr -d '\n'")
+(shell-command-to-string "ls -t  '~/Pictures/Camera/Camera' | head -n 1 | tr -d '\n'")

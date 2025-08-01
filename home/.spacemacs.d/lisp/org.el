@@ -46,7 +46,7 @@
                                             (truncate-string-to-width (org-clock-get-clock-string) (- (window-total-width) 70) 0 nil t)))
 
 ;; org-download
-;; workaround: attachment-links are not exported correctly (/home/moritz/.emacs.d/elpa/27.2/develop/org-x.x.x/ox-odt.el)
+;; workaround: attachment-links are not exported correctly (~/.emacs.d/elpa/27.2/develop/org-x.x.x/ox-odt.el)
 ;; Therefore use "normal" (less elegant) links
 (defun moritzs/org-download-link-format-function-data-path (filename)
   "The default function of `org-download-link-format-function'."
@@ -136,9 +136,9 @@
 
 
 (defun moritzs/download-paperpile ()
-  "Change directory to /home/moritz/wiki/papers and download the paper using wget."
+  "Change directory to ~/wiki/papers and download the paper using wget."
   (interactive)
-  (let ((default-directory "/home/moritz/wiki/papers/")
+  (let ((default-directory "~/wiki/papers/")
         (url "https://paperpile.com/eb/ghEynTRTJb")
         (filename "paperpile.bib"))
     (url-copy-file url filename t)
@@ -231,9 +231,9 @@
 (spacemacs/set-leader-keys-for-major-mode 'org-mode  ;; refile
   "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-schedule) (call-interactively 'org-refile)))
 ;; (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
-;;   "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-agenda-schedule) (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil))))
+;;   "dr" (lambda () "Schedule and Refile" (interactive) (call-interactively 'org-agenda-schedule) (org-agenda-refile nil (list "someday.org" "~/wiki/gtd/someday.org" nil nil))))
 ;; (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
-;;   "dw" (lambda () "Schedule to weekend" (interactive) (org-agenda-schedule nil "sat") (org-agenda-refile nil (list "someday.org" "/home/moritz/wiki/gtd/someday.org" nil nil)) ))
+;;   "dw" (lambda () "Schedule to weekend" (interactive) (org-agenda-schedule nil "sat") (org-agenda-refile nil (list "someday.org" "~/wiki/gtd/someday.org" nil nil)) ))
 
   ;;; display/update images in the buffer after I evaluate TODO don't know if this is necessary
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
@@ -392,17 +392,17 @@
     "docstring"
     (let* ((basename (file-name-sans-extension texfile))
            (tmpname (format "%s.mod.tex" basename))
-           (csl-file (or csl-file "/home/moritz/wiki/gtd/csbj.csl"))  ;; use csbj.csl for [1] numbers and elsevier-harvard2.csl for years,name
+           (csl-file (or csl-file "~/wiki/gtd/csbj.csl"))  ;; use csbj.csl for [1] numbers and elsevier-harvard2.csl for years,name
            (reference-doc
             (if (file-exists-p (format "%s_template.docx" basename) )
                 (format "%s_template.docx" basename)
-              "/home/moritz/wiki/template.docx"
+              "~/wiki/template.docx"
               ))
            )
       (call-process-shell-command (format "~/bin/format-tex.py %s %s" texfile tmpname)
                                   nil "*Shell Command Output*" t)
 
-      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/paperpile.bib --bibliography=/home/moritz/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)
+      (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=~/wiki/papers/paperpile.bib --bibliography=~/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)
                                   nil "*Shell Command Output*" t)
       =======
       (find-file (nth 1 parent-target))
@@ -483,17 +483,17 @@
   "docstring"
   (let* ((basename (file-name-sans-extension texfile))
          (tmpname (format "%s.mod.tex" basename))
-         (csl-file (or csl-file "/home/moritz/wiki/gtd/csbj.csl"))  ;; use csbj.csl for [1] numbers and elsevier-harvard2.csl for years,name
+         (csl-file (or csl-file "~/wiki/gtd/csbj.csl"))  ;; use csbj.csl for [1] numbers and elsevier-harvard2.csl for years,name
          (reference-doc
           (if (file-exists-p (format "%s_template.docx" basename) )
               (format "%s_template.docx" basename)
-            "/home/moritz/wiki/template.docx"
+            "~/wiki/template.docx"
             ))
          )
     (call-process-shell-command (format "~/bin/format-tex.py %s %s" texfile tmpname)
                                 nil "*Shell Command Output*" t)
 
-    (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=/home/moritz/wiki/papers/paperpile.bib --bibliography=/home/moritz/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)
+    (call-process-shell-command (format "pandoc -f latex -t docx --reference-doc=%s --bibliography=~/wiki/papers/paperpile.bib --bibliography=~/wiki/papers/references.bib --csl %s -i %s -o %s.docx" reference-doc csl-file tmpname basename)
                                 nil "*Shell Command Output*" t)
     )
   )
