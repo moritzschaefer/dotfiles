@@ -5,6 +5,7 @@ if status is-interactive
     alias clip="xclip -selection clipboard"
     alias muwvpn="pass show Wien/meduniwien.ac.at/mschae83 | sudo openconnect --passwd-on-stdin --user mschae83 --authgroup _CeMM_exkl.Journale vpn.meduniwien.ac.at"
     alias feh="feh --scale-down --action 'cp %F ~/tmp/feh_selections/'"
+    alias mm="micromamba"
 
     set -gx PATH $HOME/bin $PATH
     set EDITOR vim

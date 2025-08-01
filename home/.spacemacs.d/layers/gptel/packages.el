@@ -84,6 +84,37 @@
                                 (switch-to-buffer buffer)
                                 )
                               )))
+      (setq
+       gptel-model 'claude-sonnet-4-20250514 ;  "claude-3-opus-20240229" also available
+       gptel-backend (gptel-make-anthropic "Claude"
+                       :stream t))
+
+
+      (gptel-make-anthropic "Claude-thinking" ;Any name you want
+        :stream t
+        :models '(claude-sonnet-4-20250514 claude-3-7-sonnet-20250219)
+        :request-params '(:thinking (:type "enabled" :budget_tokens 2048)
+                                    :max_tokens 4096))
+
+
+      ;; (lambda ()
+      ;;        (password-store-get "USA/Anthropic/api_key"))
+      ;; ))
+
+
+      ;; set gptel-api-key to be a function that retrieves the API key from password-store
+      ;; (setq gptel-api-key (lambda ()
+      ;;                       (password-store-get "USA/Anthropic/api_key")))
+      ;; (let ((my-load-path load-path))  ;; need to pass the load-path into the async process
+      ;;   (async-start
+      ;;    ;; What to do in the child process
+      ;;    `(lambda ()
+      ;;       (setq load-path ',my-load-path)
+      ;;       (require 'password-store)
+      ;;       (password-store-get "openai.com/meduni_my_api_key"))
+      ;;    ;; What to do when it finishes
+      ;;    (lambda (result)
+      ;;      result)))))
 
       (define-key gptel-mode-map (kbd "C-<return>") #'gptel-send)
 
