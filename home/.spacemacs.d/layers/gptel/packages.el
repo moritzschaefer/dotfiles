@@ -73,8 +73,6 @@
                           (lambda ()
                             (interactive)
 
-                            (unless (stringp gptel-api-key)
-                              (setq gptel-api-key (password-store-get "openai.com/meduni_my_api_key")))
 
                             (let ((current-prefix-arg nil)
                                   (selected-region (and (use-region-p)

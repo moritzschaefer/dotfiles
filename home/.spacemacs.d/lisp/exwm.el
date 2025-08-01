@@ -10,7 +10,7 @@
   (interactive)
   (let* ((inhibit-read-only t)
          ;; Make sure we send selected yank-pop candidate to
-         ;; clipboard: 
+         ;; clipboard:
          (yank-pop-change-selection t)
          (returned-value (call-interactively #'helm-show-kill-ring)))
     (when returned-value
@@ -120,7 +120,7 @@
   (let ((helm-ag-command-option  "-G\.org$ "))
     (helm-do-ag "~/wiki/")
     )
-)
+  )
 
 (exwm-input-set-key (kbd "s-y") #'moritzs/search-wiki)
 
@@ -187,7 +187,7 @@
 
 
 (exwm-input-set-key (kbd "s-w") #'exwm-floating-toggle-floating)
-(exwm-input-set-key (kbd "s-d") #'spacemacs/delete-window)
+(exwm-input-set-key (kbd "s-d") #'delete-window)
 (exwm-input-set-key (kbd "s-v") #'split-window-right-and-focus)
 (exwm-input-set-key (kbd "s-V") #'split-window-right)
 (exwm-input-set-key (kbd "s-h") #'split-window-below-and-focus)
@@ -224,7 +224,7 @@
 (define-key exwm-mode-map (kbd "C-c") nil)
 
 ;; User s-q to close buffers
-(exwm-input-set-key (kbd "s-q") 'spacemacs/kill-this-buffer)
+(exwm-input-set-key (kbd "s-q") 'kill-current-buffer)
 
 ;; Don't override any keybindings in line-mode
 (setq exwm-input-prefix-keys '())

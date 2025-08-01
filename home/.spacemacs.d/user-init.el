@@ -1,3 +1,23 @@
+;; this was added to fix nixos configuration changes (somehow the loadScript there does not work a previously anymore)
+(require 'exwm)
+;; most of it is now in .spacemacs.d/lisp/exwm.el
+(setq exwm-workspace-number 8)
+(require 'exwm-systemtray)
+(require 'exwm-randr)
+;; (setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "HDMI1" 2 "DP2" 3 "eDP1" 4 "HDMI1" 5 "DP2"))
+;; (setq exwm-randr-workspace-monitor-plist '(0 "eDP1" 1 "eDP1" 2 "HDMI1" 3 "eDP1" 4 "eDP1" 5 "eDP1"))
+;; (exwm-randr-enable)  ;; for the old EXWM 0.28 version
+(exwm-systemtray-mode)
+(exwm-enable)
+(exwm-randr-mode)  ;; I think this would be for the new version
+
+
+
+
+
+
+
+
 (setq shell-file-name "/bin/sh")
 (setq org-roam-v2-ack t)
 
@@ -19,7 +39,7 @@
 
 (defun moritzs/recent-smartphone-photo ()
   "Open a recently taken smartphone picture."
-  (format "~/Kamera/Camera/%s" (shell-command-to-string "ls -t  '~/Kamera/Camera/' | head -n 1 | tr -d '\n'"))
+  (format "~/Pictures/Camera/Camera/%s" (shell-command-to-string "ls -t  '/home/moritz/Pictures/Camera/Camera' | head -n 1 | tr -d '\n'"))
   )
 
 (defun moritzs/open-smartphone-photo ()
@@ -30,3 +50,5 @@
 ;; (erc :server "irc.freenode.net" :port 6697 :nick "moritzschaefer")
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("freenode.net" "#spacemacs" "#wiki" "#nethack" "#neo")))
+
+(shell-command-to-string "ls -t  '/home/moritz/Pictures/Camera/Camera' | head -n 1 | tr -d '\n'")

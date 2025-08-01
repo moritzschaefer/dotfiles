@@ -636,17 +636,18 @@ This function is called at the very end of Spacemacs initialization."
    '(auto-save-visited-mode t)
    '(auto-save-visited-predicate
      '(lambda nil
-        (and
-         (eq major-mode 'org-mode)
-         (string-match ".org$" buffer-file-name))))
+        (and (eq major-mode 'org-mode) (string-match ".org$" buffer-file-name))))
    '(avy-all-windows t)
    '(avy-keys
-     '(101 110 105 114 116 115 99 103 117 108 98 111 100 109 97 104 228 121 252 122 118 44 46))
+     '(101 110 105 114 116 115 99 103 117 108 98 111 100 109 97 104 228 121 252 122
+           118 44 46))
    '(avy-timeout-seconds 0.2)
    '(bibtex-completion-additional-search-fields '("journal"))
    '(bibtex-completion-display-formats
-     '((article . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-       (t . "${author:36} ${title:*} ${year:4} ${=has-pdf=:1}${=has-note=:1} ${=type=:7}")))
+     '((article
+        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+       (t
+        . "${author:36} ${title:*} ${year:4} ${=has-pdf=:1}${=has-note=:1} ${=type=:7}")))
    '(bibtex-completion-format-citation-functions
      '((org-mode . bibtex-completion-format-citation-org-cite)
        (latex-mode . bibtex-completion-format-citation-cite)
@@ -685,20 +686,14 @@ This function is called at the very end of Spacemacs initialization."
    '(evil-want-Y-yank-to-eol nil)
    '(eww-search-prefix "https://google.com/search?q=")
    '(exwm-manage-configurations
-     '(((equal exwm-class-name "Spotify")
-        char-mode t workspace 4)
-       ((equal
-         (buffer-name)
-         "The PyMOL Molecular Graphics System")
-        floating t width 400 height 200 floating-mode-line nil floating-header-line nil char-mode t)
-       ((equal exwm-class-name "Rambox")
-        workspace 4)
-       ((equal exwm-class-name "URxvt")
-        char-mode t workspace 3)
-       ((equal exwm-class-name "discord")
-        char-mode t workspace 4)
-       ((equal exwm-class-name "Google-chrome")
-        char-mode t workspace 2)
+     '(((equal exwm-class-name "Spotify") char-mode t workspace 4)
+       ((equal (buffer-name) "The PyMOL Molecular Graphics System") floating t
+        width 400 height 200 floating-mode-line nil floating-header-line nil
+        char-mode t)
+       ((equal exwm-class-name "Rambox") workspace 4)
+       ((equal exwm-class-name "URxvt") char-mode t workspace 3)
+       ((equal exwm-class-name "discord") char-mode t workspace 4)
+       ((equal exwm-class-name "Google-chrome") char-mode t workspace 2)
        (t floating nil char-mode t)))
    '(exwm-workspace-number 8)
    '(exwm-workspace-warp-cursor t)
@@ -710,19 +705,27 @@ This function is called at the very end of Spacemacs initialization."
    '(google-translate-default-target-language "de")
    '(google-translate-enable-ido-completion t t)
    '(google-translate-show-phonetic t t)
+   '(gptel-cache t)
    '(gptel-directives
-     '((research-question . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my academic advisor helping me to find a research question for my Postdoc project. Adopt the role of an outstanding scientist with a longstanding expertise in my field of study. Base the questions very specifically on the information you will be provided with.\12\12Analyze current research trends and knowledge gaps to identify three high-impact research questions suitable for a Postdoc project. For each question you come up with do the following:\12\0121. Briefly ponder on relevant and surprising directions that might be linked to what is described above\0122. Formulate a clear, testable research question as a single sentence\0123. Provide the three most relevant peer-reviewed publications from the last five years that form the basis of the question\0124. Analyze its significance:\12   - How it addresses current knowledge gaps\12   - Potential impact on field advancement\12   - Broader implications for related research areas\12   - Integration with most recent findings of the field\0125. Outline 3 distinct experimental approaches:\12   - Required methodology\12   - Key techniques\12   - Expected outcomes\12   - Potential technical challenges\12   - Resource requirements\12\12Focus on questions that:\12- Challenge current paradigms\12- Bridge distinct research areas\12- Address fundamental mechanisms\12- Have translational potential\12- Build on my technical expertise\12- Are feasible within 3-5 years\12- Can yield multiple publications\12\12Respond in this structure:\12- Research Question 1: [Single sentence question]\12- Significance: [Concise analysis of importance and potential impact]\12- Experimental Approaches: 1. [Approach 1] 2. [Approach 2] 3. [Approach 3] 4. [Approach 4] 5. [Approach 5]\12\12[Repeat for Questions 2 and 3]")
-       (grant-writing . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12[Research]\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my research assistant. You will help me rewriting provided parts of my research documents (proposals, papers, grants, statements). Rely on the provided contextual information, which includes the full draft, as much as possible. Introduce new meaningful ideas/concepts where helpful, but stick to the storyline most of the time.\12\12[No fake references]\12You will never make up any sources of your own. If you are unsure about a source, you will say that you don’t know.\12\12[Style]\12Rewrite clear and concise, do not use more words than are necessary. Always be very economical with words, but do not compromise on clarity and precision of your answers.")
-       (default . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12[Research]\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my research assistant. You will help me with finding structures for academic writing and presentation, brainstorming research questions, simplifying complex topics, mock peer review, finding narrative structures for my science, and improving style of academic writing. You will help me with improving drafts of the papers I am working on and with finding a good way to tell the story of my research. You will also engage with me in a Socratic dialog and challenge my opinions so that I am aware of any blind spots I may have. Based on our conversations, you will suggest promising hyptheses and directions for my research.\12If I ask you to give me feedback on a text, you will analyze its:\0121. Central argument with a focus on clarity and strength. Provide helpful and actionable suggestions for improvement.\0122. Evidence presented in support of the central argument. If the evidence is not convincing enough then provide actionable suggestions for improvement.\0123. Overall structure for coherence and cohesion. Provide actionable suggestion to improve the structure of the manuscript.\0124. Style consistency and adherence to established academic language.\12\12\12[Persona]\12You will respond like an academic colleague in the fields of Machine Learning and Life Science. Any claims, opinions, or figures that you cite in your responses must be cited with reference to an authentic and published source.\12\12[No fake references]\12You will never make up any sources of your own. If you are unsure about a source, you will say that you don’t know.\12\12[Style]\12Your responses should be clear and concise, do not use more words than are necessary. Always be very economical with words, but do not compromise on clarity and precision of your answers.\12You will follow my instructions strictly. If I ask you to limit your answer to two sentences, your answer must be two sentences only.")
+     '((research-question
+        . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my academic advisor helping me to find a research question for my Postdoc project. Adopt the role of an outstanding scientist with a longstanding expertise in my field of study. Base the questions very specifically on the information you will be provided with.\12\12Analyze current research trends and knowledge gaps to identify three high-impact research questions suitable for a Postdoc project. For each question you come up with do the following:\12\0121. Briefly ponder on relevant and surprising directions that might be linked to what is described above\0122. Formulate a clear, testable research question as a single sentence\0123. Provide the three most relevant peer-reviewed publications from the last five years that form the basis of the question\0124. Analyze its significance:\12   - How it addresses current knowledge gaps\12   - Potential impact on field advancement\12   - Broader implications for related research areas\12   - Integration with most recent findings of the field\0125. Outline 3 distinct experimental approaches:\12   - Required methodology\12   - Key techniques\12   - Expected outcomes\12   - Potential technical challenges\12   - Resource requirements\12\12Focus on questions that:\12- Challenge current paradigms\12- Bridge distinct research areas\12- Address fundamental mechanisms\12- Have translational potential\12- Build on my technical expertise\12- Are feasible within 3-5 years\12- Can yield multiple publications\12\12Respond in this structure:\12- Research Question 1: [Single sentence question]\12- Significance: [Concise analysis of importance and potential impact]\12- Experimental Approaches: 1. [Approach 1] 2. [Approach 2] 3. [Approach 3] 4. [Approach 4] 5. [Approach 5]\12\12[Repeat for Questions 2 and 3]")
+       (grant-writing
+        . "[Intro]\12I am an academic scientist with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work at Stanford and my research focuses on AI agents, multiomdal AIs, multi-scale models and CAR T cell therapy. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12You are senior scientist professor and grant writing expert with 20 years of experience and will help me developing and writing my grant. Rely and build on the provided contextual information, which may include previous drafts, guidelines and other information. Introduce new meaningful ideas/concepts where helpful, but stick to the provided storyline most of the time.\12\12[No fake references]\12You will never make up any sources of your own. If you are unsure about a source, you will say that you don’t know.\12\12[Style]\12Write concise, dry and precise prose, while avoiding hyperbole and unnecessary fluff. Be very economical with words, but do not compromise on clarity and precision of your answers.")
+       (default
+        . "[Intro]\12I am an academic researcher with a PhD in Biology, Bioinformatics and Artificial Intelligence. I work as a Postdoc at the AI Institute of the  Medical University of Vienna and at the CeMM Research Center of Molecular Medicine\12\12[Research]\12My research at focuses on the development of multimodal AI architectures for biomedical data analysis. This entails single cell transcriptomics and natural language data as well as protein structures. I published research on data integration and multimodal transcriptome-language AI.\12\12[Task]\12Act as my research assistant. You will help me with finding structures for academic writing and presentation, brainstorming research questions, simplifying complex topics, mock peer review, finding narrative structures for my science, and improving style of academic writing. You will help me with improving drafts of the papers I am working on and with finding a good way to tell the story of my research. You will also engage with me in a Socratic dialog and challenge my opinions so that I am aware of any blind spots I may have. Based on our conversations, you will suggest promising hyptheses and directions for my research.\12If I ask you to give me feedback on a text, you will analyze its:\0121. Central argument with a focus on clarity and strength. Provide helpful and actionable suggestions for improvement.\0122. Evidence presented in support of the central argument. If the evidence is not convincing enough then provide actionable suggestions for improvement.\0123. Overall structure for coherence and cohesion. Provide actionable suggestion to improve the structure of the manuscript.\0124. Style consistency and adherence to established academic language.\12\12\12[Persona]\12You will respond like an academic colleague in the fields of Machine Learning and Life Science. Any claims, opinions, or figures that you cite in your responses must be cited with reference to an authentic and published source.\12\12[No fake references]\12You will never make up any sources of your own. If you are unsure about a source, you will say that you don’t know.\12\12[Style]\12Your responses should be clear and concise, do not use more words than are necessary. Always be very economical with words, but do not compromise on clarity and precision of your answers.\12You will follow my instructions strictly. If I ask you to limit your answer to two sentences, your answer must be two sentences only.")
        (synonyms . "What are synonyms of this word:")
        (rewrite . "Rewrite concisely and shorten:")
        (deutsch . "Translate the following into German:")
        (english . "Translate the following into English:")
-       (default . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
-       (programming . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
-       (writing . "You are a large language model and a writing assistant. Respond concisely.")
-       (chat . "You are a large language model and a conversation partner. Respond concisely.")))
-   '(gptel-model 'gpt-4o)
+       (default
+        . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
+       (programming
+        . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
+       (writing
+        . "You are a large language model and a writing assistant. Respond concisely.")
+       (chat
+        . "You are a large language model and a conversation partner. Respond concisely.")))
+   '(gptel-log-level 'info)
    '(gptel-temperature 0.5)
    '(helm-ag-ignore-patterns nil)
    '(helm-ag-use-agignore nil)
@@ -732,32 +735,32 @@ This function is called at the very end of Spacemacs initialization."
    '(helm-ff-lynx-style-map t)
    '(helm-google-suggest-actions
      '(("Google Search" . helm-google-suggest-action)
-       ("Wikipedia" lambda
-        (candidate)
-        (helm-search-suggest-perform-additional-action helm-search-suggest-action-wikipedia-url candidate))
-       ("Youtube" lambda
-        (candidate)
-        (helm-search-suggest-perform-additional-action helm-search-suggest-action-youtube-url candidate))
-       ("IMDb" lambda
-        (candidate)
-        (helm-search-suggest-perform-additional-action helm-search-suggest-action-imdb-url candidate))
-       ("Google Maps" lambda
-        (candidate)
-        (helm-search-suggest-perform-additional-action helm-search-suggest-action-google-maps-url candidate))
-       ("Google News" lambda
-        (candidate)
-        (helm-search-suggest-perform-additional-action helm-search-suggest-action-google-news-url candidate))
-       ("Stack Snippet" lambda
-        (candidate)
-        (helm-search-suggest-perform-additional-action "http://www.stacksnippet.com/#gsc.tab=0&gsc.q=%s" candidate))))
+       ("Wikipedia" lambda (candidate)
+        (helm-search-suggest-perform-additional-action
+         helm-search-suggest-action-wikipedia-url candidate))
+       ("Youtube" lambda (candidate)
+        (helm-search-suggest-perform-additional-action
+         helm-search-suggest-action-youtube-url candidate))
+       ("IMDb" lambda (candidate)
+        (helm-search-suggest-perform-additional-action
+         helm-search-suggest-action-imdb-url candidate))
+       ("Google Maps" lambda (candidate)
+        (helm-search-suggest-perform-additional-action
+         helm-search-suggest-action-google-maps-url candidate))
+       ("Google News" lambda (candidate)
+        (helm-search-suggest-perform-additional-action
+         helm-search-suggest-action-google-news-url candidate))
+       ("Stack Snippet" lambda (candidate)
+        (helm-search-suggest-perform-additional-action
+         "http://www.stacksnippet.com/#gsc.tab=0&gsc.q=%s" candidate))))
    '(helm-kill-ring-actions
-     '(("Copy to clipboard" lambda
-        (str)
-        (gui-set-selection 'CLIPBOARD str))
+     '(("Copy to clipboard" lambda (str) (gui-set-selection 'CLIPBOARD str))
        ("Yank marked" . helm-kill-ring-action-yank)
        ("Delete marked" . helm-kill-ring-action-delete)))
    '(helm-source-names-using-follow
-     '("AG" "Workspace symbol" "dap-switch-stack-frame" "Helm Xref" "mark-ring" "Org Directory Files"))
+     '("AG" "Workspace symbol" "dap-switch-stack-frame" "Helm Xref" "mark-ring"
+       "Org Directory Files"))
+   '(helm-swoop-pre-input-function #[nil (nil) (t)])
    '(helm-truncate-lines t)
    '(hybrid-style-default-state 'emacs)
    '(hybrid-style-enable-evilified-state nil)
@@ -776,11 +779,16 @@ This function is called at the very end of Spacemacs initialization."
    '(mouse-yank-at-point t)
    '(native-comp-deferred-compilation-deny-list '("jupyter" "zmq" ".*jupyter.*"))
    '(orb-preformat-keywords
-     '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "file" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "url" "author-or-editor" "keywords" "journal" "title"))
+     '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "file"
+       "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "url"
+       "author-or-editor" "keywords" "journal" "title"))
    '(org-agenda-file-regexp
      "\\(inbox\\|someday\\|projects\\|toread\\|smartphone\\|einkaufen\\).org$")
    '(org-agenda-files
-     '("/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org" "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/someday.org" "/home/moritz/wiki/gtd/smartphone.org" "/home/moritz/wiki/gtd/toread.org" "/home/moritz/wiki/calendar-sync/calendars.org"))
+     '("/home/moritz/wiki/gtd/einkaufen.org" "/home/moritz/wiki/gtd/inbox.org"
+       "/home/moritz/wiki/gtd/projects.org" "/home/moritz/wiki/gtd/someday.org"
+       "/home/moritz/wiki/gtd/smartphone.org" "/home/moritz/wiki/gtd/toread.org"
+       "/home/moritz/wiki/calendar-sync/calendars.org"))
    '(org-agenda-follow-indirect t)
    '(org-ai-default-chat-model "gpt-4")
    '(org-ai-default-max-tokens 4096)
@@ -906,26 +914,17 @@ This function is called at the very end of Spacemacs initialization."
    '(python-shell-interpreter-args "")
    '(python-shell-prompt-block-regexp "\\.\\.\\.:? ")
    '(safe-local-variable-values
-     '((time-stamp-active . t)
-       (eval unless
-             (eq system-type 'darwin)
-             (git-auto-commit-mode 1))
-       (eval progn
-             (pp-buffer)
-             (indent-buffer))
+     '((js2-basic-offset . 2) (time-stamp-active . t)
+       (eval unless (eq system-type 'darwin) (git-auto-commit-mode 1))
+       (eval progn (pp-buffer) (indent-buffer))
        (eval setq org-babel-default-header-args:python
-             '((:async . "no")
-               (:kernel . "langchain")))
+             '((:async . "no") (:kernel . "langchain")))
        (eval setq org-babel-default-header-args:jupyter-python
-             '((:async . "no")
-               (:kernel . "langchain")))
+             '((:async . "no") (:kernel . "langchain")))
        (eval setq-local org-babel-default-header-args:jupyter-python
-             '((:async . "no")
-               (:kernel . "langchain")))
-       (typescript-backend . tide)
-       (typescript-backend . lsp)
-       (javascript-backend . tide)
-       (javascript-backend . tern)
+             '((:async . "no") (:kernel . "langchain")))
+       (typescript-backend . tide) (typescript-backend . lsp)
+       (javascript-backend . tide) (javascript-backend . tern)
        (javascript-backend . lsp)))
    '(scroll-bar-mode nil)
    '(send-mail-function 'smtpmail-send-it)

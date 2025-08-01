@@ -559,6 +559,20 @@
 (add-hook 'importmagic-mode-hook 'renice-importmagicserver)
 
 
+;; Split beyond the macbook notch
+(defun moritzs/even-split-advice (orig-fun &rest args)
+  "Advise split-window-right to default to a 70/30 split.
+With a prefix argument, it will behave as normal (50/50)."
+  ;; If called with a prefix arg, or non-interactively, use the default behavior.
+  (if current-prefix-arg ;; or (not (called-interactively-p 'any)))
+      (apply orig-fun args)
+    ;; Otherwise, apply our custom 40/60 split.
+    (let ((size (floor (* 0.56 (window-width)))))
+      (funcall orig-fun size))))
+
+;; Add the advice to the 'split-window-right' command
+(advice-add 'split-window-right :around #'moritzs/even-split-advice)
+
 (with-eval-after-load 'password-store
   (spacemacs/set-leader-keys
     "atPg" 'password-store-generate-no-symbols)
